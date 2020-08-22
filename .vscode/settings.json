@@ -1,0 +1,9 @@
+{
+    "Lua.diagnostics.globals": [
+        "CFrame",
+        "Vector3"
+    ],
+    "Lua.diagnostics.disable": [
+        "undefined-global"
+    ]
+}
