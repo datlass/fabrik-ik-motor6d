@@ -11102,19 +11102,6 @@ end)
 				<string name="Name">Source</string>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
-			<Item class="ModuleScript" referent="4">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<Content name="LinkedSource"><null></null></Content>
-					<string name="Name">hello</string>
-					<string name="ScriptGuid">{d42d90a6-4c77-4662-a2e5-a05a297c2ebd}</string>
-					<ProtectedString name="Source"><![CDATA[print("Hello World")
---woww
---now I can type stuff here when I save
-]]></ProtectedString>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-			</Item>
 			<Item class="Folder" referent="RBXfdde6fe5247740e398433797f14bd53c">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
@@ -11127,201 +11114,248 @@ end)
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">Fabrik</string>
 						<string name="ScriptGuid">{84c0079e-1216-43b0-b981-db54832852b5}</string>
-						<ProtectedString name="Source"><![CDATA[--There is a bug where v1New is returned as nil idk why
---fixed due to return statements on the fabrik algo
---refer to diagram in tablet for information on which points are which
---Add a function to constrain in a cone
---inputs are angle of elevation
-local function backwards(originCF, targetPos, v1,v2,v3)
-	
+						<ProtectedString name="Source"><![CDATA[--refer to diagram in tablet for information on which points are which
+local function backwards(originCF, targetPos, v1, v2, v3)
 	local pointThree = originCF.p + v1 + v2
-	
+
 	--Construct the v3 into the new form closer to the goal
 	--vecNew is temporary storage for the new direction vector
-	local vecNew = pointThree-targetPos
-	
+	local vecNew = pointThree - targetPos
+
 	local v3New = vecNew.Unit * v3.Magnitude
-	
+
 	--reconstruct chain from targetPos
 	local vecFromPos = targetPos + v3New
-	
+
 	local pointTwo = originCF.p + v1
 
 	--Construct the v2 with new direction
 	vecNew = vecFromPos - pointTwo
-	
+
 	local v2New = vecNew.Unit * v2.Magnitude
-	
+
 	--Rereconstruct the chain
 	local vecTwoFromPos = vecFromPos + v2New
-	
+
 	vecNew = originCF.p - vecTwoFromPos
 
 	local v1New = vecNew.Unit * v1.Magnitude
-	
-	return originCF, targetPos,v1New,v2New,v3New
+
+	return originCF, targetPos, v1New, v2New, v3New
 	--new  vector chain goes from goal towards the start position
-	
 end
 --Function assumes backwards has been done
 --Also assumes vector chain starts from target Pos towards the hip joint
-local function forwards(originCF, targetPos, v1,v2,v3)
-	
-	local pointTwo = targetPos+v3+v2
-	
-	local vecNew = pointTwo-originCF.p
-	
+local function forwards(originCF, targetPos, v1, v2, v3)
+	local pointTwo = targetPos + v3 + v2
+
+	local vecNew = pointTwo - originCF.p
+
 	--obtain new v1 pointing from start to goal in the chain
-	local v1New = vecNew.Unit*v1.Magnitude	
-	
+	local v1New = vecNew.Unit * v1.Magnitude
+
 	--Build chain from start
 	local vecFromOrigin = originCF.p + v1New
-	
-	local pointTwo = targetPos+v3
-	
-	vecNew = pointTwo-vecFromOrigin
-	
-	local v2New = vecNew.Unit*v2.Magnitude
-	
+
+	local pointTwo = targetPos + v3
+
+	vecNew = pointTwo - vecFromOrigin
+
+	local v2New = vecNew.Unit * v2.Magnitude
+
 	--Build up on the chain
 	local vecTwoFromOrigin = vecFromOrigin + v2New
-	
-	
-	vecNew = targetPos-vecTwoFromOrigin
-	
-	local v3New = vecNew.Unit*v3.Magnitude
-	
-	return originCF, targetPos,v1New,v2New,v3New
+
+	vecNew = targetPos - vecTwoFromOrigin
+
+	local v3New = vecNew.Unit * v3.Magnitude
+
+	return originCF, targetPos, v1New, v2New, v3New
 end
 
 --Does the cylinder constraining
-local function cylinderConstraint(centerAxis,limbVector)
-	
-	--ellipse height and width of the constraint
-	local height
-	local width 
-	
-	local projection = centerAxis.Unit:Dot(limbVector)*centerAxis.Unit
+--Constraint settings is a table
+local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettings)
+	--ellipse width and height of the constraint
+	--
+	local height = constraintSettings[2]
+	local width = constraintSettings[1]
 
-	
+	--Perform vector resolution on limbvector
+	--Represents the center of the 2d plane that will be constructed
+	local projCenter = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude) * centerAxis.Unit
+
+	--position the current limbvector within the 2d plane as another vector
+	local posVector = limbVector - projCenter
+
+	--translate into 2d plane
+	--create the xAxis from the yAxis use the left hand rule
+	local xAxis = (-yAxis:Cross(centerAxis)).Unit
+
+	--Construct the oval
+	--Get the X and Y Coordinates
+	local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
+	local xPoint = xAxis:Dot(posVector) / (xAxis.Magnitude)
+
+	--Construct the oval constrain formula
+	local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
+
+	--check if the limbvector point is outside the formula constraint
+	if ovalFormula > 1 then
+		--Obtain the angle from the xaxis
+		local angleToXAxis = math.atan(yPoint, xPoint)
+
+		--Place it on the edge of the oval within the contraints placed
+		local newXPoint = width * math.cos(angleToXAxis)
+		local newYPoint = height * math.sin(angleToXAxis)
+
+		--now reconstruct the limbvector
+		--Now we conver it back to a 3d vector
+		local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
+		--Gets the new direction of the v2 limb
+		local newPosVector = posVector.Unit * newMagnitude
+		local newDir = projCenter+newPosVector
+		--Constructs the new limbvector in a different direction but same length
+		limbVector = newDir.Unit * limbVector.Magnitude
+	end
+
 	return limbVector
 end
 
---Intended to function after the forwards chain 
+--Intended to function after the forwards chain
 --refer to the doodle to explain
-local function constraintForwards(originCF, targetPos, v1,v2,v3)
+local function constraintForwards(originCF, targetPos, v1, v2, v3)
 	--Elipse constraint for the v2 limb
 	local heightV2 = 1
 	local widthV2 = 1
-	
+
 	--Obtain the new vectors if unchanged by the constraints
 	local v1New = v1
 	local v2New = v2
 	local v3New = v3
-	
+
 	--look vector = along the vector limb v1 y axis
 	--Up vector = x axis
 	--right vector = z axis
-	local refCF = CFrame.new(Vector3.new(),v1)
+	local refCF = CFrame.new(Vector3.new(), v1)
 	local limbAxis = -refCF.LookVector
-	
+
 	--cone center
 	local xAxisRef = -refCF.UpVector
-	
+
 	--the projection point
-	local projection = xAxisRef.Unit:Dot(v2)*(1/xAxisRef.Magnitude)*xAxisRef.Unit
+	local projection = xAxisRef.Unit:Dot(v2) * (1 / xAxisRef.Magnitude) * xAxisRef.Unit
 
 	--get the projection point to the v2 limb
-	local translate = v2-projection
-	
+	local translate = v2 - projection
+
 	--Get the angle via cross product
 	local cross = limbAxis.Unit:Cross(translate.Unit)
 	local angleFromLook = math.asin(cross.Magnitude)
-	
+
 	--now place it in a 2d plane
 	--xyz is now 2d plane
 	local xPoint = translate.Magnitude * math.sin(angleFromLook)
 	local yPoint = translate.Magnitude * math.cos(angleFromLook)
-	
-	local angleToXAxis = math.atan(yPoint/xPoint)
+
+	local angleToXAxis = math.atan(yPoint / xPoint)
 
 	--Now its time to constraint the xy points if outside the ellipse constraint
-	local ellipseEquation = (xPoint^2)/(0.5*widthV2)+(yPoint^2)/(0.5*heightV2)
+	local ellipseEquation = (xPoint ^ 2) / (0.5 * widthV2) + (yPoint ^ 2) / (0.5 * heightV2)
 	--if the point is outside the ellipse then fix does the constraint fix
 	if ellipseEquation > 1 then
 		--change the point from outside the ellipse to inside the ellipse
-		xPoint = (0.5*widthV2)*math.cos(angleToXAxis)
-		yPoint = (0.5*heightV2)*math.sin(angleToXAxis)
-		
+		xPoint = (0.5 * widthV2) * math.cos(angleToXAxis)
+		yPoint = (0.5 * heightV2) * math.sin(angleToXAxis)
+
 		--Now we conver it back to a 3d vector
-		local newMagnitude = math.sqrt(xPoint^2+yPoint^2)
-		--Gets the new direction of the v2 limb  
+		local newMagnitude = math.sqrt(xPoint ^ 2 + yPoint ^ 2)
+		--Gets the new direction of the v2 limb
 		local translateNew = translate.Unit * newMagnitude
-		local newDir =projection+translateNew
+		local newDir = projection + translateNew
 		--Constructs the new v2 with the new direction
-		v2New = newDir.Unit *v2.Magnitude
+		v2New = newDir.Unit * v2.Magnitude
 	end
-	
-	return originCF, targetPos, v1New,v2New,v3New
-	
+
+	return originCF, targetPos, v1New, v2New, v3New
 end
 
-local function fabrikAlgo(tolerance,originCF, targetPos, v1, v2,v3)	
-	
+local function fabrikAlgo(tolerance, originCF, targetPos, v1, v2, v3)
 	--get the magnitude of the leg parts
 	local v1Mag = v1.Magnitude
 	local v2Mag = v2.Magnitude
 	local v3Mag = v3.Magnitude
 	--Get total length of the arm
-	local maxLength = v1Mag+v2Mag+v3Mag
+	local maxLength = v1Mag + v2Mag + v3Mag
 	--Get the distance from hip Joint to the target position
-	local targetToJoint = targetPos-originCF.p
+	local targetToJoint = targetPos - originCF.p
 	local targetLength = targetToJoint.Magnitude
-	
+
 	--perform 1 iteration of the fabrik chain
 	--1 backwards then 1 forwards and get the new vector representing the motor6d limbs
 	--iterate = forwards(backwards(originCF, targetPos, v1, v2,v3))
 	--local originCF,targetPos,v1New,v2New,v3New = constraintForwards(forwards(backwards(originCF, targetPos, v1, v2,v3)))
-	local originCF,targetPos,v1New,v2New,v3New = forwards(backwards(originCF, targetPos, v1, v2,v3))
+	local originCF, targetPos, v1New, v2New, v3New = forwards(backwards(originCF, targetPos, v1, v2, v3))
 	--initialze measure feet to where it should be
-	local feetJoint = originCF.p+v1New+v2New+v3New
-	local feetToTarget = targetPos-feetJoint
-	
-	
+	local feetJoint = originCF.p + v1New + v2New + v3New
+	local feetToTarget = targetPos - feetJoint
+
 	--Target point is too far away from the max length the leg can reach
 	if targetLength > maxLength then
-		
 		v1New = targetToJoint.Unit * v1Mag
 		v2New = targetToJoint.Unit * v2Mag
 		v3New = targetToJoint.Unit * v3Mag
-		
-		return  v1New,v2New,v3New
 
-		
+		return v1New, v2New, v3New
 	else
 		--target point is "reachable"
 		--if Distance is more than tolerance than iterate again
-		if feetToTarget.Magnitude > tolerance  then			
+		if feetToTarget.Magnitude > tolerance then
 			--originCF,targetPos,v1New,v2New,v3New = constraintForwards(forwards(backwards(originCF, targetPos, v1New,v2New,v3New)))
-			originCF,targetPos,v1New,v2New,v3New = forwards(backwards(originCF, targetPos, v1New,v2New,v3New))
-			feetJoint = originCF.p+v1New+v2New+v3New
-			feetToTarget = targetPos-feetJoint	
-			return v1New,v2New,v3New
+			originCF, targetPos, v1New, v2New, v3New = forwards(backwards(originCF, targetPos, v1New, v2New, v3New))
+			feetJoint = originCF.p + v1New + v2New + v3New
+			feetToTarget = targetPos - feetJoint
+			return v1New, v2New, v3New
 		else
-			--This was the problem no return statement lol 
+			--This was the problem no return statement lol
 			--so it returned nil if the feet was within tolerance
-			return v1New,v2New,v3New
-
+			return v1New, v2New, v3New
 		end
-		
 	end
-	
-	
 end
 
 ----
 
-return fabrikAlgo]]></ProtectedString>
+return fabrikAlgo
+]]></ProtectedString>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXa1c53c704fcd4006939009ab39ce6aec">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">CodeTesting</string>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ModuleScript" referent="RBX24ede2759c1749b4a91eb80b12fa50f7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">fabriktest</string>
+						<string name="ScriptGuid">{3bec5d9e-91d9-459d-b825-2a1cb917627c}</string>
+						<ProtectedString name="Source"><![CDATA[local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
+local fabrikAlgo = require(fabrik)
+
+--Module script for testing the conical constraint
+local function test()
+
+end
+
+return test
+]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
