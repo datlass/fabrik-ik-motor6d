@@ -1,9 +1,11 @@
 --refer to diagram in tablet for information on which points are which
+--this backwards function works
 local function backwards(originCF, targetPos, v1, v2, v3)
 	local pointThree = originCF.p + v1 + v2
 
 	--Construct the v3 into the new form closer to the goal
 	--vecNew is temporary storage for the new direction vector
+	--direction is targetPos to pointthree
 	local vecNew = pointThree - targetPos
 
 	local v3New = vecNew.Unit * v3.Magnitude
@@ -27,6 +29,29 @@ local function backwards(originCF, targetPos, v1, v2, v3)
 
 	return originCF, targetPos, v1New, v2New, v3New
 	--new  vector chain goes from goal towards the start position
+end
+
+--Aim is to be similar to backwards but with a table for more robust models
+local function backwards(originCF, targetPos, limbVecTable)
+	for i = #limbVectable, 1,-1 do
+
+		local vecSum = Vector3.new(0,0,0)
+		print("Index: ",i," Vectable: ",limbVectable[i])
+
+		for v = 1, i-1, 1 do
+			vecSum = vecSum + limbVectable[v]
+		end
+		print("vec sum: ",vecSum)
+		
+		--Gets the new direction of the new vector along the chain
+		--direction is Target Pos to the next point on the chain
+		local pointTo = originPos+vecSum-targetPos
+		print(pointTo)
+		--constructs the new vectable
+		limbVectable[i] = pointTo.Unit*limbVectable[i].Magnitude
+			
+	end
+	
 end
 --Function assumes backwards has been done
 --Also assumes vector chain starts from target Pos towards the hip joint
@@ -98,7 +123,7 @@ local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettin
 		local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
 		--Gets the new direction of the v2 limb
 		local newPosVector = posVector.Unit * newMagnitude
-		local newDir = projCenter+newPosVector
+		local newDir = projCenter + newPosVector
 		--Constructs the new limbvector in a different direction but same length
 		limbVector = newDir.Unit * limbVector.Magnitude
 	end
