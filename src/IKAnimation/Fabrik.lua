@@ -1,8 +1,4 @@
---There is a bug where v1New is returned as nil idk why
---fixed due to return statements on the fabrik algo
 --refer to diagram in tablet for information on which points are which
---Add a function to constrain in a cone
---inputs are angle of elevation
 local function backwards(originCF, targetPos, v1, v2, v3)
 	local pointThree = originCF.p + v1 + v2
 
