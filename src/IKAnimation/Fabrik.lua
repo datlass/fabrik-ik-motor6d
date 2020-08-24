@@ -1,5 +1,5 @@
 --refer to diagram in tablet for information on which points are which
---this backwards function works
+--this backwards function works but the v2 direction is in the opposite direction
 local function backwards(originCF, targetPos, v1, v2, v3)
 	local pointThree = originCF.p + v1 + v2
 
@@ -32,26 +32,26 @@ local function backwards(originCF, targetPos, v1, v2, v3)
 end
 
 --Aim is to be similar to backwards but with a table for more robust models
-local function backwards(originCF, targetPos, limbVecTable)
+local function Backwards(originCF, targetPos, limbVecTable)
 	for i = #limbVectable, 1,-1 do
 
 		local vecSum = Vector3.new(0,0,0)
-		print("Index: ",i," Vectable: ",limbVectable[i])
+		--print("Index: ",i," Vectable: ",limbVectable[i])
 
 		for v = 1, i-1, 1 do
 			vecSum = vecSum + limbVectable[v]
 		end
-		print("vec sum: ",vecSum)
+		--print("vec sum: ",vecSum)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction is Target Pos to the next point on the chain
-		local pointTo = originPos+vecSum-targetPos
+		local pointTo = originCF.Position+vecSum-targetPos
 		print(pointTo)
 		--constructs the new vectable
 		limbVectable[i] = pointTo.Unit*limbVectable[i].Magnitude
 			
 	end
-	
+	return originCF, targetPos, limbVecTable
 end
 --Function assumes backwards has been done
 --Also assumes vector chain starts from target Pos towards the hip joint
@@ -80,6 +80,28 @@ local function forwards(originCF, targetPos, v1, v2, v3)
 	local v3New = vecNew.Unit * v3.Magnitude
 
 	return originCF, targetPos, v1New, v2New, v3New
+end
+
+local function Forwards(originCF, targetPos, limbVecTable)
+	for i = 1, #limbVectable,1 do
+		--initialize empty vector for summing
+		local vecSum = Vector3.new(0,0,0)
+		--print("Index: ",i," Vectable: ",limbVectable[i])
+		
+		for v = i+1, #limbVectable, 1 do
+			vecSum = vecSum + limbVectable[v]
+		end
+		--print("vec sum: ",vecSum)
+		
+		--Gets the new direction of the new vector along the chain
+		--target is origin to target
+		local pointTo = vecSum+targetPos-originCF.Position
+		--print(pointTo)
+		--constructs the new vectable
+		limbVectable[i] = pointTo.Unit*limbVectable[i].Magnitude
+			
+	end
+	return originCF, targetPos, limbVecTable
 end
 
 --Does the cylinder constraining
