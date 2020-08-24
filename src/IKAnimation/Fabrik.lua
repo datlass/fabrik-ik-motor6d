@@ -35,22 +35,22 @@ end
 
 --Aim is to be similar to backwards but with a table for more robust models
 local function Backwards(originCF, targetPos, limbVecTable)
-	for i = #limbVectable, 1,-1 do
+	for i = #limbVecTable, 1,-1 do
 
 		local vecSum = Vector3.new(0,0,0)
 		--print("Index: ",i," Vectable: ",limbVectable[i])
 
 		for v = 1, i-1, 1 do
-			vecSum = vecSum + limbVectable[v]
+			vecSum = vecSum + limbVecTable[v]
 		end
 		--print("vec sum: ",vecSum)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction is Target Pos to the next point on the chain
 		local pointTo = originCF.Position+vecSum-targetPos
-		print(pointTo)
+	--	print(pointTo)
 		--constructs the new vectable
-		limbVectable[i] = pointTo.Unit*limbVectable[i].Magnitude
+		limbVecTable[i] = pointTo.Unit*limbVecTable[i].Magnitude
 			
 	end
 	return originCF, targetPos, limbVecTable
@@ -84,14 +84,15 @@ local function forwards(originCF, targetPos, v1, v2, v3)
 	return originCF, targetPos, v1New, v2New, v3New
 end
 --Newer iterative methods for forwards
+--this is notworking as intended different from original see script_test
 local function Forwards(originCF, targetPos, limbVecTable)
-	for i = 1, #limbVectable,1 do
+	for i = 1, #limbVecTable,1 do
 		--initialize empty vector for summing
 		local vecSum = Vector3.new(0,0,0)
 		--print("Index: ",i," Vectable: ",limbVectable[i])
 		
-		for v = i+1, #limbVectable, 1 do
-			vecSum = vecSum + limbVectable[v]
+		for v = i+1, #limbVecTable, 1 do
+			vecSum = vecSum + limbVecTable[v]
 		end
 		--print("vec sum: ",vecSum)
 		
@@ -100,7 +101,7 @@ local function Forwards(originCF, targetPos, limbVecTable)
 		local pointTo = vecSum+targetPos-originCF.Position
 		--print(pointTo)
 		--constructs the new vectable
-		limbVectable[i] = pointTo.Unit*limbVectable[i].Magnitude
+		limbVecTable[i] = pointTo.Unit*limbVecTable[i].Magnitude
 			
 	end
 	return originCF, targetPos, limbVecTable
@@ -257,6 +258,44 @@ local function fabrikAlgo(tolerance, originCF, targetPos, v1, v2, v3)
 	end
 end
 
+--newer function
+local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable)
+	--get the magnitude of the leg parts
+	local maxLength = 0
+	--adds all the magnitudes
+	for i = 1, #limbVecTable, 1 do
+		maxLength = maxLength+limbVecTable[i].Magnitude
+	end
+	--Get the distance from hip Joint to the target position
+	local targetToJoint = targetPos - originCF.Position
+	local targetLength = targetToJoint.Magnitude
+
+	--initialze measure feet to where it should be in the world position
+	local vecSum = Vector3.new(0,0,0)
+	for i = 1, #limbVecTable, 1 do
+		vecSum = vecSum+limbVecTable[i]
+	end
+	local feetJoint = originCF.Position + vecSum
+	local feetToTarget = targetPos - feetJoint
+	local distanceTolerate = feetToTarget.Magnitude
+	_,_, limbVecTable = Forwards(Backwards(originCF, targetPos, limbVecTable))
+
+	--Target point is too far away from the max length the leg can reach then fully extend
+	if targetLength > maxLength then
+		for i = 1, #limbVecTable, 1 do
+			limbVecTable[i] = targetToJoint.Unit*limbVecTable[i].Magnitude
+		end
+
+		return limbVecTable
+	else
+		--target point is "reachable"
+		--if Distance is more than tolerance than iterate again
+		--so just iterate once
+		 _,_, limbVecTable = Forwards(Backwards(originCF, targetPos, limbVecTable))
+		
+		return limbVecTable
+	end
+end
 ----
 
-return fabrikAlgo
+return FabrikAlgo
