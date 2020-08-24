@@ -1,5 +1,6 @@
 --refer to diagram in tablet for information on which points are which
 --this backwards function works but the v2 direction is in the opposite direction
+--basically this function is deprecated
 local function backwards(originCF, targetPos, v1, v2, v3)
 	local pointThree = originCF.p + v1 + v2
 
@@ -16,6 +17,7 @@ local function backwards(originCF, targetPos, v1, v2, v3)
 	local pointTwo = originCF.p + v1
 
 	--Construct the v2 with new direction
+	--direction of v2 is in the opposite direction use the new method
 	vecNew = vecFromPos - pointTwo
 
 	local v2New = vecNew.Unit * v2.Magnitude
@@ -94,7 +96,7 @@ local function Forwards(originCF, targetPos, limbVecTable)
 		--print("vec sum: ",vecSum)
 		
 		--Gets the new direction of the new vector along the chain
-		--target is origin to target
+		--direction of the new vector is from origin to target
 		local pointTo = vecSum+targetPos-originCF.Position
 		--print(pointTo)
 		--constructs the new vectable
