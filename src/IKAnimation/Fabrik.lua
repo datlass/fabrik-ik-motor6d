@@ -83,7 +83,7 @@ local function forwards(originCF, targetPos, v1, v2, v3)
 
 	return originCF, targetPos, v1New, v2New, v3New
 end
-
+--Newer iterative methods for forwards
 local function Forwards(originCF, targetPos, limbVecTable)
 	for i = 1, #limbVectable,1 do
 		--initialize empty vector for summing
