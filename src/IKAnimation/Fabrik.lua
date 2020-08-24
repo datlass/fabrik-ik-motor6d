@@ -278,7 +278,6 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable)
 	local feetJoint = originCF.Position + vecSum
 	local feetToTarget = targetPos - feetJoint
 	local distanceTolerate = feetToTarget.Magnitude
-	_,_, limbVecTable = Forwards(Backwards(originCF, targetPos, limbVecTable))
 
 	--Target point is too far away from the max length the leg can reach then fully extend
 	if targetLength > maxLength then
@@ -292,8 +291,8 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable)
 		--if Distance is more than tolerance than iterate again
 		--so just iterate once
 		 _,_, limbVecTable = Forwards(Backwards(originCF, targetPos, limbVecTable))
-		
-		return limbVecTable
+
+		 return limbVecTable
 	end
 end
 ----
