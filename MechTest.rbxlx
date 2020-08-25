@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-22.367094</X>
-					<Y>22.3426476</Y>
-					<Z>-13.2428341</Z>
-					<R00>-0.867556453</R00>
-					<R01>0.341342717</R01>
-					<R02>-0.36170575</R02>
+					<X>-13.705761</X>
+					<Y>25.477356</Y>
+					<Z>-19.8341293</Z>
+					<R00>-0.989271998</R00>
+					<R01>0.0823079497</R01>
+					<R02>-0.12069127</R02>
 					<R10>-0</R10>
-					<R11>0.727282465</R11>
-					<R12>0.686338365</R12>
-					<R20>0.497338831</R20>
-					<R21>0.595437288</R21>
-					<R22>-0.630958498</R22>
+					<R11>0.826168537</R11>
+					<R12>0.563423038</R12>
+					<R20>0.146085531</R20>
+					<R21>0.55737865</R21>
+					<R22>-0.817305386</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-21.6436825</X>
-					<Y>20.9699707</Y>
-					<Z>-11.980917</Z>
+					<X>-13.4643784</X>
+					<Y>24.3505096</Y>
+					<Z>-18.1995182</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -10981,7 +10981,12 @@ local v2New = vecTwo
 local v3New = vecThree
 --Construct the new limb vector table
 local limbVectorTable = {v1New,v2New,v3New}
-
+--empty
+local limbLengthTable = {}
+for i=1, #limbVectorTable,1 do
+	table.insert(limbLengthTable,i,limbVectorTable[i].Magnitude)
+	print("limbLengthTable: ", limbLengthTable[i])
+end
 --Obtain angle of joint length to where its facing
 local front = Vector3.new(0,0,-1)
 local vecOneHoriz = vecOne *Vector3.new(1,0,1)
@@ -10989,9 +10994,8 @@ local vecOneVert = vecOne *Vector3.new(0,1,1)
 
 local horizAngle = math.acos( front:Dot(vecOneHoriz)/(front.Magnitude * vecOneHoriz.Magnitude) )
 local vertAngle = math.acos( front:Dot(vecOneVert)/(front.Magnitude * vecOneVert.Magnitude) )
-print("Initial vector:", limbVectorTable[1])
+
 RunService.Heartbeat:Connect(function()
-	print("later magnitude:", limbVectorTable[1])
 
 	--Original position and orientation of the hip in the world space
 	--Position of the hip changes so gotta put it in the heartbeat
@@ -11013,7 +11017,7 @@ RunService.Heartbeat:Connect(function()
 	--local v1New,v2New,v3New= fabrikAlgo(0.1,hipJointCFrame, goalPosition, vecOne,vecTwo,vecThree)
 	--needs to stop running algorithm
 	--print(v1New,v2New,v3New)
-	limbVectorTable = FabrikAlgo(0.1,hipJointCFrame, goalPosition, limbVectorTable)
+	limbVectorTable = FabrikAlgo(0.1,hipJointCFrame, goalPosition, limbVectorTable,limbLengthTable)
 	v1New = limbVectorTable[1]
 	v2New = limbVectorTable[2]
 	v3New = limbVectorTable[3]
@@ -11156,7 +11160,7 @@ local function backwards(originCF, targetPos, v1, v2, v3)
 end
 
 --Aim is to be similar to backwards but with a table for more robust models
-local function Backwards(originCF, targetPos, limbVecTable)
+local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	for i = #limbVecTable, 1,-1 do
 
 		local vecSum = Vector3.new(0,0,0)
@@ -11172,10 +11176,10 @@ local function Backwards(originCF, targetPos, limbVecTable)
 		local pointTo = originCF.Position+vecSum-targetPos
 	--	print(pointTo)
 		--constructs the new vectable
-		limbVecTable[i] = pointTo.Unit*limbVecTable[i].Magnitude
+		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
 			
 	end
-	return originCF, targetPos, limbVecTable
+	return originCF, targetPos, limbVecTable,limbLengthTable
 end
 --Function assumes backwards has been done
 --Also assumes vector chain starts from target Pos towards the hip joint
@@ -11207,7 +11211,7 @@ local function forwards(originCF, targetPos, v1, v2, v3)
 end
 --Newer iterative methods for forwards
 --this is notworking as intended different from original see script_test
-local function Forwards(originCF, targetPos, limbVecTable)
+local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	for i = 1, #limbVecTable,1 do
 		--initialize empty vector for summing
 		local vecSum = Vector3.new(0,0,0)
@@ -11223,10 +11227,10 @@ local function Forwards(originCF, targetPos, limbVecTable)
 		local pointTo = vecSum+targetPos-originCF.Position
 		--print(pointTo)
 		--constructs the new vectable
-		limbVecTable[i] = pointTo.Unit*limbVecTable[i].Magnitude
+		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
 			
 	end
-	return originCF, targetPos, limbVecTable
+	return originCF, targetPos, limbVecTable,limbLengthTable
 end
 
 --Does the cylinder constraining
@@ -11381,12 +11385,12 @@ local function fabrikAlgo(tolerance, originCF, targetPos, v1, v2, v3)
 end
 
 --newer function
-local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable)
+local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLengthTable)
 	--get the magnitude of the leg parts
 	local maxLength = 0
 	--adds all the magnitudes
-	for i = 1, #limbVecTable, 1 do
-		maxLength = maxLength+limbVecTable[i].Magnitude
+	for i = 1, #limbLengthTable, 1 do
+		maxLength = maxLength+limbLengthTable[i]
 	end
 	--Get the distance from hip Joint to the target position
 	local targetToJoint = targetPos - originCF.Position
@@ -11404,7 +11408,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable)
 	--Target point is too far away from the max length the leg can reach then fully extend
 	if targetLength > maxLength then
 		for i = 1, #limbVecTable, 1 do
-			limbVecTable[i] = targetToJoint.Unit*limbVecTable[i].Magnitude
+			limbVecTable[i] = targetToJoint.Unit*limbLengthTable[i]
 		end
 
 		return limbVecTable
@@ -11412,7 +11416,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable)
 		--target point is "reachable"
 		--if Distance is more than tolerance than iterate again
 		--so just iterate once
-		 _,_, limbVecTable = Forwards(Backwards(originCF, targetPos, limbVecTable))
+		 _,_, limbVecTable,_ = Forwards(Backwards(originCF, targetPos, limbVecTable,limbLengthTable))
 
 		 return limbVecTable
 	end
