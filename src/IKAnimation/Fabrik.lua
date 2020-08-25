@@ -35,6 +35,8 @@ end
 
 --Aim is to be similar to backwards but with a table for more robust models
 local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
+	local store = Vector3.new()
+
 	for i = #limbVecTable, 1,-1 do
 
 		local vecSum = Vector3.new(0,0,0)
@@ -47,11 +49,11 @@ local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction is Target Pos to the next point on the chain
-		local pointTo = originCF.Position+vecSum-targetPos
+		local pointTo = originCF.Position+vecSum-targetPos-store
 	--	print(pointTo)
 		--constructs the new vectable
 		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
-			
+		store = store + limbVecTable[i]
 	end
 	return originCF, targetPos, limbVecTable,limbLengthTable
 end
@@ -86,6 +88,7 @@ end
 --Newer iterative methods for forwards
 --this is notworking as intended different from original see script_test
 local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
+	local store = Vector3.new()
 	for i = 1, #limbVecTable,1 do
 		--initialize empty vector for summing
 		local vecSum = Vector3.new(0,0,0)
@@ -98,11 +101,11 @@ local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction of the new vector is from origin to target
-		local pointTo = vecSum+targetPos-originCF.Position
+		local pointTo = vecSum+targetPos-originCF.Position-store
 		--print(pointTo)
 		--constructs the new vectable
 		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
-			
+		store = store + limbVecTable[i] 
 	end
 	return originCF, targetPos, limbVecTable,limbLengthTable
 end

@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-13.705761</X>
-					<Y>25.477356</Y>
-					<Z>-19.8341293</Z>
-					<R00>-0.989271998</R00>
-					<R01>0.0823079497</R01>
-					<R02>-0.12069127</R02>
-					<R10>-0</R10>
-					<R11>0.826168537</R11>
-					<R12>0.563423038</R12>
-					<R20>0.146085531</R20>
-					<R21>0.55737865</R21>
-					<R22>-0.817305386</R22>
+					<X>-30.1899948</X>
+					<Y>29.3561211</Y>
+					<Z>-9.07416916</Z>
+					<R00>-0.591392934</R00>
+					<R01>0.424889147</R01>
+					<R02>-0.685363829</R02>
+					<R10>1.49011612e-08</R10>
+					<R11>0.849922895</R11>
+					<R12>0.526907027</R12>
+					<R20>0.80638355</R20>
+					<R21>0.311609089</R21>
+					<R22>-0.5026384</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-13.4643784</X>
-					<Y>24.3505096</Y>
-					<Z>-18.1995182</Z>
+					<X>-28.8192673</X>
+					<Y>28.3023071</Y>
+					<Z>-8.06889248</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -11161,6 +11161,8 @@ end
 
 --Aim is to be similar to backwards but with a table for more robust models
 local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
+	local store = Vector3.new()
+
 	for i = #limbVecTable, 1,-1 do
 
 		local vecSum = Vector3.new(0,0,0)
@@ -11173,11 +11175,11 @@ local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction is Target Pos to the next point on the chain
-		local pointTo = originCF.Position+vecSum-targetPos
+		local pointTo = originCF.Position+vecSum-targetPos-store
 	--	print(pointTo)
 		--constructs the new vectable
 		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
-			
+		store = store + limbVecTable[i]
 	end
 	return originCF, targetPos, limbVecTable,limbLengthTable
 end
@@ -11212,6 +11214,7 @@ end
 --Newer iterative methods for forwards
 --this is notworking as intended different from original see script_test
 local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
+	local store = Vector3.new()
 	for i = 1, #limbVecTable,1 do
 		--initialize empty vector for summing
 		local vecSum = Vector3.new(0,0,0)
@@ -11224,11 +11227,11 @@ local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction of the new vector is from origin to target
-		local pointTo = vecSum+targetPos-originCF.Position
+		local pointTo = vecSum+targetPos-originCF.Position-store
 		--print(pointTo)
 		--constructs the new vectable
 		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
-			
+		store = store + limbVecTable[i] 
 	end
 	return originCF, targetPos, limbVecTable,limbLengthTable
 end
