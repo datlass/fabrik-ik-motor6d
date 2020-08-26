@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-30.1899948</X>
-					<Y>29.3561211</Y>
-					<Z>-9.07416916</Z>
-					<R00>-0.591392934</R00>
-					<R01>0.424889147</R01>
-					<R02>-0.685363829</R02>
-					<R10>1.49011612e-08</R10>
-					<R11>0.849922895</R11>
-					<R12>0.526907027</R12>
-					<R20>0.80638355</R20>
-					<R21>0.311609089</R21>
-					<R22>-0.5026384</R22>
+					<X>-17.7749081</X>
+					<Y>17.9255142</Y>
+					<Z>-21.4368896</Z>
+					<R00>-0.960040987</R00>
+					<R01>0.0665886253</R01>
+					<R02>-0.271822006</R02>
+					<R10>-0</R10>
+					<R11>0.971280873</R11>
+					<R12>0.23793605</R12>
+					<R20>0.279859334</R20>
+					<R21>0.228428364</R21>
+					<R22>-0.932469487</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-28.8192673</X>
-					<Y>28.3023071</Y>
-					<Z>-8.06889248</Z>
+					<X>-17.2312641</X>
+					<Y>17.4496422</Y>
+					<Z>-19.5719509</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2068,6 +2068,89 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Z>4</Z>
 				</Vector3>
 			</Properties>
+		</Item>
+		<Item class="Model" referent="RBX89d9118e740c4bd9bd9f7161f6c85717">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<token name="LevelOfDetail">0</token>
+				<CoordinateFrame name="ModelInPrimary">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<CoordinateFrame name="ModelMeshCFrame">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<SharedString name="ModelMeshData">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
+				<Vector3 name="ModelMeshSize">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<string name="Name">KS_Smitten</string>
+				<Ref name="PrimaryPart">null</Ref>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+			<Item class="Camera" referent="RBX915d302a80bd479d87d34ea1f0be5476">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<CoordinateFrame name="CFrame">
+						<X>11.6403627</X>
+						<Y>3.68207431</Y>
+						<Z>11.7686052</Z>
+						<R00>0.999568105</R00>
+						<R01>-0.00230198959</R01>
+						<R02>-0.0292997397</R02>
+						<R10>2.32830644e-10</R10>
+						<R11>0.996927977</R11>
+						<R12>-0.0783255175</R12>
+						<R20>0.0293900296</R20>
+						<R21>0.0782916918</R21>
+						<R22>0.996497273</R22>
+					</CoordinateFrame>
+					<Ref name="CameraSubject">null</Ref>
+					<token name="CameraType">0</token>
+					<float name="FieldOfView">70</float>
+					<CoordinateFrame name="Focus">
+						<X>11.6989622</X>
+						<Y>3.83872533</Y>
+						<Z>9.77561092</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<bool name="HeadLocked">true</bool>
+					<float name="HeadScale">1</float>
+					<string name="Name">ThumbnailCamera</string>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+			</Item>
 		</Item>
 	</Item>
 	<Item class="SoundService" referent="5">
@@ -11124,40 +11207,7 @@ end)
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">Fabrik</string>
 						<string name="ScriptGuid">{84c0079e-1216-43b0-b981-db54832852b5}</string>
-						<ProtectedString name="Source"><![CDATA[--refer to diagram in tablet for information on which points are which
---this backwards function works but the v2 direction is in the opposite direction
---basically this function is deprecated
-local function backwards(originCF, targetPos, v1, v2, v3)
-	local pointThree = originCF.p + v1 + v2
-
-	--Construct the v3 into the new form closer to the goal
-	--vecNew is temporary storage for the new direction vector
-	--direction is targetPos to pointthree
-	local vecNew = pointThree - targetPos
-
-	local v3New = vecNew.Unit * v3.Magnitude
-
-	--reconstruct chain from targetPos
-	local vecFromPos = targetPos + v3New
-
-	local pointTwo = originCF.p + v1
-
-	--Construct the v2 with new direction
-	--direction of v2 is in the opposite direction use the new method
-	vecNew = vecFromPos - pointTwo
-
-	local v2New = vecNew.Unit * v2.Magnitude
-
-	--Rereconstruct the chain
-	local vecTwoFromPos = vecFromPos + v2New
-
-	vecNew = originCF.p - vecTwoFromPos
-
-	local v1New = vecNew.Unit * v1.Magnitude
-
-	return originCF, targetPos, v1New, v2New, v3New
-	--new  vector chain goes from goal towards the start position
-end
+						<ProtectedString name="Source"><![CDATA[
 
 --Aim is to be similar to backwards but with a table for more robust models
 local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
@@ -11183,34 +11233,7 @@ local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	end
 	return originCF, targetPos, limbVecTable,limbLengthTable
 end
---Function assumes backwards has been done
---Also assumes vector chain starts from target Pos towards the hip joint
-local function forwards(originCF, targetPos, v1, v2, v3)
-	local pointTwo = targetPos + v3 + v2
 
-	local vecNew = pointTwo - originCF.p
-
-	--obtain new v1 pointing from start to goal in the chain
-	local v1New = vecNew.Unit * v1.Magnitude
-
-	--Build chain from start
-	local vecFromOrigin = originCF.p + v1New
-
-	local pointTwo = targetPos + v3
-
-	vecNew = pointTwo - vecFromOrigin
-
-	local v2New = vecNew.Unit * v2.Magnitude
-
-	--Build up on the chain
-	local vecTwoFromOrigin = vecFromOrigin + v2New
-
-	vecNew = targetPos - vecTwoFromOrigin
-
-	local v3New = vecNew.Unit * v3.Magnitude
-
-	return originCF, targetPos, v1New, v2New, v3New
-end
 --Newer iterative methods for forwards
 --this is notworking as intended different from original see script_test
 local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
@@ -11283,6 +11306,150 @@ local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettin
 	end
 
 	return limbVector
+end
+
+--newer function
+local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLengthTable)
+	--get the magnitude of the leg parts
+	local maxLength = 0
+	--adds all the magnitudes
+	for i = 1, #limbLengthTable, 1 do
+		maxLength = maxLength+limbLengthTable[i]
+	end
+	--Get the distance from hip Joint to the target position
+	local targetToJoint = targetPos - originCF.Position
+	local targetLength = targetToJoint.Magnitude
+
+	--initialze measure feet to where it should be in the world position
+	local vecSum = Vector3.new(0,0,0)
+	for i = 1, #limbVecTable, 1 do
+		vecSum = vecSum+limbVecTable[i]
+	end
+	local feetJoint = originCF.Position + vecSum
+	local feetToTarget = targetPos - feetJoint
+	local distanceTolerate = feetToTarget.Magnitude
+
+	--Target point is too far away from the max length the leg can reach then fully extend
+	if targetLength > maxLength then
+		for i = 1, #limbVecTable, 1 do
+			limbVecTable[i] = targetToJoint.Unit*limbLengthTable[i]
+		end
+
+		return limbVecTable
+	else
+		--target point is "reachable"
+		--if Distance is more than tolerance than iterate again
+		--so just iterate once
+		 _,_, limbVecTable,_ = Forwards(Backwards(originCF, targetPos, limbVecTable,limbLengthTable))
+
+		 return limbVecTable
+	end
+end
+----
+
+return FabrikAlgo
+]]></ProtectedString>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXa1c53c704fcd4006939009ab39ce6aec">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">CodeTesting</string>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ModuleScript" referent="RBX24ede2759c1749b4a91eb80b12fa50f7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">fabriktest</string>
+						<string name="ScriptGuid">{3bec5d9e-91d9-459d-b825-2a1cb917627c}</string>
+						<ProtectedString name="Source"><![CDATA[local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
+local fabrikAlgo = require(fabrik)
+
+--Module script for testing the conical constraint
+local function test()
+
+end
+
+return test
+]]></ProtectedString>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX296d0c02eae542dea8bdff27e7d08a52">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">OldFabrik</string>
+						<string name="ScriptGuid">{350b99b3-63ae-4d02-bcb6-4f56e3d27d9e}</string>
+						<ProtectedString name="Source"><![CDATA[--Storing the old Fabrik code here
+
+--refer to diagram in tablet for information on which points are which
+--this backwards function works but the v2 direction is in the opposite direction
+--basically this function is deprecated
+local function backwards(originCF, targetPos, v1, v2, v3)
+	local pointThree = originCF.p + v1 + v2
+
+	--Construct the v3 into the new form closer to the goal
+	--vecNew is temporary storage for the new direction vector
+	--direction is targetPos to pointthree
+	local vecNew = pointThree - targetPos
+
+	local v3New = vecNew.Unit * v3.Magnitude
+
+	--reconstruct chain from targetPos
+	local vecFromPos = targetPos + v3New
+
+	local pointTwo = originCF.p + v1
+
+	--Construct the v2 with new direction
+	--direction of v2 is in the opposite direction use the new method
+	vecNew = vecFromPos - pointTwo
+
+	local v2New = vecNew.Unit * v2.Magnitude
+
+	--Rereconstruct the chain
+	local vecTwoFromPos = vecFromPos + v2New
+
+	vecNew = originCF.p - vecTwoFromPos
+
+	local v1New = vecNew.Unit * v1.Magnitude
+
+	return originCF, targetPos, v1New, v2New, v3New
+	--new  vector chain goes from goal towards the start position
+end
+
+--Function assumes backwards has been done
+--Also assumes vector chain starts from target Pos towards the hip joint
+local function forwards(originCF, targetPos, v1, v2, v3)
+	local pointTwo = targetPos + v3 + v2
+
+	local vecNew = pointTwo - originCF.p
+
+	--obtain new v1 pointing from start to goal in the chain
+	local v1New = vecNew.Unit * v1.Magnitude
+
+	--Build chain from start
+	local vecFromOrigin = originCF.p + v1New
+
+	local pointTwo = targetPos + v3
+
+	vecNew = pointTwo - vecFromOrigin
+
+	local v2New = vecNew.Unit * v2.Magnitude
+
+	--Build up on the chain
+	local vecTwoFromOrigin = vecFromOrigin + v2New
+
+	vecNew = targetPos - vecTwoFromOrigin
+
+	local v3New = vecNew.Unit * v3.Magnitude
+
+	return originCF, targetPos, v1New, v2New, v3New
 end
 
 --Intended to function after the forwards chain
@@ -11387,74 +11554,7 @@ local function fabrikAlgo(tolerance, originCF, targetPos, v1, v2, v3)
 	end
 end
 
---newer function
-local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLengthTable)
-	--get the magnitude of the leg parts
-	local maxLength = 0
-	--adds all the magnitudes
-	for i = 1, #limbLengthTable, 1 do
-		maxLength = maxLength+limbLengthTable[i]
-	end
-	--Get the distance from hip Joint to the target position
-	local targetToJoint = targetPos - originCF.Position
-	local targetLength = targetToJoint.Magnitude
-
-	--initialze measure feet to where it should be in the world position
-	local vecSum = Vector3.new(0,0,0)
-	for i = 1, #limbVecTable, 1 do
-		vecSum = vecSum+limbVecTable[i]
-	end
-	local feetJoint = originCF.Position + vecSum
-	local feetToTarget = targetPos - feetJoint
-	local distanceTolerate = feetToTarget.Magnitude
-
-	--Target point is too far away from the max length the leg can reach then fully extend
-	if targetLength > maxLength then
-		for i = 1, #limbVecTable, 1 do
-			limbVecTable[i] = targetToJoint.Unit*limbLengthTable[i]
-		end
-
-		return limbVecTable
-	else
-		--target point is "reachable"
-		--if Distance is more than tolerance than iterate again
-		--so just iterate once
-		 _,_, limbVecTable,_ = Forwards(Backwards(originCF, targetPos, limbVecTable,limbLengthTable))
-
-		 return limbVecTable
-	end
-end
-----
-
-return FabrikAlgo
-]]></ProtectedString>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-			</Item>
-			<Item class="Folder" referent="RBXa1c53c704fcd4006939009ab39ce6aec">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<string name="Name">CodeTesting</string>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-				<Item class="ModuleScript" referent="RBX24ede2759c1749b4a91eb80b12fa50f7">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">fabriktest</string>
-						<string name="ScriptGuid">{3bec5d9e-91d9-459d-b825-2a1cb917627c}</string>
-						<ProtectedString name="Source"><![CDATA[local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
-local fabrikAlgo = require(fabrik)
-
---Module script for testing the conical constraint
-local function test()
-
-end
-
-return test
+return fabrikAlgo
 ]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
