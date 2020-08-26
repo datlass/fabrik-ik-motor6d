@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-17.7749081</X>
-					<Y>17.9255142</Y>
-					<Z>-21.4368896</Z>
-					<R00>-0.960040987</R00>
-					<R01>0.0665886253</R01>
-					<R02>-0.271822006</R02>
+					<X>-23.4934464</X>
+					<Y>20.482914</Y>
+					<Z>-20.1032753</Z>
+					<R00>-0.776230216</R00>
+					<R01>0.223727003</R01>
+					<R02>-0.589417517</R02>
 					<R10>-0</R10>
-					<R11>0.971280873</R11>
-					<R12>0.23793605</R12>
-					<R20>0.279859334</R20>
-					<R21>0.228428364</R21>
-					<R22>-0.932469487</R22>
+					<R11>0.934916139</R11>
+					<R12>0.354868919</R12>
+					<R20>0.630449712</R20>
+					<R21>0.275459975</R21>
+					<R22>-0.725709975</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-17.2312641</X>
-					<Y>17.4496422</Y>
-					<Z>-19.5719509</Z>
+					<X>-22.3146114</X>
+					<Y>19.7731762</Y>
+					<Z>-18.6518555</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2068,89 +2068,6 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Z>4</Z>
 				</Vector3>
 			</Properties>
-		</Item>
-		<Item class="Model" referent="RBX89d9118e740c4bd9bd9f7161f6c85717">
-			<Properties>
-				<BinaryString name="AttributesSerialize"></BinaryString>
-				<token name="LevelOfDetail">0</token>
-				<CoordinateFrame name="ModelInPrimary">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-					<R00>1</R00>
-					<R01>0</R01>
-					<R02>0</R02>
-					<R10>0</R10>
-					<R11>1</R11>
-					<R12>0</R12>
-					<R20>0</R20>
-					<R21>0</R21>
-					<R22>1</R22>
-				</CoordinateFrame>
-				<CoordinateFrame name="ModelMeshCFrame">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-					<R00>1</R00>
-					<R01>0</R01>
-					<R02>0</R02>
-					<R10>0</R10>
-					<R11>1</R11>
-					<R12>0</R12>
-					<R20>0</R20>
-					<R21>0</R21>
-					<R22>1</R22>
-				</CoordinateFrame>
-				<SharedString name="ModelMeshData">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
-				<Vector3 name="ModelMeshSize">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-				</Vector3>
-				<string name="Name">KS_Smitten</string>
-				<Ref name="PrimaryPart">null</Ref>
-				<BinaryString name="Tags"></BinaryString>
-			</Properties>
-			<Item class="Camera" referent="RBX915d302a80bd479d87d34ea1f0be5476">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<CoordinateFrame name="CFrame">
-						<X>11.6403627</X>
-						<Y>3.68207431</Y>
-						<Z>11.7686052</Z>
-						<R00>0.999568105</R00>
-						<R01>-0.00230198959</R01>
-						<R02>-0.0292997397</R02>
-						<R10>2.32830644e-10</R10>
-						<R11>0.996927977</R11>
-						<R12>-0.0783255175</R12>
-						<R20>0.0293900296</R20>
-						<R21>0.0782916918</R21>
-						<R22>0.996497273</R22>
-					</CoordinateFrame>
-					<Ref name="CameraSubject">null</Ref>
-					<token name="CameraType">0</token>
-					<float name="FieldOfView">70</float>
-					<CoordinateFrame name="Focus">
-						<X>11.6989622</X>
-						<Y>3.83872533</Y>
-						<Z>9.77561092</Z>
-						<R00>1</R00>
-						<R01>0</R01>
-						<R02>0</R02>
-						<R10>0</R10>
-						<R11>1</R11>
-						<R12>0</R12>
-						<R20>0</R20>
-						<R21>0</R21>
-						<R22>1</R22>
-					</CoordinateFrame>
-					<bool name="HeadLocked">true</bool>
-					<float name="HeadScale">1</float>
-					<string name="Name">ThumbnailCamera</string>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-			</Item>
 		</Item>
 	</Item>
 	<Item class="SoundService" referent="5">
@@ -10992,11 +10909,14 @@ IjAENGkMdwz9XgAa]]></BinaryString>
 				<Content name="LinkedSource"><null></null></Content>
 				<string name="Name">MechIKServer</string>
 				<string name="ScriptGuid">{aa55d0d0-191b-4265-99d7-0cdcf4f87199}</string>
-				<ProtectedString name="Source"><![CDATA[--Roblox Services
+				<ProtectedString name="Source"><![CDATA[--Code for testing purposes
+
+--Roblox Services
 local workspace		= game:GetService("Workspace")
 local RunService = game:GetService("RunService")
 local storage		= game:GetService("ReplicatedStorage")
 
+--Random Parts to debug position of where joints should be according to the algorithm
 local part1 = game.Workspace.test1
 local part2 = game.Workspace.test2
 local part3 = game.Workspace.test3
@@ -11016,9 +10936,6 @@ end
 local fabrik = storage.Source.IKAnimation:WaitForChild("Fabrik")
 local FabrikAlgo = require(fabrik)
 
---XYZ Units
-local yUnit =Vector3.new(0,1,0)
-
 --Pointers
 local lowerBody = workspace.LowerBody
 
@@ -11034,7 +10951,7 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local hipToLegStore = lHipToLegMotor.C0
 local kneeToUpperLegStore = lUpToKneeMotor.C0
 local kneeToLowerLegStore = lJKneeToLowMotor.C0
-local feetStore = lLowToFeetMotor.C0
+--local feetStore = lLowToFeetMotor.C0
 
 --Debugging difference between c0 and c1 for motor6d joint instance
 --c0 is center of hip to the selectable joint
@@ -11134,7 +11051,7 @@ RunService.Heartbeat:Connect(function()
 	local rotationAxisKnee = vecTwoRel:Cross(v2New)--obtain the rotation axis
 	
 	
-	--vecTest.Position = hipJointCFrame.p+v1New+vecTwoRel
+	vecTest.Position = hipJointCFrame.p+v1New+vecTwoRel
 
 	
 	--repeat for the lower Leg 
@@ -11261,6 +11178,7 @@ end
 
 --Does the cylinder constraining
 --Constraint settings is a table
+--Input the parameters and 
 local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettings)
 	--ellipse width and height of the constraint
 	--
@@ -11308,6 +11226,30 @@ local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettin
 	return limbVector
 end
 
+--Same as Forwards 
+local function ConstraintForwards()
+	local store = Vector3.new()
+	for i = 1, #limbVecTable,1 do
+		--initialize empty vector for summing
+		local vecSum = Vector3.new(0,0,0)
+		--print("Index: ",i," Vectable: ",limbVectable[i])
+		
+		for v = i+1, #limbVecTable, 1 do
+			vecSum = vecSum + limbVecTable[v]
+		end
+		--print("vec sum: ",vecSum)
+		
+		--Gets the new direction of the new vector along the chain
+		--direction of the new vector is from origin to target
+		local pointTo = vecSum+targetPos-originCF.Position-store
+		--print(pointTo)
+		--constructs the new vectable
+		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
+		store = store + limbVecTable[i] 
+	end
+	return originCF, targetPos, limbVecTable,limbLengthTable
+end
+
 --newer function
 local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLengthTable)
 	--get the magnitude of the leg parts
@@ -11320,7 +11262,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLeng
 	local targetToJoint = targetPos - originCF.Position
 	local targetLength = targetToJoint.Magnitude
 
-	--initialze measure feet to where it should be in the world position
+	--initialize measure feet to where it should be in the world position
 	local vecSum = Vector3.new(0,0,0)
 	for i = 1, #limbVecTable, 1 do
 		vecSum = vecSum+limbVecTable[i]
@@ -11338,10 +11280,11 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLeng
 		return limbVecTable
 	else
 		--target point is "reachable"
-		--if Distance is more than tolerance than iterate again
-		--so just iterate once
+		--if Distance is more than tolerance then iterate to move the new vectors closer
+		--If not then don't execute the iteration to save FPS
+		if distanceTolerate >= tolerance then
 		 _,_, limbVecTable,_ = Forwards(Backwards(originCF, targetPos, limbVecTable,limbLengthTable))
-
+		end
 		 return limbVecTable
 	end
 end

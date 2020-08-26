@@ -111,7 +111,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLeng
 	local targetToJoint = targetPos - originCF.Position
 	local targetLength = targetToJoint.Magnitude
 
-	--initialze measure feet to where it should be in the world position
+	--initialize measure feet to where it should be in the world position
 	local vecSum = Vector3.new(0,0,0)
 	for i = 1, #limbVecTable, 1 do
 		vecSum = vecSum+limbVecTable[i]
@@ -129,10 +129,11 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLeng
 		return limbVecTable
 	else
 		--target point is "reachable"
-		--if Distance is more than tolerance than iterate again
-		--so just iterate once
+		--if Distance is more than tolerance then iterate to move the new vectors closer
+		--If not then don't execute the iteration to save FPS
+		if distanceTolerate >= tolerance then
 		 _,_, limbVecTable,_ = Forwards(Backwards(originCF, targetPos, limbVecTable,limbLengthTable))
-
+		end
 		 return limbVecTable
 	end
 end
