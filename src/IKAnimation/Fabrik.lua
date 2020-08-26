@@ -1,6 +1,6 @@
 
 
---Aim is to be similar to backwards but with a table for more robust models
+--Iterate the backward chain
 local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	local store = Vector3.new()
 
@@ -26,7 +26,6 @@ local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
 end
 
 --Newer iterative methods for forwards
---this is notworking as intended different from original see script_test
 local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	local store = Vector3.new()
 	for i = 1, #limbVecTable,1 do
