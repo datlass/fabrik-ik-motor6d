@@ -1,6 +1,11 @@
 
 
---Iterate the backward chain
+--[[
+	Iterate the backward chain of the FABRIK Algorithm
+	Function should be called before the Forwards function in order to prevent the vector direction from changing
+	Assumes vector chain is from startpoint to endpoint
+	Returns parameters with new vector chain direction from endpoint to startpoint
+]]
 local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	local store = Vector3.new()
 
@@ -25,7 +30,12 @@ local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	return originCF, targetPos, limbVecTable,limbLengthTable
 end
 
---Newer iterative methods for forwards
+--[[
+	Does the forward chain of the FABRIK Algorithm
+	Function should be called after the Backwards function in order to prevent the vector direction from changing
+	Assumes vector chain is from endpoint to startpoint
+	Returns parameters with new vector chain direction from Startpoint to EndPoint
+]]
 local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	local store = Vector3.new()
 	for i = 1, #limbVecTable,1 do
@@ -49,11 +59,12 @@ local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
 	return originCF, targetPos, limbVecTable,limbLengthTable
 end
 
---Does the cylinder constraining
---Constraint settings is a table
+--[[
+	Given a vector of where the limb should be this function constraints it within a spherical cone
+	Returns a new limb vector in the constrained position
+]]
 local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettings)
 	--ellipse width and height of the constraint
-	--
 	local height = constraintSettings[2]
 	local width = constraintSettings[1]
 
@@ -96,6 +107,30 @@ local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettin
 	end
 
 	return limbVector
+end
+
+--same functionality as forwards but now with constraints added
+local function ConstraintForwards(originCF, targetPos, limbVecTable,limbLengthTable,limbConstraintTable)
+	local store = Vector3.new()
+	for i = 1, #limbVecTable,1 do
+		--initialize empty vector for summing
+		local vecSum = Vector3.new(0,0,0)
+		
+		--Sums up the vectors in order to get the target position on the chain
+		for v = i+1, #limbVecTable, 1 do
+			vecSum = vecSum + limbVecTable[v]
+		end
+		
+		--Gets the new direction of the new vector along the chain
+		--direction of the new vector is from origin to target
+		local pointTo = vecSum+targetPos-originCF.Position-store
+		--This time constraint the vector
+
+		--constructs the new vectable
+		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
+		store = store + limbVecTable[i] 
+	end
+	return originCF, targetPos, limbVecTable,limbLengthTable
 end
 
 --newer function
