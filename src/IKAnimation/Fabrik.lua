@@ -164,35 +164,16 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	local feetToTarget = targetPos - feetJoint
 	local distanceTolerate = feetToTarget.Magnitude
 
-<<<<<<< HEAD
-	--Target point is too far away from the max length the leg can reach then fully extend
-	if targetLength > maxLength then
-		for i = 1, #limbVectorTable, 1 do
-			--limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
-			_,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
-		end
-=======
->>>>>>> master
 
 	--target point is "reachable"
 	--if Distance is more than tolerance then iterate to move the new vectors closer
 	--If not then don't execute the iteration to save FPS
 
 	if distanceTolerate >= tolerance then
-		_, _, limbVectorTable, _ = Forwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
+		_, _, limbVectorTable, _ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
 		return limbVectorTable
 	else
-<<<<<<< HEAD
-		--target point is "reachable"
-		--if Distance is more than tolerance then iterate to move the new vectors closer
-		--If not then don't execute the iteration to save FPS
-		if distanceTolerate >= tolerance then
-		 _,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
-		end
-		 return limbVectorTable
-=======
 		return limbVectorTable
->>>>>>> master
 	end
 	
 end
