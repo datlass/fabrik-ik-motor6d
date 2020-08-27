@@ -154,9 +154,6 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	for i = 1, #limbLengthTable, 1 do
 		maxLength = maxLength + limbLengthTable[i]
 	end
-	--Get the distance from hip Joint to the target position
-	local targetToJoint = targetPos - originCF.Position
-	local targetLength = targetToJoint.Magnitude
 
 	--initialize measure feet to where it should be in the world position
 	local vectorSum = Vector3.new(0, 0, 0)
