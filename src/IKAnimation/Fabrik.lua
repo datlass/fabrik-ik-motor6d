@@ -95,7 +95,6 @@ local function ConicalConstraint(limbVector, yAxis, centerAxis, constraintSettin
 
 	--check if the limbvector point is outside the formula constraint
 	if ovalFormula > 1 then
-	
 		--Obtain the angle from the xaxis
 		local angleToXAxis = math.atan(yPoint, xPoint)
 
@@ -103,8 +102,8 @@ local function ConicalConstraint(limbVector, yAxis, centerAxis, constraintSettin
 		local newXPoint = width * math.cos(angleToXAxis)
 		local newYPoint = height * math.sin(angleToXAxis)
 
-		--now reconstruct the limbvector
-		--Now we conver it back to a 3d vector
+		--now reconstruct the limbVector
+		--Now we convert it back to a 3d vector
 		local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
 		--Gets the new direction of the v2 limb
 		local newPosVector = posVector.Unit * newMagnitude
@@ -120,7 +119,6 @@ end
 	Same as forwards Function
 	limbConstraintTable
 
-	Has the negative projection issue described by Ego Moose in the google docs
 ]]
 local function ConstraintForwards(originCF, targetPos, limbVectorTable,limbLengthTable,limbConstraintTable)
 	local vectorSumFromOrigin = Vector3.new()
@@ -177,7 +175,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	if targetLength > maxLength then
 		for i = 1, #limbVectorTable, 1 do
 			--limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
-			_,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+			_,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 
 		return limbVectorTable
@@ -186,7 +184,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 		--if Distance is more than tolerance then iterate to move the new vectors closer
 		--If not then don't execute the iteration to save FPS
 		if distanceTolerate >= tolerance then
-		 _,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+		 _,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 		 return limbVectorTable
 	end
