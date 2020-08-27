@@ -192,3 +192,9 @@ return fabrikAlgo
 		 return limbVectorTable
 	end
 	]]
+
+	--Perform
+		--Get the distance from hip Joint to the target position
+		--local targetToJoint = targetPos - originCF.Position
+	--	local targetLength = targetToJoint.Magnitude
+	
