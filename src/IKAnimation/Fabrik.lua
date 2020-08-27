@@ -63,16 +63,22 @@ end
 	Given a vector of where the limb should be this function constraints it within a spherical cone
 	Returns a new limb vector in the constrained position
 	Constraint Settings are (width, height)
+	--notes very laggy with high activity 10%
 ]]
-local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettings)
+local function ConicalConstraint(limbVector, yAxis, centerAxis, constraintSettings)
 	--ellipse width and height of the constraint
 	local height = constraintSettings[2]
 	local width = constraintSettings[1]
 
 	--Perform vector resolution on limbvector
 	--Represents the center of the 2d plane that will be constructed
-	local projCenter = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude) * centerAxis.Unit
-
+	--Also gets the projection scalar
+	local projScalar =limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
+	print(projScalar)
+	projScalar = math.abs(projScalar)
+	--Always make projection scalar positive so that the projCenter faces the center Axis
+	local projCenter = projScalar * centerAxis.Unit
+	
 	--position the current limbvector within the 2d plane as another vector
 	local posVector = limbVector - projCenter
 
@@ -90,6 +96,7 @@ local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettin
 
 	--check if the limbvector point is outside the formula constraint
 	if ovalFormula > 1 then
+	
 		--Obtain the angle from the xaxis
 		local angleToXAxis = math.atan(yPoint, xPoint)
 
@@ -110,7 +117,12 @@ local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettin
 	return limbVector
 end
 
---same functionality as forwards but now with constraints added
+--[[
+	Same as forwards Function
+	limbConstraintTable
+
+	Has the negative projection issue described by Ego Moose in the google docs
+]]
 local function ConstraintForwards(originCF, targetPos, limbVectorTable,limbLengthTable,limbConstraintTable)
 	local vectorSumFromOrigin = Vector3.new()
 	for i = 1, #limbVectorTable,1 do
@@ -125,8 +137,15 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,limbLengt
 		--Gets the new direction of the new vector along the chain
 		--direction of the new vector is from origin to target
 		local pointTo = vectorSum+targetPos-originCF.Position-vectorSumFromOrigin
-		--This time constraint the vector
+		--This time constraint the vector using the conical constraint function
+		if i==1 then
+			local yAxis = originCF.UpVector
+			local centerAxis = -originCF.RightVector
+			pointTo = ConicalConstraint(pointTo,yAxis,centerAxis,{2,2})
 
+		else
+			--pointTo = ConicalConstraint(pointTo)
+		end
 		--constructs the new vectable
 		limbVectorTable[i] = pointTo.Unit*limbLengthTable[i]
 		vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i] 
@@ -158,7 +177,8 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	--Target point is too far away from the max length the leg can reach then fully extend
 	if targetLength > maxLength then
 		for i = 1, #limbVectorTable, 1 do
-			limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
+			--limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
+			_,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 
 		return limbVectorTable
@@ -167,7 +187,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 		--if Distance is more than tolerance then iterate to move the new vectors closer
 		--If not then don't execute the iteration to save FPS
 		if distanceTolerate >= tolerance then
-		 _,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+		 _,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 		 return limbVectorTable
 	end
