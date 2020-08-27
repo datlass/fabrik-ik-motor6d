@@ -63,14 +63,14 @@ end
 	--notes can get laggy with high activity 3%-10% find ways to optimize later
 	--Also weird behavior when limb vector goes opposite of centerAxis
 ]]
-local function ConicalConstraint(limbVector,limbVectorLength, yAxis, centerAxis, constraintSettings)
+local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis, constraintSettings)
 	--ellipse width and height of the constraint
 	local heightCenterAngle = math.rad(constraintSettings[2])
 	local widthCenterAngle = math.rad(constraintSettings[1])
 
 	--Convert Angles into height and width
-	local height = limbVectorLength*math.sin(heightCenterAngle)
-	local width = limbVectorLength*math.sin(widthCenterAngle)
+	local height = limbVectorLength * math.sin(heightCenterAngle)
+	local width = limbVectorLength * math.sin(widthCenterAngle)
 
 	--Perform vector resolution on limbvector
 	--Represents the center of the 2d plane that will be constructed
@@ -78,10 +78,10 @@ local function ConicalConstraint(limbVector,limbVectorLength, yAxis, centerAxis,
 	local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
 	projScalar = math.abs(projScalar)
 
-	local minScalar =limbVectorLength*math.cos(widthCenterAngle)
-	projScalar = math.clamp(projScalar,minScalar,limbVectorLength)
+	local minScalar = limbVectorLength * math.cos(widthCenterAngle)
+	projScalar = math.clamp(projScalar, minScalar, limbVectorLength)
 
-	print("ProjScalar: ",projScalar,"Limblength: ", limbVectorLength)
+	print("ProjScalar: ", projScalar, "Limblength: ", limbVectorLength)
 	--Always make projection scalar positive so that the projCenter faces the center Axis
 	local projCenter = projScalar * centerAxis.Unit
 
@@ -146,7 +146,7 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable, limbLeng
 			--The axis of constraint is relative to the initial joint placement
 			local yAxis = originCF.UpVector
 			local centerAxis = -originCF.RightVector
-			pointTo = ConicalConstraint(pointTo,limbLengthTable[i], yAxis, centerAxis, {25, 25})
+			pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis, centerAxis, {25, 25})
 		else
 			--pointTo = ConicalConstraint(pointTo)
 		end
@@ -175,7 +175,6 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	local feetToTarget = targetPos - feetJoint
 	local distanceTolerate = feetToTarget.Magnitude
 
-
 	--target point is "reachable"
 	--if Distance is more than tolerance then iterate to move the new vectors closer
 	--If not then don't execute the iteration to save FPS
@@ -186,7 +185,6 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	else
 		return limbVectorTable
 	end
-	
 end
 ----
 
