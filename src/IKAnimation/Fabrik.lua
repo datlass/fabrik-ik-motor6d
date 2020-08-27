@@ -7,25 +7,25 @@
 	Returns parameters with new vector chain direction from endpoint to startpoint
 ]]
 local function Backwards(originCF, targetPos, limbVectorTable,limbLengthTable)
-	local store = Vector3.new()
+	local vectorSumFromOrigin = Vector3.new()
 
 	for i = #limbVectorTable, 1,-1 do
 
-		local vecSum = Vector3.new(0,0,0)
+		local vectorSum = Vector3.new(0,0,0)
 		--print("Index: ",i," Vectable: ",limbVectorTable[i])
 
 		for v = 1, i-1, 1 do
-			vecSum = vecSum + limbVectorTable[v]
+			vectorSum = vectorSum + limbVectorTable[v]
 		end
-		--print("vec sum: ",vecSum)
+		--print("vec sum: ",vectorSum)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction is Target Pos to the next point on the chain
-		local pointTo = originCF.Position+vecSum-targetPos-store
+		local pointTo = originCF.Position+vectorSum-targetPos-vectorSumFromOrigin
 	--	print(pointTo)
 		--constructs the new vectable
 		limbVectorTable[i] = pointTo.Unit*limbLengthTable[i]
-		store = store + limbVectorTable[i]
+		vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
 	end
 	return originCF, targetPos, limbVectorTable,limbLengthTable
 end
@@ -37,24 +37,24 @@ end
 	Returns parameters with new vector chain direction from Startpoint to EndPoint
 ]]
 local function Forwards(originCF, targetPos, limbVectorTable,limbLengthTable)
-	local store = Vector3.new()
+	local vectorSumFromOrigin = Vector3.new()
 	for i = 1, #limbVectorTable,1 do
 		--initialize empty vector for summing
-		local vecSum = Vector3.new(0,0,0)
+		local vectorSum = Vector3.new(0,0,0)
 		--print("Index: ",i," Vectable: ",limbVectorTable[i])
 		
 		for v = i+1, #limbVectorTable, 1 do
-			vecSum = vecSum + limbVectorTable[v]
+			vectorSum = vectorSum + limbVectorTable[v]
 		end
-		--print("vec sum: ",vecSum)
+		--print("vec sum: ",vectorSum)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction of the new vector is from origin to target
-		local pointTo = vecSum+targetPos-originCF.Position-store
+		local pointTo = vectorSum+targetPos-originCF.Position-vectorSumFromOrigin
 		--print(pointTo)
 		--constructs the new vectable
 		limbVectorTable[i] = pointTo.Unit*limbLengthTable[i]
-		store = store + limbVectorTable[i] 
+		vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i] 
 	end
 	return originCF, targetPos, limbVectorTable,limbLengthTable
 end
@@ -112,24 +112,24 @@ end
 
 --same functionality as forwards but now with constraints added
 local function ConstraintForwards(originCF, targetPos, limbVectorTable,limbLengthTable,limbConstraintTable)
-	local store = Vector3.new()
+	local vectorSumFromOrigin = Vector3.new()
 	for i = 1, #limbVectorTable,1 do
 		--initialize empty vector for summing
-		local vecSum = Vector3.new(0,0,0)
+		local vectorSum = Vector3.new(0,0,0)
 		
 		--Sums up the vectors in order to get the target position on the chain
 		for v = i+1, #limbVectorTable, 1 do
-			vecSum = vecSum + limbVectorTable[v]
+			vectorSum = vectorSum + limbVectorTable[v]
 		end
 		
 		--Gets the new direction of the new vector along the chain
 		--direction of the new vector is from origin to target
-		local pointTo = vecSum+targetPos-originCF.Position-store
+		local pointTo = vectorSum+targetPos-originCF.Position-vectorSumFromOrigin
 		--This time constraint the vector
 
 		--constructs the new vectable
 		limbVectorTable[i] = pointTo.Unit*limbLengthTable[i]
-		store = store + limbVectorTable[i] 
+		vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i] 
 	end
 	return originCF, targetPos, limbVectorTable,limbLengthTable
 end
@@ -147,11 +147,11 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	local targetLength = targetToJoint.Magnitude
 
 	--initialize measure feet to where it should be in the world position
-	local vecSum = Vector3.new(0,0,0)
+	local vectorSum = Vector3.new(0,0,0)
 	for i = 1, #limbVectorTable, 1 do
-		vecSum = vecSum+limbVectorTable[i]
+		vectorSum = vectorSum+limbVectorTable[i]
 	end
-	local feetJoint = originCF.Position + vecSum
+	local feetJoint = originCF.Position + vectorSum
 	local feetToTarget = targetPos - feetJoint
 	local distanceTolerate = feetToTarget.Magnitude
 
