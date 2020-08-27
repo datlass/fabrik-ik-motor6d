@@ -74,7 +74,6 @@ local function ConicalConstraint(limbVector, yAxis, centerAxis, constraintSettin
 	--Represents the center of the 2d plane that will be constructed
 	--Also gets the projection scalar
 	local projScalar =limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
-	print(projScalar)
 	projScalar = math.abs(projScalar)
 	--Always make projection scalar positive so that the projCenter faces the center Axis
 	local projCenter = projScalar * centerAxis.Unit
