@@ -167,3 +167,34 @@ local function fabrikAlgo(tolerance, originCF, targetPos, v1, v2, v3)
 end
 
 return fabrikAlgo
+
+--Old code for the FABRIK that is more robust
+--The targetLength > maxLength was unnecessary and would fully extend the limb
+--but save for later
+
+--[[
+	--Target point is too far away from the max length the leg can reach then fully extend
+	--Buuut usually if you make all the vectors face forward then 
+	if targetLength > maxLength then
+		for i = 1, #limbVectorTable, 1 do
+			--limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
+			_,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+		end
+
+		return limbVectorTable
+	else
+		--target point is "reachable"
+		--if Distance is more than tolerance then iterate to move the new vectors closer
+		--If not then don't execute the iteration to save FPS
+		if distanceTolerate >= tolerance then
+		 _,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+		end
+		 return limbVectorTable
+	end
+	]]
+
+	--Perform
+		--Get the distance from hip Joint to the target position
+		--local targetToJoint = targetPos - originCF.Position
+	--	local targetLength = targetToJoint.Magnitude
+	
