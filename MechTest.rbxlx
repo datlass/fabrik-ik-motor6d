@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-28.0453453</X>
-					<Y>20.4368877</Y>
-					<Z>-10.5413189</Z>
-					<R00>-0.411396414</R00>
-					<R01>0.302472204</R01>
-					<R02>-0.859804332</R02>
+					<X>-21.6110764</X>
+					<Y>29.1020622</Y>
+					<Z>-23.8235664</Z>
+					<R00>-0.922865748</R00>
+					<R01>0.206845596</R01>
+					<R02>-0.324859619</R02>
 					<R10>-0</R10>
-					<R11>0.94333005</R11>
-					<R12>0.331855863</R12>
-					<R20>0.911456525</R20>
-					<R21>0.136524305</R21>
-					<R22>-0.388082594</R22>
+					<R11>0.843524218</R11>
+					<R12>0.537091255</R12>
+					<R20>0.385121882</R20>
+					<R21>0.495663136</R21>
+					<R22>-0.778459549</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-26.325737</X>
-					<Y>19.7731762</Y>
-					<Z>-9.76515388</Z>
+					<X>-20.9613571</X>
+					<Y>28.0278797</Y>
+					<Z>-22.2666473</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2581,69 +2581,84 @@ end)
 						<string name="ScriptGuid">{84c0079e-1216-43b0-b981-db54832852b5}</string>
 						<ProtectedString name="Source"><![CDATA[
 
---Aim is to be similar to backwards but with a table for more robust models
-local function Backwards(originCF, targetPos, limbVecTable,limbLengthTable)
-	local store = Vector3.new()
+--[[
+	Iterate the backward chain of the FABRIK Algorithm
+	Function should be called before the Forwards function in order to prevent the vector direction from changing
+	Assumes vector chain is from startpoint to endpoint
+	Returns parameters with new vector chain direction from endpoint to startpoint
+]]
+local function Backwards(originCF, targetPos, limbVectorTable,limbLengthTable)
+	local vectorSumFromOrigin = Vector3.new()
 
-	for i = #limbVecTable, 1,-1 do
+	for i = #limbVectorTable, 1,-1 do
 
-		local vecSum = Vector3.new(0,0,0)
-		--print("Index: ",i," Vectable: ",limbVectable[i])
+		local vectorSum = Vector3.new(0,0,0)
+		--print("Index: ",i," Vectable: ",limbVectorTable[i])
 
 		for v = 1, i-1, 1 do
-			vecSum = vecSum + limbVecTable[v]
+			vectorSum = vectorSum + limbVectorTable[v]
 		end
-		--print("vec sum: ",vecSum)
+		--print("vec sum: ",vectorSum)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction is Target Pos to the next point on the chain
-		local pointTo = originCF.Position+vecSum-targetPos-store
+		local pointTo = originCF.Position+vectorSum-targetPos-vectorSumFromOrigin
 	--	print(pointTo)
 		--constructs the new vectable
-		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
-		store = store + limbVecTable[i]
+		limbVectorTable[i] = pointTo.Unit*limbLengthTable[i]
+		vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
 	end
-	return originCF, targetPos, limbVecTable,limbLengthTable
+	return originCF, targetPos, limbVectorTable,limbLengthTable
 end
 
---Newer iterative methods for forwards
---this is notworking as intended different from original see script_test
-local function Forwards(originCF, targetPos, limbVecTable,limbLengthTable)
-	local store = Vector3.new()
-	for i = 1, #limbVecTable,1 do
+--[[
+	Does the forward chain of the FABRIK Algorithm
+	Function should be called after the Backwards function in order to prevent the vector direction from changing
+	Assumes vector chain is from endpoint to startpoint
+	Returns parameters with new vector chain direction from Startpoint to EndPoint
+]]
+local function Forwards(originCF, targetPos, limbVectorTable,limbLengthTable)
+	local vectorSumFromOrigin = Vector3.new()
+	for i = 1, #limbVectorTable,1 do
 		--initialize empty vector for summing
-		local vecSum = Vector3.new(0,0,0)
-		--print("Index: ",i," Vectable: ",limbVectable[i])
+		local vectorSum = Vector3.new(0,0,0)
+		--print("Index: ",i," Vectable: ",limbVectorTable[i])
 		
-		for v = i+1, #limbVecTable, 1 do
-			vecSum = vecSum + limbVecTable[v]
+		for v = i+1, #limbVectorTable, 1 do
+			vectorSum = vectorSum + limbVectorTable[v]
 		end
-		--print("vec sum: ",vecSum)
+		--print("vec sum: ",vectorSum)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction of the new vector is from origin to target
-		local pointTo = vecSum+targetPos-originCF.Position-store
+		local pointTo = vectorSum+targetPos-originCF.Position-vectorSumFromOrigin
 		--print(pointTo)
 		--constructs the new vectable
-		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
-		store = store + limbVecTable[i] 
+		limbVectorTable[i] = pointTo.Unit*limbLengthTable[i]
+		vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i] 
 	end
-	return originCF, targetPos, limbVecTable,limbLengthTable
+	return originCF, targetPos, limbVectorTable,limbLengthTable
 end
 
---Does the cylinder constraining
---Constraint settings is a table
---Input the parameters and 
-local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettings)
+--[[
+	Given a vector of where the limb should be this function constraints it within a spherical cone
+	Returns a new limb vector in the constrained position
+	Constraint Settings are (width, height)
+	--notes very laggy with high activity 10%
+]]
+local function ConicalConstraint(limbVector, yAxis, centerAxis, constraintSettings)
 	--ellipse width and height of the constraint
-	--
 	local height = constraintSettings[2]
 	local width = constraintSettings[1]
 
 	--Perform vector resolution on limbvector
 	--Represents the center of the 2d plane that will be constructed
-	local projCenter = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude) * centerAxis.Unit
-
+	--Also gets the projection scalar
+	local projScalar =limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
+	projScalar = math.abs(projScalar)
+	--Always make projection scalar positive so that the projCenter faces the center Axis
+	local projCenter = projScalar * centerAxis.Unit
+	
 	--position the current limbvector within the 2d plane as another vector
 	local posVector = limbVector - projCenter
 
@@ -2668,8 +2683,8 @@ local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettin
 		local newXPoint = width * math.cos(angleToXAxis)
 		local newYPoint = height * math.sin(angleToXAxis)
 
-		--now reconstruct the limbvector
-		--Now we conver it back to a 3d vector
+		--now reconstruct the limbVector
+		--Now we convert it back to a 3d vector
 		local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
 		--Gets the new direction of the v2 limb
 		local newPosVector = posVector.Unit * newMagnitude
@@ -2681,32 +2696,43 @@ local function ConicalConstraint(yAxis, centerAxis, limbVector, constraintSettin
 	return limbVector
 end
 
---Same as Forwards 
-local function ConstraintForwards()
-	local store = Vector3.new()
-	for i = 1, #limbVecTable,1 do
+--[[
+	Same as forwards Function
+	limbConstraintTable
+
+]]
+local function ConstraintForwards(originCF, targetPos, limbVectorTable,limbLengthTable,limbConstraintTable)
+	local vectorSumFromOrigin = Vector3.new()
+	for i = 1, #limbVectorTable,1 do
 		--initialize empty vector for summing
-		local vecSum = Vector3.new(0,0,0)
-		--print("Index: ",i," Vectable: ",limbVectable[i])
+		local vectorSum = Vector3.new(0,0,0)
 		
-		for v = i+1, #limbVecTable, 1 do
-			vecSum = vecSum + limbVecTable[v]
+		--Sums up the vectors in order to get the target position on the chain
+		for v = i+1, #limbVectorTable, 1 do
+			vectorSum = vectorSum + limbVectorTable[v]
 		end
-		--print("vec sum: ",vecSum)
 		
 		--Gets the new direction of the new vector along the chain
 		--direction of the new vector is from origin to target
-		local pointTo = vecSum+targetPos-originCF.Position-store
-		--print(pointTo)
+		local pointTo = vectorSum+targetPos-originCF.Position-vectorSumFromOrigin
+		--This time constraint the vector using the conical constraint function
+		if i==1 then
+			local yAxis = originCF.UpVector
+			local centerAxis = -originCF.RightVector
+			pointTo = ConicalConstraint(pointTo,yAxis,centerAxis,{2,2})
+
+		else
+			--pointTo = ConicalConstraint(pointTo)
+		end
 		--constructs the new vectable
-		limbVecTable[i] = pointTo.Unit*limbLengthTable[i]
-		store = store + limbVecTable[i] 
+		limbVectorTable[i] = pointTo.Unit*limbLengthTable[i]
+		vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i] 
 	end
-	return originCF, targetPos, limbVecTable,limbLengthTable
+	return originCF, targetPos, limbVectorTable,limbLengthTable
 end
 
 --newer function
-local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLengthTable)
+local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbLengthTable)
 	--get the magnitude of the leg parts
 	local maxLength = 0
 	--adds all the magnitudes
@@ -2718,29 +2744,30 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVecTable, limbLeng
 	local targetLength = targetToJoint.Magnitude
 
 	--initialize measure feet to where it should be in the world position
-	local vecSum = Vector3.new(0,0,0)
-	for i = 1, #limbVecTable, 1 do
-		vecSum = vecSum+limbVecTable[i]
+	local vectorSum = Vector3.new(0,0,0)
+	for i = 1, #limbVectorTable, 1 do
+		vectorSum = vectorSum+limbVectorTable[i]
 	end
-	local feetJoint = originCF.Position + vecSum
+	local feetJoint = originCF.Position + vectorSum
 	local feetToTarget = targetPos - feetJoint
 	local distanceTolerate = feetToTarget.Magnitude
 
 	--Target point is too far away from the max length the leg can reach then fully extend
 	if targetLength > maxLength then
-		for i = 1, #limbVecTable, 1 do
-			limbVecTable[i] = targetToJoint.Unit*limbLengthTable[i]
+		for i = 1, #limbVectorTable, 1 do
+			--limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
+			_,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 
-		return limbVecTable
+		return limbVectorTable
 	else
 		--target point is "reachable"
 		--if Distance is more than tolerance then iterate to move the new vectors closer
 		--If not then don't execute the iteration to save FPS
 		if distanceTolerate >= tolerance then
-		 _,_, limbVecTable,_ = Forwards(Backwards(originCF, targetPos, limbVecTable,limbLengthTable))
+		 _,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
-		 return limbVecTable
+		 return limbVectorTable
 	end
 end
 ----
