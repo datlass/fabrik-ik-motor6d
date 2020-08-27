@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-12.0533791</X>
-					<Y>24.2431927</Y>
-					<Z>-30.5771084</Z>
-					<R00>-0.95505017</R00>
-					<R01>0.150267094</R01>
-					<R02>-0.255536705</R02>
-					<R10>7.4505806e-09</R10>
-					<R11>0.862005889</R11>
-					<R12>0.506898224</R12>
-					<R20>0.296444297</R20>
-					<R21>0.484113246</R21>
-					<R22>-0.823258877</R22>
+					<X>-18.1543293</X>
+					<Y>25.7908173</Y>
+					<Z>-25.6688786</Z>
+					<R00>-0.941231132</R00>
+					<R01>0.139390543</R01>
+					<R02>-0.307659179</R02>
+					<R10>7.45057971e-09</R10>
+					<R11>0.910872817</R11>
+					<R12>0.412687361</R12>
+					<R20>0.337763041</R20>
+					<R21>0.388434201</R21>
+					<R22>-0.857341886</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-11.5423059</X>
-					<Y>23.2293968</Y>
-					<Z>-28.9305916</Z>
+					<X>-17.539011</X>
+					<Y>24.9654427</Y>
+					<Z>-23.954195</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2054,7 +2054,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<float name="TopParamB">0.5</float>
 				<token name="TopSurface">0</token>
 				<token name="TopSurfaceInput">0</token>
-				<float name="Transparency">1</float>
+				<float name="Transparency">0.200000003</float>
 				<Vector3 name="Velocity">
 					<X>0</X>
 					<Y>0</Y>
@@ -2735,9 +2735,6 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	for i = 1, #limbLengthTable, 1 do
 		maxLength = maxLength + limbLengthTable[i]
 	end
-	--Get the distance from hip Joint to the target position
-	local targetToJoint = targetPos - originCF.Position
-	local targetLength = targetToJoint.Magnitude
 
 	--initialize measure feet to where it should be in the world position
 	local vectorSum = Vector3.new(0, 0, 0)
@@ -2754,7 +2751,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	--If not then don't execute the iteration to save FPS
 
 	if distanceTolerate >= tolerance then
-		_, _, limbVectorTable, _ = Forwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
+		_, _, limbVectorTable, _ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
 		return limbVectorTable
 	else
 		return limbVectorTable
@@ -2995,7 +2992,13 @@ return fabrikAlgo
 		end
 		 return limbVectorTable
 	end
-	]]]]></ProtectedString>
+	]]
+
+	--Perform
+		--Get the distance from hip Joint to the target position
+		--local targetToJoint = targetPos - originCF.Position
+	--	local targetLength = targetToJoint.Magnitude
+	]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>

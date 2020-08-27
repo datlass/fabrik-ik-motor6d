@@ -170,7 +170,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	--If not then don't execute the iteration to save FPS
 
 	if distanceTolerate >= tolerance then
-		_, _, limbVectorTable, _ = Forwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
+		_, _, limbVectorTable, _ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
 		return limbVectorTable
 	else
 		return limbVectorTable
