@@ -60,18 +60,28 @@ end
 	Given a vector of where the limb should be this function constraints it within a spherical cone
 	Returns a new limb vector in the constrained position
 	Constraint Settings are (width, height)
-	--notes very laggy with high activity 10%
+	--notes can get laggy with high activity 3%-10% find ways to optimize later
+	--Also weird behavior when limb vector goes opposite of centerAxis
 ]]
-local function ConicalConstraint(limbVector, yAxis, centerAxis, constraintSettings)
+local function ConicalConstraint(limbVector,limbVectorLength, yAxis, centerAxis, constraintSettings)
 	--ellipse width and height of the constraint
-	local height = constraintSettings[2]
-	local width = constraintSettings[1]
+	local heightCenterAngle = math.rad(constraintSettings[2])
+	local widthCenterAngle = math.rad(constraintSettings[1])
+
+	--Convert Angles into height and width
+	local height = limbVectorLength*math.sin(heightCenterAngle)
+	local width = limbVectorLength*math.sin(widthCenterAngle)
 
 	--Perform vector resolution on limbvector
 	--Represents the center of the 2d plane that will be constructed
-	--Also gets the projection scalar
+	--Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
 	local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
 	projScalar = math.abs(projScalar)
+
+	local minScalar =limbVectorLength*math.cos(widthCenterAngle)
+	projScalar = math.clamp(projScalar,minScalar,limbVectorLength)
+
+	print("ProjScalar: ",projScalar,"Limblength: ", limbVectorLength)
 	--Always make projection scalar positive so that the projCenter faces the center Axis
 	local projCenter = projScalar * centerAxis.Unit
 
@@ -133,9 +143,10 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable, limbLeng
 		local pointTo = vectorSum + targetPos - originCF.Position - vectorSumFromOrigin
 		--This time constraint the vector using the conical constraint function
 		if i == 1 then
+			--The axis of constraint is relative to the initial joint placement
 			local yAxis = originCF.UpVector
 			local centerAxis = -originCF.RightVector
-			pointTo = ConicalConstraint(pointTo, yAxis, centerAxis, {2, 2})
+			pointTo = ConicalConstraint(pointTo,limbLengthTable[i], yAxis, centerAxis, {25, 25})
 		else
 			--pointTo = ConicalConstraint(pointTo)
 		end
