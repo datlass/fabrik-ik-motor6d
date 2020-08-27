@@ -175,7 +175,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	if targetLength > maxLength then
 		for i = 1, #limbVectorTable, 1 do
 			--limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
-			_,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+			_,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 
 		return limbVectorTable
@@ -184,7 +184,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 		--if Distance is more than tolerance then iterate to move the new vectors closer
 		--If not then don't execute the iteration to save FPS
 		if distanceTolerate >= tolerance then
-		 _,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+		 _,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 		 return limbVectorTable
 	end
