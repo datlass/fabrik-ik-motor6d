@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-21.6110764</X>
-					<Y>29.1020622</Y>
-					<Z>-23.8235664</Z>
-					<R00>-0.922865748</R00>
-					<R01>0.206845596</R01>
-					<R02>-0.324859619</R02>
+					<X>-10.556036</X>
+					<Y>24.2405834</Y>
+					<Z>-20.2561283</Z>
+					<R00>-0.974041522</R00>
+					<R01>0.127753809</R01>
+					<R02>-0.186874479</R02>
 					<R10>-0</R10>
-					<R11>0.843524218</R11>
-					<R12>0.537091255</R12>
-					<R20>0.385121882</R20>
-					<R21>0.495663136</R21>
-					<R22>-0.778459549</R22>
+					<R11>0.82552892</R11>
+					<R12>0.564359963</R12>
+					<R20>0.226369381</R20>
+					<R21>0.549710035</R21>
+					<R22>-0.804099441</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-20.9613571</X>
-					<Y>28.0278797</Y>
-					<Z>-22.2666473</Z>
+					<X>-10.1822872</X>
+					<Y>23.1118641</Y>
+					<Z>-18.6479301</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2054,7 +2054,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<float name="TopParamB">0.5</float>
 				<token name="TopSurface">0</token>
 				<token name="TopSurfaceInput">0</token>
-				<float name="Transparency">0.200000003</float>
+				<float name="Transparency">1</float>
 				<Vector3 name="Velocity">
 					<X>0</X>
 					<Y>0</Y>
@@ -2756,7 +2756,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	if targetLength > maxLength then
 		for i = 1, #limbVectorTable, 1 do
 			--limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
-			_,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+			_,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 
 		return limbVectorTable
@@ -2765,7 +2765,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 		--if Distance is more than tolerance then iterate to move the new vectors closer
 		--If not then don't execute the iteration to save FPS
 		if distanceTolerate >= tolerance then
-		 _,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+		 _,_, limbVectorTable,_ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
 		end
 		 return limbVectorTable
 	end
