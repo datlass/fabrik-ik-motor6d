@@ -9,7 +9,8 @@
         "empty-block",
         "unknown-symbol",
         "redundant-parameter",
-        "undefined-rbx-member"
+        "undefined-rbx-member",
+        "incorrect-call-arguments"
     ],
     "Lua.runtime.version": "Luau"
 }
