@@ -25,7 +25,19 @@
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
       "Source": {
-        "$path": "src"
+        "$path": "src/ReplicatedStorage"
+      }
+    },
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "Source": {
+        "$path": "src/ServerStorage"
+      }
+    },
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "Source": {
+        "$path": "src/ServerScriptService"
       }
     },
     "SoundService": {
