@@ -90,17 +90,17 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis
 
 	local minScalar = limbVectorLength * math.cos(widthCenterAngle)
 	projScalar = math.clamp(projScalar, minScalar, limbVectorLength)
-	
+
 	--Always make projection scalar positive so that the projCenter faces the center Axis
 	local projCenter = projScalar * centerAxis.Unit
-	
+
 	--position the current limbvector within the 2d plane as another vector
 	local posVector = limbVector - projCenter
 
 	--translate into 2d plane
 	--create the xAxis from the yAxis use the left hand rule
 	local xAxis = (-yAxis:Cross(centerAxis)).Unit
-	
+
 	--Construct the oval
 	--Get the X and Y Coordinates
 	local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
@@ -108,14 +108,13 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis
 
 	--Construct the oval constrain formula
 	local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
-	
+
 	--check if the limbvector point is outside the formula constraint
 	--Also checks for directionality if its in the isOppositeDirection then constraint
 	if ovalFormula >= 1 or isOppositeDirection then
-		
 		--Obtain the angle from the xaxis
 		local angleToXAxis = math.atan(yPoint, xPoint)
-		
+
 		--Place it on the edge of the oval within the contraints placed
 		local newXPoint = width * math.cos(angleToXAxis)
 		local newYPoint = height * math.sin(angleToXAxis)
@@ -126,7 +125,7 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis
 
 		--Gets the new direction of the v2 limb
 		local newPosVector = posVector.Unit * newMagnitude
-		
+
 		local newDir = projCenter + newPosVector
 		--Constructs the new limbvector in a different direction but same length
 		limbVector = newDir.Unit * limbVector.Magnitude
@@ -158,18 +157,18 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable, limbLeng
 		if i == 1 then
 			--The axis of constraint is relative to the initial joint placement
 			if limbConstraintTable[i] then
-			local yAxis = limbConstraintTable[i][1]
-			local centerAxis = limbConstraintTable[i][2]
-			local angles = limbConstraintTable[i][3]
-			pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis, centerAxis, angles)
+				local yAxis = limbConstraintTable[i][1]
+				local centerAxis = limbConstraintTable[i][2]
+				local angles = limbConstraintTable[i][3]
+				pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis, centerAxis, angles)
 			end
 		else
 			--Checks if there is a limb constraint for the current limb in the iteration
 			if limbConstraintTable[i] then
-			local yAxis = limbConstraintTable[i][1]
-			local centerAxis = limbConstraintTable[i][2]
-			local angles = limbConstraintTable[i][3]
-			pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis, centerAxis, angles)
+				local yAxis = limbConstraintTable[i][1]
+				local centerAxis = limbConstraintTable[i][2]
+				local angles = limbConstraintTable[i][3]
+				pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis, centerAxis, angles)
 			end
 		end
 		--constructs the new vectable
@@ -204,13 +203,12 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	if distanceTolerate >= tolerance then
 		--If there is a constraint table then use constraint forwards else use unconstraint
 		if limbConstraintTable then
-			
 			local originCF, targetPos, limbVectorTable, limbLengthTable = Backwards(originCF, targetPos, limbVectorTable, limbLengthTable)
-			_, _, limbVectorTable, _ = ConstraintForwards(originCF, targetPos, limbVectorTable, limbLengthTable, limbConstraintTable)
+			_, _, limbVectorTable, _ =
+				ConstraintForwards(originCF, targetPos, limbVectorTable, limbLengthTable, limbConstraintTable)
 
 			return limbVectorTable
 		else
-			
 			_, _, limbVectorTable, _ = Forwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
 
 			return limbVectorTable
@@ -219,6 +217,5 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 		return limbVectorTable
 	end
 end
-----
 
 return FabrikAlgo
