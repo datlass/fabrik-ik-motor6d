@@ -62,6 +62,10 @@ end
 	Constraint Settings are (width, height)
 	--notes can get laggy with high activity 3%-10% find ways to optimize later
 	--Also weird behavior when limb vector goes opposite of centerAxis
+	--Also bug where limb is opposite direction of center axis but not constraining
+	--Bug is where the limb thinks it is within the oval formula but the direction is opposite
+	--So it doesn't constraint
+	--So gotta detect direction of limb vector too which is done
 ]]
 local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis, constraintSettings)
 	--ellipse width and height of the constraint
@@ -76,22 +80,27 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis
 	--Represents the center of the 2d plane that will be constructed
 	--Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
 	local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
+
+	local isOppositeDirection = false
+	if projScalar < 0 then
+		isOppositeDirection = true
+	end
+
 	projScalar = math.abs(projScalar)
 
 	local minScalar = limbVectorLength * math.cos(widthCenterAngle)
 	projScalar = math.clamp(projScalar, minScalar, limbVectorLength)
-
-	print("ProjScalar: ", projScalar, "Limblength: ", limbVectorLength)
+	
 	--Always make projection scalar positive so that the projCenter faces the center Axis
 	local projCenter = projScalar * centerAxis.Unit
-
+	
 	--position the current limbvector within the 2d plane as another vector
 	local posVector = limbVector - projCenter
 
 	--translate into 2d plane
 	--create the xAxis from the yAxis use the left hand rule
 	local xAxis = (-yAxis:Cross(centerAxis)).Unit
-
+	
 	--Construct the oval
 	--Get the X and Y Coordinates
 	local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
@@ -99,12 +108,14 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis
 
 	--Construct the oval constrain formula
 	local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
-
+	
 	--check if the limbvector point is outside the formula constraint
-	if ovalFormula > 1 then
+	--Also checks for directionality if its in the isOppositeDirection then constraint
+	if ovalFormula >= 1 or isOppositeDirection then
+		
 		--Obtain the angle from the xaxis
 		local angleToXAxis = math.atan(yPoint, xPoint)
-
+		
 		--Place it on the edge of the oval within the contraints placed
 		local newXPoint = width * math.cos(angleToXAxis)
 		local newYPoint = height * math.sin(angleToXAxis)
@@ -112,8 +123,10 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis
 		--now reconstruct the limbVector
 		--Now we convert it back to a 3d vector
 		local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
+
 		--Gets the new direction of the v2 limb
 		local newPosVector = posVector.Unit * newMagnitude
+		
 		local newDir = projCenter + newPosVector
 		--Constructs the new limbvector in a different direction but same length
 		limbVector = newDir.Unit * limbVector.Magnitude
@@ -144,11 +157,20 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable, limbLeng
 		--This time constraint the vector using the conical constraint function
 		if i == 1 then
 			--The axis of constraint is relative to the initial joint placement
-			local yAxis = originCF.UpVector
-			local centerAxis = -originCF.RightVector
-			pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis, centerAxis, {25, 25})
+			if limbConstraintTable[i] then
+			local yAxis = limbConstraintTable[i][1]
+			local centerAxis = limbConstraintTable[i][2]
+			local angles = limbConstraintTable[i][3]
+			pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis, centerAxis, angles)
+			end
 		else
-			--pointTo = ConicalConstraint(pointTo)
+			--Checks if there is a limb constraint for the current limb in the iteration
+			if limbConstraintTable[i] then
+			local yAxis = limbConstraintTable[i][1]
+			local centerAxis = limbConstraintTable[i][2]
+			local angles = limbConstraintTable[i][3]
+			pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis, centerAxis, angles)
+			end
 		end
 		--constructs the new vectable
 		limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
@@ -158,7 +180,7 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable, limbLeng
 end
 
 --newer function
-local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbLengthTable)
+local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbLengthTable, limbConstraintTable)
 	--get the magnitude of the leg parts
 	local maxLength = 0
 	--adds all the magnitudes
@@ -180,8 +202,19 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable, limbL
 	--If not then don't execute the iteration to save FPS
 
 	if distanceTolerate >= tolerance then
-		_, _, limbVectorTable, _ = ConstraintForwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
-		return limbVectorTable
+		--If there is a constraint table then use constraint forwards else use unconstraint
+		if limbConstraintTable then
+			
+			local originCF, targetPos, limbVectorTable, limbLengthTable = Backwards(originCF, targetPos, limbVectorTable, limbLengthTable)
+			_, _, limbVectorTable, _ = ConstraintForwards(originCF, targetPos, limbVectorTable, limbLengthTable, limbConstraintTable)
+
+			return limbVectorTable
+		else
+			
+			_, _, limbVectorTable, _ = Forwards(Backwards(originCF, targetPos, limbVectorTable, limbLengthTable))
+
+			return limbVectorTable
+		end
 	else
 		return limbVectorTable
 	end
