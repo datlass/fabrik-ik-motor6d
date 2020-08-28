@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-40.6050186</X>
-					<Y>46.9092331</Y>
-					<Z>-58.0126457</Z>
-					<R00>-0.992792726</R00>
-					<R01>-0.0635389537</R01>
-					<R02>0.101614021</R02>
-					<R10>-7.45057971e-09</R10>
-					<R11>0.847885072</R11>
-					<R12>0.530180097</R12>
-					<R20>-0.119844086</R20>
-					<R21>0.526358962</R21>
-					<R22>-0.841774166</R22>
+					<X>-41.0287285</X>
+					<Y>29.0584412</Y>
+					<Z>-23.8906345</Z>
+					<R00>-0.264699519</R00>
+					<R01>0.438169152</R01>
+					<R02>-0.859035611</R02>
+					<R10>-0</R10>
+					<R11>0.890810072</R11>
+					<R12>0.45437628</R12>
+					<R20>0.964331031</R20>
+					<R21>0.12027318</R21>
+					<R22>-0.235796958</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-40.8082466</X>
-					<Y>45.8488731</Y>
-					<Z>-56.3290977</Z>
+					<X>-39.3106575</X>
+					<Y>28.1496887</Y>
+					<Z>-23.4190407</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2082,9 +2082,9 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurface">0</token>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
-					<X>-69</X>
-					<Y>22</Y>
-					<Z>9.5</Z>
+					<X>-110</X>
+					<Y>48.5</Y>
+					<Z>43</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2140,11 +2140,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="shape">1</token>
 				<Vector3 name="size">
 					<X>4</X>
-					<Y>44</Y>
-					<Z>77</Z>
+					<Y>97</Y>
+					<Z>294</Z>
 				</Vector3>
 			</Properties>
-			<Item class="Weld" referent="RBX6388629740e64634ab90c4c1e21dc6cc">
+			<Item class="Weld" referent="RBX4abc353e48844e7d8b57b12ba37e7e93">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<CoordinateFrame name="C0">
@@ -2162,9 +2162,9 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<R22>0</R22>
 					</CoordinateFrame>
 					<CoordinateFrame name="C1">
-						<X>-187</X>
-						<Y>-22</Y>
-						<Z>246.5</Z>
+						<X>-146</X>
+						<Y>-48.5</Y>
+						<Z>213</Z>
 						<R00>-1</R00>
 						<R01>0</R01>
 						<R02>0</R02>
@@ -2587,14 +2587,34 @@ RunService.Heartbeat:Connect(function()
 	--needs to stop running algorithm
 	--print(v1New,v2New,v3New)
 	
+	--Original limb vector positons relative to their part0 CFrames
+	local vecOneRel= hipCFrame:VectorToWorldSpace(vecOne)	
+	local vecTwoRel= upLegCFrame:VectorToWorldSpace(vecTwo)	
+	
+	
+	local refCF = CFrame.new(Vector3.new(),vecOneRel)
 	--Construct the upper leg constraint
+	--Reference to hipjointcf
 	local yAxis = hipJointCFrame.UpVector
 	local centerAxis = -hipJointCFrame.RightVector
-	local angles = {25,25}
+	
+	--Reference to original vector position
+	--local yAxis = refCF.UpVector
+	--local centerAxis = refCF.LookVector
+	--widthangle,heightangle
+	local angles = {80,80}
 	local upperLegConstraint = {yAxis,centerAxis,angles}
 	
+	local rotateCF = CFrame.fromAxisAngle(-hipCFrame.RightVector,math.rad(25))
+	refCF = CFrame.new(Vector3.new(),vecTwoRel)*rotateCF
+	yAxis = refCF.UpVector
+	centerAxis = refCF.LookVector
+	--widthangle,heightangle
+	 angles = {25,80}
+	local kneeConstraint = {yAxis,centerAxis,angles}
+	
 	--Tabulate all the constraints
-	local limbConstraintTable = {upperLegConstraint}
+	local limbConstraintTable = {upperLegConstraint,kneeConstraint}
 	
 	limbVectorTable = FabrikAlgo(0.1,hipJointCFrame, goalPosition, limbVectorTable,limbLengthTable,limbConstraintTable)
 	v1New = limbVectorTable[1]
@@ -2647,8 +2667,12 @@ RunService.Heartbeat:Connect(function()
 	
 	local upperLegRightVector = v1New:Cross(lowerBody.Hip.CFrame.LookVector)
 	
-	--this works
+	--this works unless hip is rotated
 	local newUpLegCF = hipToLegStore*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
+	--local upperLegPos = hipJointCFrame.p
+	--local upperLegRightVector = -Vector3.new(0,1,0):Cross(v1New)
+	--local newUpLegCF = hipCFrame:Inverse()*CFrame.fromMatrix(upperLegPos,upperLegRightVector,-v1New)*CFrame.fromAxisAngle(-v1New,horizAngle)*CFrame.fromAxisAngle(upperLegRightVector,-vertAngle)
+	
 	--lHipToLegMotor.C0 = lHipToLegMotor.C0:Lerp(newUpLegCF,1/40)
 	lHipToLegMotor.C0 = newUpLegCF
 	
@@ -2770,6 +2794,7 @@ end
 	--Also bug where limb is opposite direction of center axis but not constraining
 	--Bug is where the limb thinks it is within the oval formula but the direction is opposite
 	--So it doesn't constraint
+	--So gotta detect direction of limb vector too which is done
 ]]
 local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis, constraintSettings)
 	--ellipse width and height of the constraint
