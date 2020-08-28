@@ -61,11 +61,6 @@ end
 	Returns a new limb vector in the constrained position
 	Constraint Settings are (width, height)
 	--notes can get laggy with high activity 3%-10% find ways to optimize later
-	--Also weird behavior when limb vector goes opposite of centerAxis
-	--Also bug where limb is opposite direction of center axis but not constraining
-	--Bug is where the limb thinks it is within the oval formula but the direction is opposite
-	--So it doesn't constraint
-	--So gotta detect direction of limb vector too which is done
 ]]
 local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis, constraintSettings)
 	--ellipse width and height of the constraint
@@ -73,6 +68,7 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis, centerAxis
 	local widthCenterAngle = math.rad(constraintSettings[1])
 
 	--Convert Angles into height and width
+	--Height and width are in terms of radius height from origin
 	local height = limbVectorLength * math.sin(heightCenterAngle)
 	local width = limbVectorLength * math.sin(widthCenterAngle)
 
