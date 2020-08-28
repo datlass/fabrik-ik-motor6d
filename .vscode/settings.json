@@ -4,6 +4,12 @@
         "Vector3"
     ],
     "Lua.diagnostics.disable": [
-        "undefined-global"
-    ]
+        "undefined-global",
+        "redefined-local",
+        "empty-block",
+        "unknown-symbol",
+        "redundant-parameter",
+        "undefined-rbx-member"
+    ],
+    "Lua.runtime.version": "Luau"
 }
