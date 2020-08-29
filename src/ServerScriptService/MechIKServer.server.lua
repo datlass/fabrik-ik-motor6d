@@ -176,7 +176,7 @@ RunService.Heartbeat:Connect(function()
     --Change the upper leg position through the hip motor
     local upperLegPos = hipJointCFrame.p
     local undoPreviousLimbCF = hipCFrame:Inverse()*CFrame.new(upperLegPos)
-    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)*CFrame.new(empty,hipCFrame.LookVector)
+    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)*CFrame.fromMatrix(empty,hipCFrame.RightVector,hipCFrame.UpVector)
     lHipToLegMotor.C0 = undoPreviousLimbCF*rotateLimbCF
 
     --*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
@@ -184,7 +184,7 @@ RunService.Heartbeat:Connect(function()
     --Change the knee through the upperleg motor
     local kneePos = hipJointCFrame.p + v1New    
     local undoPreviousLimbCF = upLegCFrame:Inverse()*CFrame.new(kneePos)
-    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisKnee,rotateKneeAngle)*CFrame.new(empty,upLegCFrame.LookVector)
+    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisKnee,rotateKneeAngle)*CFrame.fromMatrix(empty,upLegCFrame.RightVector,upLegCFrame.UpVector)
     lUpToKneeMotor.C0 = undoPreviousLimbCF*rotateLimbCF
 
     --Change the lowerleg through the knee motor
@@ -194,7 +194,7 @@ RunService.Heartbeat:Connect(function()
                             CFrame.fromMatrix(lowerLegPos, lowerLegRightVector,
                                               -v3New)
     local undoPreviousLimbCF = kneeCFrame:Inverse()*CFrame.new(lowerLegPos)
-    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisLowerLeg,rotateLowerLegAngle)*CFrame.new(empty,kneeCFrame.LookVector)
+    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisLowerLeg,rotateLowerLegAngle)*CFrame.fromMatrix(empty,kneeCFrame.RightVector,kneeCFrame.UpVector)
                                           --*CFrame.new(empty,kneeCFrame.LookVector)
      lJKneeToLowMotor.C0 = undoPreviousLimbCF*rotateLimbCF
    -- lJKneeToLowMotor.C0 = newLowLegCF
