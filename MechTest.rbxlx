@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-14.9820986</X>
-					<Y>26.2314072</Y>
-					<Z>-30.5866394</Z>
-					<R00>-0.951750815</R00>
-					<R01>0.10424345</R01>
-					<R02>-0.28862381</R02>
-					<R10>7.4505806e-09</R10>
-					<R11>0.940535009</R11>
-					<R12>0.339696884</R12>
-					<R20>0.306871951</R20>
-					<R21>0.323306799</R21>
-					<R22>-0.895154953</R22>
+					<X>-19.2483521</X>
+					<Y>31.3738728</Y>
+					<Z>13.8185844</Z>
+					<R00>0.719528198</R00>
+					<R01>0.506628036</R01>
+					<R02>-0.474981308</R02>
+					<R10>2.98023224e-08</R10>
+					<R11>0.683954537</R11>
+					<R12>0.729524612</R12>
+					<R20>0.694463253</R20>
+					<R21>-0.524913549</R21>
+					<R22>0.492124557</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-14.404851</X>
-					<Y>25.5520134</Y>
-					<Z>-28.7963295</Z>
+					<X>-18.2983894</X>
+					<Y>29.9148235</Y>
+					<Z>12.8343353</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2007,8 +2007,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
 					<X>13</X>
-					<Y>21.7310219</Y>
-					<Z>0</Z>
+					<Y>20.7310219</Y>
+					<Z>1</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2022,7 +2022,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<bool name="CanCollide">false</bool>
 				<bool name="CastShadow">true</bool>
 				<int name="CollisionGroupId">0</int>
-				<Color3uint8 name="Color3uint8">4278255360</Color3uint8>
+				<Color3uint8 name="Color3uint8">4294967040</Color3uint8>
 				<PhysicalProperties name="CustomPhysicalProperties">
 					<CustomPhysics>false</CustomPhysics>
 				</PhysicalProperties>
@@ -2064,8 +2064,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="shape">1</token>
 				<Vector3 name="size">
 					<X>4</X>
-					<Y>3</Y>
-					<Z>4</Z>
+					<Y>1</Y>
+					<Z>2</Z>
 				</Vector3>
 			</Properties>
 		</Item>
@@ -2804,6 +2804,8 @@ local horizAngle = math.acos(front:Dot(vecOneHoriz) /
 local vertAngle = math.acos(front:Dot(vecOneVert) /
                                 (front.Magnitude * vecOneVert.Magnitude))
 
+--local upperLegToKneeStore = lUpToKneeMotor.C0
+
 RunService.Heartbeat:Connect(function()
 
     -- Original position and orientation of the hip in the world space
@@ -2812,10 +2814,11 @@ RunService.Heartbeat:Connect(function()
     local upLegCFrame = lowerBody.LeftLeg.LUpperLeg.CFrame
     local kneeCFrame = lowerBody.LeftLeg.LKnee.CFrame
 
+    --Gets the CFrame of the joint at world space
     local hipJointCFrame = lowerBody.Hip.CFrame * hipToLegStore
-    -- local kneeToUpCframe = hipJointCFrame*kneeToUpperLegStore
+   -- local kneeToUpCframe = hipJointCFrame*kneeToUpperLegStore
     -- local kneeToLowCFrame = kneeToUpCframe*kneeToLowerLegStore
-
+   
     -- the goal position
     local goalPosition = workspace.LTarget.Position
 
@@ -2828,10 +2831,10 @@ RunService.Heartbeat:Connect(function()
     -- print(v1New,v2New,v3New)
 
     -- Original limb vector positons relative to their part0 CFrames
-    local vecOneRel = hipCFrame:VectorToWorldSpace(vecOne)
+    local vectorOneRelativeToHip = hipCFrame:VectorToWorldSpace(vecOne)
     local vecTwoRel = upLegCFrame:VectorToWorldSpace(vecTwo)
 
-    local refCF = CFrame.new(Vector3.new(), vecOneRel)
+    local refCF = CFrame.new(Vector3.new(), vectorOneRelativeToHip)
     -- Construct the upper leg constraint
     -- Reference to hipjointcf
     local yAxis = hipJointCFrame.UpVector
@@ -2861,24 +2864,29 @@ RunService.Heartbeat:Connect(function()
     v2New = limbVectorTable[2]
     v3New = limbVectorTable[3]
 
-    local upperLegLookVector = v1New
-    local kneeLookVector = v2New
-    local lowerLegLookVector = v3New
-
     -- Debugging the fabrik system using test parts
 
-    part4.Position = hipJointCFrame.p
     part1.Position = hipJointCFrame.p + v1New
     part2.Position = hipJointCFrame.p + v1New + v2New
     part3.Position = hipJointCFrame.p + v1New + v2New + v3New
 
-    -- obtains a vector always at knee at original position this works
-    local vecOneRel = hipCFrame:VectorToWorldSpace(vecOne)
+    -- obtains a vector always at knee at original position
+   local vectorToCFrame = CFrame.new(Vector3.new(),vecOne)
+   local rotationOffset = (hipCFrame-hipCFrame.p)
+   local lookRelativeToHip = rotationOffset*vectorToCFrame
+   local vectorOneRelativeToHip = lookRelativeToHip.LookVector*limbLengthTable[1]
+
+  --  local rotationOffsetNew = (upLegCFrame-upLegCFrame.p)
+  --  local hipLimb = rotationOffsetNew*vectorToCFrame
+ --   local vectorOneRelativeToHip = hipLimb.LookVector*limbLengthTable[1]
+
+    --It works for obtaining the position of the limb
+    --Position of the 
+    part4.Position = hipJointCFrame.p+vectorOneRelativeToHip
+
     -- Obtain angle between new hip-upperleg vector and its original position
-    local rotateUpperLegAngle = math.acos(
-                                    vecOneRel:Dot(v1New) /
-                                        (vecOneRel.Magnitude * v1New.Magnitude))
-    local rotationAxisUpperLeg = vecOneRel:Cross(v1New) -- obtain the rotation axis
+    local rotateUpperLegAngle = math.acos(vectorOneRelativeToHip.Unit:Dot(v1New.Unit))
+    local rotationAxisUpperLeg = vectorOneRelativeToHip:Cross(v1New) -- obtain the rotation axis
 
     -- repeat for the knee joint
     -- upLegCFrame works better
@@ -2898,9 +2906,7 @@ RunService.Heartbeat:Connect(function()
     -- kneeCFrame
     -- lUpToKneeMotor.C0
     local vecThreeRel = kneeCFrame:VectorToWorldSpace(vecThree)
-    local rotateLowerLegAngle = math.acos(
-                                    vecThreeRel:Dot(v3New) /
-                                        (vecThreeRel.Magnitude * v3New.Magnitude))
+    local rotateLowerLegAngle = math.acos( vecThreeRel:Dot(v3New) / (vecThreeRel.Magnitude * v3New.Magnitude))
     local rotationAxisLowerLeg = vecThreeRel:Cross(v3New) -- obtain the rotation axis
 
     local empty = Vector3.new()
@@ -2908,13 +2914,11 @@ RunService.Heartbeat:Connect(function()
     local upperLegRightVector = v1New:Cross(lowerBody.Hip.CFrame.LookVector)
 
     -- this works unless hip is rotated
-    -- local newUpLegCF = hipToLegStore*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
+    --local rotOffset = (hipCFrame-hipCFrame.Position):Inverse()
+    local newUpLegCF = hipToLegStore*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
     local upperLegPos = hipJointCFrame.p
     local upperLegRightVector = -Vector3.new(0, 1, 0):Cross(v1New)
-    local newUpLegCF = hipCFrame:Inverse() *
-                           CFrame.fromMatrix(upperLegPos, upperLegRightVector,
-                                             -v1New)
-    -- lHipToLegMotor.C0 = lHipToLegMotor.C0:Lerp(newUpLegCF,1/40)
+  --  local newUpLegCF = hipCFrame:Inverse() * CFrame.fromMatrix(upperLegPos, upperLegRightVector,-v1New)
     lHipToLegMotor.C0 = newUpLegCF
 
     local kneePos = hipJointCFrame.p + v1New

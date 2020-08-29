@@ -158,6 +158,9 @@ RunService.Heartbeat:Connect(function()
     local rotateUpperLegAngle = math.acos(vectorOneRelativeToHip.Unit:Dot(v1New.Unit))
     local rotationAxisUpperLeg = vectorOneRelativeToHip:Cross(v1New) -- obtain the rotation axis
 
+    --Make leg axis look down
+    local lookDownAngle = math.acos(vecOne.Unit:Dot(Vector3.new(0,-1,0).Unit))
+    local lookDownAxis = vecOne:Cross(Vector3.new(0,1,0)) -- obtain the rotation axis
     -- repeat for the knee joint
     -- upLegCFrame works better
     -- lHipToLegMotor.C0
@@ -184,12 +187,15 @@ RunService.Heartbeat:Connect(function()
     local upperLegRightVector = v1New:Cross(lowerBody.Hip.CFrame.LookVector)
 
     -- this works unless hip is rotated
+    --hipToLegStore*
     --local rotOffset = (hipCFrame-hipCFrame.Position):Inverse()
-    local newUpLegCF = hipToLegStore*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
+    local newUpLegCF = CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
     local upperLegPos = hipJointCFrame.p
     local upperLegRightVector = -Vector3.new(0, 1, 0):Cross(v1New)
-  --  local newUpLegCF = hipCFrame:Inverse() * CFrame.fromMatrix(upperLegPos, upperLegRightVector,-v1New)
-    lHipToLegMotor.C0 = newUpLegCF
+    
+    lHipToLegMotor.C0 = hipCFrame:Inverse()*CFrame.new(upperLegPos)*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)*CFrame.new(empty,hipCFrame.LookVector)
+
+    --*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
 
     local kneePos = hipJointCFrame.p + v1New
     local kneeUpVector = -upLegCFrame.RightVector:Cross(v2New)
