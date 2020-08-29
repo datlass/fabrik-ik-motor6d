@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-19.2483521</X>
-					<Y>31.3738728</Y>
-					<Z>13.8185844</Z>
-					<R00>0.719528198</R00>
-					<R01>0.506628036</R01>
-					<R02>-0.474981308</R02>
-					<R10>2.98023224e-08</R10>
-					<R11>0.683954537</R11>
-					<R12>0.729524612</R12>
-					<R20>0.694463253</R20>
-					<R21>-0.524913549</R21>
-					<R22>0.492124557</R22>
+					<X>-14.1179008</X>
+					<Y>30.2782726</Y>
+					<Z>-17.0529537</Z>
+					<R00>-0.997386575</R00>
+					<R01>0.0620411858</R01>
+					<R02>-0.0370273516</R02>
+					<R10>-3.72528985e-09</R10>
+					<R11>0.512485802</R11>
+					<R12>0.858695805</R12>
+					<R20>0.0722504854</R20>
+					<R21>0.85645169</R21>
+					<R22>-0.511146426</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-18.2983894</X>
-					<Y>29.9148235</Y>
-					<Z>12.8343353</Z>
+					<X>-14.0438461</X>
+					<Y>28.5608807</Y>
+					<Z>-16.0306606</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2876,27 +2876,14 @@ RunService.Heartbeat:Connect(function()
    local lookRelativeToHip = rotationOffset*vectorToCFrame
    local vectorOneRelativeToHip = lookRelativeToHip.LookVector*limbLengthTable[1]
 
-  --  local rotationOffsetNew = (upLegCFrame-upLegCFrame.p)
-  --  local hipLimb = rotationOffsetNew*vectorToCFrame
- --   local vectorOneRelativeToHip = hipLimb.LookVector*limbLengthTable[1]
-
-    --It works for obtaining the position of the limb
-    --Position of the 
-    part4.Position = hipJointCFrame.p+vectorOneRelativeToHip
-
     -- Obtain angle between new hip-upperleg vector and its original position
     local rotateUpperLegAngle = math.acos(vectorOneRelativeToHip.Unit:Dot(v1New.Unit))
     local rotationAxisUpperLeg = vectorOneRelativeToHip:Cross(v1New) -- obtain the rotation axis
 
     -- repeat for the knee joint
-    -- upLegCFrame works better
-    -- lHipToLegMotor.C0
-    -- hipCFrame
-    -- vectwo rel works
     local vecTwoRel = upLegCFrame:VectorToWorldSpace(vecTwo)
     -- something wrong when the angle goes more than 90 degrees
     local rotateKneeAngle = math.acos(vecTwoRel.Unit:Dot(v2New.Unit))
-    -- print(rotateKneeAngle)
     local rotationAxisKnee = vecTwoRel:Cross(v2New) -- obtain the rotation axis
 
     vecTest.Position = hipJointCFrame.p + v1New + vecTwoRel
@@ -2909,33 +2896,38 @@ RunService.Heartbeat:Connect(function()
     local rotateLowerLegAngle = math.acos( vecThreeRel:Dot(v3New) / (vecThreeRel.Magnitude * v3New.Magnitude))
     local rotationAxisLowerLeg = vecThreeRel:Cross(v3New) -- obtain the rotation axis
 
+    --Position of the original position
+    part4.Position = hipJointCFrame.p+v1New+v2New+vecThreeRel
+
     local empty = Vector3.new()
 
     local upperLegRightVector = v1New:Cross(lowerBody.Hip.CFrame.LookVector)
 
-    -- this works unless hip is rotated
-    --local rotOffset = (hipCFrame-hipCFrame.Position):Inverse()
-    local newUpLegCF = hipToLegStore*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
+    --Change the upper leg position through the hip motor
     local upperLegPos = hipJointCFrame.p
-    local upperLegRightVector = -Vector3.new(0, 1, 0):Cross(v1New)
-  --  local newUpLegCF = hipCFrame:Inverse() * CFrame.fromMatrix(upperLegPos, upperLegRightVector,-v1New)
-    lHipToLegMotor.C0 = newUpLegCF
+    local undoPreviousLimbCF = hipCFrame:Inverse()*CFrame.new(upperLegPos)
+    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)*CFrame.fromMatrix(empty,hipCFrame.RightVector,hipCFrame.UpVector)
+    lHipToLegMotor.C0 = undoPreviousLimbCF*rotateLimbCF
 
-    local kneePos = hipJointCFrame.p + v1New
-    local kneeUpVector = -upLegCFrame.RightVector:Cross(v2New)
-    -- local kneeRightVector = Vector3.new(0,1,0):Cross(v2New)
-    -- CFrame.fromMatrix(kneePos,kneeRightVector,kneeUpVector)
-    local newKneeCF = upLegCFrame:Inverse() *
-                          CFrame.new(kneePos, kneePos - v2New)
-    -- lUpToKneeMotor.C0 = newKneeCF
+    --*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
 
+    --Change the knee through the upperleg motor
+    local kneePos = hipJointCFrame.p + v1New    
+    local undoPreviousLimbCF = upLegCFrame:Inverse()*CFrame.new(kneePos)
+    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisKnee,rotateKneeAngle)*CFrame.fromMatrix(empty,upLegCFrame.RightVector,upLegCFrame.UpVector)
+    lUpToKneeMotor.C0 = undoPreviousLimbCF*rotateLimbCF
+
+    --Change the lowerleg through the knee motor
     local lowerLegPos = hipJointCFrame.p + v1New + v2New
     local lowerLegRightVector = -Vector3.new(0, 1, 0):Cross(v3New)
     local newLowLegCF = kneeCFrame:Inverse() *
                             CFrame.fromMatrix(lowerLegPos, lowerLegRightVector,
                                               -v3New)
-    -- lJKneeToLowMotor.C0 = newLowLegCF
-
+    local undoPreviousLimbCF = kneeCFrame:Inverse()*CFrame.new(lowerLegPos)
+    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisLowerLeg,rotateLowerLegAngle)*CFrame.fromMatrix(empty,kneeCFrame.RightVector,kneeCFrame.UpVector)
+                                          --*CFrame.new(empty,kneeCFrame.LookVector)
+     lJKneeToLowMotor.C0 = undoPreviousLimbCF*rotateLimbCF
+   -- lJKneeToLowMotor.C0 = newLowLegCF
 end)
 ]]></ProtectedString>
 					<BinaryString name="Tags"></BinaryString>
