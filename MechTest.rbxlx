@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-14.1179008</X>
-					<Y>30.2782726</Y>
-					<Z>-17.0529537</Z>
-					<R00>-0.997386575</R00>
-					<R01>0.0620411858</R01>
-					<R02>-0.0370273516</R02>
-					<R10>-3.72528985e-09</R10>
-					<R11>0.512485802</R11>
-					<R12>0.858695805</R12>
-					<R20>0.0722504854</R20>
-					<R21>0.85645169</R21>
-					<R22>-0.511146426</R22>
+					<X>-27.7121887</X>
+					<Y>34.5049438</Y>
+					<Z>-17.1772041</Z>
+					<R00>-0.873758197</R00>
+					<R01>0.261285424</R01>
+					<R02>-0.410215318</R02>
+					<R10>-1.49011612e-08</R10>
+					<R11>0.843438566</R11>
+					<R12>0.537225664</R12>
+					<R20>0.486360669</R20>
+					<R21>0.469405323</R21>
+					<R22>-0.736961305</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-14.0438461</X>
-					<Y>28.5608807</Y>
-					<Z>-16.0306606</Z>
+					<X>-26.891758</X>
+					<Y>33.4304924</Y>
+					<Z>-15.7032814</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2322,6 +2322,202 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<string name="Name">StarterPlayerScripts</string>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
+			<Item class="LocalScript" referent="RBX2a95fcf0a98a46d091a59d97b7de1566">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">LocalMechIKControl</string>
+					<string name="ScriptGuid">{e517e717-f094-4013-8ca9-29287ea0a962}</string>
+					<ProtectedString name="Source"><![CDATA[-- Code for testing purposes
+-- Roblox Services
+local workspace = game:GetService("Workspace")
+local RunService = game:GetService("RunService")
+local storage = game:GetService("ReplicatedStorage")
+
+-- Random Parts to debug position of where joints should be according to the algorithm
+local part1 = game.Workspace.test1
+local part2 = game.Workspace.test2
+local part3 = game.Workspace.test3
+local part4 = game.Workspace.test4
+local vecTest = game.Workspace.VecTest
+
+-- IK Module
+local fabrik = storage.Source.IKAnimation:WaitForChild("Fabrik")
+local FabrikAlgo = require(fabrik)
+
+-- Pointers
+local lowerBody = workspace.LowerBody
+
+-- Motor6d's in left leg
+local lHipToLegMotor = lowerBody.Hip.LUpperLeg
+local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
+local lJKneeToLowMotor = lowerBody.LeftLeg.LKnee.LLowerLeg
+local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
+
+-- C0 is the motor 6d position
+-- C1 is the part its connected to center
+-- store the original c0 position
+local hipToLegStore = lHipToLegMotor.C0
+local kneeToUpperLegStore = lUpToKneeMotor.C0
+local kneeToLowerLegStore = lJKneeToLowMotor.C0
+-- local feetStore = lLowToFeetMotor.C0
+
+-- Debugging difference between c0 and c1 for motor6d joint instance
+-- c0 is center of hip to the selectable joint
+-- print(lHipToLegMotor.C0.p)
+-- c1 is center of the part c0 is attached to(upperleg) towards the c0 position(hip)
+-- print(lHipToLegMotor.C1.p)
+
+-- find length of the joints
+local function lenOneToTwo(partOne, partTwo)
+	-- Check if its a motor6d
+	if partOne:IsA("Motor6D") and partTwo:IsA("Motor6D") then
+		local vecOne = partOne.C1.p
+		local vecTwo = partTwo.C0.p
+		local combinedVector = vecTwo - vecOne
+		return combinedVector
+	end
+	return "Error: motor 6ds are not inserted in the function"
+end
+-- Obtain the vectors of the IK limbs
+local vecOne = lenOneToTwo(lHipToLegMotor, lUpToKneeMotor)
+local vecTwo = lenOneToTwo(lUpToKneeMotor, lJKneeToLowMotor)
+local vecThree = lenOneToTwo(lJKneeToLowMotor, lLowToFeetMotor)
+-- testing--it works better
+local v1New = vecOne
+local v2New = vecTwo
+local v3New = vecThree
+-- Construct the new limb vector table
+local limbVectorTable = {v1New, v2New, v3New}
+-- empty
+local limbLengthTable = {}
+for i = 1, #limbVectorTable, 1 do
+	table.insert(limbLengthTable, i, limbVectorTable[i].Magnitude)
+end
+
+--local upperLegToKneeStore = lUpToKneeMotor.C0
+
+RunService.Heartbeat:Connect(function()
+	
+	-- Original position and orientation of the hip in the world space
+	-- Position of the hip changes so gotta put it in the heartbeat
+	local hipCFrame = lowerBody.Hip.CFrame
+	local upLegCFrame = lowerBody.LeftLeg.LUpperLeg.CFrame
+	local kneeCFrame = lowerBody.LeftLeg.LKnee.CFrame
+	
+	--Gets the CFrame of the joint at world space
+	local hipJointCFrame = lowerBody.Hip.CFrame * hipToLegStore
+	
+	-- the goal position
+	local goalPosition = workspace.LTarget.Position
+	
+	-- goal Pos to Hip joint
+	local newUpVector = hipJointCFrame.p - goalPosition
+	
+	-- Original limb vector positons relative to their part0 CFrames
+	local vectorOneRelativeToHip = hipCFrame:VectorToWorldSpace(vecOne)
+	local vecTwoRel = upLegCFrame:VectorToWorldSpace(vecTwo)
+	
+	local refCF = CFrame.new(Vector3.new(), vectorOneRelativeToHip)
+	-- Construct the upper leg constraint
+	-- Reference to hipjointcf
+	local yAxis = hipJointCFrame.UpVector
+	local centerAxis = -hipJointCFrame.RightVector
+	
+	-- Reference to original vector position
+	-- local yAxis = refCF.UpVector
+	-- local centerAxis = refCF.LookVector
+	-- widthangle,heightangle
+	local angles = {80, 80}
+	local upperLegConstraint = {yAxis, centerAxis, angles}
+	
+	local rotateCF = CFrame.fromAxisAngle(-hipCFrame.RightVector, math.rad(80))
+	refCF = CFrame.new(Vector3.new(), vecTwoRel) * rotateCF
+	yAxis = refCF.UpVector
+	centerAxis = refCF.LookVector
+	-- widthangle,heightangle
+	angles = {25, 80}
+	local kneeConstraint = {yAxis, centerAxis, angles}
+	
+	-- Tabulate all the constraints
+	local limbConstraintTable = {upperLegConstraint, kneeConstraint}
+	
+	limbVectorTable = FabrikAlgo(0.1, hipJointCFrame, goalPosition,
+		limbVectorTable, limbLengthTable)
+	v1New = limbVectorTable[1]
+	v2New = limbVectorTable[2]
+	v3New = limbVectorTable[3]
+	
+	-- Debugging the fabrik system using test parts
+	
+	part1.Position = hipJointCFrame.p + v1New
+	part2.Position = hipJointCFrame.p + v1New + v2New
+	part3.Position = hipJointCFrame.p + v1New + v2New + v3New
+	
+	-- obtains a vector always at knee at original position
+	local vectorToCFrame = CFrame.new(Vector3.new(),vecOne)
+	local rotationOffset = (hipCFrame-hipCFrame.p)
+	local lookRelativeToHip = rotationOffset*vectorToCFrame
+	local vectorOneRelativeToHip = lookRelativeToHip.LookVector*limbLengthTable[1]
+	
+	-- Obtain angle between new hip-upperleg vector and its original position
+	local rotateUpperLegAngle = math.acos(vectorOneRelativeToHip.Unit:Dot(v1New.Unit))
+	local rotationAxisUpperLeg = vectorOneRelativeToHip:Cross(v1New) -- obtain the rotation axis
+	
+	-- repeat for the knee joint
+	local vecTwoRel = upLegCFrame:VectorToWorldSpace(vecTwo)
+	-- something wrong when the angle goes more than 90 degrees
+	local rotateKneeAngle = math.acos(vecTwoRel.Unit:Dot(v2New.Unit))
+	local rotationAxisKnee = vecTwoRel:Cross(v2New) -- obtain the rotation axis
+	
+	vecTest.Position = hipJointCFrame.p + v1New + vecTwoRel
+	
+	-- repeat for the lower Leg 
+	-- CFrame relativity broke fix:
+	-- kneeCFrame
+	-- lUpToKneeMotor.C0
+	local vecThreeRel = kneeCFrame:VectorToWorldSpace(vecThree)
+	local rotateLowerLegAngle = math.acos( vecThreeRel:Dot(v3New) / (vecThreeRel.Magnitude * v3New.Magnitude))
+	local rotationAxisLowerLeg = vecThreeRel:Cross(v3New) -- obtain the rotation axis
+	
+	--Position of the original position
+	part4.Position = hipJointCFrame.p+v1New+v2New+vecThreeRel
+	
+	local empty = Vector3.new()
+	
+	local upperLegRightVector = v1New:Cross(lowerBody.Hip.CFrame.LookVector)
+	
+	--Change the upper leg position through the hip motor
+	local upperLegPos = hipJointCFrame.p
+	local undoPreviousLimbCF = hipCFrame:Inverse()*CFrame.new(upperLegPos)
+	local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)*CFrame.fromMatrix(empty,hipCFrame.RightVector,hipCFrame.UpVector)
+	lHipToLegMotor.C0 = undoPreviousLimbCF*rotateLimbCF
+	
+	--*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
+	
+	--Change the knee through the upperleg motor
+	local kneePos = hipJointCFrame.p + v1New    
+	local undoPreviousLimbCF = upLegCFrame:Inverse()*CFrame.new(kneePos)
+	local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisKnee,rotateKneeAngle)*CFrame.fromMatrix(empty,upLegCFrame.RightVector,upLegCFrame.UpVector)
+	lUpToKneeMotor.C0 = undoPreviousLimbCF*rotateLimbCF
+	
+	--Change the lowerleg through the knee motor
+	local lowerLegPos = hipJointCFrame.p + v1New + v2New
+	local lowerLegRightVector = -Vector3.new(0, 1, 0):Cross(v3New)
+	local newLowLegCF = kneeCFrame:Inverse() *
+	CFrame.fromMatrix(lowerLegPos, lowerLegRightVector,
+		-v3New)
+	local undoPreviousLimbCF = kneeCFrame:Inverse()*CFrame.new(lowerLegPos)
+	local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisLowerLeg,rotateLowerLegAngle)*CFrame.fromMatrix(empty,kneeCFrame.RightVector,kneeCFrame.UpVector)
+	--*CFrame.new(empty,kneeCFrame.LookVector)
+	lJKneeToLowMotor.C0 = undoPreviousLimbCF*rotateLimbCF
+	-- lJKneeToLowMotor.C0 = newLowLegCF
+end)
+]]></ProtectedString>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+			</Item>
 		</Item>
 		<Item class="StarterCharacterScripts" referent="RBX1588705e139f4bb78194e5c8c9adb514">
 			<Properties>
@@ -2724,7 +2920,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 			<Item class="Script" referent="RBXcf1316d0242c42c1b487ba9e7cdced8c">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
-					<bool name="Disabled">false</bool>
+					<bool name="Disabled">true</bool>
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">MechIKServer</string>
 					<string name="ScriptGuid">{7a8d00ce-e154-4a6c-88b5-0a18ce638b18}</string>
@@ -2794,15 +2990,6 @@ local limbLengthTable = {}
 for i = 1, #limbVectorTable, 1 do
     table.insert(limbLengthTable, i, limbVectorTable[i].Magnitude)
 end
--- Obtain angle of joint length to where its facing
-local front = Vector3.new(0, 0, -1)
-local vecOneHoriz = vecOne * Vector3.new(1, 0, 1)
-local vecOneVert = vecOne * Vector3.new(0, 1, 1)
-
-local horizAngle = math.acos(front:Dot(vecOneHoriz) /
-                                 (front.Magnitude * vecOneHoriz.Magnitude))
-local vertAngle = math.acos(front:Dot(vecOneVert) /
-                                (front.Magnitude * vecOneVert.Magnitude))
 
 --local upperLegToKneeStore = lUpToKneeMotor.C0
 
@@ -2816,25 +3003,21 @@ RunService.Heartbeat:Connect(function()
 
     --Gets the CFrame of the joint at world space
     local hipJointCFrame = lowerBody.Hip.CFrame * hipToLegStore
-   -- local kneeToUpCframe = hipJointCFrame*kneeToUpperLegStore
-    -- local kneeToLowCFrame = kneeToUpCframe*kneeToLowerLegStore
-   
-    -- the goal position
+	
+	-- the goal position
     local goalPosition = workspace.LTarget.Position
 
     -- goal Pos to Hip joint
     local newUpVector = hipJointCFrame.p - goalPosition
 
-    -- Obtain vectors of where the limbs should point to
-    -- local v1New,v2New,v3New= fabrikAlgo(0.1,hipJointCFrame, goalPosition, vecOne,vecTwo,vecThree)
-    -- needs to stop running algorithm
-    -- print(v1New,v2New,v3New)
-
     -- Original limb vector positons relative to their part0 CFrames
     local vectorOneRelativeToHip = hipCFrame:VectorToWorldSpace(vecOne)
     local vecTwoRel = upLegCFrame:VectorToWorldSpace(vecTwo)
+    --Position of the original position
+    part4.Position = hipJointCFrame.p+vectorOneRelativeToHip
 
     local refCF = CFrame.new(Vector3.new(), vectorOneRelativeToHip)
+
     -- Construct the upper leg constraint
     -- Reference to hipjointcf
     local yAxis = hipJointCFrame.UpVector
@@ -2857,7 +3040,8 @@ RunService.Heartbeat:Connect(function()
 
     -- Tabulate all the constraints
     local limbConstraintTable = {upperLegConstraint, kneeConstraint}
-
+	
+	--The Actual iteration
     limbVectorTable = FabrikAlgo(0.1, hipJointCFrame, goalPosition,
                                  limbVectorTable, limbLengthTable)
     v1New = limbVectorTable[1]
@@ -2871,10 +3055,13 @@ RunService.Heartbeat:Connect(function()
     part3.Position = hipJointCFrame.p + v1New + v2New + v3New
 
     -- obtains a vector always at knee at original position
+    --Its the same as the one obove using vector to world space
    local vectorToCFrame = CFrame.new(Vector3.new(),vecOne)
    local rotationOffset = (hipCFrame-hipCFrame.p)
    local lookRelativeToHip = rotationOffset*vectorToCFrame
    local vectorOneRelativeToHip = lookRelativeToHip.LookVector*limbLengthTable[1]
+   vecTest.Position = hipJointCFrame.p + vectorOneRelativeToHip
+
 
     -- Obtain angle between new hip-upperleg vector and its original position
     local rotateUpperLegAngle = math.acos(vectorOneRelativeToHip.Unit:Dot(v1New.Unit))
@@ -2886,8 +3073,6 @@ RunService.Heartbeat:Connect(function()
     local rotateKneeAngle = math.acos(vecTwoRel.Unit:Dot(v2New.Unit))
     local rotationAxisKnee = vecTwoRel:Cross(v2New) -- obtain the rotation axis
 
-    vecTest.Position = hipJointCFrame.p + v1New + vecTwoRel
-
     -- repeat for the lower Leg 
     -- CFrame relativity broke fix:
     -- kneeCFrame
@@ -2895,9 +3080,6 @@ RunService.Heartbeat:Connect(function()
     local vecThreeRel = kneeCFrame:VectorToWorldSpace(vecThree)
     local rotateLowerLegAngle = math.acos( vecThreeRel:Dot(v3New) / (vecThreeRel.Magnitude * v3New.Magnitude))
     local rotationAxisLowerLeg = vecThreeRel:Cross(v3New) -- obtain the rotation axis
-
-    --Position of the original position
-    part4.Position = hipJointCFrame.p+v1New+v2New+vecThreeRel
 
     local empty = Vector3.new()
 
@@ -2940,19 +3122,50 @@ end)
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">OOPTest</string>
 					<string name="ScriptGuid">{5bda8775-5617-438b-b76a-d1f4f591160d}</string>
-					<ProtectedString name="Source"><![CDATA[--Get service
+					<ProtectedString name="Source"><![CDATA[--This script is supposed to replace MechIKServer with less code and make it easier to understand
+--with less code in it
+
+--Get service
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 
---IK Module
-local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
-local FabrikAlgo = require(fabrik)
-
+--Modules required
 local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.limbChain
 local limbChain = require(IKControllerPointer)
 
-local leftLegChain = limbChain.new("UpperLeg")
+--
+-- Pointers
+local lowerBody = workspace.LowerBody
 
-print(leftLegChain.Part)]]></ProtectedString>
+-- Obtain Motor6d's in left leg
+local lHipToLegMotor = lowerBody.Hip.LUpperLeg
+local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
+local lJKneeToLowMotor = lowerBody.LeftLeg.LKnee.LLowerLeg
+local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
+
+--Store the motor6d in table
+local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
+local leftLegChain = limbChain.new(motorTable)
+
+for i=1,#leftLegChain.LimbVectorTable,1 do
+--print("Limbvector table i:",i," Vector:",leftLegChain.LimbVectorTable[i])
+end
+
+for i=1,#leftLegChain.LimbLengthTable,1 do
+    --print("Limb length of index",i," length:",leftLegChain.LimbLengthTable[i])
+end
+
+RunService.Heartbeat:Connect(function()
+        
+    -- the goal position
+    local goalPosition = workspace.LTarget.Position
+
+    --leftLegChain:PrintLimbVectors()
+    leftLegChain:Iterate(0.1,goalPosition)
+    leftLegChain:UpdateMotors()
+
+end)
+]]></ProtectedString>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -3540,17 +3753,142 @@ return NAME]]></ProtectedString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">limbChain</string>
 						<string name="ScriptGuid">{983cf0ca-c28d-4149-bd44-5e956f85da6b}</string>
-						<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder")
+						<ProtectedString name="Source"><![CDATA[-- Get Roblox Services
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- Import the Fabrik Module
+local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
+local FabrikAlgo = require(fabrik)
+
+-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
-
 local limbChain = Object.new("limbChain")
---local limbChain = Object.newExtends("limbChain",?)
 
-function limbChain.new(limbPart)
-	local obj = limbChain:make()
-	--local obj = limbChain:super()
-	obj.Part = limbPart
-	return obj
+--empty vector 3
+
+local emptyVector = Vector3.new(0, 0, 0)
+
+--[[
+	Initializes the limb chain object
+]]
+function limbChain.new(Motor6DTable)
+    --Does the meta table stuff
+    local obj = limbChain:make()
+
+
+    obj.Motor6DTable = Motor6DTable
+    obj.FirstJointC0 = Motor6DTable[1].C0
+    -- initialize LimbVectorTable to store the limb vectors and stores it into the object
+    local LimbVectorTable = {}
+    local IteratedLimbVectorTable = {}
+    for i = 1, #Motor6DTable - 1, 1 do
+        --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
+        --print(limbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
+        local currentVectorStore = limbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
+        LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
+        IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
+    end
+    obj.LimbVectorTable = LimbVectorTable
+    -- Stores the limb vector table in the iterated version
+    obj.IteratedLimbVectorTable = IteratedLimbVectorTable
+
+
+    -- Finds the length of the limb vectors and puts them in a table for the FABRIK algorithm
+    -- Important as it reduces .Magnitude calls therefore reduces Activity
+    local LimbLengthTable = {}
+    for i = 1, #LimbVectorTable, 1 do
+        LimbLengthTable[#LimbLengthTable+1] = LimbVectorTable[i].Magnitude
+    end
+    
+    obj.LimbLengthTable = LimbLengthTable
+
+    return obj
+end
+-- Function that limb chain has to calculate vector limbs
+function limbChain:JointOneToTwoVector(motorOne, motorTwo)
+    -- Check if its a motor6d
+    if motorOne:IsA("Motor6D") and motorTwo:IsA("Motor6D") then
+        local vecOne = motorOne.C1.Position
+        local vecTwo = motorTwo.C0.Position
+        local combinedVector = vecTwo - vecOne
+        return combinedVector
+    else
+        return "Error: motor 6ds are not inserted in the function"
+    end
+end
+-- Function that executes 1 iteration of the Fabrik Algorithm
+-- Backwards or forwards
+function limbChain:Iterate(tolerance, targetPosition)
+
+    -- Gets the CFrame of the first joint at world space
+    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+    --print(self.IteratedLimbVectorTable[1])
+    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable)
+                                              
+
+end
+
+function limbChain:UpdateMotors()
+
+    -- Gets the CFrame of the joint at world space
+    local initialJointCFrame = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+
+
+    local vectorSumFromFirstJoint = Vector3.new()
+
+    --Iterates from
+    --Hip i =1
+    --LUpperLeg i=2
+    --LKnee i=3
+    for i = 1, #self.LimbVectorTable, 1 do
+
+        local originalVectorLimb = self.LimbVectorTable[i]
+        local currentVectorLimb = self.IteratedLimbVectorTable[i]
+        --Seems working fine
+        --print("Original: ",originalVectorLimb,"Current: ",currentVectorLimb)
+        --local Part0 Limb CFrame
+        local previousLimbPart = self.Motor6DTable[i].Parent
+        local previousLimbCF = previousLimbPart.CFrame
+
+        --print("Name: ",self.Motor6DTable[i].Parent.Name,"Index: ",i)
+        --print(previousLimbCF)
+
+        -- For the current joint
+        local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+        local limbRotationAngle = math.acos(limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit))
+        local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+        
+        --print(limbVectorRelativeToOriginal)
+        --print("Angle: ", limbRotationAngle,"Axis: ",limbRotationAxis)
+       
+        if i ~= 1 then
+        vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[i-1]
+        end
+
+        --Gets the position of the limb
+        local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
+
+        --Obtain the CFrame operations needed to rotate the limb to the goal
+        local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
+        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
+        
+        --Changes the current motor6d through c0
+        self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
+        
+    end
+
+end
+
+function limbChain:PrintLimbVectors()
+
+    for i=1,#self.LimbVectorTable,1 do
+        --print("Limbvector table i:",i," Vector:",self.LimbVectorTable[i])
+    end
+    for i=1,#self.IteratedLimbVectorTable,1 do
+        print("Iterated self table i:",i," Vector:",self.IteratedLimbVectorTable[i])
+    end
+
 end
 
 return limbChain]]></ProtectedString>
