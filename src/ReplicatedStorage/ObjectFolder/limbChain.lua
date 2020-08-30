@@ -10,12 +10,10 @@ local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 local limbChain = Object.new("limbChain")
 
---empty vector 3
-
-local emptyVector = Vector3.new(0, 0, 0)
-
 --[[
-	Initializes the limb chain object
+    Initializes the limb chain object
+    Calculates the limbs from joint to joint as a vector
+    And also measures the limb's length
 ]]
 function limbChain.new(Motor6DTable)
     --Does the meta table stuff
@@ -50,7 +48,12 @@ function limbChain.new(Motor6DTable)
 
     return obj
 end
--- Function that limb chain has to calculate vector limbs
+--[[
+    Function that limb chain has to calculate vector limbs
+    Input 2 Motor6d
+    Returns a vector from motorOne to motorTwo  joint
+    Always constant based on the c0 and c1 Position of the motors
+]]
 function limbChain:JointOneToTwoVector(motorOne, motorTwo)
     -- Check if its a motor6d
     if motorOne:IsA("Motor6D") and motorTwo:IsA("Motor6D") then
@@ -62,56 +65,54 @@ function limbChain:JointOneToTwoVector(motorOne, motorTwo)
         return "Error: motor 6ds are not inserted in the function"
     end
 end
--- Function that executes 1 iteration of the Fabrik Algorithm
--- Backwards or forwards
+--[[
+    Function that executes 1 iteration of the Fabrik Algorithm towards the target position
+]]
 function limbChain:Iterate(tolerance, targetPosition)
 
     -- Gets the CFrame of the first joint at world space
     local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
-    --print(self.IteratedLimbVectorTable[1])
+
+    --Performs the iteration on the limbChain object IteratedLimbVectorTable and rewrites it
+    --Recursive function
     self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable)
                                               
 
 end
-
+--[[
+    Function that rotates the motors to match the algorithm
+    Operates by changing the motor's C0 Position to the goal CFrame
+]]
 function limbChain:UpdateMotors()
 
-    -- Gets the CFrame of the joint at world space
+    -- Gets the CFrame of the Initial joint at world space
     local initialJointCFrame = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
 
-
+    --Vector sum for the for loop to get the series of position of the next joint based on the algorithm
     local vectorSumFromFirstJoint = Vector3.new()
 
-    --Iterates from
-    --Hip i =1
-    --LUpperLeg i=2
-    --LKnee i=3
+    --Iterates and start rotating the limbs starting from the first joint
     for i = 1, #self.LimbVectorTable, 1 do
 
+        --Obtains the current limb that is being worked on
         local originalVectorLimb = self.LimbVectorTable[i]
         local currentVectorLimb = self.IteratedLimbVectorTable[i]
-        --Seems working fine
-        --print("Original: ",originalVectorLimb,"Current: ",currentVectorLimb)
-        --local Part0 Limb CFrame
+
+        --Obtains the CFrame of the part0 limb of the motor6d
         local previousLimbPart = self.Motor6DTable[i].Parent
         local previousLimbCF = previousLimbPart.CFrame
 
-        --print("Name: ",self.Motor6DTable[i].Parent.Name,"Index: ",i)
-        --print(previousLimbCF)
-
-        -- For the current joint
+        -- Obtains the CFrame rotation calculation for CFrame.fromAxis
         local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
         local limbRotationAngle = math.acos(limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit))
         local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
         
-        --print(limbVectorRelativeToOriginal)
-        --print("Angle: ", limbRotationAngle,"Axis: ",limbRotationAxis)
-       
+        --Gets the world space of the joint from the iterated limb vectors
         if i ~= 1 then
         vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[i-1]
         end
 
-        --Gets the position of the limb
+        --Gets the position of the current limb joint
         local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
 
         --Obtain the CFrame operations needed to rotate the limb to the goal
@@ -125,6 +126,9 @@ function limbChain:UpdateMotors()
 
 end
 
+
+--Prints  the limb vector and iterated limb vector
+--For debugging not needed now
 function limbChain:PrintLimbVectors()
 
     for i=1,#self.LimbVectorTable,1 do
