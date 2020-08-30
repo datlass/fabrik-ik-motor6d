@@ -1,5 +1,4 @@
---This script is supposed to replace MechIKServer with less code and make it easier to understand
---with less code in it
+--Example script for controlling the left leg of a model in the workspace
 
 --Get service
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -9,7 +8,6 @@ local RunService = game:GetService("RunService")
 local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.limbChain
 local limbChain = require(IKControllerPointer)
 
---
 -- Pointers
 local lowerBody = workspace.LowerBody
 
@@ -23,20 +21,14 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = limbChain.new(motorTable)
 
-for i=1,#leftLegChain.LimbVectorTable,1 do
---print("Limbvector table i:",i," Vector:",leftLegChain.LimbVectorTable[i])
-end
-
-for i=1,#leftLegChain.LimbLengthTable,1 do
-    --print("Limb length of index",i," length:",leftLegChain.LimbLengthTable[i])
-end
-
+--[[
+    Then use the object to control the motor every heartbeat
+    ]]
 RunService.Heartbeat:Connect(function()
         
-    -- the goal position
+    --The Goal position
     local goalPosition = workspace.LTarget.Position
 
-    --leftLegChain:PrintLimbVectors()
     leftLegChain:Iterate(0.1,goalPosition)
     leftLegChain:UpdateMotors()
 

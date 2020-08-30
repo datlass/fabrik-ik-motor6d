@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-22.7165375</X>
-					<Y>24.6664467</Y>
-					<Z>-2.07351089</Z>
-					<R00>-0.671443403</R00>
-					<R01>0.421644151</R01>
-					<R02>-0.609409571</R02>
-					<R10>-1.4901163e-08</R10>
-					<R11>0.822353125</R11>
-					<R12>0.568977535</R12>
-					<R20>0.741055906</R20>
-					<R21>0.382036209</R21>
-					<R22>-0.552163541</R22>
+					<X>-31.0866699</X>
+					<Y>30.2926846</Y>
+					<Z>-0.369022459</Z>
+					<R00>0.0624666363</R00>
+					<R01>0.574551702</R01>
+					<R02>-0.816081047</R02>
+					<R10>-0</R10>
+					<R11>0.817677915</R11>
+					<R12>0.575675964</R12>
+					<R20>0.998047054</R20>
+					<R21>-0.0359605402</R21>
+					<R22>0.0510775894</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-21.4977188</X>
-					<Y>23.528492</Y>
-					<Z>-0.96918416</Z>
+					<X>-29.4545078</X>
+					<Y>29.1413326</Y>
+					<Z>-0.471177638</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3122,8 +3122,7 @@ end)
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">OOPTest</string>
 					<string name="ScriptGuid">{5bda8775-5617-438b-b76a-d1f4f591160d}</string>
-					<ProtectedString name="Source"><![CDATA[--This script is supposed to replace MechIKServer with less code and make it easier to understand
---with less code in it
+					<ProtectedString name="Source"><![CDATA[--Example script for controlling the left leg of a model in the workspace
 
 --Get service
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -3133,7 +3132,6 @@ local RunService = game:GetService("RunService")
 local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.limbChain
 local limbChain = require(IKControllerPointer)
 
---
 -- Pointers
 local lowerBody = workspace.LowerBody
 
@@ -3147,14 +3145,9 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = limbChain.new(motorTable)
 
-for i=1,#leftLegChain.LimbVectorTable,1 do
---print("Limbvector table i:",i," Vector:",leftLegChain.LimbVectorTable[i])
-end
-
-for i=1,#leftLegChain.LimbLengthTable,1 do
-    --print("Limb length of index",i," length:",leftLegChain.LimbLengthTable[i])
-end
-
+--[[
+    Then use the object to control the motor every heartbeat
+    ]]
 RunService.Heartbeat:Connect(function()
         
     -- the goal position
@@ -3574,7 +3567,8 @@ function limbChain:Iterate(tolerance, targetPosition)
 
 end
 --[[
-    Function that rotates the motors
+    Function that rotates the motors to match the algorithm
+    Operates by changing the motor's C0 Position to the goal CFrame
 ]]
 function limbChain:UpdateMotors()
 
@@ -3587,30 +3581,25 @@ function limbChain:UpdateMotors()
     --Iterates and start rotating the limbs starting from the first joint
     for i = 1, #self.LimbVectorTable, 1 do
 
+        --Obtains the current limb that is being worked on
         local originalVectorLimb = self.LimbVectorTable[i]
         local currentVectorLimb = self.IteratedLimbVectorTable[i]
-        --Seems working fine
-        --print("Original: ",originalVectorLimb,"Current: ",currentVectorLimb)
-        --local Part0 Limb CFrame
+
+        --Obtains the CFrame of the part0 limb of the motor6d
         local previousLimbPart = self.Motor6DTable[i].Parent
         local previousLimbCF = previousLimbPart.CFrame
 
-        --print("Name: ",self.Motor6DTable[i].Parent.Name,"Index: ",i)
-        --print(previousLimbCF)
-
-        -- For the current joint
+        -- Obtains the CFrame rotation calculation for CFrame.fromAxis
         local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
         local limbRotationAngle = math.acos(limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit))
         local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
         
-        --print(limbVectorRelativeToOriginal)
-        --print("Angle: ", limbRotationAngle,"Axis: ",limbRotationAxis)
-       
+        --Gets the world space of the joint from the iterated limb vectors
         if i ~= 1 then
         vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[i-1]
         end
 
-        --Gets the position of the limb
+        --Gets the position of the current limb joint
         local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
 
         --Obtain the CFrame operations needed to rotate the limb to the goal
