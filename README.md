@@ -2,12 +2,13 @@
 
 FABRIK based inverse kinematics solver made to work with roblox's motor6d rigging system.
 
-If you want to experiment then I recommend you download the releases.
+If you want to experiment and use the project then I recommend you download the releases and download the entire source-code in a zip file and open up the place file.
 
-To Do List:
+Partial Documentation can be found in my Roblox thread post on community resources:
+https://devforum.roblox.com/t/fabrik-ik-solver-intended-for-any-motor6d-rig-open-source/742227
 
---priority one In order to look visually good
-Use CFrame.FromAxis to manipulate motor6d joints between original vector and new vector
+Current To Do List:
 
 Brainstorm ways to better constraint a vector in a region:
-1. Utilize rotated region3 to create space where vector can reside
+Currently the conical constraint method is confusing and activity intensive(Goes up to 10% Activity)
+1. Utilize rotated region3 to create space where vector can reside in order to constraint the vector
