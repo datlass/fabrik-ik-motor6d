@@ -19,14 +19,15 @@ end
 --[[
     Method for the constraints to inherit if you want to the axis to change
 ]]
-function FabrikConstraint:RotateCFrame(GoalCFrame) 
+function FabrikConstraint:ChangeCFrame(goalCFrame) 
 
-    self.Part.CFrame = GoalCFrame 
+    self.Part.CFrame = goalCFrame 
 
 end
 
 --[[
-    Method to set and get the current axis of the part
+    Methods to set and get the current axis of the part
+    fairly activity intensive goes from 1-2% to 4-6% max
 ]]
 function FabrikConstraint:UpdateAxis()
 
@@ -35,5 +36,24 @@ function FabrikConstraint:UpdateAxis()
     self.YAxis = self.Part.CFrame.UpVector
 
 end
+
+function FabrikConstraint:UpdateYAxis()
+
+    self.YAxis = self.Part.CFrame.UpVector
+
+end
+
+function FabrikConstraint:UpdateXAxis()
+
+    self.XAxis = self.Part.CFrame.RightVector
+
+end
+
+function FabrikConstraint:UpdateCenterAxis()
+
+    self.CenterAxis = self.Part.CFrame.LookVector
+
+end
+
 
 return FabrikConstraint
