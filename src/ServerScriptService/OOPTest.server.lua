@@ -5,8 +5,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 --Modules required
-local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.limbChain
-local limbChain = require(IKControllerPointer)
+local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
+local LimbChain = require(IKControllerPointer)
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -19,7 +19,7 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 
 --Store the motor6d in table
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
-local leftLegChain = limbChain.new(motorTable)
+local leftLegChain = LimbChain.new(motorTable)
 
 local limbConstraintTable
 --[[
