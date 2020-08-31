@@ -8,16 +8,16 @@ local FabrikAlgo = require(fabrik)
 -- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
-local limbChain = Object.new("limbChain")
+local LimbChain = Object.new("LimbChain")
 
 --[[
     Initializes the limb chain object
     Calculates the limbs from joint to joint as a vector
     And also measures the limb's length
 ]]
-function limbChain.new(Motor6DTable)
+function LimbChain.new(Motor6DTable)
     --Does the meta table stuff
-    local obj = limbChain:make()
+    local obj = LimbChain:make()
 
 
     obj.Motor6DTable = Motor6DTable
@@ -27,8 +27,8 @@ function limbChain.new(Motor6DTable)
     local IteratedLimbVectorTable = {}
     for i = 1, #Motor6DTable - 1, 1 do
         --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
-        --print(limbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
-        local currentVectorStore = limbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
+        --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
+        local currentVectorStore = LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
         LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
     end
@@ -54,7 +54,7 @@ end
     Returns a vector from motorOne to motorTwo  joint
     Always constant based on the c0 and c1 Position of the motors
 ]]
-function limbChain:JointOneToTwoVector(motorOne, motorTwo)
+function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
     -- Check if its a motor6d
     if motorOne:IsA("Motor6D") and motorTwo:IsA("Motor6D") then
         local vecOne = motorOne.C1.Position
@@ -68,12 +68,12 @@ end
 --[[
     Function that executes 1 iteration of the Fabrik Algorithm towards the target position
 ]]
-function limbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
+function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
 
     -- Gets the CFrame of the first joint at world space
     local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
 
-    --Performs the iteration on the limbChain object IteratedLimbVectorTable and rewrites it
+    --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
     --Recursive function
     self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
                                               
@@ -83,7 +83,7 @@ end
     Function that rotates the motors to match the algorithm
     Operates by changing the motor's C0 Position to the goal CFrame
 ]]
-function limbChain:UpdateMotors()
+function LimbChain:UpdateMotors()
 
     -- Gets the CFrame of the Initial joint at world space
     local initialJointCFrame = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
@@ -129,7 +129,7 @@ end
 
 --Prints  the limb vector and iterated limb vector
 --For debugging not needed now
-function limbChain:PrintLimbVectors()
+function LimbChain:PrintLimbVectors()
 
     for i=1,#self.LimbVectorTable,1 do
         --print("Limbvector table i:",i," Vector:",self.LimbVectorTable[i])
@@ -140,4 +140,4 @@ function limbChain:PrintLimbVectors()
 
 end
 
-return limbChain
+return LimbChain
