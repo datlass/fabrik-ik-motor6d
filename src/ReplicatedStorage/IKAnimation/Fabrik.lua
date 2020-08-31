@@ -130,14 +130,6 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
 end
 
 --[[
-    A custom constraint method to totally prevent rotation by using planes
-    lets see how this goes
-]]
-local function HingeConstraint(limbVector, limbVectorLength, yAxis,
-    centerAxis, constraintSettings)
-
-end
---[[
 	Same as forwards Function
 	limbConstraintTable
 
@@ -150,28 +142,30 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,
         local vectorSum = Vector3.new(0, 0, 0)
 
         -- Sums up the vectors in order to get the target position on the chain
+        --target position is the next joint from origin to target
         for v = i + 1, #limbVectorTable, 1 do
             vectorSum = vectorSum + limbVectorTable[v]
         end
 
+        local nextJointPosition =vectorSum + targetPos
+        local jointPosition = originCF.Position + vectorSumFromOrigin
         -- Gets the new direction of the new vector along the chain
         -- direction of the new vector is from origin to target
-        local pointTo = vectorSum + targetPos - originCF.Position -
-                            vectorSumFromOrigin
+        local pointTo = nextJointPosition - jointPosition
         -- This time constraint the vector using the conical constraint function
-
+        local newLimbVector = pointTo.Unit * limbLengthTable[i]
+        
         -- Checks if there is a limb constraint for the current limb in the iteration
-        if limbConstraintTable[i] then
-
-            -- The axis of constraint is relative to the initial joint placement
-            local yAxis = limbConstraintTable[i][1]
-            local centerAxis = limbConstraintTable[i][2]
-            local angles = limbConstraintTable[i][3]
-            pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis,
-                                        centerAxis, angles)
+        if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+           
+            local limbLength = limbLengthTable[i]
+            --Start the constraint according to the method
+            --print(limbConstraintTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength)
+            --print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
-        limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
+        limbVectorTable[i] = newLimbVector
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
     end
     return originCF, targetPos, limbVectorTable, limbLengthTable

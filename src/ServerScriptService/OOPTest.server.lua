@@ -13,7 +13,20 @@ local limbChain = require(IKControllerPointer)
 --RotatedRegion3 Module
 local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegion3
 local RotatedRegion3 = require(RotatedRegion3Pointer)
---It works time for the vector 3 test
+--It works time
+
+-------------------Import all the Constraints Types-----------------
+
+--HingeConstraint
+local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
+local HingeConstraint = require(HingeConstraintPointer)
+
+--Rigid Constraint
+local RigidConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.RigidConstraint
+local RigidConstraint = require(RigidConstraintPointer)
+
+----------------------------------------------------------------
+
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -29,7 +42,22 @@ local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMot
 local leftLegChain = limbChain.new(motorTable)
 --test
 
-local limbConstraintTable
+--Testing the constraint
+local testRigidJoint = lowerBody.Constraints.UpperLegConstraint
+local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
+
+local kneePart = lowerBody.Constraints.KneeConstraint
+local lKneeHinge = HingeConstraint.new(kneePart,10,90)
+
+local kneePart = lowerBody.Constraints.KneeConstraint
+local lLegHinge = HingeConstraint.new(kneePart,30,30)
+local limbConstraintTable = {upperLegRigidJoint,lKneeHinge}
+
+-- Random Parts to debug position of where joints should be according to the algorithm
+local part1 = game.Workspace.test1
+
+--Test
+
 --[[
     Then use the object to control the motor every heartbeat
     ]]
@@ -38,8 +66,11 @@ RunService.Heartbeat:Connect(function()
     --The Goal position
     local goalPosition = workspace.LTarget.Position
 
+    --upperLegRigidJoint:UpdateAxis()
+    --lKneeHinge:UpdateAxis()
+    --lLegHinge:UpdateAxis()
+
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
-
 
 end)
