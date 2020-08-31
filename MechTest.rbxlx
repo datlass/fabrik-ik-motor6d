@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-31.0866699</X>
-					<Y>30.2926846</Y>
-					<Z>-0.369022459</Z>
-					<R00>0.0624666363</R00>
-					<R01>0.574551702</R01>
-					<R02>-0.816081047</R02>
+					<X>-22.7573929</X>
+					<Y>18.8667793</Y>
+					<Z>-5.08617687</Z>
+					<R00>-0.136735693</R00>
+					<R01>0.724525928</R01>
+					<R02>-0.675548315</R02>
 					<R10>-0</R10>
-					<R11>0.817677915</R11>
-					<R12>0.575675964</R12>
-					<R20>0.998047054</R20>
-					<R21>-0.0359605402</R21>
-					<R22>0.0510775894</R22>
+					<R11>0.681953549</R11>
+					<R12>0.731395483</R12>
+					<R20>0.990607619</R20>
+					<R21>0.100007869</R21>
+					<R22>-0.0932473838</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-29.4545078</X>
-					<Y>29.1413326</Y>
-					<Z>-0.471177638</Z>
+					<X>-21.4062958</X>
+					<Y>17.4039879</Y>
+					<Z>-4.89968204</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3150,10 +3150,9 @@ local leftLegChain = limbChain.new(motorTable)
     ]]
 RunService.Heartbeat:Connect(function()
         
-    -- the goal position
+    --The Goal position
     local goalPosition = workspace.LTarget.Position
 
-    --leftLegChain:PrintLimbVectors()
     leftLegChain:Iterate(0.1,goalPosition)
     leftLegChain:UpdateMotors()
 

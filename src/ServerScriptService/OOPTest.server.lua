@@ -21,6 +21,7 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = limbChain.new(motorTable)
 
+local limbConstraintTable
 --[[
     Then use the object to control the motor every heartbeat
     ]]
@@ -29,7 +30,7 @@ RunService.Heartbeat:Connect(function()
     --The Goal position
     local goalPosition = workspace.LTarget.Position
 
-    leftLegChain:Iterate(0.1,goalPosition)
+    leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
 
 end)
