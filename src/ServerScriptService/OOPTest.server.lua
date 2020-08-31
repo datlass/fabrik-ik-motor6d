@@ -15,8 +15,6 @@ local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegio
 local RotatedRegion3 = require(RotatedRegion3Pointer)
 --It works time for the vector 3 test
 
---testing the region 3
-
 -- Pointers
 local lowerBody = workspace.LowerBody
 
