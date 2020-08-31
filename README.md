@@ -10,5 +10,12 @@ https://devforum.roblox.com/t/fabrik-ik-solver-intended-for-any-motor6d-rig-open
 Current To Do List:
 
 Brainstorm ways to better constraint a vector in a region:
-Currently the conical constraint method is confusing and activity intensive(Goes up to 10% Activity)
-1. Utilize rotated region3 to create space where vector can reside in order to constraint the vector
+Why? Currently the conical constraint method is confusing and activity intensive(Goes up to 10% Activity)
+
+1. (NVM translating this idea from 2D to 3D is way too difficult as it requires finding the intersection between 3d Parts) Utilize rotated region3 to create space where vector can reside in order to constraint the vector
+
+2. Use parts and welds to set the constraint X,Y,Z Axis so its easier for the user to control the constraint
+
+3. Now!!: creating a hinge joint with planes to prevent sideways movement of the vector Limb
+
+4. Debug mode to visualize the conical constraint using Parts
