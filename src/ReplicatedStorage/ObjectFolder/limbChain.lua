@@ -68,14 +68,14 @@ end
 --[[
     Function that executes 1 iteration of the Fabrik Algorithm towards the target position
 ]]
-function limbChain:Iterate(tolerance, targetPosition)
+function limbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
 
     -- Gets the CFrame of the first joint at world space
     local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
 
     --Performs the iteration on the limbChain object IteratedLimbVectorTable and rewrites it
     --Recursive function
-    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable)
+    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
                                               
 
 end
