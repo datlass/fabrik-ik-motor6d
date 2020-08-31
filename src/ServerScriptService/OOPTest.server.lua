@@ -5,8 +5,17 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 --Modules required
-local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
-local LimbChain = require(IKControllerPointer)
+
+--Limb chain object
+local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.limbChain
+local limbChain = require(IKControllerPointer)
+
+--RotatedRegion3 Module
+local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegion3
+local RotatedRegion3 = require(RotatedRegion3Pointer)
+--It works time for the vector 3 test
+
+--testing the region 3
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -19,7 +28,8 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 
 --Store the motor6d in table
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
-local leftLegChain = LimbChain.new(motorTable)
+local leftLegChain = limbChain.new(motorTable)
+--test
 
 local limbConstraintTable
 --[[
@@ -32,5 +42,6 @@ RunService.Heartbeat:Connect(function()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
+
 
 end)
