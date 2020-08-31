@@ -11,7 +11,15 @@ local LimbChain = require(IKControllerPointer)
 --RotatedRegion3 Module
 local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegion3
 local RotatedRegion3 = require(RotatedRegion3Pointer)
---It works time for the vector 3 test
+--It works time
+
+--HingeConstraint
+local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
+local HingeConstraint = require(HingeConstraintPointer)
+
+--Testing the hinge constraint
+local part = workspace.Wedge
+local lKneeHinge = HingeConstraint.new(part)
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -37,6 +45,9 @@ RunService.Heartbeat:Connect(function()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
+
+    lKneeHinge:UpdateAxis()
+    print(lKneeHinge.CenterAxis)
 
 
 end)

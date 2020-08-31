@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-26.3869572</X>
-					<Y>27.6830578</Y>
-					<Z>-13.3050003</Z>
-					<R00>-0.332348019</R00>
-					<R01>0.530148268</R01>
-					<R02>-0.780056119</R02>
-					<R10>-1.49011612e-08</R10>
-					<R11>0.827069402</R11>
-					<R12>0.562099814</R12>
-					<R20>0.943156838</R20>
-					<R21>0.186812773</R21>
-					<R22>-0.274874866</R22>
+					<X>-20.8354759</X>
+					<Y>24.323885</Y>
+					<Z>25.6160336</Z>
+					<R00>0.994381189</R00>
+					<R01>-0.0399803072</R01>
+					<R02>0.0980186239</R02>
+					<R10>-0</R10>
+					<R11>0.925937831</R11>
+					<R12>0.377675921</R12>
+					<R20>-0.105858766</R20>
+					<R21>-0.375553817</R21>
+					<R22>0.920735121</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-24.8268433</X>
-					<Y>26.558857</Y>
-					<Z>-12.75525</Z>
+					<X>-21.0315132</X>
+					<Y>23.5685329</Y>
+					<Z>23.7745628</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2120,7 +2120,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<bool name="Locked">false</bool>
 				<bool name="Massless">false</bool>
 				<token name="Material">256</token>
-				<string name="Name">Part</string>
+				<string name="Name">BlueWall</string>
 				<float name="Reflectance">0</float>
 				<float name="RightParamA">-0.5</float>
 				<float name="RightParamB">0.5</float>
@@ -2186,6 +2186,119 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<string name="Name">Weld</string>
 					<Ref name="Part0">7</Ref>
 					<Ref name="Part1">RBXb87e950ba0f74c0c988b0e1801562f21</Ref>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="WedgePart" referent="RBX1646ae3200db46b7ad887cdf63e70bc4">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<CoordinateFrame name="CFrame">
+					<X>-19.5</X>
+					<Y>13.500001</Y>
+					<Z>-1.99999964</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>0.653970242</R11>
+					<R12>0.756520271</R12>
+					<R20>0</R20>
+					<R21>-0.756520271</R21>
+					<R22>0.653970242</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="CastShadow">true</bool>
+				<int name="CollisionGroupId">0</int>
+				<Color3uint8 name="Color3uint8">4294946816</Color3uint8>
+				<PhysicalProperties name="CustomPhysicalProperties">
+					<CustomPhysics>false</CustomPhysics>
+				</PhysicalProperties>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<bool name="Massless">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Wedge</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<int name="RootPriority">0</int>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<BinaryString name="Tags"></BinaryString>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>1</Y>
+					<Z>2</Z>
+				</Vector3>
+			</Properties>
+			<Item class="WeldConstraint" referent="RBXb7633ce74ef343ca8b8c448cf9debed6">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<CoordinateFrame name="CFrame0">
+						<X>6</X>
+						<Y>0.0854816437</Y>
+						<Z>2.58370781</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>0.653970242</R11>
+						<R12>-0.756520271</R12>
+						<R20>0</R20>
+						<R21>0.756520271</R21>
+						<R22>0.653970242</R22>
+					</CoordinateFrame>
+					<CoordinateFrame name="CFrame1">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<bool name="Enabled">true</bool>
+					<string name="Name">WeldConstraint</string>
+					<Ref name="Part0Internal">RBX1646ae3200db46b7ad887cdf63e70bc4</Ref>
+					<Ref name="Part1Internal">RBX33544b4ff2714e70b3dbd4de6a5ee7a4</Ref>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -2944,7 +3057,15 @@ local LimbChain = require(IKControllerPointer)
 --RotatedRegion3 Module
 local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegion3
 local RotatedRegion3 = require(RotatedRegion3Pointer)
---It works time for the vector 3 test
+--It works time
+
+--HingeConstraint
+local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
+local HingeConstraint = require(HingeConstraintPointer)
+
+--Testing the hinge constraint
+local part = workspace.Wedge
+local lKneeHinge = HingeConstraint.new(part)
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -2970,6 +3091,8 @@ RunService.Heartbeat:Connect(function()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
+
+    print(lKneeHinge.CenterAxis)
 
 
 end)
@@ -3159,6 +3282,14 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
 end
 
 --[[
+    A custom constraint method to totally prevent rotation by using planes
+    lets see how this goes
+]]
+local function HingeConstraint(limbVector, limbVectorLength, yAxis,
+    centerAxis, constraintSettings)
+
+end
+--[[
 	Same as forwards Function
 	limbConstraintTable
 
@@ -3279,7 +3410,8 @@ return require(baseModule)
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">Temp</string>
 						<string name="ScriptGuid">{e044b939-6f3e-40c5-b5e9-a696286f3289}</string>
-						<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder")
+						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
 local NAME = Object.new("NAME")
@@ -3996,42 +4128,477 @@ return LimbChain]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX2140b1e2807f48699bcaf2659fa0d3c7">
+				<Item class="Folder" referent="RBX94e98f06e7364048a1dca7f3b6916323">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">RotatedRegion3Children</string>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+					<Item class="ModuleScript" referent="RBX8b818e56a8ba42c0982e79ccd57aa23d">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">GJK</string>
+							<string name="ScriptGuid">{4ce6af12-bbc7-4bd1-aaac-82769d7067f6}</string>
+							<ProtectedString name="Source"><![CDATA[local MAX_TRIES = 20
+local ZERO3 = Vector3.new(0, 0, 0)
+
+-- Class
+
+local GJK = {}
+GJK.__index = GJK
+
+-- Private Functions
+
+local function tripleProduct(a, b, c)
+	return b * c:Dot(a) - a * c:Dot(b)
+end
+
+local function containsOrigin(self, simplex, direction)
+	local a = simplex[#simplex]
+	local ao = -a
+
+	if (#simplex == 4) then
+		local b, c, d = simplex[3], simplex[2], simplex[1]
+		local ab, ac, ad = b - a, c - a, d - a
+		local abc, acd, adb = ab:Cross(ac), ac:Cross(ad), ad:Cross(ab)
+		
+		abc = abc:Dot(ad) > 0 and -abc or abc
+		acd = acd:Dot(ab) > 0 and -acd or acd
+		adb = adb:Dot(ac) > 0 and -adb or adb
+		
+		if (abc:Dot(ao) > 0) then
+			table.remove(simplex, 1)
+			direction = abc
+		elseif (acd:Dot(ao) > 0) then
+			table.remove(simplex, 2)
+			direction = acd
+		elseif (adb:Dot(ao) > 0) then
+			table.remove(simplex, 3)
+			direction = adb
+		else
+			return true
+		end
+	elseif (#simplex == 3) then
+		local b, c = simplex[2], simplex[1]
+		local ab, ac = b - a, c - a
+		
+		local abc = ab:Cross(ac)
+		local abPerp = tripleProduct(ac, ab, ab).Unit
+		local acPerp = tripleProduct(ab, ac, ac).Unit
+		
+		if (abPerp:Dot(ao) > 0) then
+			table.remove(simplex, 1)
+			direction = abPerp
+		elseif (acPerp:Dot(ao) > 0) then
+			table.remove(simplex, 2)
+			direction = acPerp
+		else
+			local isV3 = ((a - a) == ZERO3)
+			if (not isV3) then
+				return true
+			else
+				direction = abc:Dot(ao) > 0 and abc or -abc
+			end
+		end
+	else
+		local b = simplex[1]
+		local ab = b - a
+		local bcPerp = tripleProduct(ab, ao, ab).Unit
+		direction = bcPerp
+	end
+	
+	return false, direction
+end
+
+-- Public Constructors
+
+function GJK.new(SetA, SetB, CentroidA, CentroidB, SupportA, SupportB)
+	local self = setmetatable({}, GJK)
+	
+	self.SetA = SetA
+	self.SetB = SetB
+	self.CentroidA = CentroidA
+	self.CentroidB = CentroidB
+	self.SupportA = SupportA
+	self.SupportB = SupportB
+
+	return self
+end
+
+-- Public Methods
+
+function GJK:IsColliding()
+	local direction = (self.CentroidA - self.CentroidB).Unit
+	local simplex = {self.SupportA(self.SetA, direction) - self.SupportB(self.SetB, -direction)}
+	
+	direction = -direction
+	
+	for i = 1, MAX_TRIES do
+		table.insert(simplex, self.SupportA(self.SetA, direction) - self.SupportB(self.SetB, -direction))
+		
+		if (simplex[#simplex]:Dot(direction) <= 0) then
+			return false
+		else
+			local passed, newDirection = containsOrigin(self, simplex, direction)
+			
+			if (passed) then
+				return true
+			end
+			
+			direction = newDirection
+		end
+	end
+	
+	return false
+end
+
+--
+
+return GJK]]></ProtectedString>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX355fc13cfcd046399bac0f4eb093532b">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Supports</string>
+							<string name="ScriptGuid">{c6cefb66-990f-4c12-9efb-6f1358ccd8c3}</string>
+							<ProtectedString name="Source"><![CDATA[local ZERO = Vector3.new(0, 0, 0)
+local RIGHT = Vector3.new(1, 0, 0)
+
+--
+
+local function rayPlane(p, v, s, n)
+	local r = p - s;
+	local t = -r:Dot(n) / v:Dot(n)
+	return p + t * v, t
+end;
+
+--
+
+local Supports = {}
+
+function Supports.PointCloud(set, direction)
+	local max, maxDot = set[1], set[1]:Dot(direction)
+	for i = 2, #set do
+		local dot = set[i]:Dot(direction)
+		if (dot > maxDot) then
+			max = set[i]
+			maxDot = dot
+		end
+	end
+	return max
+end
+
+function Supports.Cylinder(set, direction)
+	local cf, size2 = unpack(set)
+	direction = cf:VectorToObjectSpace(direction)
+	local radius = math.min(size2.y, size2.z)
+	local dotT, cPoint = direction:Dot(RIGHT), Vector3.new(size2.x, 0, 0)
+	local h, t, final
+	
+	if (dotT == 0) then
+		final = direction.Unit * radius
+	else
+		cPoint = dotT > 0 and cPoint or -cPoint
+		h, t = rayPlane(ZERO, direction, cPoint, RIGHT)
+		final = cPoint + (h - cPoint).Unit * radius
+	end
+	
+	return cf:PointToWorldSpace(final)
+end
+
+function Supports.Ellipsoid(set, direction)
+	local cf, size2 = unpack(set)
+	return cf:PointToWorldSpace(size2 * (size2 * cf:VectorToObjectSpace(direction)).Unit)
+end
+
+return Supports]]></ProtectedString>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX66b0d6cfcea74607bb92d9054e1b5cae">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Vertices</string>
+							<string name="ScriptGuid">{1d8f4d0b-fd45-4f4a-abb8-d1e7728b0b30}</string>
+							<ProtectedString name="Source"><![CDATA[-- CONSTANTS
+
+local PI2 = math.pi*2
+local PHI = (1 + math.sqrt(5)) / 2
+
+local RIGHT 	= Vector3.new(1, 0, 0)
+local UP 		= Vector3.new(0, 1, 0)
+local BACK 		= Vector3.new(0, 0, 1)
+local LEFT 		= Vector3.new(-1, 0, 0)
+local DOWN 		= Vector3.new(0, -1, 0)
+local FORWARD 	= Vector3.new(0, 0, -1)
+
+local CORNERS = {
+	Vector3.new(1, 1, 1);
+	Vector3.new(-1, 1, 1);
+	Vector3.new(-1, 1, -1);
+	Vector3.new(1, 1, -1);
+	Vector3.new(1, -1, 1);
+	Vector3.new(-1, -1, 1);
+	Vector3.new(-1, -1, -1);
+	Vector3.new(1, -1, -1);
+}
+
+-- VERTICE INDEX ARRAYS
+
+local BLOCK = {1, 2, 3, 4, 5, 6, 7, 8}
+local WEDGE = {1, 2, 5, 6, 7, 8}
+local CORNERWEDGE = {4, 5, 6, 7, 8}
+
+-- VERTICE FUNCTIONS
+
+local function fromIndexArray(array)
+	local output = {}
+	for i = 1, #array do
+		output[i] = CORNERS[array[i]]
+	end
+	return output
+end
+
+local function cylinder(n)
+	local output = {}
+	local arc = PI2 / n
+	for i = 1, n do
+		local vi = CFrame.fromAxisAngle(RIGHT, i*arc) * UP
+		output[i] = RIGHT + vi
+		output[n + i] = LEFT + vi
+	end
+	return output
+end
+
+local function icoSphere(n)
+	local verts = {
+		Vector3.new(-1,  PHI, 0),
+		Vector3.new(1,  PHI, 0),
+		Vector3.new(-1, -PHI, 0),
+		Vector3.new(1, -PHI, 0),
+		
+		Vector3.new(0, -1,  PHI),
+		Vector3.new(0,  1,  PHI),
+		Vector3.new(0, -1, -PHI),
+		Vector3.new(0,  1, -PHI),
+		
+		Vector3.new(PHI, 0, -1),
+		Vector3.new(PHI, 0,  1),
+		Vector3.new(-PHI, 0, -1),
+		Vector3.new(-PHI, 0,  1)
+	}
+	
+	local indices = {
+		1, 12, 6,
+		1, 6, 2,
+		1, 2, 8,
+		1, 8, 11,
+		1, 11, 12,
+		
+		2, 6, 10,
+		6, 12, 5,
+		12, 11, 3,
+		11, 8, 7,
+		8, 2, 9,
+		
+		4, 10, 5,
+		4, 5, 3,
+		4, 3, 7,
+		4, 7, 9,
+		4, 9, 10,
+		
+		5, 10, 6,
+		3, 5, 12,
+		7, 3, 11,
+		9, 7, 8,
+		10, 9, 2
+	}
+	
+	local splits = {}
+	
+	local function split(i, j)
+		local key = i < j and (i .. "," .. j) or (j .. "," .. i)
+		
+		if (not splits[key]) then
+			verts[#verts+1] = (verts[i] + verts[j]) / 2
+			splits[key] = #verts
+		end
+		
+		return splits[key]
+	end
+	
+	for _ = 1, n do
+		for  i = #indices, 1, -3 do
+			local v1, v2, v3 = indices[i - 2], indices[i - 1], indices[i]
+			local a = split(v1, v2)
+			local b = split(v2, v3)
+			local c = split(v3, v1)
+			
+			indices[#indices+1] = v1
+			indices[#indices+1] = a
+			indices[#indices+1] = c
+			
+			indices[#indices+1] = v2
+			indices[#indices+1] = b
+			indices[#indices+1] = a
+			
+			indices[#indices+1] = v3
+			indices[#indices+1] = c
+			indices[#indices+1] = b
+			
+			indices[#indices+1] = a
+			indices[#indices+1] = b
+			indices[#indices+1] = c
+			
+			table.remove(indices, i)
+			table.remove(indices, i - 1)
+			table.remove(indices, i - 2)
+		end
+	end
+	
+	-- normalize
+	for i = 1, #verts do
+		verts[i] = verts[i].Unit
+	end
+	
+	return verts
+end
+
+-- Useful functions
+
+local function vertShape(cf, size2, array)
+	local output = {}
+	for i = 1, #array do
+		output[i] = cf:PointToWorldSpace(array[i] * size2)
+	end
+	return output
+end
+
+local function getCentroidFromSet(set)
+	local sum = set[1]
+	for i = 2, #set do
+		sum = sum + set[2]
+	end
+	return sum / #set
+end
+
+local function classify(part)
+	if (part.ClassName == "Part") then
+		if (part.Shape == Enum.PartType.Block) then
+			return "Block"
+		elseif (part.Shape == Enum.PartType.Cylinder) then
+			return "Cylinder"
+		elseif (part.Shape == Enum.PartType.Ball) then
+			return "Ball"
+		end;
+	elseif (part.ClassName == "WedgePart") then
+		return "Wedge"
+	elseif (part.ClassName == "CornerWedgePart") then
+		return "CornerWedge"
+	elseif (part:IsA("BasePart")) then -- mesh, CSG, truss, etc... just use block
+		return "Block"
+	end
+end
+
+-- 
+
+local BLOCK_ARRAY = fromIndexArray(BLOCK)
+local WEDGE_ARRAY = fromIndexArray(WEDGE)
+local CORNERWEDGE_ARRAY = fromIndexArray(CORNERWEDGE)
+local CYLINDER_ARRAY = cylinder(20)
+local SPHERE_ARRAY = icoSphere(2)
+
+return {
+	Block = function(cf, size2) return vertShape(cf, size2, BLOCK_ARRAY) end;
+	Wedge = function(cf, size2) return vertShape(cf, size2, WEDGE_ARRAY) end;
+	CornerWedge = function(cf, size2) return vertShape(cf, size2, CORNERWEDGE_ARRAY) end;
+	Cylinder = function(cf, size2) return vertShape(cf, size2, CYLINDER_ARRAY) end;
+	Ball = function(cf, size2) return vertShape(cf, size2, SPHERE_ARRAY) end;
+	
+	GetCentroid = getCentroidFromSet;
+	Classify = classify;
+}]]></ProtectedString>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="ModuleScript" referent="RBX5797b5f320d34c56bfe446788c6c42ec">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">MathPlane</string>
-						<string name="ScriptGuid"></string>
-						<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder")
+						<string name="ScriptGuid">{0b949d7b-920c-402d-85ac-e1d24dd6473e}</string>
+						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
 local MathPlane = Object.new("MathPlane")
 
-function MathPlane.new(NormalVector,Point)
+--Squared Distance
+local function SquaredDistance(Vector)
+
+    return Vector.X^2 + Vector.Y^2 + Vector.Z^2
+
+end
+
+
+function MathPlane.new(NormalVector,PlanePoint)
 	local obj = MathPlane:make()
 
     --Stores the inputted NormalVector
     obj.NormalVector = NormalVector
 
     --Stores the point on the plane
-    obj.Point = Point
+    obj.PlanePoint = PlanePoint
 
     --Obtains the scalar dot product of the plane
-    obj.Scalar = Point:Dot(NormalVector)
+    obj.PlaneScalar = PlanePoint:Dot(NormalVector)
 
 	return obj
+end
+
+--[[
+    Finds the closest point from a point to plane
+    Returns a vector 3 point in world space
+]]
+function MathPlane:FindClosestPointOnPlane(PointOnLine)
+
+    --Create a new line with direction of the plane normal and located at the InputPoint 
+    --lamda is the scalar of the line direction vector
+    local lambda = (self.PlanePoint - PointOnLine):Dot(self.NormalVector) /  SquaredDistance(self.NormalVector)
+
+    return PointOnLine + lambda*self.NormalVector
+
+end
+
+--Checks if a vector3 point is on the plane object
+function MathPlane:IsPointOnPlane(PositionVector)
+
+    local PositionScalar = PositionVector:Dot(self.NormalVector)
+
+    if PositionScalar == self.PlaneScalar then
+        return true
+    else
+        return false
+    end
+
 end
 
 return MathPlane]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX0220ffe4d989423c87de553fe2228913">
+				<Item class="ModuleScript" referent="RBXeaeb24f5f55945b8bd162bf945521bf9">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">RotatedRegion3</string>
-						<string name="ScriptGuid"></string>
+						<string name="ScriptGuid">{1436a4bb-b8a1-4191-af0c-968d6cb032a6}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
 
 This is a Rotated Region3 Class that behaves much the same as the standard Region3 class expect that it allows
@@ -4285,401 +4852,102 @@ return RotatedRegion3]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="Folder" referent="RBX3d0b3ed33be34f3ca0badb5b62c569f0">
+				<Item class="ModuleScript" referent="RBXb8377b9498ec43f7b914127141056fa3">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
-						<string name="Name">RotatedRegion3Children</string>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">FabrikConstraint</string>
+						<string name="ScriptGuid">{d7e7bf2b-67f8-4a98-83aa-950bd593e4c2}</string>
+						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
+
+local FabrikConstraint = Object.new("FabrikConstraint")
+--local FabrikConstraint = Object.newExtends("FabrikConstraint",?)
+
+--Creates a constraint with axis that depend on the part
+function FabrikConstraint.new(Part)
+	local obj = FabrikConstraint:make()
+    --local obj = FabrikConstraint:super()
+    obj.Part = Part
+    obj.CenterAxis = Part.CFrame.LookVector
+    obj.XAxis = Part.CFrame.RightVector
+    obj.YAxis = Part.CFrame.UpVector
+
+	return obj
+end
+
+--[[
+    Method for the constraints to inherit if you want to the axis to change
+]]
+function FabrikConstraint:RotateCFrame(GoalCFrame)
+    self.Part.CFrame = GoalCFrame
+end
+
+--[[
+    Method to get the current axis of the part
+]]
+function FabrikConstraint:UpdateAxis()
+    self.CenterAxis = self.Part.CFrame.LookVector
+    self.XAxis = self.Part.CFrame.RightVector
+    self.YAxis = self.Part.CFrame.UpVectorend
+end
+
+return FabrikConstraint]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
-					<Item class="ModuleScript" referent="RBXfe0d8f040f2745d0aca7505cd104a486">
+				</Item>
+				<Item class="Folder" referent="RBX60bbabe673834591937451d47c09fd8c">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">ConstraintTypes</string>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+					<Item class="ModuleScript" referent="RBX9a702731c8474bc4b51f6b7d8b39fa2f">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">GJK</string>
-							<string name="ScriptGuid"></string>
-							<ProtectedString name="Source"><![CDATA[local MAX_TRIES = 20
-local ZERO3 = Vector3.new(0, 0, 0)
+							<string name="Name">HingeConstraint</string>
+							<string name="ScriptGuid">{9efd8b58-4016-4a96-adef-1607c48103fc}</string>
+							<ProtectedString name="Source"><![CDATA[
 
--- Class
+-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
 
-local GJK = {}
-GJK.__index = GJK
+--Inheritance
+local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
+local FabrikConstraint = require(FabrikConstraintPointer)
 
--- Private Functions
+local HingeConstraint = Object.newExtends("HingeConstraint",FabrikConstraint)
 
-local function tripleProduct(a, b, c)
-	return b * c:Dot(a) - a * c:Dot(b)
+function HingeConstraint.new(Part,AngleOfElevation,AngleOfDepression)
+	local obj = HingeConstraint:super(Part)
+    
+    obj.AngleOfElevation = AngleOfElevation
+    
+    obj.AngleOfDepression = AngleOfDepression
+
+	return obj
 end
 
-local function containsOrigin(self, simplex, direction)
-	local a = simplex[#simplex]
-	local ao = -a
-
-	if (#simplex == 4) then
-		local b, c, d = simplex[3], simplex[2], simplex[1]
-		local ab, ac, ad = b - a, c - a, d - a
-		local abc, acd, adb = ab:Cross(ac), ac:Cross(ad), ad:Cross(ab)
-		
-		abc = abc:Dot(ad) > 0 and -abc or abc
-		acd = acd:Dot(ab) > 0 and -acd or acd
-		adb = adb:Dot(ac) > 0 and -adb or adb
-		
-		if (abc:Dot(ao) > 0) then
-			table.remove(simplex, 1)
-			direction = abc
-		elseif (acd:Dot(ao) > 0) then
-			table.remove(simplex, 2)
-			direction = acd
-		elseif (adb:Dot(ao) > 0) then
-			table.remove(simplex, 3)
-			direction = adb
-		else
-			return true
-		end
-	elseif (#simplex == 3) then
-		local b, c = simplex[2], simplex[1]
-		local ab, ac = b - a, c - a
-		
-		local abc = ab:Cross(ac)
-		local abPerp = tripleProduct(ac, ab, ab).Unit
-		local acPerp = tripleProduct(ab, ac, ac).Unit
-		
-		if (abPerp:Dot(ao) > 0) then
-			table.remove(simplex, 1)
-			direction = abPerp
-		elseif (acPerp:Dot(ao) > 0) then
-			table.remove(simplex, 2)
-			direction = acPerp
-		else
-			local isV3 = ((a - a) == ZERO3)
-			if (not isV3) then
-				return true
-			else
-				direction = abc:Dot(ao) > 0 and abc or -abc
-			end
-		end
-	else
-		local b = simplex[1]
-		local ab = b - a
-		local bcPerp = tripleProduct(ab, ao, ab).Unit
-		direction = bcPerp
-	end
-	
-	return false, direction
-end
-
--- Public Constructors
-
-function GJK.new(SetA, SetB, CentroidA, CentroidB, SupportA, SupportB)
-	local self = setmetatable({}, GJK)
-	
-	self.SetA = SetA
-	self.SetB = SetB
-	self.CentroidA = CentroidA
-	self.CentroidB = CentroidB
-	self.SupportA = SupportA
-	self.SupportB = SupportB
-
-	return self
-end
-
--- Public Methods
-
-function GJK:IsColliding()
-	local direction = (self.CentroidA - self.CentroidB).Unit
-	local simplex = {self.SupportA(self.SetA, direction) - self.SupportB(self.SetB, -direction)}
-	
-	direction = -direction
-	
-	for i = 1, MAX_TRIES do
-		table.insert(simplex, self.SupportA(self.SetA, direction) - self.SupportB(self.SetB, -direction))
-		
-		if (simplex[#simplex]:Dot(direction) <= 0) then
-			return false
-		else
-			local passed, newDirection = containsOrigin(self, simplex, direction)
-			
-			if (passed) then
-				return true
-			end
-			
-			direction = newDirection
-		end
-	end
-	
-	return false
-end
-
---
-
-return GJK]]></ProtectedString>
+return HingeConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX7a2a9bf930054defbab3d13390b5f876">
+					<Item class="ModuleScript" referent="RBX25d45f464fd94f789843dff0e967f64a">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">Supports</string>
-							<string name="ScriptGuid"></string>
-							<ProtectedString name="Source"><![CDATA[local ZERO = Vector3.new(0, 0, 0)
-local RIGHT = Vector3.new(1, 0, 0)
+							<string name="Name">BaseRedirect</string>
+							<string name="ScriptGuid">{ae99ee31-4239-45a4-9cb8-4e1796778f66}</string>
+							<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder"):FindFirstAncestorOfClass("Folder")
 
---
+local baseModule = Package.Base
+--^^ Simply adjust the variable so it matches the Base's location. ^^
 
-local function rayPlane(p, v, s, n)
-	local r = p - s;
-	local t = -r:Dot(n) / v:Dot(n)
-	return p + t * v, t
-end;
-
---
-
-local Supports = {}
-
-function Supports.PointCloud(set, direction)
-	local max, maxDot = set[1], set[1]:Dot(direction)
-	for i = 2, #set do
-		local dot = set[i]:Dot(direction)
-		if (dot > maxDot) then
-			max = set[i]
-			maxDot = dot
-		end
-	end
-	return max
-end
-
-function Supports.Cylinder(set, direction)
-	local cf, size2 = unpack(set)
-	direction = cf:VectorToObjectSpace(direction)
-	local radius = math.min(size2.y, size2.z)
-	local dotT, cPoint = direction:Dot(RIGHT), Vector3.new(size2.x, 0, 0)
-	local h, t, final
-	
-	if (dotT == 0) then
-		final = direction.Unit * radius
-	else
-		cPoint = dotT > 0 and cPoint or -cPoint
-		h, t = rayPlane(ZERO, direction, cPoint, RIGHT)
-		final = cPoint + (h - cPoint).Unit * radius
-	end
-	
-	return cf:PointToWorldSpace(final)
-end
-
-function Supports.Ellipsoid(set, direction)
-	local cf, size2 = unpack(set)
-	return cf:PointToWorldSpace(size2 * (size2 * cf:VectorToObjectSpace(direction)).Unit)
-end
-
-return Supports]]></ProtectedString>
-							<BinaryString name="Tags"></BinaryString>
-						</Properties>
-					</Item>
-					<Item class="ModuleScript" referent="RBXcf7142d077bc4658b1d683b54ee97175">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">Vertices</string>
-							<string name="ScriptGuid"></string>
-							<ProtectedString name="Source"><![CDATA[-- CONSTANTS
-
-local PI2 = math.pi*2
-local PHI = (1 + math.sqrt(5)) / 2
-
-local RIGHT 	= Vector3.new(1, 0, 0)
-local UP 		= Vector3.new(0, 1, 0)
-local BACK 		= Vector3.new(0, 0, 1)
-local LEFT 		= Vector3.new(-1, 0, 0)
-local DOWN 		= Vector3.new(0, -1, 0)
-local FORWARD 	= Vector3.new(0, 0, -1)
-
-local CORNERS = {
-	Vector3.new(1, 1, 1);
-	Vector3.new(-1, 1, 1);
-	Vector3.new(-1, 1, -1);
-	Vector3.new(1, 1, -1);
-	Vector3.new(1, -1, 1);
-	Vector3.new(-1, -1, 1);
-	Vector3.new(-1, -1, -1);
-	Vector3.new(1, -1, -1);
-}
-
--- VERTICE INDEX ARRAYS
-
-local BLOCK = {1, 2, 3, 4, 5, 6, 7, 8}
-local WEDGE = {1, 2, 5, 6, 7, 8}
-local CORNERWEDGE = {4, 5, 6, 7, 8}
-
--- VERTICE FUNCTIONS
-
-local function fromIndexArray(array)
-	local output = {}
-	for i = 1, #array do
-		output[i] = CORNERS[array[i]]
-	end
-	return output
-end
-
-local function cylinder(n)
-	local output = {}
-	local arc = PI2 / n
-	for i = 1, n do
-		local vi = CFrame.fromAxisAngle(RIGHT, i*arc) * UP
-		output[i] = RIGHT + vi
-		output[n + i] = LEFT + vi
-	end
-	return output
-end
-
-local function icoSphere(n)
-	local verts = {
-		Vector3.new(-1,  PHI, 0),
-		Vector3.new(1,  PHI, 0),
-		Vector3.new(-1, -PHI, 0),
-		Vector3.new(1, -PHI, 0),
-		
-		Vector3.new(0, -1,  PHI),
-		Vector3.new(0,  1,  PHI),
-		Vector3.new(0, -1, -PHI),
-		Vector3.new(0,  1, -PHI),
-		
-		Vector3.new(PHI, 0, -1),
-		Vector3.new(PHI, 0,  1),
-		Vector3.new(-PHI, 0, -1),
-		Vector3.new(-PHI, 0,  1)
-	}
-	
-	local indices = {
-		1, 12, 6,
-		1, 6, 2,
-		1, 2, 8,
-		1, 8, 11,
-		1, 11, 12,
-		
-		2, 6, 10,
-		6, 12, 5,
-		12, 11, 3,
-		11, 8, 7,
-		8, 2, 9,
-		
-		4, 10, 5,
-		4, 5, 3,
-		4, 3, 7,
-		4, 7, 9,
-		4, 9, 10,
-		
-		5, 10, 6,
-		3, 5, 12,
-		7, 3, 11,
-		9, 7, 8,
-		10, 9, 2
-	}
-	
-	local splits = {}
-	
-	local function split(i, j)
-		local key = i < j and (i .. "," .. j) or (j .. "," .. i)
-		
-		if (not splits[key]) then
-			verts[#verts+1] = (verts[i] + verts[j]) / 2
-			splits[key] = #verts
-		end
-		
-		return splits[key]
-	end
-	
-	for _ = 1, n do
-		for  i = #indices, 1, -3 do
-			local v1, v2, v3 = indices[i - 2], indices[i - 1], indices[i]
-			local a = split(v1, v2)
-			local b = split(v2, v3)
-			local c = split(v3, v1)
-			
-			indices[#indices+1] = v1
-			indices[#indices+1] = a
-			indices[#indices+1] = c
-			
-			indices[#indices+1] = v2
-			indices[#indices+1] = b
-			indices[#indices+1] = a
-			
-			indices[#indices+1] = v3
-			indices[#indices+1] = c
-			indices[#indices+1] = b
-			
-			indices[#indices+1] = a
-			indices[#indices+1] = b
-			indices[#indices+1] = c
-			
-			table.remove(indices, i)
-			table.remove(indices, i - 1)
-			table.remove(indices, i - 2)
-		end
-	end
-	
-	-- normalize
-	for i = 1, #verts do
-		verts[i] = verts[i].Unit
-	end
-	
-	return verts
-end
-
--- Useful functions
-
-local function vertShape(cf, size2, array)
-	local output = {}
-	for i = 1, #array do
-		output[i] = cf:PointToWorldSpace(array[i] * size2)
-	end
-	return output
-end
-
-local function getCentroidFromSet(set)
-	local sum = set[1]
-	for i = 2, #set do
-		sum = sum + set[2]
-	end
-	return sum / #set
-end
-
-local function classify(part)
-	if (part.ClassName == "Part") then
-		if (part.Shape == Enum.PartType.Block) then
-			return "Block"
-		elseif (part.Shape == Enum.PartType.Cylinder) then
-			return "Cylinder"
-		elseif (part.Shape == Enum.PartType.Ball) then
-			return "Ball"
-		end;
-	elseif (part.ClassName == "WedgePart") then
-		return "Wedge"
-	elseif (part.ClassName == "CornerWedgePart") then
-		return "CornerWedge"
-	elseif (part:IsA("BasePart")) then -- mesh, CSG, truss, etc... just use block
-		return "Block"
-	end
-end
-
--- 
-
-local BLOCK_ARRAY = fromIndexArray(BLOCK)
-local WEDGE_ARRAY = fromIndexArray(WEDGE)
-local CORNERWEDGE_ARRAY = fromIndexArray(CORNERWEDGE)
-local CYLINDER_ARRAY = cylinder(20)
-local SPHERE_ARRAY = icoSphere(2)
-
-return {
-	Block = function(cf, size2) return vertShape(cf, size2, BLOCK_ARRAY) end;
-	Wedge = function(cf, size2) return vertShape(cf, size2, WEDGE_ARRAY) end;
-	CornerWedge = function(cf, size2) return vertShape(cf, size2, CORNERWEDGE_ARRAY) end;
-	Cylinder = function(cf, size2) return vertShape(cf, size2, CYLINDER_ARRAY) end;
-	Ball = function(cf, size2) return vertShape(cf, size2, SPHERE_ARRAY) end;
-	
-	GetCentroid = getCentroidFromSet;
-	Classify = classify;
-}]]></ProtectedString>
+return require(baseModule)
+]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
