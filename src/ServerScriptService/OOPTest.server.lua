@@ -17,9 +17,16 @@ local RotatedRegion3 = require(RotatedRegion3Pointer)
 local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
 
---Testing the hinge constraint
-local part = workspace.Wedge
-local upperLegHinge = HingeConstraint.new(part,30,30)
+--Rigid Constraint
+local RigidConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.RigidConstraint
+local RigidConstraint = require(RigidConstraintPointer)
+
+--Testing the constraint
+local part = workspace.UpperLegConstraint
+local upperLegRigidJoint = RigidConstraint.new(part)
+
+local kneePart = workspace.KneeConstraint
+local lKneeHinge = HingeConstraint.new(kneePart,30,30)
 
 
 --[[
@@ -55,8 +62,9 @@ RunService.Heartbeat:Connect(function()
     --The Goal position
     local goalPosition = workspace.LTarget.Position
 
-    upperLegHinge:UpdateAxis()
-    local limbConstraintTable = {upperLegHinge}
+    upperLegRigidJoint:UpdateAxis()
+    lKneeHinge:UpdateAxis()
+    local limbConstraintTable = {upperLegRigidJoint,lKneeHinge}
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()

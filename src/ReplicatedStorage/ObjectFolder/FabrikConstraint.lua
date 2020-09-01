@@ -17,6 +17,15 @@ function FabrikConstraint.new(Part)
 end
 
 --[[
+    The method all constraints should inherit
+    empty as each constraint has it's own special constraint method
+]]
+function FabrikConstraint:ConstrainLimbVector()
+
+end
+
+
+--[[
     Method for the constraints to inherit if you want to the axis to change
 ]]
 function FabrikConstraint:ChangeCFrame(goalCFrame) 
