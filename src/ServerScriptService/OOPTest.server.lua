@@ -19,7 +19,20 @@ local HingeConstraint = require(HingeConstraintPointer)
 
 --Testing the hinge constraint
 local part = workspace.Wedge
-local lKneeHinge = HingeConstraint.new(part)
+local upperLegHinge = HingeConstraint.new(part,30,30)
+
+
+--[[
+--Test the mathplane object
+local MathPlanePointer = ReplicatedStorage.Source.ObjectFolder.MathPlane
+local MathPlane = require(MathPlanePointer)
+
+local plane = MathPlane.new(Vector3.new(3,4,1),Vector3.new(-1,1,0))
+--It works?? but floating point error
+local point = plane:FindClosestPointOnPlane(Vector3.new(1,0,1))
+local bool = plane:IsPointOnPlane(Vector3.new(-1,1,0))
+print(point,bool)
+]]
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -34,7 +47,6 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = LimbChain.new(motorTable)
 
-local limbConstraintTable
 --[[
     Then use the object to control the motor every heartbeat
     ]]
@@ -43,11 +55,10 @@ RunService.Heartbeat:Connect(function()
     --The Goal position
     local goalPosition = workspace.LTarget.Position
 
+    upperLegHinge:UpdateAxis()
+    local limbConstraintTable = {upperLegHinge}
+
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
-
-    lKneeHinge:UpdateAxis()
-    print(lKneeHinge.CenterAxis)
-
 
 end)

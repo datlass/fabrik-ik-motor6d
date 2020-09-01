@@ -18,9 +18,9 @@ local MathPlane = require(MathPlanePointer)
 function HingeConstraint.new(Part,AngleOfElevation,AngleOfDepression)
 	local obj = HingeConstraint:super(Part)
     
-    obj.AngleOfElevation = AngleOfElevation
+    obj.AngleOfElevation = math.rad(AngleOfElevation)
     
-    obj.AngleOfDepression = AngleOfDepression
+    obj.AngleOfDepression = -math.rad(AngleOfDepression)
 
 	return obj
 end
@@ -29,38 +29,26 @@ end
     Constraints the limbVector like a hinge
     returns a new limbvector
 ]]
-function HingeConstraint:ConstraintLimbVector(jointPosition,limbVector,limbLength)
-
+function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+    --print("Constraining")
     --Create a plane that is located on the joint with a surface normal to the rightvector
-    local planeOnJoint = MathPlane.new(self.RightVector,jointPosition)
+    local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)
 
-    local limbVectorEndPosition = jointPosition+limbVector
+    --Find where the limb should end in world position
+    local limbVectorWorld = jointPosition+limbVector
 
-    --Measure the angle of elevation or depression within the constraints
-    --Always the absolute angle between them
-    local angle = limbVector.Unit:Dot(self.CenterAxis.Unit)
+    --Project it into the plane
+    local pointOnPlane = planeOnJoint:FindClosestPointOnPlane(limbVectorWorld)
 
-    --Measure the directionality of the angle relative to the y axis via dot product
-    --If this value is negative then they are facing in the opposite direction
-    local yAxisScalar = limbVector:Dot(self.YAxis)
+    --Get the new direction vector
 
-    --If negative then make the angle value negative so its angle of depression from
-    if yAxisScalar < 0 then
-        angle = -angle
-    end
+    local newDir = pointOnPlane-jointPosition
 
-    --Checks if the limb vector is inside the plane
-    if planeOnJoint:IsPointOnPlane(jointPosition) then
-        
-        --Checks if the limb vector is inside the angle constraints
-        
-        return limbVector
 
-    else
+    local newLimbVector = newDir.Unit*limbLength
 
-        return limbVector
+    return newLimbVector
 
-    end
 end
 
 

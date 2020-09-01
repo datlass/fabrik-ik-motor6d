@@ -41,7 +41,10 @@ function MathPlane:FindClosestPointOnPlane(PointOnLine)
 
 end
 
---Checks if a vector3 point is on the plane object
+--[[
+    Checks if a vector3 point is on the plane object
+    Currently working fine
+]]
 function MathPlane:IsPointOnPlane(PositionVector)
 
     local PositionScalar = PositionVector:Dot(self.NormalVector)

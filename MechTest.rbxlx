@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-20.8354759</X>
-					<Y>24.323885</Y>
-					<Z>25.6160336</Z>
-					<R00>0.994381189</R00>
-					<R01>-0.0399803072</R01>
-					<R02>0.0980186239</R02>
-					<R10>-0</R10>
-					<R11>0.925937831</R11>
-					<R12>0.377675921</R12>
-					<R20>-0.105858766</R20>
-					<R21>-0.375553817</R21>
-					<R22>0.920735121</R22>
+					<X>-22.4201584</X>
+					<Y>29.0128403</Y>
+					<Z>6.74534321</Z>
+					<R00>0.244056463</R00>
+					<R01>0.827195346</R01>
+					<R02>-0.506146729</R02>
+					<R10>-7.45058149e-09</R10>
+					<R11>0.521929383</R11>
+					<R12>0.85298878</R12>
+					<R20>0.969761133</R20>
+					<R21>-0.208177418</R21>
+					<R22>0.127380207</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-21.0315132</X>
-					<Y>23.5685329</Y>
-					<Z>23.7745628</Z>
+					<X>-21.4078655</X>
+					<Y>27.3068638</Y>
+					<Z>6.49058294</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2204,17 +2204,17 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
 					<X>-19.5</X>
-					<Y>13.500001</Y>
-					<Z>-1.99999964</Z>
-					<R00>1</R00>
+					<Y>18.5</Y>
+					<Z>2</Z>
+					<R00>-4.37113883e-08</R00>
 					<R01>0</R01>
-					<R02>0</R02>
+					<R02>1</R02>
 					<R10>0</R10>
-					<R11>0.653970242</R11>
-					<R12>0.756520271</R12>
-					<R20>0</R20>
-					<R21>-0.756520271</R21>
-					<R22>0.653970242</R22>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>-1</R20>
+					<R21>0</R21>
+					<R22>-4.37113883e-08</R22>
 				</CoordinateFrame>
 				<bool name="CanCollide">true</bool>
 				<bool name="CastShadow">true</bool>
@@ -2264,22 +2264,22 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Z>2</Z>
 				</Vector3>
 			</Properties>
-			<Item class="WeldConstraint" referent="RBXb7633ce74ef343ca8b8c448cf9debed6">
+			<Item class="WeldConstraint" referent="RBXdd366f74daaa4c41a8117b0afb974eda">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<CoordinateFrame name="CFrame0">
-						<X>6</X>
-						<Y>0.0854816437</Y>
-						<Z>2.58370781</Z>
-						<R00>1</R00>
+						<X>1.99999952</X>
+						<Y>-0.239473343</Y>
+						<Z>10.5</Z>
+						<R00>-4.37113883e-08</R00>
 						<R01>0</R01>
-						<R02>0</R02>
+						<R02>-1</R02>
 						<R10>0</R10>
-						<R11>0.653970242</R11>
-						<R12>-0.756520271</R12>
-						<R20>0</R20>
-						<R21>0.756520271</R21>
-						<R22>0.653970242</R22>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>1</R20>
+						<R21>0</R21>
+						<R22>-4.37113883e-08</R22>
 					</CoordinateFrame>
 					<CoordinateFrame name="CFrame1">
 						<X>0</X>
@@ -2298,7 +2298,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<bool name="Enabled">true</bool>
 					<string name="Name">WeldConstraint</string>
 					<Ref name="Part0Internal">RBX1646ae3200db46b7ad887cdf63e70bc4</Ref>
-					<Ref name="Part1Internal">RBX33544b4ff2714e70b3dbd4de6a5ee7a4</Ref>
+					<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -3065,7 +3065,20 @@ local HingeConstraint = require(HingeConstraintPointer)
 
 --Testing the hinge constraint
 local part = workspace.Wedge
-local lKneeHinge = HingeConstraint.new(part)
+local upperLegHinge = HingeConstraint.new(part,30,30)
+
+
+--[[
+--Test the mathplane object
+local MathPlanePointer = ReplicatedStorage.Source.ObjectFolder.MathPlane
+local MathPlane = require(MathPlanePointer)
+
+local plane = MathPlane.new(Vector3.new(3,4,1),Vector3.new(-1,1,0))
+--It works?? but floating point error
+local point = plane:FindClosestPointOnPlane(Vector3.new(1,0,1))
+local bool = plane:IsPointOnPlane(Vector3.new(-1,1,0))
+print(point,bool)
+]]
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -3080,7 +3093,6 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = LimbChain.new(motorTable)
 
-local limbConstraintTable
 --[[
     Then use the object to control the motor every heartbeat
     ]]
@@ -3089,11 +3101,11 @@ RunService.Heartbeat:Connect(function()
     --The Goal position
     local goalPosition = workspace.LTarget.Position
 
+    upperLegHinge:UpdateAxis()
+    local limbConstraintTable = {upperLegHinge}
+
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
-
-    print(lKneeHinge.CenterAxis)
-
 
 end)
 ]]></ProtectedString>
@@ -3302,28 +3314,29 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,
         local vectorSum = Vector3.new(0, 0, 0)
 
         -- Sums up the vectors in order to get the target position on the chain
+        --target position is the next joint from origin to target
         for v = i + 1, #limbVectorTable, 1 do
             vectorSum = vectorSum + limbVectorTable[v]
         end
 
+        local nextJointPosition =vectorSum + targetPos
+        local jointPosition = originCF.Position + vectorSumFromOrigin
         -- Gets the new direction of the new vector along the chain
         -- direction of the new vector is from origin to target
-        local pointTo = vectorSum + targetPos - originCF.Position -
-                            vectorSumFromOrigin
+        local pointTo = nextJointPosition - jointPosition
         -- This time constraint the vector using the conical constraint function
+        local newLimbVector = pointTo.Unit * limbLengthTable[i]
 
         -- Checks if there is a limb constraint for the current limb in the iteration
         if limbConstraintTable[i] then
-
-            -- The axis of constraint is relative to the initial joint placement
-            local yAxis = limbConstraintTable[i][1]
-            local centerAxis = limbConstraintTable[i][2]
-            local angles = limbConstraintTable[i][3]
-            pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis,
-                                        centerAxis, angles)
+           
+            local limbLength = limbLengthTable[i]
+            --Start the constraint according to the method
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength)
+            
         end
         -- constructs the new vectable
-        limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
+        limbVectorTable[i] = newLimbVector
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
     end
     return originCF, targetPos, limbVectorTable, limbLengthTable
@@ -3401,30 +3414,6 @@ local baseModule = Package.Base
 
 return require(baseModule)
 ]]></ProtectedString>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX91e4e4df3730406f8d4a64049c6716d6">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Temp</string>
-						<string name="ScriptGuid">{e044b939-6f3e-40c5-b5e9-a696286f3289}</string>
-						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
-local Object = require(Package.BaseRedirect)
-
-local NAME = Object.new("NAME")
---local NAME = Object.newExtends("NAME",?)
-
-function NAME.new()
-	local obj = NAME:make()
-	--local obj = NAME:super()
-	
-	return obj
-end
-
-return NAME]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -4576,7 +4565,10 @@ function MathPlane:FindClosestPointOnPlane(PointOnLine)
 
 end
 
---Checks if a vector3 point is on the plane object
+--[[
+    Checks if a vector3 point is on the plane object
+    Currently working fine
+]]
 function MathPlane:IsPointOnPlane(PositionVector)
 
     local PositionScalar = PositionVector:Dot(self.NormalVector)
@@ -4863,37 +4855,61 @@ local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
 local FabrikConstraint = Object.new("FabrikConstraint")
---local FabrikConstraint = Object.newExtends("FabrikConstraint",?)
 
---Creates a constraint with axis that depend on the part
+-- Creates a constraint with axis that depend on the part
 function FabrikConstraint.new(Part)
-	local obj = FabrikConstraint:make()
-    --local obj = FabrikConstraint:super()
+    local obj = FabrikConstraint:make()
+
     obj.Part = Part
     obj.CenterAxis = Part.CFrame.LookVector
     obj.XAxis = Part.CFrame.RightVector
     obj.YAxis = Part.CFrame.UpVector
 
-	return obj
+    return obj
 end
 
 --[[
     Method for the constraints to inherit if you want to the axis to change
 ]]
-function FabrikConstraint:RotateCFrame(GoalCFrame)
-    self.Part.CFrame = GoalCFrame
+function FabrikConstraint:ChangeCFrame(goalCFrame) 
+
+    self.Part.CFrame = goalCFrame 
+
 end
 
 --[[
-    Method to get the current axis of the part
+    Methods to set and get the current axis of the part
+    fairly activity intensive goes from 1-2% to 4-6% max
 ]]
 function FabrikConstraint:UpdateAxis()
+
     self.CenterAxis = self.Part.CFrame.LookVector
     self.XAxis = self.Part.CFrame.RightVector
-    self.YAxis = self.Part.CFrame.UpVectorend
+    self.YAxis = self.Part.CFrame.UpVector
+
 end
 
-return FabrikConstraint]]></ProtectedString>
+function FabrikConstraint:UpdateYAxis()
+
+    self.YAxis = self.Part.CFrame.UpVector
+
+end
+
+function FabrikConstraint:UpdateXAxis()
+
+    self.XAxis = self.Part.CFrame.RightVector
+
+end
+
+function FabrikConstraint:UpdateCenterAxis()
+
+    self.CenterAxis = self.Part.CFrame.LookVector
+
+end
+
+
+return FabrikConstraint
+]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -4915,21 +4931,53 @@ return FabrikConstraint]]></ProtectedString>
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
---Inheritance
+--Require the FabrikConstraint for Inheritance
 local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
 local FabrikConstraint = require(FabrikConstraintPointer)
 
+--Initialize the Self Class
 local HingeConstraint = Object.newExtends("HingeConstraint",FabrikConstraint)
+
+--Require the MathPlane object to the math with equation of planes
+local MathPlanePointer = script.Parent.Parent.MathPlane
+local MathPlane = require(MathPlanePointer)
 
 function HingeConstraint.new(Part,AngleOfElevation,AngleOfDepression)
 	local obj = HingeConstraint:super(Part)
     
-    obj.AngleOfElevation = AngleOfElevation
+    obj.AngleOfElevation = math.rad(AngleOfElevation)
     
-    obj.AngleOfDepression = AngleOfDepression
+    obj.AngleOfDepression = -math.rad(AngleOfDepression)
 
 	return obj
 end
+
+--[[
+    Constraints the limbVector like a hinge
+    returns a new limbvector
+]]
+function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+    --print("Constraining")
+    --Create a plane that is located on the joint with a surface normal to the rightvector
+    local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)
+
+    --Find where the limb should end in world position
+    local limbVectorWorld = jointPosition+limbVector
+
+    --Project it into the plane
+    local pointOnPlane = planeOnJoint:FindClosestPointOnPlane(limbVectorWorld)
+
+    --Get the new direction vector
+
+    local newDir = pointOnPlane-jointPosition
+
+
+    local newLimbVector = newDir.Unit*limbLength
+
+    return newLimbVector
+
+end
+
 
 return HingeConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
@@ -4951,6 +4999,30 @@ return require(baseModule)
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
+				</Item>
+				<Item class="ModuleScript" referent="RBXca7b8d0f48064cba8fbaec3da7b2e4f9">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">ObjectTemplate</string>
+						<string name="ScriptGuid">{46145ef2-b71a-44d3-b65d-09d30813fc64}</string>
+						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
+
+local NAME = Object.new("NAME")
+--local NAME = Object.newExtends("NAME",?)
+
+function NAME.new()
+	local obj = NAME:make()
+	--local obj = NAME:super()
+	
+	return obj
+end
+
+return NAME]]></ProtectedString>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
 				</Item>
 			</Item>
 			<Item class="Folder" referent="RBX8d406cc5c3fa42968b42290b830b0610">
@@ -5399,6 +5471,25 @@ RunService.Heartbeat:Connect(function()
      lJKneeToLowMotor.C0 = undoPreviousLimbCF*rotateLimbCF
    -- lJKneeToLowMotor.C0 = newLowLegCF
 end)
+]]></ProtectedString>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXc8746ac8cd09413c8c932e3ad032ab2e">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">randomstuff</string>
+						<string name="ScriptGuid">{0894eaba-13b0-4d05-9559-0106faab4f20}</string>
+						<ProtectedString name="Source"><![CDATA[          
+          --Old constraint forwards code
+
+          -- The axis of constraint is relative to the initial joint placement
+            local yAxis = limbConstraintTable[i][1]
+            local centerAxis = limbConstraintTable[i][2]
+            local angles = limbConstraintTable[i][3]
+            pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis,
+                                        centerAxis, angles)
 ]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
