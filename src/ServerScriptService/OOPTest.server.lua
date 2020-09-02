@@ -44,11 +44,11 @@ local testRigidJoint = lowerBody.Constraints.UpperLegConstraint
 local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
-local lKneeHinge = HingeConstraint.new(kneePart,30,30)
+local lKneeHinge = HingeConstraint.new(kneePart,10,90)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lLegHinge = HingeConstraint.new(kneePart,30,30)
-local limbConstraintTable = {upperLegRigidJoint}
+local limbConstraintTable = {upperLegRigidJoint,lKneeHinge}
 
 -- Random Parts to debug position of where joints should be according to the algorithm
 local part1 = game.Workspace.test1

@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-31.7586632</X>
-					<Y>25.8691711</Y>
-					<Z>-0.751878023</Z>
-					<R00>0.155137375</R00>
-					<R01>0.603237987</R01>
-					<R02>-0.782327533</R02>
+					<X>-22.1602249</X>
+					<Y>18.4490108</Y>
+					<Z>-5.00083494</Z>
+					<R00>-0.166540399</R00>
+					<R01>0.621052384</R01>
+					<R02>-0.765870929</R02>
 					<R10>-0</R10>
-					<R11>0.791915357</R11>
-					<R12>0.610630929</R12>
-					<R20>0.987892985</R20>
-					<R21>-0.094731681</R21>
-					<R22>0.122855648</R22>
+					<R11>0.77671808</R11>
+					<R12>0.629848421</R12>
+					<R20>0.986034632</R20>
+					<R21>0.104895204</R21>
+					<R22>-0.129354939</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-30.1940079</X>
-					<Y>24.6479092</Y>
-					<Z>-0.99758935</Z>
+					<X>-20.6284828</X>
+					<Y>17.1893139</Y>
+					<Z>-4.74212503</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1633,16 +1633,16 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-13.5000076</X>
 							<Y>12.1503181</Y>
-							<Z>-6.99999714</Z>
-							<R00>1</R00>
+							<Z>-6.99999666</Z>
+							<R00>-1</R00>
 							<R01>0</R01>
-							<R02>0</R02>
+							<R02>-8.74227766e-08</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>0</R20>
+							<R20>8.74227766e-08</R20>
 							<R21>0</R21>
-							<R22>1</R22>
+							<R22>-1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -1696,18 +1696,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="CFrame0">
-								<X>7.62939453e-06</X>
+								<X>-6.67572021e-06</X>
 								<Y>3.36021233</Y>
-								<Z>6.62499714</Z>
-								<R00>1</R00>
+								<Z>-6.62499666</Z>
+								<R00>-1</R00>
 								<R01>0</R01>
-								<R02>0</R02>
+								<R02>8.74227766e-08</R02>
 								<R10>0</R10>
 								<R11>1</R11>
 								<R12>0</R12>
-								<R20>0</R20>
+								<R20>-8.74227766e-08</R20>
 								<R21>0</R21>
-								<R22>1</R22>
+								<R22>-1</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="CFrame1">
 								<X>0</X>
@@ -3320,11 +3320,12 @@ local lKneeHinge = HingeConstraint.new(kneePart,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lLegHinge = HingeConstraint.new(kneePart,30,30)
-local limbConstraintTable = {}
+local limbConstraintTable = {upperLegRigidJoint,lKneeHinge}
 
 -- Random Parts to debug position of where joints should be according to the algorithm
 local part1 = game.Workspace.test1
 
+--Test
 
 --[[
     Then use the object to control the motor every heartbeat
@@ -3528,14 +3529,6 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
 end
 
 --[[
-    A custom constraint method to totally prevent rotation by using planes
-    lets see how this goes
-]]
-local function HingeConstraint(limbVector, limbVectorLength, yAxis,
-    centerAxis, constraintSettings)
-
-end
---[[
 	Same as forwards Function
 	limbConstraintTable
 
@@ -3560,14 +3553,14 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,
         local pointTo = nextJointPosition - jointPosition
         -- This time constraint the vector using the conical constraint function
         local newLimbVector = pointTo.Unit * limbLengthTable[i]
-        print("Index: ",i,"Vector: ",newLimbVector)
+        
         -- Checks if there is a limb constraint for the current limb in the iteration
         if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
            
             local limbLength = limbLengthTable[i]
             --Start the constraint according to the method
             --print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength,i)
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength)
             --print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
@@ -4312,8 +4305,13 @@ function LimbChain:UpdateMotors()
 
         -- Obtains the CFrame rotation calculation for CFrame.fromAxis
         local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
-        local limbRotationAngle = math.acos(limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit))
+        local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
+        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+        local limbRotationAngle = math.acos(safetyClamp)
         local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+
+        --Checks if the axis exists if cross product returns zero somehow
+        if limbRotationAxis~=Vector3.new(0,0,0) then
         
         --Gets the world space of the joint from the iterated limb vectors
         if i ~= 1 then
@@ -4329,7 +4327,10 @@ function LimbChain:UpdateMotors()
         
         --Changes the current motor6d through c0
         self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
-        
+
+        end
+
+    
     end
 
 end
@@ -5306,6 +5307,8 @@ function RigidConstraint.new(PartOrLimbChain,LimbNumber)
     else
         
     obj = RigidConstraint:super()
+    --print("Limbchain")
+    print(PartOrLimbChain)
     obj.LimbChain = PartOrLimbChain
     obj.LimbNumber = LimbNumber
 
@@ -5320,7 +5323,7 @@ end
     or it points in the motor6ds original direction
     returns a new limbvector vector 3 at full length
 ]]
-function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength,index)
+function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
 
     --Checks if there is a part to set the constraint axis to
     if self.Part ~=nil then
@@ -5329,7 +5332,7 @@ function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
     else
         
-        return self.LimbChain:GetOriginalLimbDirection(index).Unit*limbLength
+        return self.LimbChain:GetOriginalLimbDirection(self.LimbNumber).Unit*limbLength
 
     end
 end

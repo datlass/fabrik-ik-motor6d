@@ -11,13 +11,17 @@ local FabrikConstraint = require(FabrikConstraintPointer)
 --Initialize the Self Class
 local RigidConstraint = Object.newExtends("RigidConstraint",FabrikConstraint)
 
---Require the MathPlane object to the math with equation of planes
-local MathPlanePointer = script.Parent.Parent.MathPlane
-local MathPlane = require(MathPlanePointer)
-
+--[[--------------------------------------------------------
+    Create the constraint
+    Parameters:
+]]
 function RigidConstraint.new(PartOrLimbChain,LimbNumber)
     local obj
 
+    --[[
+        Detects if parameter 1 is a limb chain object, if it is then it constraints to the original limb position
+        
+    ]]
     if  not PartOrLimbChain:isA("LimbChain") then
     
     obj = RigidConstraint:super(PartOrLimbChain)
@@ -25,8 +29,7 @@ function RigidConstraint.new(PartOrLimbChain,LimbNumber)
     else
         
     obj = RigidConstraint:super()
-    --print("Limbchain")
-    print(PartOrLimbChain)
+   
     obj.LimbChain = PartOrLimbChain
     obj.LimbNumber = LimbNumber
 

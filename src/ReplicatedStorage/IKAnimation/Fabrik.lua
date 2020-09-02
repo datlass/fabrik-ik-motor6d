@@ -130,14 +130,6 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
 end
 
 --[[
-    A custom constraint method to totally prevent rotation by using planes
-    lets see how this goes
-]]
-local function HingeConstraint(limbVector, limbVectorLength, yAxis,
-    centerAxis, constraintSettings)
-
-end
---[[
 	Same as forwards Function
 	limbConstraintTable
 
