@@ -104,8 +104,13 @@ function LimbChain:UpdateMotors()
 
         -- Obtains the CFrame rotation calculation for CFrame.fromAxis
         local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
-        local limbRotationAngle = math.acos(limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit))
+        local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
+        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+        local limbRotationAngle = math.acos(safetyClamp)
         local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+
+        --Checks if the axis exists if cross product returns zero somehow
+        if limbRotationAxis~=Vector3.new(0,0,0) then
         
         --Gets the world space of the joint from the iterated limb vectors
         if i ~= 1 then
@@ -121,7 +126,10 @@ function LimbChain:UpdateMotors()
         
         --Changes the current motor6d through c0
         self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
-        
+
+        end
+
+    
     end
 
 end

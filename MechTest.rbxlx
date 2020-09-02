@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-25.1963482</X>
-					<Y>19.068821</Y>
-					<Z>5.11121845</Z>
-					<R00>0.361570686</R00>
-					<R01>0.509312391</R01>
-					<R02>-0.780940235</R02>
+					<X>-31.7586632</X>
+					<Y>25.8691711</Y>
+					<Z>-0.751878023</Z>
+					<R00>0.155137375</R00>
+					<R01>0.603237987</R01>
+					<R02>-0.782327533</R02>
 					<R10>-0</R10>
-					<R11>0.837608933</R11>
-					<R12>0.54627049</R12>
-					<R20>0.932344675</R20>
-					<R21>-0.197515398</R21>
-					<R22>0.302854836</R22>
+					<R11>0.791915357</R11>
+					<R12>0.610630929</R12>
+					<R20>0.987892985</R20>
+					<R21>-0.094731681</R21>
+					<R22>0.122855648</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-23.6344681</X>
-					<Y>17.9762802</Y>
-					<Z>4.5055089</Z>
+					<X>-30.1940079</X>
+					<Y>24.6479092</Y>
+					<Z>-0.99758935</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1644,7 +1644,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<R21>0</R21>
 							<R22>1</R22>
 						</CoordinateFrame>
-						<bool name="CanCollide">true</bool>
+						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
 						<int name="CollisionGroupId">0</int>
 						<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
@@ -1660,7 +1660,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="LeftSurface">0</token>
 						<token name="LeftSurfaceInput">0</token>
 						<bool name="Locked">false</bool>
-						<bool name="Massless">false</bool>
+						<bool name="Massless">true</bool>
 						<token name="Material">256</token>
 						<string name="Name">KneeConstraint</string>
 						<float name="Reflectance">0</float>
@@ -1757,7 +1757,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<R21>-0.793358088</R21>
 							<R22>0.493610412</R22>
 						</CoordinateFrame>
-						<bool name="CanCollide">true</bool>
+						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
 						<int name="CollisionGroupId">0</int>
 						<Color3uint8 name="Color3uint8">4294946816</Color3uint8>
@@ -1773,7 +1773,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="LeftSurface">0</token>
 						<token name="LeftSurfaceInput">0</token>
 						<bool name="Locked">false</bool>
-						<bool name="Massless">false</bool>
+						<bool name="Massless">true</bool>
 						<token name="Material">256</token>
 						<string name="Name">UpperLegConstraint</string>
 						<float name="Reflectance">0</float>
@@ -1870,7 +1870,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<R21>0</R21>
 							<R22>1</R22>
 						</CoordinateFrame>
-						<bool name="CanCollide">true</bool>
+						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
 						<int name="CollisionGroupId">0</int>
 						<Color3uint8 name="Color3uint8">4281099549</Color3uint8>
@@ -1886,7 +1886,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="LeftSurface">0</token>
 						<token name="LeftSurfaceInput">0</token>
 						<bool name="Locked">false</bool>
-						<bool name="Massless">false</bool>
+						<bool name="Massless">true</bool>
 						<token name="Material">256</token>
 						<string name="Name">LowerLegConstraint</string>
 						<float name="Reflectance">0</float>
@@ -3317,11 +3317,13 @@ local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,30,30)
-local limbConstraintTable = {nil,lKneeHinge}
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lLegHinge = HingeConstraint.new(kneePart,30,30)
-local limbConstraintTable = {nil,lKneeHinge}
+local limbConstraintTable = {}
+
+-- Random Parts to debug position of where joints should be according to the algorithm
+local part1 = game.Workspace.test1
 
 
 --[[
@@ -3333,7 +3335,8 @@ RunService.Heartbeat:Connect(function()
     local goalPosition = workspace.LTarget.Position
 
     --upperLegRigidJoint:UpdateAxis()
-    lKneeHinge:UpdateAxis()
+    --lKneeHinge:UpdateAxis()
+    --lLegHinge:UpdateAxis()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
@@ -3557,15 +3560,15 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,
         local pointTo = nextJointPosition - jointPosition
         -- This time constraint the vector using the conical constraint function
         local newLimbVector = pointTo.Unit * limbLengthTable[i]
-
+        print("Index: ",i,"Vector: ",newLimbVector)
         -- Checks if there is a limb constraint for the current limb in the iteration
         if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
            
             local limbLength = limbLengthTable[i]
             --Start the constraint according to the method
-            print(limbConstraintTable[i])
+            --print(limbConstraintTable[i])
             newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength,i)
-            print("Index: ",i,"Vector: ",newLimbVector)
+            --print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
         limbVectorTable[i] = newLimbVector
@@ -5326,8 +5329,7 @@ function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
     else
         
-        print(self.LimbChain:GetOriginalLimbDirection(index))
-        return self.LimbChain:GetOriginalLimbDirection(index)
+        return self.LimbChain:GetOriginalLimbDirection(index).Unit*limbLength
 
     end
 end

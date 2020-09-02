@@ -162,15 +162,15 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,
         local pointTo = nextJointPosition - jointPosition
         -- This time constraint the vector using the conical constraint function
         local newLimbVector = pointTo.Unit * limbLengthTable[i]
-
+        
         -- Checks if there is a limb constraint for the current limb in the iteration
         if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
            
             local limbLength = limbLengthTable[i]
             --Start the constraint according to the method
-            print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength,i)
-            print("Index: ",i,"Vector: ",newLimbVector)
+            --print(limbConstraintTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength)
+            --print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
         limbVectorTable[i] = newLimbVector

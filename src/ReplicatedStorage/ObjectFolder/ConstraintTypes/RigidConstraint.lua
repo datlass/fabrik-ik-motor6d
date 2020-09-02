@@ -25,6 +25,8 @@ function RigidConstraint.new(PartOrLimbChain,LimbNumber)
     else
         
     obj = RigidConstraint:super()
+    --print("Limbchain")
+    print(PartOrLimbChain)
     obj.LimbChain = PartOrLimbChain
     obj.LimbNumber = LimbNumber
 
@@ -39,7 +41,7 @@ end
     or it points in the motor6ds original direction
     returns a new limbvector vector 3 at full length
 ]]
-function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength,index)
+function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
 
     --Checks if there is a part to set the constraint axis to
     if self.Part ~=nil then
@@ -48,8 +50,7 @@ function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
     else
         
-        print(self.LimbChain:GetOriginalLimbDirection(index))
-        return self.LimbChain:GetOriginalLimbDirection(index)
+        return self.LimbChain:GetOriginalLimbDirection(self.LimbNumber).Unit*limbLength
 
     end
 end

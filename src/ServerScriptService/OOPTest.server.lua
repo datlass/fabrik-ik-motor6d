@@ -48,8 +48,12 @@ local lKneeHinge = HingeConstraint.new(kneePart,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lLegHinge = HingeConstraint.new(kneePart,30,30)
-local limbConstraintTable = {nil,lKneeHinge,lLegHinge}
+local limbConstraintTable = {upperLegRigidJoint}
 
+-- Random Parts to debug position of where joints should be according to the algorithm
+local part1 = game.Workspace.test1
+
+--Test
 
 --[[
     Then use the object to control the motor every heartbeat
@@ -60,8 +64,8 @@ RunService.Heartbeat:Connect(function()
     local goalPosition = workspace.LTarget.Position
 
     --upperLegRigidJoint:UpdateAxis()
-    lKneeHinge:UpdateAxis()
-    lLegHinge:UpdateAxis()
+    --lKneeHinge:UpdateAxis()
+    --lLegHinge:UpdateAxis()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
