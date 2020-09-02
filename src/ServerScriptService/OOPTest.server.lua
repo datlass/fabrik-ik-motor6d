@@ -13,6 +13,8 @@ local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegio
 local RotatedRegion3 = require(RotatedRegion3Pointer)
 --It works time
 
+-------------------Import all the Constraints Types-----------------
+
 --HingeConstraint
 local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
@@ -21,25 +23,8 @@ local HingeConstraint = require(HingeConstraintPointer)
 local RigidConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.RigidConstraint
 local RigidConstraint = require(RigidConstraintPointer)
 
---Testing the constraint
-local part = workspace.UpperLegConstraint
-local upperLegRigidJoint = RigidConstraint.new(part)
+----------------------------------------------------------------
 
-local kneePart = workspace.KneeConstraint
-local lKneeHinge = HingeConstraint.new(kneePart,30,30)
-
-
---[[
---Test the mathplane object
-local MathPlanePointer = ReplicatedStorage.Source.ObjectFolder.MathPlane
-local MathPlane = require(MathPlanePointer)
-
-local plane = MathPlane.new(Vector3.new(3,4,1),Vector3.new(-1,1,0))
---It works?? but floating point error
-local point = plane:FindClosestPointOnPlane(Vector3.new(1,0,1))
-local bool = plane:IsPointOnPlane(Vector3.new(-1,1,0))
-print(point,bool)
-]]
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -54,6 +39,18 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = LimbChain.new(motorTable)
 
+--Testing the constraint
+local testRigidJoint = lowerBody.Constraints.UpperLegConstraint
+local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
+
+local kneePart = lowerBody.Constraints.KneeConstraint
+local lKneeHinge = HingeConstraint.new(kneePart,30,30)
+
+local kneePart = lowerBody.Constraints.KneeConstraint
+local lLegHinge = HingeConstraint.new(kneePart,30,30)
+local limbConstraintTable = {nil,lKneeHinge,lLegHinge}
+
+
 --[[
     Then use the object to control the motor every heartbeat
     ]]
@@ -62,9 +59,9 @@ RunService.Heartbeat:Connect(function()
     --The Goal position
     local goalPosition = workspace.LTarget.Position
 
-    upperLegRigidJoint:UpdateAxis()
+    --upperLegRigidJoint:UpdateAxis()
     lKneeHinge:UpdateAxis()
-    local limbConstraintTable = {upperLegRigidJoint,lKneeHinge}
+    lLegHinge:UpdateAxis()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()

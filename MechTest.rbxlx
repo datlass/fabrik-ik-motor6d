@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-33.6808319</X>
-					<Y>18.4963455</Y>
-					<Z>-7.07713318</Z>
-					<R00>0.151556984</R00>
-					<R01>0.161432102</R01>
-					<R02>-0.97517705</R02>
-					<R10>1.86264493e-09</R10>
-					<R11>0.986573398</R11>
-					<R12>0.163318679</R12>
-					<R20>0.988448501</R20>
-					<R21>-0.0247520879</R21>
-					<R22>0.149522096</R22>
+					<X>-25.1963482</X>
+					<Y>19.068821</Y>
+					<Z>5.11121845</Z>
+					<R00>0.361570686</R00>
+					<R01>0.509312391</R01>
+					<R02>-0.780940235</R02>
+					<R10>-0</R10>
+					<R11>0.837608933</R11>
+					<R12>0.54627049</R12>
+					<R20>0.932344675</R20>
+					<R21>-0.197515398</R21>
+					<R22>0.302854836</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-31.7304783</X>
-					<Y>18.1697083</Y>
-					<Z>-7.37617731</Z>
+					<X>-23.6344681</X>
+					<Y>17.9762802</Y>
+					<Z>4.5055089</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1618,6 +1618,345 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<string name="Name">Constraints</string>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
+				<Item class="WedgePart" referent="RBXbb365bcbee434605951939acb27dcfff">
+					<Properties>
+						<bool name="Anchored">false</bool>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<token name="BackSurface">0</token>
+						<token name="BackSurfaceInput">0</token>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<token name="BottomSurface">0</token>
+						<token name="BottomSurfaceInput">0</token>
+						<CoordinateFrame name="CFrame">
+							<X>-13.5000076</X>
+							<Y>12.1503181</Y>
+							<Z>-6.99999714</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">true</bool>
+						<bool name="CastShadow">true</bool>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
+						<PhysicalProperties name="CustomPhysicalProperties">
+							<CustomPhysics>false</CustomPhysics>
+						</PhysicalProperties>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<token name="FrontSurface">0</token>
+						<token name="FrontSurfaceInput">0</token>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<token name="LeftSurface">0</token>
+						<token name="LeftSurfaceInput">0</token>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<token name="Material">256</token>
+						<string name="Name">KneeConstraint</string>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<token name="RightSurface">0</token>
+						<token name="RightSurfaceInput">0</token>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<BinaryString name="Tags"></BinaryString>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<token name="TopSurface">0</token>
+						<token name="TopSurfaceInput">0</token>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<token name="formFactorRaw">1</token>
+						<Vector3 name="size">
+							<X>1</X>
+							<Y>1</Y>
+							<Z>2</Z>
+						</Vector3>
+					</Properties>
+					<Item class="WeldConstraint" referent="RBX9bc49577be76455095a0c9ef4d2565fe">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<CoordinateFrame name="CFrame0">
+								<X>7.62939453e-06</X>
+								<Y>3.36021233</Y>
+								<Z>6.62499714</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<CoordinateFrame name="CFrame1">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Enabled">true</bool>
+							<string name="Name">WeldConstraint</string>
+							<Ref name="Part0Internal">RBXbb365bcbee434605951939acb27dcfff</Ref>
+							<Ref name="Part1Internal">RBX33544b4ff2714e70b3dbd4de6a5ee7a4</Ref>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="WedgePart" referent="RBX1646ae3200db46b7ad887cdf63e70bc4">
+					<Properties>
+						<bool name="Anchored">false</bool>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<token name="BackSurface">0</token>
+						<token name="BackSurfaceInput">0</token>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<token name="BottomSurface">0</token>
+						<token name="BottomSurfaceInput">0</token>
+						<CoordinateFrame name="CFrame">
+							<X>-19.5000095</X>
+							<Y>18.5</Y>
+							<Z>2.00000334</Z>
+							<R00>0.851659715</R00>
+							<R01>-0.0584068745</R01>
+							<R02>0.520830572</R02>
+							<R10>-0.384374857</R10>
+							<R11>0.605946958</R11>
+							<R12>0.696479976</R12>
+							<R20>-0.356274873</R20>
+							<R21>-0.793358088</R21>
+							<R22>0.493610412</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">true</bool>
+						<bool name="CastShadow">true</bool>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4294946816</Color3uint8>
+						<PhysicalProperties name="CustomPhysicalProperties">
+							<CustomPhysics>false</CustomPhysics>
+						</PhysicalProperties>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<token name="FrontSurface">0</token>
+						<token name="FrontSurfaceInput">0</token>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<token name="LeftSurface">0</token>
+						<token name="LeftSurfaceInput">0</token>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<token name="Material">256</token>
+						<string name="Name">UpperLegConstraint</string>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<token name="RightSurface">0</token>
+						<token name="RightSurfaceInput">0</token>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<BinaryString name="Tags"></BinaryString>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<token name="TopSurface">0</token>
+						<token name="TopSurfaceInput">0</token>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<token name="formFactorRaw">1</token>
+						<Vector3 name="size">
+							<X>1</X>
+							<Y>1</Y>
+							<Z>2</Z>
+						</Vector3>
+					</Properties>
+					<Item class="WeldConstraint" referent="RBXdd366f74daaa4c41a8117b0afb974eda">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<CoordinateFrame name="CFrame0">
+								<X>9.74703217</X>
+								<Y>0.828337669</Y>
+								<Z>4.31471443</Z>
+								<R00>0.851659715</R00>
+								<R01>-0.384374857</R01>
+								<R02>-0.356274873</R02>
+								<R10>-0.0584068745</R10>
+								<R11>0.605946958</R11>
+								<R12>-0.793358088</R12>
+								<R20>0.520830572</R20>
+								<R21>0.696479976</R21>
+								<R22>0.493610412</R22>
+							</CoordinateFrame>
+							<CoordinateFrame name="CFrame1">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Enabled">true</bool>
+							<string name="Name">WeldConstraint</string>
+							<Ref name="Part0Internal">RBX1646ae3200db46b7ad887cdf63e70bc4</Ref>
+							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="WedgePart" referent="RBX8098c60f5c6d4818af9c74cfdf8b9c19">
+					<Properties>
+						<bool name="Anchored">false</bool>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<token name="BackSurface">0</token>
+						<token name="BackSurfaceInput">0</token>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<token name="BottomSurface">0</token>
+						<token name="BottomSurfaceInput">0</token>
+						<CoordinateFrame name="CFrame">
+							<X>-19.5000134</X>
+							<Y>11.1503172</Y>
+							<Z>2.00000334</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">true</bool>
+						<bool name="CastShadow">true</bool>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4281099549</Color3uint8>
+						<PhysicalProperties name="CustomPhysicalProperties">
+							<CustomPhysics>false</CustomPhysics>
+						</PhysicalProperties>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<token name="FrontSurface">0</token>
+						<token name="FrontSurfaceInput">0</token>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<token name="LeftSurface">0</token>
+						<token name="LeftSurfaceInput">0</token>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<token name="Material">256</token>
+						<string name="Name">LowerLegConstraint</string>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<token name="RightSurface">0</token>
+						<token name="RightSurfaceInput">0</token>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<BinaryString name="Tags"></BinaryString>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<token name="TopSurface">0</token>
+						<token name="TopSurfaceInput">0</token>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<token name="formFactorRaw">1</token>
+						<Vector3 name="size">
+							<X>1</X>
+							<Y>1</Y>
+							<Z>2</Z>
+						</Vector3>
+					</Properties>
+					<Item class="WeldConstraint" referent="RBX7f2f857bb2cb4efdbb78c65ad2380718">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<CoordinateFrame name="CFrame0">
+								<X>5.75019169</X>
+								<Y>1.35848141</Y>
+								<Z>-2.3799901</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<CoordinateFrame name="CFrame1">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Enabled">true</bool>
+							<string name="Name">WeldConstraint</string>
+							<Ref name="Part0Internal">RBX8098c60f5c6d4818af9c74cfdf8b9c19</Ref>
+							<Ref name="Part1Internal">RBX715d8d11959a4ed1b751c4e37ebc5745</Ref>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+				</Item>
 			</Item>
 		</Item>
 		<Item class="Part" referent="RBX8ac4f2adca9f43f09d47ed74d52351a8">
@@ -2186,232 +2525,6 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<string name="Name">Weld</string>
 					<Ref name="Part0">7</Ref>
 					<Ref name="Part1">RBXb87e950ba0f74c0c988b0e1801562f21</Ref>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-			</Item>
-		</Item>
-		<Item class="WedgePart" referent="RBX1646ae3200db46b7ad887cdf63e70bc4">
-			<Properties>
-				<bool name="Anchored">false</bool>
-				<BinaryString name="AttributesSerialize"></BinaryString>
-				<float name="BackParamA">-0.5</float>
-				<float name="BackParamB">0.5</float>
-				<token name="BackSurface">0</token>
-				<token name="BackSurfaceInput">0</token>
-				<float name="BottomParamA">-0.5</float>
-				<float name="BottomParamB">0.5</float>
-				<token name="BottomSurface">0</token>
-				<token name="BottomSurfaceInput">0</token>
-				<CoordinateFrame name="CFrame">
-					<X>-19.5000076</X>
-					<Y>18.5</Y>
-					<Z>2.00000334</Z>
-					<R00>0.851659715</R00>
-					<R01>-0.0584068745</R01>
-					<R02>0.520830572</R02>
-					<R10>-0.384374857</R10>
-					<R11>0.605946958</R11>
-					<R12>0.696479976</R12>
-					<R20>-0.356274873</R20>
-					<R21>-0.793358088</R21>
-					<R22>0.493610412</R22>
-				</CoordinateFrame>
-				<bool name="CanCollide">true</bool>
-				<bool name="CastShadow">true</bool>
-				<int name="CollisionGroupId">0</int>
-				<Color3uint8 name="Color3uint8">4294946816</Color3uint8>
-				<PhysicalProperties name="CustomPhysicalProperties">
-					<CustomPhysics>false</CustomPhysics>
-				</PhysicalProperties>
-				<float name="FrontParamA">-0.5</float>
-				<float name="FrontParamB">0.5</float>
-				<token name="FrontSurface">0</token>
-				<token name="FrontSurfaceInput">0</token>
-				<float name="LeftParamA">-0.5</float>
-				<float name="LeftParamB">0.5</float>
-				<token name="LeftSurface">0</token>
-				<token name="LeftSurfaceInput">0</token>
-				<bool name="Locked">false</bool>
-				<bool name="Massless">false</bool>
-				<token name="Material">256</token>
-				<string name="Name">UpperLegConstraint</string>
-				<float name="Reflectance">0</float>
-				<float name="RightParamA">-0.5</float>
-				<float name="RightParamB">0.5</float>
-				<token name="RightSurface">0</token>
-				<token name="RightSurfaceInput">0</token>
-				<int name="RootPriority">0</int>
-				<Vector3 name="RotVelocity">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-				</Vector3>
-				<BinaryString name="Tags"></BinaryString>
-				<float name="TopParamA">-0.5</float>
-				<float name="TopParamB">0.5</float>
-				<token name="TopSurface">0</token>
-				<token name="TopSurfaceInput">0</token>
-				<float name="Transparency">0</float>
-				<Vector3 name="Velocity">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-				</Vector3>
-				<token name="formFactorRaw">1</token>
-				<Vector3 name="size">
-					<X>1</X>
-					<Y>1</Y>
-					<Z>2</Z>
-				</Vector3>
-			</Properties>
-			<Item class="WeldConstraint" referent="RBXdd366f74daaa4c41a8117b0afb974eda">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<CoordinateFrame name="CFrame0">
-						<X>9.74703026</X>
-						<Y>0.828337669</Y>
-						<Z>4.31471252</Z>
-						<R00>0.851659715</R00>
-						<R01>-0.384374857</R01>
-						<R02>-0.356274873</R02>
-						<R10>-0.0584068745</R10>
-						<R11>0.605946958</R11>
-						<R12>-0.793358088</R12>
-						<R20>0.520830572</R20>
-						<R21>0.696479976</R21>
-						<R22>0.493610412</R22>
-					</CoordinateFrame>
-					<CoordinateFrame name="CFrame1">
-						<X>0</X>
-						<Y>0</Y>
-						<Z>0</Z>
-						<R00>1</R00>
-						<R01>0</R01>
-						<R02>0</R02>
-						<R10>0</R10>
-						<R11>1</R11>
-						<R12>0</R12>
-						<R20>0</R20>
-						<R21>0</R21>
-						<R22>1</R22>
-					</CoordinateFrame>
-					<bool name="Enabled">true</bool>
-					<string name="Name">WeldConstraint</string>
-					<Ref name="Part0Internal">RBX1646ae3200db46b7ad887cdf63e70bc4</Ref>
-					<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-			</Item>
-		</Item>
-		<Item class="WedgePart" referent="RBXbb365bcbee434605951939acb27dcfff">
-			<Properties>
-				<bool name="Anchored">false</bool>
-				<BinaryString name="AttributesSerialize"></BinaryString>
-				<float name="BackParamA">-0.5</float>
-				<float name="BackParamB">0.5</float>
-				<token name="BackSurface">0</token>
-				<token name="BackSurfaceInput">0</token>
-				<float name="BottomParamA">-0.5</float>
-				<float name="BottomParamB">0.5</float>
-				<token name="BottomSurface">0</token>
-				<token name="BottomSurfaceInput">0</token>
-				<CoordinateFrame name="CFrame">
-					<X>-13.5000076</X>
-					<Y>12.1503181</Y>
-					<Z>-6.99999714</Z>
-					<R00>1</R00>
-					<R01>0</R01>
-					<R02>0</R02>
-					<R10>0</R10>
-					<R11>1</R11>
-					<R12>0</R12>
-					<R20>0</R20>
-					<R21>0</R21>
-					<R22>1</R22>
-				</CoordinateFrame>
-				<bool name="CanCollide">true</bool>
-				<bool name="CastShadow">true</bool>
-				<int name="CollisionGroupId">0</int>
-				<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
-				<PhysicalProperties name="CustomPhysicalProperties">
-					<CustomPhysics>false</CustomPhysics>
-				</PhysicalProperties>
-				<float name="FrontParamA">-0.5</float>
-				<float name="FrontParamB">0.5</float>
-				<token name="FrontSurface">0</token>
-				<token name="FrontSurfaceInput">0</token>
-				<float name="LeftParamA">-0.5</float>
-				<float name="LeftParamB">0.5</float>
-				<token name="LeftSurface">0</token>
-				<token name="LeftSurfaceInput">0</token>
-				<bool name="Locked">false</bool>
-				<bool name="Massless">false</bool>
-				<token name="Material">256</token>
-				<string name="Name">KneeConstraint</string>
-				<float name="Reflectance">0</float>
-				<float name="RightParamA">-0.5</float>
-				<float name="RightParamB">0.5</float>
-				<token name="RightSurface">0</token>
-				<token name="RightSurfaceInput">0</token>
-				<int name="RootPriority">0</int>
-				<Vector3 name="RotVelocity">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-				</Vector3>
-				<BinaryString name="Tags"></BinaryString>
-				<float name="TopParamA">-0.5</float>
-				<float name="TopParamB">0.5</float>
-				<token name="TopSurface">0</token>
-				<token name="TopSurfaceInput">0</token>
-				<float name="Transparency">0</float>
-				<Vector3 name="Velocity">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-				</Vector3>
-				<token name="formFactorRaw">1</token>
-				<Vector3 name="size">
-					<X>1</X>
-					<Y>1</Y>
-					<Z>2</Z>
-				</Vector3>
-			</Properties>
-			<Item class="WeldConstraint" referent="RBX9bc49577be76455095a0c9ef4d2565fe">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<CoordinateFrame name="CFrame0">
-						<X>7.62939453e-06</X>
-						<Y>3.36021233</Y>
-						<Z>6.62499714</Z>
-						<R00>1</R00>
-						<R01>0</R01>
-						<R02>0</R02>
-						<R10>0</R10>
-						<R11>1</R11>
-						<R12>0</R12>
-						<R20>0</R20>
-						<R21>0</R21>
-						<R22>1</R22>
-					</CoordinateFrame>
-					<CoordinateFrame name="CFrame1">
-						<X>0</X>
-						<Y>0</Y>
-						<Z>0</Z>
-						<R00>1</R00>
-						<R01>0</R01>
-						<R02>0</R02>
-						<R10>0</R10>
-						<R11>1</R11>
-						<R12>0</R12>
-						<R20>0</R20>
-						<R21>0</R21>
-						<R22>1</R22>
-					</CoordinateFrame>
-					<bool name="Enabled">true</bool>
-					<string name="Name">WeldConstraint</string>
-					<Ref name="Part0Internal">RBXbb365bcbee434605951939acb27dcfff</Ref>
-					<Ref name="Part1Internal">RBX33544b4ff2714e70b3dbd4de6a5ee7a4</Ref>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -3172,6 +3285,8 @@ local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegio
 local RotatedRegion3 = require(RotatedRegion3Pointer)
 --It works time
 
+-------------------Import all the Constraints Types-----------------
+
 --HingeConstraint
 local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
@@ -3180,25 +3295,8 @@ local HingeConstraint = require(HingeConstraintPointer)
 local RigidConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.RigidConstraint
 local RigidConstraint = require(RigidConstraintPointer)
 
---Testing the constraint
-local part = workspace.UpperLegConstraint
-local upperLegRigidJoint = RigidConstraint.new(part)
+----------------------------------------------------------------
 
-local kneePart = workspace.KneeConstraint
-local lKneeHinge = HingeConstraint.new(kneePart,30,30)
-
-
---[[
---Test the mathplane object
-local MathPlanePointer = ReplicatedStorage.Source.ObjectFolder.MathPlane
-local MathPlane = require(MathPlanePointer)
-
-local plane = MathPlane.new(Vector3.new(3,4,1),Vector3.new(-1,1,0))
---It works?? but floating point error
-local point = plane:FindClosestPointOnPlane(Vector3.new(1,0,1))
-local bool = plane:IsPointOnPlane(Vector3.new(-1,1,0))
-print(point,bool)
-]]
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -3213,6 +3311,19 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = LimbChain.new(motorTable)
 
+--Testing the constraint
+local testRigidJoint = lowerBody.Constraints.UpperLegConstraint
+local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
+
+local kneePart = lowerBody.Constraints.KneeConstraint
+local lKneeHinge = HingeConstraint.new(kneePart,30,30)
+local limbConstraintTable = {nil,lKneeHinge}
+
+local kneePart = lowerBody.Constraints.KneeConstraint
+local lLegHinge = HingeConstraint.new(kneePart,30,30)
+local limbConstraintTable = {nil,lKneeHinge}
+
+
 --[[
     Then use the object to control the motor every heartbeat
     ]]
@@ -3221,9 +3332,8 @@ RunService.Heartbeat:Connect(function()
     --The Goal position
     local goalPosition = workspace.LTarget.Position
 
-    upperLegRigidJoint:UpdateAxis()
+    --upperLegRigidJoint:UpdateAxis()
     lKneeHinge:UpdateAxis()
-    local limbConstraintTable = {upperLegRigidJoint,lKneeHinge}
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
@@ -3449,12 +3559,13 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,
         local newLimbVector = pointTo.Unit * limbLengthTable[i]
 
         -- Checks if there is a limb constraint for the current limb in the iteration
-        if limbConstraintTable[i] then
+        if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
            
             local limbLength = limbLengthTable[i]
             --Start the constraint according to the method
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength)
-            
+            print(limbConstraintTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength,i)
+            print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
         limbVectorTable[i] = newLimbVector
@@ -4234,6 +4345,25 @@ function LimbChain:PrintLimbVectors()
 
 end
 
+--Gets the original vector limb direction relative to the part
+function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
+
+    local i = limbVectorNumber
+
+    --Obtains the current limb that is being worked on
+    local originalVectorLimb = self.LimbVectorTable[i]
+
+    --Obtains the CFrame of the part0 limb of the motor6d
+    local previousLimbPart = self.Motor6DTable[i].Parent
+    local previousLimbCF = previousLimbPart.CFrame
+
+    -- Obtains the vector relative to the previous part0
+    local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+    
+    return limbVectorRelativeToOriginal
+
+end
+
 return LimbChain]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
@@ -4981,10 +5111,13 @@ local FabrikConstraint = Object.new("FabrikConstraint")
 function FabrikConstraint.new(Part)
     local obj = FabrikConstraint:make()
 
+    --If there is a part, relative constraint axis is set accordingly
+    if Part then
     obj.Part = Part
     obj.CenterAxis = Part.CFrame.LookVector
     obj.XAxis = Part.CFrame.RightVector
     obj.YAxis = Part.CFrame.UpVector
+    end
 
     return obj
 end
@@ -5000,10 +5133,18 @@ end
 
 --[[
     Method for the constraints to inherit if you want to the axis to change
+    Currently broken because of the weld constraint changing the model's CFrame also
 ]]
-function FabrikConstraint:ChangeCFrame(goalCFrame) 
+function FabrikConstraint:RotateCFrameOrientation(goalCFrameRotation) 
 
-    self.Part.CFrame = goalCFrame 
+    --disable the weld constraint first to prevent it moving
+    self.Part:FindFirstChild("WeldConstraint").Enabled = false
+
+    --Change the constraint
+    self.Part.CFrame = CFrame.new(self.Part.CFrame.Position)*goalCFrameRotation 
+
+    --Disable the weld Constraint
+    self.Part:FindFirstChild("WeldConstraint").Enabled = true
 
 end
 
@@ -5152,21 +5293,43 @@ local RigidConstraint = Object.newExtends("RigidConstraint",FabrikConstraint)
 local MathPlanePointer = script.Parent.Parent.MathPlane
 local MathPlane = require(MathPlanePointer)
 
-function RigidConstraint.new(Part)
-	local obj = RigidConstraint:super(Part)
+function RigidConstraint.new(PartOrLimbChain,LimbNumber)
+    local obj
+
+    if  not PartOrLimbChain:isA("LimbChain") then
+    
+    obj = RigidConstraint:super(PartOrLimbChain)
+
+    else
+        
+    obj = RigidConstraint:super()
+    obj.LimbChain = PartOrLimbChain
+    obj.LimbNumber = LimbNumber
+
+    end
     
 	return obj
 end
 
 --[[
     Constraints the limbVector like a rigid joint
-    It doesn't move
+    It doesn't move and the joint points in the part's current direction
+    or it points in the motor6ds original direction
     returns a new limbvector vector 3 at full length
 ]]
-function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength,index)
 
-    return self.CenterAxis.Unit*limbLength
+    --Checks if there is a part to set the constraint axis to
+    if self.Part ~=nil then
 
+        return self.CenterAxis.Unit*limbLength
+
+    else
+        
+        print(self.LimbChain:GetOriginalLimbDirection(index))
+        return self.LimbChain:GetOriginalLimbDirection(index)
+
+    end
 end
 
 

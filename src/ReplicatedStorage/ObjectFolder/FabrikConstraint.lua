@@ -8,10 +8,13 @@ local FabrikConstraint = Object.new("FabrikConstraint")
 function FabrikConstraint.new(Part)
     local obj = FabrikConstraint:make()
 
+    --If there is a part, relative constraint axis is set accordingly
+    if Part then
     obj.Part = Part
     obj.CenterAxis = Part.CFrame.LookVector
     obj.XAxis = Part.CFrame.RightVector
     obj.YAxis = Part.CFrame.UpVector
+    end
 
     return obj
 end
@@ -27,10 +30,18 @@ end
 
 --[[
     Method for the constraints to inherit if you want to the axis to change
+    Currently broken because of the weld constraint changing the model's CFrame also
 ]]
-function FabrikConstraint:ChangeCFrame(goalCFrame) 
+function FabrikConstraint:RotateCFrameOrientation(goalCFrameRotation) 
 
-    self.Part.CFrame = goalCFrame 
+    --disable the weld constraint first to prevent it moving
+    self.Part:FindFirstChild("WeldConstraint").Enabled = false
+
+    --Change the constraint
+    self.Part.CFrame = CFrame.new(self.Part.CFrame.Position)*goalCFrameRotation 
+
+    --Disable the weld Constraint
+    self.Part:FindFirstChild("WeldConstraint").Enabled = true
 
 end
 

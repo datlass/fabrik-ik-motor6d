@@ -140,4 +140,23 @@ function LimbChain:PrintLimbVectors()
 
 end
 
+--Gets the original vector limb direction relative to the part
+function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
+
+    local i = limbVectorNumber
+
+    --Obtains the current limb that is being worked on
+    local originalVectorLimb = self.LimbVectorTable[i]
+
+    --Obtains the CFrame of the part0 limb of the motor6d
+    local previousLimbPart = self.Motor6DTable[i].Parent
+    local previousLimbCF = previousLimbPart.CFrame
+
+    -- Obtains the vector relative to the previous part0
+    local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+    
+    return limbVectorRelativeToOriginal
+
+end
+
 return LimbChain
