@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-25.3444996</X>
-					<Y>16.1847916</Y>
-					<Z>-1.7937839</Z>
-					<R00>0.20592083</R00>
-					<R01>0.493755966</R01>
-					<R02>-0.844867826</R02>
-					<R10>-7.45058149e-09</R10>
-					<R11>0.863371074</R11>
-					<R12>0.50456953</R12>
-					<R20>0.978568733</R20>
-					<R21>-0.103901371</R21>
-					<R22>0.177786067</R22>
+					<X>-16.085104</X>
+					<Y>15.4796724</Y>
+					<Z>-12.1368313</Z>
+					<R00>-0.82007587</R00>
+					<R01>0.247466832</R01>
+					<R02>-0.515980542</R02>
+					<R10>-1.4901163e-08</R10>
+					<R11>0.901662111</R11>
+					<R12>0.432441562</R12>
+					<R20>0.572255015</R20>
+					<R21>0.354634881</R21>
+					<R22>-0.739431143</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-23.6547623</X>
-					<Y>15.1756516</Y>
-					<Z>-2.14935637</Z>
+					<X>-15.0531425</X>
+					<Y>14.614789</Y>
+					<Z>-10.6579685</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -5495,7 +5495,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage)
     --Checks if this bool is true then adds it into the vector limb
     if IncludeAppendage == true then
         local lastMotor = Motor6DTable[#Motor6DTable]
-        print(lastMotor)
+        --print(lastMotor)
         --local test = -lastMotor.C1.Position
         --This is more accurate than getting C1 position for some reason
         local ExtraLimbVector = lastMotor.Part1.Position-(lastMotor.Part0.Position+lastMotor.C0.Position)
@@ -5616,9 +5616,16 @@ function LimbChain:UpdateMotors(floorNormal)
                 local empty = Vector3.new()
                 --self.Motor6DTable[#self.Motor6DTable].C0 = CFrame.new()
 
+                --Make feet point upright to floor
+                --If not inputted then make feet points up towards sky
+                local upright = floorNormal
+                if upright == nil then
+                    upright = Vector3.new(0,1,0)
+                end
+
                 --Obtain the CFrame operations needed to rotate the limb to the goal
                 local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
-                local rotateLimbCF =CFrame.fromMatrix(empty,previousLimbCF.RightVector,Vector3.new(0,1,0))
+                local rotateLimbCF =CFrame.fromMatrix(empty,previousLimbCF.RightVector,upright)
             
                 --Changes the current motor6d through c0
                 self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
@@ -5655,7 +5662,7 @@ function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
     --Obtains the current limb that is being worked on
     local originalVectorLimb = self.LimbVectorTable[i]
 
-    print(self.Motor6DTable[i].Parent)
+    --print(self.Motor6DTable[i].Parent)
     --Obtains the CFrame of the part0 limb of the motor6d
     local previousLimbPart = self.Motor6DTable[i].Parent
     local previousLimbCF = previousLimbPart.CFrame

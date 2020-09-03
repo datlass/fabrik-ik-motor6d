@@ -158,9 +158,16 @@ function LimbChain:UpdateMotors(floorNormal)
                 local empty = Vector3.new()
                 --self.Motor6DTable[#self.Motor6DTable].C0 = CFrame.new()
 
+                --Make feet point upright to floor
+                --If not inputted then make feet points up towards sky
+                local upright = floorNormal
+                if upright == nil then
+                    upright = Vector3.new(0,1,0)
+                end
+
                 --Obtain the CFrame operations needed to rotate the limb to the goal
                 local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
-                local rotateLimbCF =CFrame.fromMatrix(empty,previousLimbCF.RightVector,Vector3.new(0,1,0))
+                local rotateLimbCF =CFrame.fromMatrix(empty,previousLimbCF.RightVector,upright)
             
                 --Changes the current motor6d through c0
                 self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
