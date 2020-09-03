@@ -17,6 +17,11 @@ local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -------------------Import all the Constraints Types-----------------
 
+--BallSocketConstraint
+local BallSocketConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.BallSocketConstraint
+local BallSocketConstraint = require(BallSocketConstraintPointer)
+
+
 --HingeConstraint
 local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
@@ -43,18 +48,17 @@ local leftLegChain = limbChain.new(motorTable)
 --test
 
 --Testing the constraint
-local testRigidJoint = lowerBody.Constraints.UpperLegConstraint
+local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
+
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,10,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegHinge = HingeConstraint.new(lLegPart,90,90)
-local limbConstraintTable = {nil,lKneeHinge,lLegHinge}
-
--- Random Parts to debug position of where joints should be according to the algorithm
-local part1 = game.Workspace.test1
+local lLegHinge = HingeConstraint.new(lLegPart,90,120)
+local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
 
 --Test
 
@@ -65,10 +69,6 @@ RunService.Heartbeat:Connect(function()
         
     --The Goal position
     local goalPosition = workspace.LTarget.Position
-
-    --upperLegRigidJoint:UpdateAxis()
-    --lKneeHinge:UpdateAxis()
-    --lLegHinge:UpdateAxis()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
