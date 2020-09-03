@@ -49,10 +49,15 @@ function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
     --Checks if there is a part to set the constraint axis to
     if self.Part ~=nil then
 
+        --Get the constraining part current axis
+        self:UpdateAxis()
+
+        --Make it point in the part's center axis
         return self.CenterAxis.Unit*limbLength
 
     else
         
+        --Else get the original limbvector
         return self.LimbChain:GetOriginalLimbDirection(self.LimbNumber).Unit*limbLength
 
     end
