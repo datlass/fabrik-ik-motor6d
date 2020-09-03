@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-12.6638927</X>
-					<Y>17.5856495</Y>
-					<Z>18.9781475</Z>
-					<R00>0.955790877</R00>
-					<R01>-0.0815763324</R01>
-					<R02>0.282505125</R02>
+					<X>-38.8267555</X>
+					<Y>20.8504276</Y>
+					<Z>-1.27077305</Z>
+					<R00>0.0323234014</R00>
+					<R01>0.347057283</R01>
+					<R02>-0.937286794</R02>
 					<R10>-0</R10>
-					<R11>0.960747123</R11>
-					<R12>0.277425855</R12>
-					<R20>-0.294047326</R20>
-					<R21>-0.265161097</R21>
-					<R22>0.91827333</R22>
+					<R11>0.937776864</R11>
+					<R12>0.347238719</R12>
+					<R20>0.999477506</R20>
+					<R21>-0.0112239365</R21>
+					<R22>0.0303121358</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-13.2289028</X>
-					<Y>17.030798</Y>
-					<Z>17.1416016</Z>
+					<X>-36.9521828</X>
+					<Y>20.1559505</Y>
+					<Z>-1.33139729</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3326,7 +3326,7 @@ local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,10,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegHinge = HingeConstraint.new(lLegPart,90,90)
+local lLegHinge = HingeConstraint.new(lLegPart,90,120)
 local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
 
 --Test
@@ -3338,10 +3338,6 @@ RunService.Heartbeat:Connect(function()
         
     --The Goal position
     local goalPosition = workspace.LTarget.Position
-
-    --upperLegRigidJoint:UpdateAxis()
-    --lKneeHinge:UpdateAxis()
-    --lLegHinge:UpdateAxis()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
@@ -3458,81 +3454,6 @@ local function Forwards(originCF, targetPos, limbVectorTable, limbLengthTable)
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
     end
     return originCF, targetPos, limbVectorTable, limbLengthTable
-end
-
---[[
-	Given a vector of where the limb should be this function constraints it within a spherical cone
-	Returns a new limb vector in the constrained position
-	Constraint Settings are (width, height)
-	--notes can get laggy with high activity 3%-10% find ways to optimize later
-]]
-local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
-                                 centerAxis, constraintSettings)
-    -- ellipse width and height of the constraint
-    local heightCenterAngle = math.rad(constraintSettings[2])
-    local widthCenterAngle = math.rad(constraintSettings[1])
-
-    -- Convert Angles into height and width
-    -- Height and width are in terms of radius height from origin
-    local height = limbVectorLength * math.sin(heightCenterAngle)
-    local width = limbVectorLength * math.sin(widthCenterAngle)
-
-    -- Perform vector resolution on limbvector
-    -- Represents the center of the 2d plane that will be constructed
-    -- Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
-    local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
-
-    local isOppositeDirection = false
-    if projScalar < 0 then
-         isOppositeDirection = true
-    end
-
-    projScalar = math.abs(projScalar)
-
-    local minScalar = limbVectorLength * math.cos(widthCenterAngle)
-    projScalar = math.clamp(projScalar, minScalar, limbVectorLength)
-
-    -- Always make projection scalar positive so that the projCenter faces the center Axis
-    local projCenter = projScalar * centerAxis.Unit
-
-    -- position the current limbvector within the 2d plane as another vector
-    local posVector = limbVector - projCenter
-
-    -- translate into 2d plane
-    -- create the xAxis from the yAxis use the left hand rule
-    local xAxis = (-yAxis:Cross(centerAxis)).Unit
-
-    -- Construct the oval
-    -- Get the X and Y Coordinates
-    local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
-    local xPoint = xAxis:Dot(posVector) / (xAxis.Magnitude)
-
-    -- Construct the oval constrain formula
-    local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
-
-    -- check if the limbvector point is outside the formula constraint
-    -- Also checks for directionality if its in the isOppositeDirection then constraint
-    if ovalFormula >= 1 or isOppositeDirection then
-        -- Obtain the angle from the xaxis
-        local angleToXAxis = math.atan(yPoint, xPoint)
-
-        -- Place it on the edge of the oval within the contraints placed
-        local newXPoint = width * math.cos(angleToXAxis)
-        local newYPoint = height * math.sin(angleToXAxis)
-
-        -- now reconstruct the limbVector
-        -- Now we convert it back to a 3d vector
-        local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
-
-        -- Gets the new direction of the v2 limb
-        local newPosVector = posVector.Unit * newMagnitude
-
-        local newDir = projCenter + newPosVector
-        -- Constructs the new limbvector in a different direction but same length
-        limbVector = newDir.Unit * limbVector.Magnitude
-    end
-
-    return limbVector
 end
 
 --[[
@@ -4246,12 +4167,12 @@ return Base]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXc02e26b0cf4941368ffe350be61598d6">
+				<Item class="ModuleScript" referent="RBXbf9cd7b34e5c4b3d8da3e6d2ef6cbd5b">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">LimbChain</string>
-						<string name="ScriptGuid">{d735774b-8bd8-45cd-a12f-03ce265f9d85}</string>
+						<string name="Name">limbChain</string>
+						<string name="ScriptGuid">{bde753c0-5ab6-4418-a6a7-684c16cd320e}</string>
 						<ProtectedString name="Source"><![CDATA[-- Get Roblox Services
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -4425,18 +4346,342 @@ return LimbChain]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="Folder" referent="RBX94e98f06e7364048a1dca7f3b6916323">
+				<Item class="Folder" referent="RBX4ad2f7cbcfca49e1a35b6750494aa102">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">ConstraintTypes</string>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+					<Item class="ModuleScript" referent="RBX85368e524b564b16b0f970d6c415e2a4">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">BallSocketConstraint</string>
+							<string name="ScriptGuid">{9bca9a56-c064-4dc9-a4b7-731423a37423}</string>
+							<ProtectedString name="Source"><![CDATA[
+
+-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
+
+--Require the FabrikConstraint for Inheritance
+local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
+local FabrikConstraint = require(FabrikConstraintPointer)
+
+--Initialize the Self Class
+local BallSocketConstraint = Object.newExtends("BallSocketConstraint",FabrikConstraint)
+
+--[[--------------------------------------------------------
+    Create the constraint
+    Parameters:
+]]
+function BallSocketConstraint.new(Part,AngleOfWidth,AngleOfHeight)
+        
+    local obj = BallSocketConstraint:super(Part)
+   
+    obj.AngleOfHeight = math.rad(AngleOfHeight)
+    
+    obj.AngleOfWidth = math.rad(AngleOfWidth)
+    
+	return obj
+end
+
+--[[
+    Constraints the limbVector like a ball socket joint
+]]
+function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+    
+        --Get the parts current CFrame
+        self:UpdateAxis()
+
+        --Get the Axis
+        local centerAxis = self.CenterAxis.Unit
+        local yAxis = self.YAxis.Unit
+        local xAxis = self.XAxis.Unit
+
+        -- ellipse width and height of the constraint
+        local heightCenterAngle = self.AngleOfHeight
+        local widthCenterAngle = self.AngleOfWidth
+    
+        -- Convert Angles into height and width
+        -- Height and width are in terms of radius height from origin
+        local height = limbLength * math.sin(heightCenterAngle)
+        local width = limbLength * math.sin(widthCenterAngle)
+    
+        -- Perform vector resolution on limbvector
+        -- Represents the center of the 2d plane that will be constructed
+        -- Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
+        local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
+    
+        local isOppositeDirection = false
+
+        --Detects the direction of the projection and adjust bool accordingly
+        if projScalar < 0 then 
+            isOppositeDirection = true
+        end
+    
+        projScalar = math.abs(projScalar)
+    
+        local minScalar = limbLength * math.cos(widthCenterAngle)
+        projScalar = math.clamp(projScalar, minScalar, limbLength)
+    
+        -- Always make projection scalar positive so that the projCenter faces the center Axis
+        local projCenter = projScalar * centerAxis.Unit
+    
+        -- position the current limbvector within the 2d plane as another vector
+        local posVector = limbVector - projCenter
+    
+        -- translate into 2d plane
+    
+        -- Construct the oval
+        -- Get the X and Y Coordinates
+        local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
+        local xPoint = xAxis:Dot(posVector) / (xAxis.Magnitude)
+    
+        -- Construct the oval constrain formula
+        local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
+    
+        -- check if the limbvector point is outside the formula constraint
+        -- Also checks for directionality if its in the isOppositeDirection then constraint
+        if ovalFormula >= 1 or isOppositeDirection then
+            -- Obtain the angle from the xaxis
+            local angleToXAxis = math.atan(yPoint, xPoint)
+    
+            -- Place it on the edge of the oval within the contraints placed
+            local newXPoint = width * math.cos(angleToXAxis)
+            local newYPoint = height * math.sin(angleToXAxis)
+    
+            -- now reconstruct the limbVector
+            -- Now we convert it back to a 3d vector
+            local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
+    
+            -- Gets the new direction of the v2 limb
+            local newPosVector = posVector.Unit * newMagnitude
+    
+            local newDir = projCenter + newPosVector
+            -- Constructs the new limbvector in a different direction but same length
+            limbVector = newDir.Unit * limbVector.Magnitude
+        end
+    
+        return limbVector
+
+end
+
+
+return BallSocketConstraint]]></ProtectedString>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX1f2228e1438941818b184f230e16c26e">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">BaseRedirect</string>
+							<string name="ScriptGuid">{6711feb1-b8b5-4fea-b3d7-fcae6c4c3f6d}</string>
+							<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder"):FindFirstAncestorOfClass("Folder")
+
+local baseModule = Package.Base
+--^^ Simply adjust the variable so it matches the Base's location. ^^
+
+return require(baseModule)
+]]></ProtectedString>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX1366e1827aac4d20b0e7c56c1ee7e8e7">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">HingeConstraint</string>
+							<string name="ScriptGuid">{e4778b51-aa14-417e-bc08-7765f525d176}</string>
+							<ProtectedString name="Source"><![CDATA[
+
+-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
+
+--Require the FabrikConstraint for Inheritance
+local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
+local FabrikConstraint = require(FabrikConstraintPointer)
+
+--Initialize the Self Class
+local HingeConstraint = Object.newExtends("HingeConstraint",FabrikConstraint)
+
+--Require the MathPlane object to the math with equation of planes
+local MathPlanePointer = script.Parent.Parent.MathPlane
+local MathPlane = require(MathPlanePointer)
+
+function HingeConstraint.new(Part,AngleOfElevation,AngleOfDepression)
+	local obj = HingeConstraint:super(Part)
+    
+    obj.AngleOfElevation = math.rad(AngleOfElevation)
+    
+    obj.AngleOfDepression = -math.rad(AngleOfDepression)
+
+	return obj
+end
+
+--[[
+    Constraints the limbVector like a hinge
+    returns a new limbvector
+]]
+function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+
+    --Gets the part's current CFrame
+    self:UpdateAxis()
+    
+    --Create a plane that is located on the joint with a surface normal to the rightvector
+    local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)
+
+    --Find where the limb should end in world position
+    local limbVectorWorld = jointPosition+limbVector
+
+    --Project it into the plane
+    local pointOnPlane = planeOnJoint:FindClosestPointOnPlane(limbVectorWorld)
+
+    --Get the new direction vector
+
+    local newDir = pointOnPlane-jointPosition
+
+    --Perform the angle check
+    local safetyClamp = math.clamp(newDir.Unit:Dot(self.CenterAxis.Unit),-1,1)
+    local angle = math.acos(safetyClamp)
+
+    --Dot product to check directionality of the angle to make it angle of elevation or depression
+    local dotScalar = newDir.Unit:Dot(self.YAxis.Unit)
+    --Divide it by itself to make it 1
+    dotScalar = dotScalar/math.abs(dotScalar)
+
+    --Finally obtain angle of depression or elevation
+    local angleAdjust = dotScalar*angle
+
+    --Debug the angle to adjust your own Rig
+    --print(math.deg(angleAdjust))
+
+    --Checks for elevation or depression
+    if angleAdjust < self.AngleOfDepression then
+
+        --Get the rotation Axis
+        local rotationAxis = newDir:Cross(self.CenterAxis)
+
+        --Get Cframe and rotate it to max possible angle
+        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,-self.AngleOfDepression)
+
+        return refCF.LookVector.Unit*limbLength
+
+    elseif angleAdjust>self.AngleOfElevation then
+        
+        --Get the rotation Axis
+        local rotationAxis = newDir:Cross(self.CenterAxis)
+
+        --Get Cframe and rotate it to max possible angle
+        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,self.AngleOfElevation)
+
+        return refCF.LookVector.Unit*limbLength 
+
+    end
+
+    --If neither out of bounds that just create vector in plane as is
+    local newLimbVector = newDir.Unit*limbLength
+
+    return newLimbVector
+
+end
+
+
+return HingeConstraint]]></ProtectedString>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX29d38d38ecca420cb3a728042edf6048">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">RigidConstraint</string>
+							<string name="ScriptGuid">{16dce366-2eb0-40b6-8ba3-fe3a20d298c0}</string>
+							<ProtectedString name="Source"><![CDATA[
+
+-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
+
+--Require the FabrikConstraint for Inheritance
+local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
+local FabrikConstraint = require(FabrikConstraintPointer)
+
+--Initialize the Self Class
+local RigidConstraint = Object.newExtends("RigidConstraint",FabrikConstraint)
+
+--[[--------------------------------------------------------
+    Create the constraint
+    Parameters:
+]]
+function RigidConstraint.new(PartOrLimbChain,LimbNumber)
+    local obj
+
+    --[[
+        Detects if parameter 1 is a limb chain object, if it is then it constraints to the original limb position
+        
+    ]]
+    if  not PartOrLimbChain:isA("LimbChain") then
+    
+    obj = RigidConstraint:super(PartOrLimbChain)
+
+    else
+        
+    obj = RigidConstraint:super()
+   
+    obj.LimbChain = PartOrLimbChain
+    obj.LimbNumber = LimbNumber
+
+    end
+    
+	return obj
+end
+
+--[[
+    Constraints the limbVector like a rigid joint
+    It doesn't move and the joint points in the part's current direction
+    or it points in the motor6ds original direction
+    returns a new limbvector vector 3 at full length
+]]
+function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+    
+    --Checks if there is a part to set the constraint axis to
+    if self.Part ~=nil then
+
+        --Get the constraining part current axis
+        self:UpdateAxis()
+
+        --Make it point in the part's center axis
+        return self.CenterAxis.Unit*limbLength
+
+    else
+        
+        --Else get the original limbvector
+        return self.LimbChain:GetOriginalLimbDirection(self.LimbNumber).Unit*limbLength
+
+    end
+end
+
+
+return RigidConstraint]]></ProtectedString>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Folder" referent="RBX6da6cc6616104cec9aa70555c667c432">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<string name="Name">RotatedRegion3Children</string>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
-					<Item class="ModuleScript" referent="RBX8b818e56a8ba42c0982e79ccd57aa23d">
+					<Item class="ModuleScript" referent="RBX9db7328ec9a44c3b9a3c1488580a8c5c">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">GJK</string>
-							<string name="ScriptGuid">{4ce6af12-bbc7-4bd1-aaac-82769d7067f6}</string>
+							<string name="ScriptGuid">{3835a076-7f05-4b5d-a3d0-124349f76a22}</string>
 							<ProtectedString name="Source"><![CDATA[local MAX_TRIES = 20
 local ZERO3 = Vector3.new(0, 0, 0)
 
@@ -4556,12 +4801,12 @@ return GJK]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX355fc13cfcd046399bac0f4eb093532b">
+					<Item class="ModuleScript" referent="RBXe6c7c0be74f8425da60bb455787ea0ed">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">Supports</string>
-							<string name="ScriptGuid">{c6cefb66-990f-4c12-9efb-6f1358ccd8c3}</string>
+							<string name="ScriptGuid">{bc583479-c808-4abb-9b42-cb772af3a9e8}</string>
 							<ProtectedString name="Source"><![CDATA[local ZERO = Vector3.new(0, 0, 0)
 local RIGHT = Vector3.new(1, 0, 0)
 
@@ -4616,12 +4861,12 @@ return Supports]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX66b0d6cfcea74607bb92d9054e1b5cae">
+					<Item class="ModuleScript" referent="RBX3055ec5c84f84534863126200a3c084b">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">Vertices</string>
-							<string name="ScriptGuid">{1d8f4d0b-fd45-4f4a-abb8-d1e7728b0b30}</string>
+							<string name="ScriptGuid">{4279934d-8daf-4b7c-829b-0860c37abbd6}</string>
 							<ProtectedString name="Source"><![CDATA[-- CONSTANTS
 
 local PI2 = math.pi*2
@@ -4824,81 +5069,36 @@ return {
 						</Properties>
 					</Item>
 				</Item>
-				<Item class="ModuleScript" referent="RBX5797b5f320d34c56bfe446788c6c42ec">
+				<Item class="ModuleScript" referent="RBX8b9ccaee1cf449e29a45d3dfe4d124ec">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">MathPlane</string>
-						<string name="ScriptGuid">{0b949d7b-920c-402d-85ac-e1d24dd6473e}</string>
+						<string name="Name">ObjectTemplate</string>
+						<string name="ScriptGuid">{6eb926be-e3e4-4ba1-a4e3-e7bf7d763cdf}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
-local MathPlane = Object.new("MathPlane")
+local NAME = Object.new("NAME")
+--local NAME = Object.newExtends("NAME",?)
 
---Squared Distance
-local function SquaredDistance(Vector)
-
-    return Vector.X^2 + Vector.Y^2 + Vector.Z^2
-
-end
-
-
-function MathPlane.new(NormalVector,PlanePoint)
-	local obj = MathPlane:make()
-
-    --Stores the inputted NormalVector
-    obj.NormalVector = NormalVector
-
-    --Stores the point on the plane
-    obj.PlanePoint = PlanePoint
-
-    --Obtains the scalar dot product of the plane
-    obj.PlaneScalar = PlanePoint:Dot(NormalVector)
-
+function NAME.new()
+	local obj = NAME:make()
+	--local obj = NAME:super()
+	
 	return obj
 end
 
---[[
-    Finds the closest point from a point to plane
-    Returns a vector 3 point in world space
-]]
-function MathPlane:FindClosestPointOnPlane(PointOnLine)
-
-    --Create a new line with direction of the plane normal and located at the InputPoint 
-    --lamda is the scalar of the line direction vector
-    local lambda = (self.PlanePoint - PointOnLine):Dot(self.NormalVector) /  SquaredDistance(self.NormalVector)
-
-    return PointOnLine + lambda*self.NormalVector
-
-end
-
---[[
-    Checks if a vector3 point is on the plane object
-    Currently working fine
-]]
-function MathPlane:IsPointOnPlane(PositionVector)
-
-    local PositionScalar = PositionVector:Dot(self.NormalVector)
-
-    if PositionScalar == self.PlaneScalar then
-        return true
-    else
-        return false
-    end
-
-end
-
-return MathPlane]]></ProtectedString>
+return NAME]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXeaeb24f5f55945b8bd162bf945521bf9">
+				<Item class="ModuleScript" referent="RBX313f229336d14f94b39e363622d395df">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">RotatedRegion3</string>
-						<string name="ScriptGuid">{1436a4bb-b8a1-4191-af0c-968d6cb032a6}</string>
+						<string name="ScriptGuid">{31536126-23ae-4279-8026-564ab1df67e8}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
 
 This is a Rotated Region3 Class that behaves much the same as the standard Region3 class expect that it allows
@@ -5152,12 +5352,12 @@ return RotatedRegion3]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXb8377b9498ec43f7b914127141056fa3">
+				<Item class="ModuleScript" referent="RBX7cedf7da6f9f4113b7a974ec734694eb">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">FabrikConstraint</string>
-						<string name="ScriptGuid">{d7e7bf2b-67f8-4a98-83aa-950bd593e4c2}</string>
+						<string name="ScriptGuid">{fd2b4f77-e6f6-4c27-bf4c-509ae537f829}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
@@ -5241,351 +5441,72 @@ return FabrikConstraint
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="Folder" referent="RBX60bbabe673834591937451d47c09fd8c">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<string name="Name">ConstraintTypes</string>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-					<Item class="ModuleScript" referent="RBX9a702731c8474bc4b51f6b7d8b39fa2f">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">HingeConstraint</string>
-							<string name="ScriptGuid">{9efd8b58-4016-4a96-adef-1607c48103fc}</string>
-							<ProtectedString name="Source"><![CDATA[
-
--- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
-local Object = require(Package.BaseRedirect)
-
---Require the FabrikConstraint for Inheritance
-local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
-local FabrikConstraint = require(FabrikConstraintPointer)
-
---Initialize the Self Class
-local HingeConstraint = Object.newExtends("HingeConstraint",FabrikConstraint)
-
---Require the MathPlane object to the math with equation of planes
-local MathPlanePointer = script.Parent.Parent.MathPlane
-local MathPlane = require(MathPlanePointer)
-
-function HingeConstraint.new(Part,AngleOfElevation,AngleOfDepression)
-	local obj = HingeConstraint:super(Part)
-    
-    obj.AngleOfElevation = math.rad(AngleOfElevation)
-    
-    obj.AngleOfDepression = -math.rad(AngleOfDepression)
-
-	return obj
-end
-
---[[
-    Constraints the limbVector like a hinge
-    returns a new limbvector
-]]
-function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
-
-    --Gets the part's current CFrame
-    self:UpdateAxis()
-    
-    --Create a plane that is located on the joint with a surface normal to the rightvector
-    local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)
-
-    --Find where the limb should end in world position
-    local limbVectorWorld = jointPosition+limbVector
-
-    --Project it into the plane
-    local pointOnPlane = planeOnJoint:FindClosestPointOnPlane(limbVectorWorld)
-
-    --Get the new direction vector
-
-    local newDir = pointOnPlane-jointPosition
-
-    --Perform the angle check
-    local safetyClamp = math.clamp(newDir.Unit:Dot(self.CenterAxis.Unit),-1,1)
-    local angle = math.acos(safetyClamp)
-
-    --Dot product to check directionality of the angle to make it angle of elevation or depression
-    local dotScalar = newDir.Unit:Dot(self.YAxis.Unit)
-    --Divide it by itself to make it 1
-    dotScalar = dotScalar/math.abs(dotScalar)
-
-    --Finally obtain angle of depression or elevation
-    local angleAdjust = dotScalar*angle
-
-    --Debug the angle to adjust your own Rig
-    --print(math.deg(angleAdjust))
-
-    --Checks for elevation or depression
-    if angleAdjust < self.AngleOfDepression then
-
-        --Get the rotation Axis
-        local rotationAxis = newDir:Cross(self.CenterAxis)
-
-        --Get Cframe and rotate it to max possible angle
-        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,-self.AngleOfDepression)
-
-        return refCF.LookVector.Unit*limbLength
-
-    elseif angleAdjust>self.AngleOfElevation then
-        
-        --Get the rotation Axis
-        local rotationAxis = newDir:Cross(self.CenterAxis)
-
-        --Get Cframe and rotate it to max possible angle
-        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,self.AngleOfElevation)
-
-        return refCF.LookVector.Unit*limbLength 
-
-    end
-
-    --If neither out of bounds that just create vector in plane as is
-    local newLimbVector = newDir.Unit*limbLength
-
-    return newLimbVector
-
-end
-
-
-return HingeConstraint]]></ProtectedString>
-							<BinaryString name="Tags"></BinaryString>
-						</Properties>
-					</Item>
-					<Item class="ModuleScript" referent="RBX25d45f464fd94f789843dff0e967f64a">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">BaseRedirect</string>
-							<string name="ScriptGuid">{ae99ee31-4239-45a4-9cb8-4e1796778f66}</string>
-							<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder"):FindFirstAncestorOfClass("Folder")
-
-local baseModule = Package.Base
---^^ Simply adjust the variable so it matches the Base's location. ^^
-
-return require(baseModule)
-]]></ProtectedString>
-							<BinaryString name="Tags"></BinaryString>
-						</Properties>
-					</Item>
-					<Item class="ModuleScript" referent="RBXf823c3c07f0c4659ac9c58a692e700ce">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">RigidConstraint</string>
-							<string name="ScriptGuid">{55fb1754-ecab-47fe-9197-9f745d662834}</string>
-							<ProtectedString name="Source"><![CDATA[
-
--- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
-local Object = require(Package.BaseRedirect)
-
---Require the FabrikConstraint for Inheritance
-local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
-local FabrikConstraint = require(FabrikConstraintPointer)
-
---Initialize the Self Class
-local RigidConstraint = Object.newExtends("RigidConstraint",FabrikConstraint)
-
---[[--------------------------------------------------------
-    Create the constraint
-    Parameters:
-]]
-function RigidConstraint.new(PartOrLimbChain,LimbNumber)
-    local obj
-
-    --[[
-        Detects if parameter 1 is a limb chain object, if it is then it constraints to the original limb position
-        
-    ]]
-    if  not PartOrLimbChain:isA("LimbChain") then
-    
-    obj = RigidConstraint:super(PartOrLimbChain)
-
-    else
-        
-    obj = RigidConstraint:super()
-   
-    obj.LimbChain = PartOrLimbChain
-    obj.LimbNumber = LimbNumber
-
-    end
-    
-	return obj
-end
-
---[[
-    Constraints the limbVector like a rigid joint
-    It doesn't move and the joint points in the part's current direction
-    or it points in the motor6ds original direction
-    returns a new limbvector vector 3 at full length
-]]
-function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
-    
-    --Checks if there is a part to set the constraint axis to
-    if self.Part ~=nil then
-
-        --Get the constraining part current axis
-        self:UpdateAxis()
-
-        --Make it point in the part's center axis
-        return self.CenterAxis.Unit*limbLength
-
-    else
-        
-        --Else get the original limbvector
-        return self.LimbChain:GetOriginalLimbDirection(self.LimbNumber).Unit*limbLength
-
-    end
-end
-
-
-return RigidConstraint]]></ProtectedString>
-							<BinaryString name="Tags"></BinaryString>
-						</Properties>
-					</Item>
-					<Item class="ModuleScript" referent="RBXa26c44ad69f34d7db78460af80301213">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">BallSocketConstraint</string>
-							<string name="ScriptGuid">{dd92ce8b-4a92-4fd7-b075-990c05bfd56d}</string>
-							<ProtectedString name="Source"><![CDATA[
-
--- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
-local Object = require(Package.BaseRedirect)
-
---Require the FabrikConstraint for Inheritance
-local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
-local FabrikConstraint = require(FabrikConstraintPointer)
-
---Initialize the Self Class
-local BallSocketConstraint = Object.newExtends("BallSocketConstraint",FabrikConstraint)
-
---[[--------------------------------------------------------
-    Create the constraint
-    Parameters:
-]]
-function BallSocketConstraint.new(Part,AngleOfWidth,AngleOfHeight)
-        
-    local obj = BallSocketConstraint:super(Part)
-   
-    obj.AngleOfHeight = math.rad(AngleOfHeight)
-    
-    obj.AngleOfWidth = math.rad(AngleOfWidth)
-    
-	return obj
-end
-
---[[
-    Constraints the limbVector like a ball socket joint
-]]
-function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
-    
-        --Get the parts current CFrame
-        self:UpdateAxis()
-
-        --Get the Axis
-        local centerAxis = self.CenterAxis.Unit
-        local yAxis = self.YAxis.Unit
-        local xAxis = self.XAxis.Unit
-
-        -- ellipse width and height of the constraint
-        local heightCenterAngle = self.AngleOfHeight
-        local widthCenterAngle = self.AngleOfWidth
-    
-        -- Convert Angles into height and width
-        -- Height and width are in terms of radius height from origin
-        local height = limbLength * math.sin(heightCenterAngle)
-        local width = limbLength * math.sin(widthCenterAngle)
-    
-        -- Perform vector resolution on limbvector
-        -- Represents the center of the 2d plane that will be constructed
-        -- Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
-        local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
-    
-        local isOppositeDirection = false
-
-        --Detects the direction of the projection and adjust bool accordingly
-        if projScalar < 0 then 
-            isOppositeDirection = true
-        end
-    
-        projScalar = math.abs(projScalar)
-    
-        local minScalar = limbLength * math.cos(widthCenterAngle)
-        projScalar = math.clamp(projScalar, minScalar, limbLength)
-    
-        -- Always make projection scalar positive so that the projCenter faces the center Axis
-        local projCenter = projScalar * centerAxis.Unit
-    
-        -- position the current limbvector within the 2d plane as another vector
-        local posVector = limbVector - projCenter
-    
-        -- translate into 2d plane
-    
-        -- Construct the oval
-        -- Get the X and Y Coordinates
-        local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
-        local xPoint = xAxis:Dot(posVector) / (xAxis.Magnitude)
-    
-        -- Construct the oval constrain formula
-        local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
-    
-        -- check if the limbvector point is outside the formula constraint
-        -- Also checks for directionality if its in the isOppositeDirection then constraint
-        if ovalFormula >= 1 or isOppositeDirection then
-            -- Obtain the angle from the xaxis
-            local angleToXAxis = math.atan(yPoint, xPoint)
-    
-            -- Place it on the edge of the oval within the contraints placed
-            local newXPoint = width * math.cos(angleToXAxis)
-            local newYPoint = height * math.sin(angleToXAxis)
-    
-            -- now reconstruct the limbVector
-            -- Now we convert it back to a 3d vector
-            local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
-    
-            -- Gets the new direction of the v2 limb
-            local newPosVector = posVector.Unit * newMagnitude
-    
-            local newDir = projCenter + newPosVector
-            -- Constructs the new limbvector in a different direction but same length
-            limbVector = newDir.Unit * limbVector.Magnitude
-        end
-    
-        return limbVector
-
-end
-
-
-return BallSocketConstraint]]></ProtectedString>
-							<BinaryString name="Tags"></BinaryString>
-						</Properties>
-					</Item>
-				</Item>
-				<Item class="ModuleScript" referent="RBXca7b8d0f48064cba8fbaec3da7b2e4f9">
+				<Item class="ModuleScript" referent="RBX5330277ff33f4f7bafe4de65e3c25934">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">ObjectTemplate</string>
-						<string name="ScriptGuid">{46145ef2-b71a-44d3-b65d-09d30813fc64}</string>
+						<string name="Name">MathPlane</string>
+						<string name="ScriptGuid">{c5788067-7297-48e3-95a1-d38c430e2897}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
-local NAME = Object.new("NAME")
---local NAME = Object.newExtends("NAME",?)
+local MathPlane = Object.new("MathPlane")
 
-function NAME.new()
-	local obj = NAME:make()
-	--local obj = NAME:super()
-	
+--Squared Distance
+local function SquaredDistance(Vector)
+
+    return Vector.X^2 + Vector.Y^2 + Vector.Z^2
+
+end
+
+
+function MathPlane.new(NormalVector,PlanePoint)
+	local obj = MathPlane:make()
+
+    --Stores the inputted NormalVector
+    obj.NormalVector = NormalVector
+
+    --Stores the point on the plane
+    obj.PlanePoint = PlanePoint
+
+    --Obtains the scalar dot product of the plane
+    obj.PlaneScalar = PlanePoint:Dot(NormalVector)
+
 	return obj
 end
 
-return NAME]]></ProtectedString>
+--[[
+    Finds the closest point from a point to plane
+    Returns a vector 3 point in world space
+]]
+function MathPlane:FindClosestPointOnPlane(PointOnLine)
+
+    --Create a new line with direction of the plane normal and located at the InputPoint 
+    --lamda is the scalar of the line direction vector
+    local lambda = (self.PlanePoint - PointOnLine):Dot(self.NormalVector) /  SquaredDistance(self.NormalVector)
+
+    return PointOnLine + lambda*self.NormalVector
+
+end
+
+--[[
+    Checks if a vector3 point is on the plane object
+    Currently working fine
+]]
+function MathPlane:IsPointOnPlane(PositionVector)
+
+    local PositionScalar = PositionVector:Dot(self.NormalVector)
+
+    if PositionScalar == self.PlaneScalar then
+        return true
+    else
+        return false
+    end
+
+end
+
+return MathPlane]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -6040,12 +5961,12 @@ end)
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXc8746ac8cd09413c8c932e3ad032ab2e">
+				<Item class="ModuleScript" referent="RBXd4d9ac5bddc641b3b24c5b32c2a261b5">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">randomstuff</string>
-						<string name="ScriptGuid">{0894eaba-13b0-4d05-9559-0106faab4f20}</string>
+						<string name="ScriptGuid">{99b8141f-4154-4c35-b525-cfc139b77925}</string>
 						<ProtectedString name="Source"><![CDATA[          
           --Old constraint forwards code
 
@@ -6055,7 +5976,84 @@ end)
             local angles = limbConstraintTable[i][3]
             pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis,
                                         centerAxis, angles)
-]]></ProtectedString>
+
+
+--Old Conical constraint, I imported into an object with the same functionality
+
+--[[
+	Given a vector of where the limb should be this function constraints it within a spherical cone
+	Returns a new limb vector in the constrained position
+	Constraint Settings are (width, height)
+	--notes can get laggy with high activity 3%-10% find ways to optimize later
+]]
+local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
+  centerAxis, constraintSettings)
+-- ellipse width and height of the constraint
+local heightCenterAngle = math.rad(constraintSettings[2])
+local widthCenterAngle = math.rad(constraintSettings[1])
+
+-- Convert Angles into height and width
+-- Height and width are in terms of radius height from origin
+local height = limbVectorLength * math.sin(heightCenterAngle)
+local width = limbVectorLength * math.sin(widthCenterAngle)
+
+-- Perform vector resolution on limbvector
+-- Represents the center of the 2d plane that will be constructed
+-- Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
+local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
+
+local isOppositeDirection = false
+if projScalar < 0 then
+isOppositeDirection = true
+end
+
+projScalar = math.abs(projScalar)
+
+local minScalar = limbVectorLength * math.cos(widthCenterAngle)
+projScalar = math.clamp(projScalar, minScalar, limbVectorLength)
+
+-- Always make projection scalar positive so that the projCenter faces the center Axis
+local projCenter = projScalar * centerAxis.Unit
+
+-- position the current limbvector within the 2d plane as another vector
+local posVector = limbVector - projCenter
+
+-- translate into 2d plane
+-- create the xAxis from the yAxis use the left hand rule
+local xAxis = (-yAxis:Cross(centerAxis)).Unit
+
+-- Construct the oval
+-- Get the X and Y Coordinates
+local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
+local xPoint = xAxis:Dot(posVector) / (xAxis.Magnitude)
+
+-- Construct the oval constrain formula
+local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
+
+-- check if the limbvector point is outside the formula constraint
+-- Also checks for directionality if its in the isOppositeDirection then constraint
+if ovalFormula >= 1 or isOppositeDirection then
+-- Obtain the angle from the xaxis
+local angleToXAxis = math.atan(yPoint, xPoint)
+
+-- Place it on the edge of the oval within the contraints placed
+local newXPoint = width * math.cos(angleToXAxis)
+local newYPoint = height * math.sin(angleToXAxis)
+
+-- now reconstruct the limbVector
+-- Now we convert it back to a 3d vector
+local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
+
+-- Gets the new direction of the v2 limb
+local newPosVector = posVector.Unit * newMagnitude
+
+local newDir = projCenter + newPosVector
+-- Constructs the new limbvector in a different direction but same length
+limbVector = newDir.Unit * limbVector.Magnitude
+end
+
+return limbVector
+end]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
