@@ -9,16 +9,15 @@
 
     for i = #limbVectorTable, 1, -1 do
         local vectorSum = Vector3.new(0, 0, 0)
-        -- print("Index: ",i," Vectable: ",limbVectorTable[i])
 
         for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
-        -- print("vec sum: ",vectorSum)
 
         -- Gets the new direction of the new vector along the chain
         -- direction is Target Pos to the next point on the chain
-        local pointTo = originCF.Position + vectorSum - targetPos -
-                            vectorSumFromOrigin
-        --	print(pointTo)
+        local pointTowards = originCF.Position + vectorSum
+        local pointFrom = targetPos + vectorSumFromOrigin
+        local pointTo = pointTowards - pointFrom
+
         -- constructs the new vectable
         limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
@@ -44,11 +43,13 @@ local function Forwards(originCF, targetPos, limbVectorTable, limbLengthTable)
         end
         -- print("vec sum: ",vectorSum)
 
+        local pointTowards = targetPos + vectorSum
+        local pointFrom = originCF.Position + vectorSumFromOrigin
+
         -- Gets the new direction of the new vector along the chain
         -- direction of the new vector is from origin to target
-        local pointTo = vectorSum + targetPos - originCF.Position -
-                            vectorSumFromOrigin
-        -- print(pointTo)
+        local pointTo = pointTowards - pointFrom
+
         -- constructs the new vectable
         limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
@@ -57,76 +58,46 @@ local function Forwards(originCF, targetPos, limbVectorTable, limbLengthTable)
 end
 
 --[[
-	Given a vector of where the limb should be this function constraints it within a spherical cone
-	Returns a new limb vector in the constrained position
-	Constraint Settings are (width, height)
-	--notes can get laggy with high activity 3%-10% find ways to optimize later
+    Constraining the forwards operation only makes it weird I dont think it simply does enough
+    So constraints are also applied to backwards now
+    
 ]]
-local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
-                                 centerAxis, constraintSettings)
-    -- ellipse width and height of the constraint
-    local heightCenterAngle = math.rad(constraintSettings[2])
-    local widthCenterAngle = math.rad(constraintSettings[1])
+local function ConstraintBackwards(originCF, targetPos, limbVectorTable,
+                                   limbLengthTable, limbConstraintTable)
+    local vectorSumFromOrigin = Vector3.new()
 
-    -- Convert Angles into height and width
-    -- Height and width are in terms of radius height from origin
-    local height = limbVectorLength * math.sin(heightCenterAngle)
-    local width = limbVectorLength * math.sin(widthCenterAngle)
+    for i = #limbVectorTable, 1, -1 do
+        local vectorSum = Vector3.new(0, 0, 0)
 
-    -- Perform vector resolution on limbvector
-    -- Represents the center of the 2d plane that will be constructed
-    -- Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
-    local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
+        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
 
-    local isOppositeDirection = false
-    if projScalar < 0 then isOppositeDirection = true end
+        local pointTowards = originCF.Position + vectorSum
+        local pointFrom = targetPos + vectorSumFromOrigin
 
-    projScalar = math.abs(projScalar)
+        -- Gets the new direction of the new vector along the chain
+        -- direction is Target Pos to the next point on the chain
+        local pointTo = pointTowards - pointFrom
 
-    local minScalar = limbVectorLength * math.cos(widthCenterAngle)
-    projScalar = math.clamp(projScalar, minScalar, limbVectorLength)
+        -- Gotta reverse the direction first
+        --The constraint only works if the direction is opposite
+        local newLimbVector = -pointTo.Unit * limbLengthTable[i]
 
-    -- Always make projection scalar positive so that the projCenter faces the center Axis
-    local projCenter = projScalar * centerAxis.Unit
+        -- Checks if there is a limb constraint for the current limb in the iteration
+        if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 
-    -- position the current limbvector within the 2d plane as another vector
-    local posVector = limbVector - projCenter
-
-    -- translate into 2d plane
-    -- create the xAxis from the yAxis use the left hand rule
-    local xAxis = (-yAxis:Cross(centerAxis)).Unit
-
-    -- Construct the oval
-    -- Get the X and Y Coordinates
-    local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
-    local xPoint = xAxis:Dot(posVector) / (xAxis.Magnitude)
-
-    -- Construct the oval constrain formula
-    local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
-
-    -- check if the limbvector point is outside the formula constraint
-    -- Also checks for directionality if its in the isOppositeDirection then constraint
-    if ovalFormula >= 1 or isOppositeDirection then
-        -- Obtain the angle from the xaxis
-        local angleToXAxis = math.atan(yPoint, xPoint)
-
-        -- Place it on the edge of the oval within the contraints placed
-        local newXPoint = width * math.cos(angleToXAxis)
-        local newYPoint = height * math.sin(angleToXAxis)
-
-        -- now reconstruct the limbVector
-        -- Now we convert it back to a 3d vector
-        local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
-
-        -- Gets the new direction of the v2 limb
-        local newPosVector = posVector.Unit * newMagnitude
-
-        local newDir = projCenter + newPosVector
-        -- Constructs the new limbvector in a different direction but same length
-        limbVector = newDir.Unit * limbVector.Magnitude
+            local limbLength = limbLengthTable[i]
+            -- Start the constraint according to the method
+            -- print(limbConstraintTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
+                                pointTowards, newLimbVector, limbLength)
+            -- print("Index: ",i,"Vector: ",newLimbVector)
+        end
+        -- constructs the new vectable
+        --Gotta make it negative though to counteract
+        limbVectorTable[i] = -newLimbVector
+        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
     end
-
-    return limbVector
+    return originCF, targetPos, limbVectorTable, limbLengthTable
 end
 
 --[[
@@ -142,28 +113,31 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,
         local vectorSum = Vector3.new(0, 0, 0)
 
         -- Sums up the vectors in order to get the target position on the chain
+        -- target position is the next joint from origin to target
         for v = i + 1, #limbVectorTable, 1 do
             vectorSum = vectorSum + limbVectorTable[v]
         end
 
+        local nextJointPosition = vectorSum + targetPos
+        local jointPosition = originCF.Position + vectorSumFromOrigin
         -- Gets the new direction of the new vector along the chain
         -- direction of the new vector is from origin to target
-        local pointTo = vectorSum + targetPos - originCF.Position -
-                            vectorSumFromOrigin
+        local pointTo = nextJointPosition - jointPosition
         -- This time constraint the vector using the conical constraint function
+        local newLimbVector = pointTo.Unit * limbLengthTable[i]
 
         -- Checks if there is a limb constraint for the current limb in the iteration
-        if limbConstraintTable[i] then
+        if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 
-            -- The axis of constraint is relative to the initial joint placement
-            local yAxis = limbConstraintTable[i][1]
-            local centerAxis = limbConstraintTable[i][2]
-            local angles = limbConstraintTable[i][3]
-            pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis,
-                                        centerAxis, angles)
+            local limbLength = limbLengthTable[i]
+            -- Start the constraint according to the method
+            -- print(limbConstraintTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
+                                jointPosition, newLimbVector, limbLength)
+            -- print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
-        limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
+        limbVectorTable[i] = newLimbVector
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
     end
     return originCF, targetPos, limbVectorTable, limbLengthTable
@@ -196,7 +170,8 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
         -- If there is a constraint table then use constraint forwards else use unconstraint
         if limbConstraintTable ~= nil then
             local originCF, targetPos, limbVectorTable, limbLengthTable =
-                Backwards(originCF, targetPos, limbVectorTable, limbLengthTable)
+                ConstraintBackwards(originCF, targetPos, limbVectorTable,
+                                    limbLengthTable, limbConstraintTable)
             _, _, limbVectorTable, _ = ConstraintForwards(originCF, targetPos,
                                                           limbVectorTable,
                                                           limbLengthTable,
@@ -204,6 +179,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
 
             return limbVectorTable
         else
+            -- Does the normal forwards and backwards iteration
             _, _, limbVectorTable, _ = Forwards(
                                            Backwards(originCF, targetPos,
                                                      limbVectorTable,

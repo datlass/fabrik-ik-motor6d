@@ -104,8 +104,13 @@ function LimbChain:UpdateMotors()
 
         -- Obtains the CFrame rotation calculation for CFrame.fromAxis
         local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
-        local limbRotationAngle = math.acos(limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit))
+        local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
+        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+        local limbRotationAngle = math.acos(safetyClamp)
         local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+
+        --Checks if the axis exists if cross product returns zero somehow
+        if limbRotationAxis~=Vector3.new(0,0,0) then
         
         --Gets the world space of the joint from the iterated limb vectors
         if i ~= 1 then
@@ -121,7 +126,10 @@ function LimbChain:UpdateMotors()
         
         --Changes the current motor6d through c0
         self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
-        
+
+        end
+
+    
     end
 
 end
@@ -137,6 +145,25 @@ function LimbChain:PrintLimbVectors()
     for i=1,#self.IteratedLimbVectorTable,1 do
         print("Iterated self table i:",i," Vector:",self.IteratedLimbVectorTable[i])
     end
+
+end
+
+--Gets the original vector limb direction relative to the part
+function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
+
+    local i = limbVectorNumber
+
+    --Obtains the current limb that is being worked on
+    local originalVectorLimb = self.LimbVectorTable[i]
+
+    --Obtains the CFrame of the part0 limb of the motor6d
+    local previousLimbPart = self.Motor6DTable[i].Parent
+    local previousLimbCF = previousLimbPart.CFrame
+
+    -- Obtains the vector relative to the previous part0
+    local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+    
+    return limbVectorRelativeToOriginal
 
 end
 

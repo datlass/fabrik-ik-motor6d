@@ -8,6 +8,29 @@ local RunService = game:GetService("RunService")
 local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
 local LimbChain = require(IKControllerPointer)
 
+--RotatedRegion3 Module
+local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegion3
+local RotatedRegion3 = require(RotatedRegion3Pointer)
+--It works time
+
+-------------------Import all the Constraints Types-----------------
+
+--BallSocketConstraint
+local BallSocketConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.BallSocketConstraint
+local BallSocketConstraint = require(BallSocketConstraintPointer)
+
+
+--HingeConstraint
+local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
+local HingeConstraint = require(HingeConstraintPointer)
+
+--Rigid Constraint
+local RigidConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.RigidConstraint
+local RigidConstraint = require(RigidConstraintPointer)
+
+----------------------------------------------------------------
+
+
 -- Pointers
 local lowerBody = workspace.LowerBody
 
@@ -21,7 +44,21 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = LimbChain.new(motorTable)
 
-local limbConstraintTable
+--Testing the constraint
+local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
+local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
+
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
+
+local kneePart = lowerBody.Constraints.KneeConstraint
+local lKneeHinge = HingeConstraint.new(kneePart,10,90)
+
+local lLegPart = lowerBody.Constraints.LowerLegConstraint
+local lLegHinge = HingeConstraint.new(lLegPart,90,120)
+local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
+
+--Test
+
 --[[
     Then use the object to control the motor every heartbeat
     ]]
