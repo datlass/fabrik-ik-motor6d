@@ -9,16 +9,15 @@
 
     for i = #limbVectorTable, 1, -1 do
         local vectorSum = Vector3.new(0, 0, 0)
-        -- print("Index: ",i," Vectable: ",limbVectorTable[i])
 
         for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
-        -- print("vec sum: ",vectorSum)
 
         -- Gets the new direction of the new vector along the chain
         -- direction is Target Pos to the next point on the chain
-        local pointTo = originCF.Position + vectorSum - targetPos -
-                            vectorSumFromOrigin
-        --	print(pointTo)
+        local pointTowards = originCF.Position + vectorSum
+        local pointFrom = targetPos + vectorSumFromOrigin
+        local pointTo = pointTowards - pointFrom
+
         -- constructs the new vectable
         limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
@@ -44,11 +43,13 @@ local function Forwards(originCF, targetPos, limbVectorTable, limbLengthTable)
         end
         -- print("vec sum: ",vectorSum)
 
+        local pointTowards = targetPos + vectorSum
+        local pointFrom = originCF.Position + vectorSumFromOrigin
+
         -- Gets the new direction of the new vector along the chain
         -- direction of the new vector is from origin to target
-        local pointTo = vectorSum + targetPos - originCF.Position -
-                            vectorSumFromOrigin
-        -- print(pointTo)
+        local pointTo = pointTowards - pointFrom
+
         -- constructs the new vectable
         limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
@@ -129,6 +130,47 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
     return limbVector
 end
 
+
+--[[
+    Constraining the forwards operation only makes it weird I dont think it simply does enough
+    So constraints are also applied to backwards now
+    
+]] 
+local function ConstraintBackwards(originCF, targetPos, limbVectorTable,
+    limbLengthTable,limbConstraintTable)
+local vectorSumFromOrigin = Vector3.new()
+
+for i = #limbVectorTable, 1, -1 do
+local vectorSum = Vector3.new(0, 0, 0)
+
+for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
+
+local pointTowards = originCF.Position + vectorSum
+local pointFrom = targetPos + vectorSumFromOrigin
+
+-- Gets the new direction of the new vector along the chain
+-- direction is Target Pos to the next point on the chain
+local pointTo = pointTowards - pointFrom
+
+    --Gotta reverse the direction first
+    local newLimbVector = -pointTo.Unit * limbLengthTable[i]
+
+-- Checks if there is a limb constraint for the current limb in the iteration
+if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+           
+    local limbLength = limbLengthTable[i]
+    --Start the constraint according to the method
+    --print(limbConstraintTable[i])
+    newLimbVector = -limbConstraintTable[i]:ConstrainLimbVector(pointTowards,newLimbVector,limbLength)
+    --print("Index: ",i,"Vector: ",newLimbVector)
+end
+-- constructs the new vectable
+limbVectorTable[i] = newLimbVector
+vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
+end
+return originCF, targetPos, limbVectorTable, limbLengthTable
+end
+
 --[[
 	Same as forwards Function
 	limbConstraintTable
@@ -198,7 +240,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
         -- If there is a constraint table then use constraint forwards else use unconstraint
         if limbConstraintTable ~= nil then
             local originCF, targetPos, limbVectorTable, limbLengthTable =
-                Backwards(originCF, targetPos, limbVectorTable, limbLengthTable)
+                ConstraintBackwards(originCF, targetPos, limbVectorTable, limbLengthTable,limbConstraintTable)
             _, _, limbVectorTable, _ = ConstraintForwards(originCF, targetPos,
                                                           limbVectorTable,
                                                           limbLengthTable,
@@ -206,6 +248,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
 
             return limbVectorTable
         else
+            --Does the normal forwards and backwards iteration
             _, _, limbVectorTable, _ = Forwards(
                                            Backwards(originCF, targetPos,
                                                      limbVectorTable,

@@ -45,7 +45,7 @@ end
     returns a new limbvector vector 3 at full length
 ]]
 function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
-
+    
     --Checks if there is a part to set the constraint axis to
     if self.Part ~=nil then
 
