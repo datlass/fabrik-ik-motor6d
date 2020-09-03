@@ -54,7 +54,7 @@ local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,10,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegHinge = HingeConstraint.new(lLegPart,90,90)
+local lLegHinge = HingeConstraint.new(lLegPart,90,120)
 local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
 
 --Test
@@ -66,10 +66,6 @@ RunService.Heartbeat:Connect(function()
         
     --The Goal position
     local goalPosition = workspace.LTarget.Position
-
-    --upperLegRigidJoint:UpdateAxis()
-    --lKneeHinge:UpdateAxis()
-    --lLegHinge:UpdateAxis()
 
     leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
     leftLegChain:UpdateMotors()
