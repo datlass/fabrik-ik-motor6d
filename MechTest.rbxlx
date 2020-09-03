@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-38.8267555</X>
-					<Y>20.8504276</Y>
-					<Z>-1.27077305</Z>
-					<R00>0.0323234014</R00>
-					<R01>0.347057283</R01>
-					<R02>-0.937286794</R02>
-					<R10>-0</R10>
-					<R11>0.937776864</R11>
-					<R12>0.347238719</R12>
-					<R20>0.999477506</R20>
-					<R21>-0.0112239365</R21>
-					<R22>0.0303121358</R22>
+					<X>-16.085104</X>
+					<Y>15.4796724</Y>
+					<Z>-12.1368313</Z>
+					<R00>-0.82007587</R00>
+					<R01>0.247466832</R01>
+					<R02>-0.515980542</R02>
+					<R10>-1.4901163e-08</R10>
+					<R11>0.901662111</R11>
+					<R12>0.432441562</R12>
+					<R20>0.572255015</R20>
+					<R21>0.354634881</R21>
+					<R22>-0.739431143</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-36.9521828</X>
-					<Y>20.1559505</Y>
-					<Z>-1.33139729</Z>
+					<X>-15.0531425</X>
+					<Y>14.614789</Y>
+					<Z>-10.6579685</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -360,7 +360,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-13.7498217</X>
 							<Y>12.5087986</Y>
-							<Z>-0.379986882</Z>
+							<Z>-0.379986525</Z>
 							<R00>1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -432,34 +432,34 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>5.76505375</Z>
 						</Vector3>
 					</Properties>
-					<Item class="Motor6D" referent="RBXdfa817a5f1b547cc89df76744140bb6d">
+					<Item class="Motor6D" referent="RBX44f4d4bfa79d48afb94bb430d72771ec">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="C0">
-								<X>0</X>
-								<Y>0.00173568726</Y>
-								<Z>1.87998664</Z>
+								<X>3.81469727e-05</X>
+								<Y>0.00160884857</Y>
+								<Z>2.12994909</Z>
 								<R00>1</R00>
-								<R01>0</R01>
-								<R02>1.67037434e-22</R02>
-								<R10>0</R10>
+								<R01>-9.65568051e-06</R01>
+								<R02>-8.44896476e-06</R02>
+								<R10>9.65576237e-06</R10>
 								<R11>1</R11>
-								<R12>0</R12>
-								<R20>1.67037434e-22</R20>
-								<R21>0</R21>
+								<R12>9.65600429e-06</R12>
+								<R20>8.44887109e-06</R20>
+								<R21>-9.65608615e-06</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="C1">
-								<X>0</X>
-								<Y>3.75000095</Y>
-								<Z>0</Z>
+								<X>3.83213301e-05</X>
+								<Y>3.74999762</Y>
+								<Z>0.250036359</Z>
 								<R00>1</R00>
-								<R01>0</R01>
-								<R02>1.00222463e-21</R02>
-								<R10>0</R10>
+								<R01>1.08599241e-12</R01>
+								<R02>0</R02>
+								<R10>1.08599241e-12</R10>
 								<R11>1</R11>
 								<R12>0</R12>
-								<R20>1.00222463e-21</R20>
+								<R20>0</R20>
 								<R21>0</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
@@ -489,7 +489,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-13.5</X>
 							<Y>15.5105305</Y>
-							<Z>-0.375000119</Z>
+							<Z>-0.375</Z>
 							<R00>1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -561,13 +561,13 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>6.25000095</Z>
 						</Vector3>
 					</Properties>
-					<Item class="Motor6D" referent="RBXafc44b23bc4d40d0bf795f9338eb8969">
+					<Item class="Motor6D" referent="RBX424f62f7ee4144218abe336f17408d29">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="C0">
-								<X>-0.249821782</X>
+								<X>-0.249821663</X>
 								<Y>-3.00173187</Y>
-								<Z>-2.00498676</Z>
+								<Z>-2.00498652</Z>
 								<R00>1</R00>
 								<R01>0</R01>
 								<R02>0</R02>
@@ -579,8 +579,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="C1">
-								<X>-0</X>
-								<Y>-0</Y>
+								<X>0</X>
+								<Y>0</Y>
 								<Z>-2</Z>
 								<R00>1</R00>
 								<R01>0</R01>
@@ -602,95 +602,6 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</Properties>
 					</Item>
 				</Item>
-				<Item class="UnionOperation" referent="RBX4c020f2b794d40468a15bf09e5d23d72">
-					<Properties>
-						<bool name="Anchored">false</bool>
-						<Content name="AssetId"><url>https://www.roblox.com//asset/?id=5615137033</url></Content>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<float name="BackParamA">-0.5</float>
-						<float name="BackParamB">0.5</float>
-						<token name="BackSurface">0</token>
-						<token name="BackSurfaceInput">0</token>
-						<float name="BottomParamA">-0.5</float>
-						<float name="BottomParamB">0.5</float>
-						<token name="BottomSurface">0</token>
-						<token name="BottomSurfaceInput">0</token>
-						<CoordinateFrame name="CFrame">
-							<X>-13.7500591</X>
-							<Y>3.51067352</Y>
-							<Z>0.124960065</Z>
-							<R00>6.9957794e-05</R00>
-							<R01>1</R01>
-							<R02>6.55642361e-05</R02>
-							<R10>-0.999993026</R10>
-							<R11>7.47901431e-05</R11>
-							<R12>-7.4741336e-05</R12>
-							<R20>-6.9918482e-05</R20>
-							<R21>-6.1334882e-05</R21>
-							<R22>1</R22>
-						</CoordinateFrame>
-						<bool name="CanCollide">true</bool>
-						<bool name="CastShadow">true</bool>
-						<BinaryString name="ChildData"></BinaryString>
-						<int name="CollisionGroupId">0</int>
-						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
-						<PhysicalProperties name="CustomPhysicalProperties">
-							<CustomPhysics>false</CustomPhysics>
-						</PhysicalProperties>
-						<token name="FormFactor">3</token>
-						<float name="FrontParamA">-0.5</float>
-						<float name="FrontParamB">0.5</float>
-						<token name="FrontSurface">0</token>
-						<token name="FrontSurfaceInput">0</token>
-						<Vector3 name="InitialSize">
-							<X>1.00038958</X>
-							<Y>4.50002098</Y>
-							<Z>7.50001383</Z>
-						</Vector3>
-						<BinaryString name="LODData"></BinaryString>
-						<float name="LeftParamA">-0.5</float>
-						<float name="LeftParamB">0.5</float>
-						<token name="LeftSurface">0</token>
-						<token name="LeftSurfaceInput">0</token>
-						<bool name="Locked">false</bool>
-						<bool name="Massless">false</bool>
-						<token name="Material">256</token>
-						<BinaryString name="MeshData"></BinaryString>
-						<string name="Name">LFeet</string>
-						<SharedString name="PhysicalConfigData">eQ4G9HPztoWSUb9MEKSNIw==</SharedString>
-						<BinaryString name="PhysicsData"></BinaryString>
-						<float name="Reflectance">0</float>
-						<token name="RenderFidelity">1</token>
-						<float name="RightParamA">-0.5</float>
-						<float name="RightParamB">0.5</float>
-						<token name="RightSurface">0</token>
-						<token name="RightSurfaceInput">0</token>
-						<int name="RootPriority">0</int>
-						<Vector3 name="RotVelocity">
-							<X>0</X>
-							<Y>0</Y>
-							<Z>0</Z>
-						</Vector3>
-						<float name="SmoothingAngle">0</float>
-						<BinaryString name="Tags"></BinaryString>
-						<float name="TopParamA">-0.5</float>
-						<float name="TopParamB">0.5</float>
-						<token name="TopSurface">0</token>
-						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
-						<bool name="UsePartColor">false</bool>
-						<Vector3 name="Velocity">
-							<X>0</X>
-							<Y>0</Y>
-							<Z>0</Z>
-						</Vector3>
-						<Vector3 name="size">
-							<X>1.00038958</X>
-							<Y>4.50002098</Y>
-							<Z>7.50001383</Z>
-						</Vector3>
-					</Properties>
-				</Item>
 				<Item class="UnionOperation" referent="RBXbd1a43acd5e24addb5f2e33de566290e">
 					<Properties>
 						<bool name="Anchored">false</bool>
@@ -705,17 +616,17 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-13.7498217</X>
-							<Y>8.76053333</Y>
-							<Z>1.49999976</Z>
+							<X>-13.7497835</X>
+							<Y>8.76040745</Y>
+							<Z>1.49996245</Z>
 							<R00>1</R00>
-							<R01>0</R01>
-							<R02>1.1692621e-21</R02>
-							<R10>0</R10>
+							<R01>-9.65567961e-06</R01>
+							<R02>-8.44896476e-06</R02>
+							<R10>9.65576328e-06</R10>
 							<R11>1</R11>
-							<R12>0</R12>
-							<R20>1.1692621e-21</R20>
-							<R21>0</R21>
+							<R12>9.65600429e-06</R12>
+							<R20>8.44887109e-06</R20>
+							<R21>-9.65608615e-06</R21>
 							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
@@ -779,35 +690,35 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>2.50000048</Z>
 						</Vector3>
 					</Properties>
-					<Item class="Motor6D" referent="RBX3d0f1292bf3f4293b4c0e8c7e25373f1">
+					<Item class="Motor6D" referent="RBX653b7d5ef14d41baa53ec0376a8f394c">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="C0">
-								<X>-0.000193119049</X>
-								<Y>-3.99997044</Y>
-								<Z>0.124997735</Z>
-								<R00>1.20251671e-05</R00>
-								<R01>1</R01>
-								<R02>1.48695144e-05</R02>
-								<R10>-0.999993026</R10>
-								<R11>1.68532679e-05</R11>
-								<R12>-1.68103652e-05</R12>
-								<R20>-1.19826964e-05</R20>
-								<R21>-1.06449033e-05</R21>
+								<X>-0.00030708313</X>
+								<Y>-3.99973106</Y>
+								<Z>0.124941349</Z>
+								<R00>1</R00>
+								<R01>9.65577055e-06</R01>
+								<R02>8.44887109e-06</R02>
+								<R10>-9.65567233e-06</R10>
+								<R11>1</R11>
+								<R12>-9.65608615e-06</R12>
+								<R20>-8.44896476e-06</R20>
+								<R21>9.65600429e-06</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="C1">
-								<X>-1.25001049</X>
-								<Y>3.31310912e-05</Y>
-								<Z>1.49995005</Z>
+								<X>-2.56966832e-05</X>
+								<Y>1.25001359</Y>
+								<Z>1.49998796</Z>
 								<R00>1</R00>
-								<R01>5.79334883e-05</R01>
-								<R02>-5.7935169e-05</R02>
-								<R10>-5.79364241e-05</R10>
+								<R01>3.74649201e-11</R01>
+								<R02>0</R02>
+								<R10>3.74649201e-11</R10>
 								<R11>1</R11>
-								<R12>-5.0690669e-05</R12>
-								<R20>5.79322295e-05</R20>
-								<R21>5.06940269e-05</R21>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<float name="DesiredAngle">0</float>
@@ -815,6 +726,209 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<float name="MaxVelocity">0</float>
 							<string name="Name">LFeet</string>
 							<Ref name="Part0">RBXbd1a43acd5e24addb5f2e33de566290e</Ref>
+							<Ref name="Part1">RBX80bf1459796c4bdf892595f6839d2776</Ref>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Part" referent="RBX80bf1459796c4bdf892595f6839d2776">
+					<Properties>
+						<bool name="Anchored">false</bool>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<token name="BackSurface">0</token>
+						<token name="BackSurfaceInput">0</token>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<token name="BottomSurface">0</token>
+						<token name="BottomSurfaceInput">0</token>
+						<CoordinateFrame name="CFrame">
+							<X>-13.7500277</X>
+							<Y>3.51066399</Y>
+							<Z>0.124954462</Z>
+							<R00>1</R00>
+							<R01>4.66555128e-11</R01>
+							<R02>0</R02>
+							<R10>4.66555128e-11</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">true</bool>
+						<bool name="CastShadow">true</bool>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+						<PhysicalProperties name="CustomPhysicalProperties">
+							<CustomPhysics>false</CustomPhysics>
+						</PhysicalProperties>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<token name="FrontSurface">0</token>
+						<token name="FrontSurfaceInput">0</token>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<token name="LeftSurface">0</token>
+						<token name="LeftSurfaceInput">0</token>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<token name="Material">256</token>
+						<string name="Name">LFeet</string>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<token name="RightSurface">0</token>
+						<token name="RightSurfaceInput">0</token>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<BinaryString name="Tags"></BinaryString>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<token name="TopSurface">0</token>
+						<token name="TopSurfaceInput">0</token>
+						<float name="Transparency">1</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<token name="formFactorRaw">1</token>
+						<token name="shape">1</token>
+						<Vector3 name="size">
+							<X>4</X>
+							<Y>1</Y>
+							<Z>8</Z>
+						</Vector3>
+					</Properties>
+					<Item class="UnionOperation" referent="RBX4c020f2b794d40468a15bf09e5d23d72">
+						<Properties>
+							<bool name="Anchored">false</bool>
+							<Content name="AssetId"><url>https://www.roblox.com//asset/?id=5615137033</url></Content>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<float name="BackParamA">-0.5</float>
+							<float name="BackParamB">0.5</float>
+							<token name="BackSurface">0</token>
+							<token name="BackSurfaceInput">0</token>
+							<float name="BottomParamA">-0.5</float>
+							<float name="BottomParamB">0.5</float>
+							<token name="BottomSurface">0</token>
+							<token name="BottomSurfaceInput">0</token>
+							<CoordinateFrame name="CFrame">
+								<X>-13.7500277</X>
+								<Y>3.51066399</Y>
+								<Z>0.124954462</Z>
+								<R00>9.89228574e-05</R00>
+								<R01>1</R01>
+								<R02>8.2463579e-05</R02>
+								<R10>-0.999990106</R10>
+								<R11>0.000103757891</R11>
+								<R12>-9.40186801e-05</R12>
+								<R20>-8.91996679e-05</R20>
+								<R21>-7.82300267e-05</R21>
+								<R22>0.999997079</R22>
+							</CoordinateFrame>
+							<bool name="CanCollide">true</bool>
+							<bool name="CastShadow">true</bool>
+							<BinaryString name="ChildData"></BinaryString>
+							<int name="CollisionGroupId">0</int>
+							<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+							<PhysicalProperties name="CustomPhysicalProperties">
+								<CustomPhysics>false</CustomPhysics>
+							</PhysicalProperties>
+							<token name="FormFactor">3</token>
+							<float name="FrontParamA">-0.5</float>
+							<float name="FrontParamB">0.5</float>
+							<token name="FrontSurface">0</token>
+							<token name="FrontSurfaceInput">0</token>
+							<Vector3 name="InitialSize">
+								<X>1.00038958</X>
+								<Y>4.50002098</Y>
+								<Z>7.50001383</Z>
+							</Vector3>
+							<BinaryString name="LODData"></BinaryString>
+							<float name="LeftParamA">-0.5</float>
+							<float name="LeftParamB">0.5</float>
+							<token name="LeftSurface">0</token>
+							<token name="LeftSurfaceInput">0</token>
+							<bool name="Locked">false</bool>
+							<bool name="Massless">false</bool>
+							<token name="Material">256</token>
+							<BinaryString name="MeshData"></BinaryString>
+							<string name="Name">LFeetDecoration</string>
+							<SharedString name="PhysicalConfigData">eQ4G9HPztoWSUb9MEKSNIw==</SharedString>
+							<BinaryString name="PhysicsData"></BinaryString>
+							<float name="Reflectance">0</float>
+							<token name="RenderFidelity">1</token>
+							<float name="RightParamA">-0.5</float>
+							<float name="RightParamB">0.5</float>
+							<token name="RightSurface">0</token>
+							<token name="RightSurfaceInput">0</token>
+							<int name="RootPriority">0</int>
+							<Vector3 name="RotVelocity">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="SmoothingAngle">0</float>
+							<BinaryString name="Tags"></BinaryString>
+							<float name="TopParamA">-0.5</float>
+							<float name="TopParamB">0.5</float>
+							<token name="TopSurface">0</token>
+							<token name="TopSurfaceInput">0</token>
+							<float name="Transparency">0</float>
+							<bool name="UsePartColor">false</bool>
+							<Vector3 name="Velocity">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<Vector3 name="size">
+								<X>1.00038958</X>
+								<Y>4.50002098</Y>
+								<Z>7.50001383</Z>
+							</Vector3>
+						</Properties>
+					</Item>
+					<Item class="Weld" referent="RBX4a71b63983004bf8988e3067494cf32c">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<CoordinateFrame name="C0">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+								<R00>9.89229011e-05</R00>
+								<R01>1</R01>
+								<R02>8.2463579e-05</R02>
+								<R10>-0.999990106</R10>
+								<R11>0.000103757848</R11>
+								<R12>-9.40186801e-05</R12>
+								<R20>-8.91996679e-05</R20>
+								<R21>-7.82300267e-05</R21>
+								<R22>0.999997079</R22>
+							</CoordinateFrame>
+							<CoordinateFrame name="C1">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Enabled">true</bool>
+							<string name="Name">LFeet &#240;&#159;&#161;&#170; LFeetDecoration</string>
+							<Ref name="Part0">RBX80bf1459796c4bdf892595f6839d2776</Ref>
 							<Ref name="Part1">RBX4c020f2b794d40468a15bf09e5d23d72</Ref>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
@@ -879,7 +993,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-4.5</X>
 							<Y>15.5105305</Y>
-							<Z>-0.375000119</Z>
+							<Z>-0.375</Z>
 							<R00>1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -957,7 +1071,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<CoordinateFrame name="C0">
 								<X>0.249822617</X>
 								<Y>-3.01772881</Y>
-								<Z>-2.0113163</Z>
+								<Z>-1.7613163</Z>
 								<R00>1</R00>
 								<R01>0</R01>
 								<R02>0</R02>
@@ -971,7 +1085,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<CoordinateFrame name="C1">
 								<X>0</X>
 								<Y>0</Y>
-								<Z>-1.99999988</Z>
+								<Z>-1.74999988</Z>
 								<R00>1</R00>
 								<R01>0</R01>
 								<R02>0</R02>
@@ -1006,17 +1120,17 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-4.25002337</X>
-							<Y>3.51058245</Y>
-							<Z>0.124947071</Z>
-							<R00>5.5475386e-05</R00>
+							<X>-4.25001812</X>
+							<Y>3.51062012</Y>
+							<Z>0.124940276</Z>
+							<R00>6.51301525e-05</R00>
 							<R01>-1</R01>
-							<R02>-4.44415236e-05</R02>
+							<R02>-5.28898199e-05</R02>
 							<R10>0.999993026</R10>
-							<R11>6.03052358e-05</R11>
-							<R12>-5.06033321e-05</R12>
-							<R20>4.57783317e-05</R20>
-							<R21>-4.02145815e-05</R21>
+							<R11>6.99607626e-05</R11>
+							<R12>-6.02568725e-05</R12>
+							<R20>5.54330618e-05</R20>
+							<R21>-4.86619138e-05</R21>
 							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
@@ -1097,7 +1211,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-4.25017738</X>
 							<Y>12.4928017</Y>
-							<Z>-0.386316538</Z>
+							<Z>-0.386316419</Z>
 							<R00>1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -1177,27 +1291,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0.0176525116</Y>
 								<Z>1.88629055</Z>
 								<R00>1</R00>
-								<R01>4.82791393e-06</R01>
-								<R02>4.22448875e-06</R02>
-								<R10>-4.82793394e-06</R10>
+								<R01>4.82791529e-06</R01>
+								<R02>4.22449057e-06</R02>
+								<R10>-4.82793257e-06</R10>
 								<R11>1</R11>
-								<R12>4.82801988e-06</R12>
-								<R20>-4.2244651e-06</R20>
-								<R21>-4.82803989e-06</R21>
+								<R12>4.8280217e-06</R12>
+								<R20>-4.22446328e-06</R20>
+								<R21>-4.82803807e-06</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="C1">
-								<X>-1.8104749e-05</X>
+								<X>-1.81047508e-05</X>
 								<Y>3.75</Y>
-								<Z>1.81198156e-05</Z>
+								<Z>1.8119812e-05</Z>
 								<R00>1</R00>
-								<R01>1.54801172e-12</R01>
-								<R02>1.8189894e-12</R02>
-								<R10>1.54801172e-12</R10>
+								<R01>6.23093938e-12</R01>
+								<R02>8.18545232e-12</R02>
+								<R10>6.23093938e-12</R10>
 								<R11>1</R11>
-								<R12>1.8189894e-12</R12>
-								<R20>1.8189894e-12</R20>
-								<R21>1.8189894e-12</R21>
+								<R12>8.18545232e-12</R12>
+								<R20>8.18545232e-12</R20>
+								<R21>8.18545232e-12</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<float name="DesiredAngle">0</float>
@@ -1226,15 +1340,15 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-4.25021029</X>
 							<Y>8.76045418</Y>
-							<Z>1.49997401</Z>
+							<Z>1.49997413</Z>
 							<R00>1</R00>
-							<R01>4.82791529e-06</R01>
-							<R02>4.22449057e-06</R02>
-							<R10>-4.82793257e-06</R10>
+							<R01>4.82792166e-06</R01>
+							<R02>4.22449875e-06</R02>
+							<R10>-4.8279262e-06</R10>
 							<R11>1</R11>
-							<R12>4.8280217e-06</R12>
-							<R20>-4.22446328e-06</R20>
-							<R21>-4.82803807e-06</R21>
+							<R12>4.82802989e-06</R12>
+							<R20>-4.2244551e-06</R20>
+							<R21>-4.82802989e-06</R21>
 							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
@@ -1302,31 +1416,31 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="C0">
-								<X>0.250187874</X>
-								<Y>-3.74997044</Y>
-								<Z>0.124991417</Z>
-								<R00>7.19733907e-06</R00>
+								<X>0.000217914581</X>
+								<Y>-3.74986076</Y>
+								<Z>0.124948144</Z>
+								<R00>5.0647337e-05</R00>
 								<R01>-1</R01>
-								<R02>-1.06450698e-05</R02>
+								<R02>-4.86657082e-05</R02>
 								<R10>0.999993026</R10>
-								<R11>1.20252998e-05</R11>
-								<R12>-1.19826118e-05</R12>
-								<R20>7.15487886e-06</R20>
-								<R21>-6.42061468e-06</R21>
+								<R11>5.54774706e-05</R11>
+								<R12>-5.54315266e-05</R12>
+								<R20>5.06066135e-05</R20>
+								<R21>-4.44388243e-05</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="C1">
-								<X>1.50000203</X>
-								<Y>-0.249967083</Y>
-								<Z>1.49995685</Z>
+								<X>1.50007474</X>
+								<Y>1.02227277e-05</Y>
+								<Z>1.49991703</Z>
 								<R00>1</R00>
-								<R01>-4.34504145e-05</R01>
-								<R02>4.34513931e-05</R02>
-								<R10>4.34520662e-05</R10>
+								<R01>-9.65514391e-06</R01>
+								<R02>9.65427171e-06</R02>
+								<R10>9.65522577e-06</R10>
 								<R11>1</R11>
-								<R12>-3.8018472e-05</R12>
-								<R20>-4.34497415e-05</R20>
-								<R21>3.80203601e-05</R21>
+								<R12>-8.44771603e-06</R12>
+								<R20>-9.65418985e-06</R20>
+								<R21>8.4478088e-06</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<float name="DesiredAngle">0</float>
@@ -1421,7 +1535,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="C0">
 							<X>2.5</X>
 							<Y>3.81469727e-06</Y>
-							<Z>1.62499988</Z>
+							<Z>1.625</Z>
 							<R00>1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -1455,13 +1569,13 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="Motor6D" referent="RBXcd4c4a90749649c88f31b68b8b345242">
+				<Item class="Motor6D" referent="RBXea22a268c4a546abb3fde9a7f0395e1e">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<CoordinateFrame name="C0">
 							<X>-2.5</X>
 							<Y>3.81469727e-06</Y>
-							<Z>1.62499988</Z>
+							<Z>1.625</Z>
 							<R00>1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -1633,7 +1747,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-13.5000076</X>
 							<Y>12.1503181</Y>
-							<Z>-6.99999666</Z>
+							<Z>-6.99999619</Z>
 							<R00>-1</R00>
 							<R01>0</R01>
 							<R02>-8.74227766e-08</R02>
@@ -1698,7 +1812,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<CoordinateFrame name="CFrame0">
 								<X>-6.67572021e-06</X>
 								<Y>3.36021233</Y>
-								<Z>-6.62499666</Z>
+								<Z>-6.62499619</Z>
 								<R00>-1</R00>
 								<R01>0</R01>
 								<R02>8.74227766e-08</R02>
@@ -1858,17 +1972,17 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
 							<X>-19.5000134</X>
-							<Y>11.1503162</Y>
-							<Z>2.00000334</Z>
+							<Y>11.1503172</Y>
+							<Z>2.00000167</Z>
 							<R00>1</R00>
 							<R01>0</R01>
-							<R02>0</R02>
+							<R02>-4.4408921e-16</R02>
 							<R10>0</R10>
-							<R11>-4.37113883e-08</R11>
-							<R12>1</R12>
+							<R11>-4.47034836e-08</R11>
+							<R12>0.999999881</R12>
 							<R20>0</R20>
-							<R21>-1</R21>
-							<R22>-4.37113883e-08</R22>
+							<R21>-0.999999881</R21>
+							<R22>-4.47034836e-08</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -1918,22 +2032,22 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>2</Z>
 						</Vector3>
 					</Properties>
-					<Item class="WeldConstraint" referent="RBX7f2f857bb2cb4efdbb78c65ad2380718">
+					<Item class="WeldConstraint" referent="RBXdca0445fc9554f6c9c0eb0736589b361">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="CFrame0">
 								<X>5.75019169</X>
-								<Y>2.3799901</Y>
-								<Z>1.35848236</Z>
+								<Y>2.37998843</Y>
+								<Z>1.35848141</Z>
 								<R00>1</R00>
 								<R01>0</R01>
 								<R02>0</R02>
 								<R10>0</R10>
-								<R11>-4.37113883e-08</R11>
-								<R12>-1</R12>
-								<R20>0</R20>
-								<R21>1</R21>
-								<R22>-4.37113883e-08</R22>
+								<R11>-4.47034836e-08</R11>
+								<R12>-0.999999881</R12>
+								<R20>-4.4408921e-16</R20>
+								<R21>0.999999881</R21>
+								<R22>-4.47034836e-08</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="CFrame1">
 								<X>0</X>
@@ -3314,12 +3428,13 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 
 --Store the motor6d in table
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
-local leftLegChain = LimbChain.new(motorTable)
+local leftLegChain = LimbChain.new(motorTable,true)
+
+--Test rigid constraint
+--local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
-local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
-
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
@@ -3327,7 +3442,11 @@ local lKneeHinge = HingeConstraint.new(kneePart,10,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegHinge = HingeConstraint.new(lLegPart,90,120)
-local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
+
+--Make the FABRIK chain note move
+local rigidFeet = RigidConstraint.new(leftLegChain,4)
+
+local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
 
 --Test
 
@@ -4164,185 +4283,6 @@ function Base.DeSerialize(serial,objectsToUse)
 end
 
 return Base]]></ProtectedString>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXbf9cd7b34e5c4b3d8da3e6d2ef6cbd5b">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">limbChain</string>
-						<string name="ScriptGuid">{bde753c0-5ab6-4418-a6a7-684c16cd320e}</string>
-						<ProtectedString name="Source"><![CDATA[-- Get Roblox Services
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
--- Import the Fabrik Module
-local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
-local FabrikAlgo = require(fabrik)
-
--- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
-local Object = require(Package.BaseRedirect)
-local LimbChain = Object.new("LimbChain")
-
---[[
-    Initializes the limb chain object
-    Calculates the limbs from joint to joint as a vector
-    And also measures the limb's length
-]]
-function LimbChain.new(Motor6DTable)
-    --Does the meta table stuff
-    local obj = LimbChain:make()
-
-
-    obj.Motor6DTable = Motor6DTable
-    obj.FirstJointC0 = Motor6DTable[1].C0
-    -- initialize LimbVectorTable to store the limb vectors and stores it into the object
-    local LimbVectorTable = {}
-    local IteratedLimbVectorTable = {}
-    for i = 1, #Motor6DTable - 1, 1 do
-        --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
-        --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
-        local currentVectorStore = LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
-        LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
-        IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
-    end
-    obj.LimbVectorTable = LimbVectorTable
-    -- Stores the limb vector table in the iterated version
-    obj.IteratedLimbVectorTable = IteratedLimbVectorTable
-
-
-    -- Finds the length of the limb vectors and puts them in a table for the FABRIK algorithm
-    -- Important as it reduces .Magnitude calls therefore reduces Activity
-    local LimbLengthTable = {}
-    for i = 1, #LimbVectorTable, 1 do
-        LimbLengthTable[#LimbLengthTable+1] = LimbVectorTable[i].Magnitude
-    end
-    
-    obj.LimbLengthTable = LimbLengthTable
-
-    return obj
-end
---[[
-    Function that limb chain has to calculate vector limbs
-    Input 2 Motor6d
-    Returns a vector from motorOne to motorTwo  joint
-    Always constant based on the c0 and c1 Position of the motors
-]]
-function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
-    -- Check if its a motor6d
-    if motorOne:IsA("Motor6D") and motorTwo:IsA("Motor6D") then
-        local vecOne = motorOne.C1.Position
-        local vecTwo = motorTwo.C0.Position
-        local combinedVector = vecTwo - vecOne
-        return combinedVector
-    else
-        return "Error: motor 6ds are not inserted in the function"
-    end
-end
---[[
-    Function that executes 1 iteration of the Fabrik Algorithm towards the target position
-]]
-function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
-
-    -- Gets the CFrame of the first joint at world space
-    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
-
-    --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
-    --Recursive function
-    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
-                                              
-
-end
---[[
-    Function that rotates the motors to match the algorithm
-    Operates by changing the motor's C0 Position to the goal CFrame
-]]
-function LimbChain:UpdateMotors()
-
-    -- Gets the CFrame of the Initial joint at world space
-    local initialJointCFrame = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
-
-    --Vector sum for the for loop to get the series of position of the next joint based on the algorithm
-    local vectorSumFromFirstJoint = Vector3.new()
-
-    --Iterates and start rotating the limbs starting from the first joint
-    for i = 1, #self.LimbVectorTable, 1 do
-
-        --Obtains the current limb that is being worked on
-        local originalVectorLimb = self.LimbVectorTable[i]
-        local currentVectorLimb = self.IteratedLimbVectorTable[i]
-
-        --Obtains the CFrame of the part0 limb of the motor6d
-        local previousLimbPart = self.Motor6DTable[i].Parent
-        local previousLimbCF = previousLimbPart.CFrame
-
-        -- Obtains the CFrame rotation calculation for CFrame.fromAxis
-        local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
-        local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
-        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
-        local limbRotationAngle = math.acos(safetyClamp)
-        local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
-
-        --Checks if the axis exists if cross product returns zero somehow
-        if limbRotationAxis~=Vector3.new(0,0,0) then
-        
-        --Gets the world space of the joint from the iterated limb vectors
-        if i ~= 1 then
-        vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[i-1]
-        end
-
-        --Gets the position of the current limb joint
-        local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
-
-        --Obtain the CFrame operations needed to rotate the limb to the goal
-        local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
-        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
-        
-        --Changes the current motor6d through c0
-        self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
-
-        end
-
-    
-    end
-
-end
-
-
---Prints  the limb vector and iterated limb vector
---For debugging not needed now
-function LimbChain:PrintLimbVectors()
-
-    for i=1,#self.LimbVectorTable,1 do
-        --print("Limbvector table i:",i," Vector:",self.LimbVectorTable[i])
-    end
-    for i=1,#self.IteratedLimbVectorTable,1 do
-        print("Iterated self table i:",i," Vector:",self.IteratedLimbVectorTable[i])
-    end
-
-end
-
---Gets the original vector limb direction relative to the part
-function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
-
-    local i = limbVectorNumber
-
-    --Obtains the current limb that is being worked on
-    local originalVectorLimb = self.LimbVectorTable[i]
-
-    --Obtains the CFrame of the part0 limb of the motor6d
-    local previousLimbPart = self.Motor6DTable[i].Parent
-    local previousLimbCF = previousLimbPart.CFrame
-
-    -- Obtains the vector relative to the previous part0
-    local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
-    
-    return limbVectorRelativeToOriginal
-
-end
-
-return LimbChain]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -5507,6 +5447,252 @@ function MathPlane:IsPointOnPlane(PositionVector)
 end
 
 return MathPlane]]></ProtectedString>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX623a9e37c488432aa6a321ed09d8653b">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">LimbChain</string>
+						<string name="ScriptGuid">{6adacdf8-81c0-4258-a42d-5e2724161c05}</string>
+						<ProtectedString name="Source"><![CDATA[-- Get Roblox Services
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- Import the Fabrik Module
+local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
+local FabrikAlgo = require(fabrik)
+
+-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
+local LimbChain = Object.new("LimbChain")
+
+--[[
+    Initializes the limb chain object
+    Calculates the limbs from joint to joint as a vector
+    And also measures the limb's length
+]]
+function LimbChain.new(Motor6DTable,IncludeAppendage)
+    --Does the meta table stuff
+    local obj = LimbChain:make()
+
+    obj.IncludeAppendage = IncludeAppendage
+
+    obj.Motor6DTable = Motor6DTable
+    obj.FirstJointC0 = Motor6DTable[1].C0
+    -- initialize LimbVectorTable to store the limb vectors and stores it into the object
+    local LimbVectorTable = {}
+    local IteratedLimbVectorTable = {}
+    for i = 1, #Motor6DTable - 1, 1 do
+        --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
+        --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
+        local currentVectorStore = LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
+        LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
+        IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
+    end
+
+    --Checks if this bool is true then adds it into the vector limb
+    if IncludeAppendage == true then
+        local lastMotor = Motor6DTable[#Motor6DTable]
+        --print(lastMotor)
+        --local test = -lastMotor.C1.Position
+        --This is more accurate than getting C1 position for some reason
+        local ExtraLimbVector = lastMotor.Part1.Position-(lastMotor.Part0.Position+lastMotor.C0.Position)
+
+        LimbVectorTable[#LimbVectorTable + 1] = ExtraLimbVector
+        IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = ExtraLimbVector
+
+        obj.ExtraLimbVector = ExtraLimbVector
+    end
+
+    obj.LimbVectorTable = LimbVectorTable
+    -- Stores the limb vector table in the iterated version
+    obj.IteratedLimbVectorTable = IteratedLimbVectorTable
+
+
+    -- Finds the length of the limb vectors and puts them in a table for the FABRIK algorithm
+    -- Important as it reduces .Magnitude calls therefore reduces Activity
+    local LimbLengthTable = {}
+    for i = 1, #LimbVectorTable, 1 do
+        LimbLengthTable[#LimbLengthTable+1] = LimbVectorTable[i].Magnitude
+    end
+    
+    obj.LimbLengthTable = LimbLengthTable
+
+    return obj
+end
+--[[
+    Function that limb chain has to calculate vector limbs
+    Input 2 Motor6d
+    Returns a vector from motorOne to motorTwo  joint
+    Always constant based on the c0 and c1 Position of the motors
+]]
+function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
+    -- Check if its a motor6d
+    if motorOne:IsA("Motor6D") and motorTwo:IsA("Motor6D") then
+        local vecOne = motorOne.C1.Position
+        local vecTwo = motorTwo.C0.Position
+        local combinedVector = vecTwo - vecOne
+        return combinedVector
+    else
+        return "Error: motor 6ds are not inserted in the function"
+    end
+end
+--[[
+    Function that executes 1 iteration of the Fabrik Algorithm towards the target position
+]]
+function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
+
+    -- Gets the CFrame of the first joint at world space
+    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+
+    --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
+    --Recursive function
+    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
+                                              
+
+end
+--[[
+    Function that rotates the motors to match the algorithm
+    Operates by changing the motor's C0 Position to the goal CFrame
+    Optional Parameter floorNormal to make feet upright to the floor its being raycasted to
+    Feet implementation is real buggy tho and is not automatic implementation
+    And it only works for my mech model
+]]
+function LimbChain:UpdateMotors(floorNormal)
+
+    -- Gets the CFrame of the Initial joint at world space
+    local initialJointCFrame = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+
+    --Vector sum for the for loop to get the series of position of the next joint based on the algorithm
+    local vectorSumFromFirstJoint = Vector3.new()
+
+    local iterateUntil = #self.LimbVectorTable
+
+    --Iterates and start rotating the limbs starting from the first joint
+    for i = 1, iterateUntil, 1 do
+
+        --Obtains the current limb that is being worked on
+        local originalVectorLimb = self.LimbVectorTable[i]
+        local currentVectorLimb = self.IteratedLimbVectorTable[i]
+
+        --Obtains the CFrame of the part0 limb of the motor6d
+        local previousLimbPart = self.Motor6DTable[i].Parent
+        local previousLimbCF = previousLimbPart.CFrame
+
+        -- Obtains the CFrame rotation calculation for CFrame.fromAxis
+        local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+        local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
+        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+        local limbRotationAngle = math.acos(safetyClamp)
+        local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+
+        --Checks if the axis exists if cross product returns zero somehow
+        if limbRotationAxis~=Vector3.new(0,0,0) then
+        
+        --Gets the world space of the joint from the iterated limb vectors
+        if i ~= 1 then
+        vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[i-1]
+        end
+
+        --Gets the position of the current limb joint
+        local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
+
+        --Obtain the CFrame operations needed to rotate the limb to the goal
+        local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
+        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
+        
+        --Changes the current motor6d through c0
+        self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
+
+            --Testing to keep foot appendage upright
+            --Seems to work for now to make the feet look down visually
+            --doesn't adhere to constraints but it works for now
+            --I really need help making the feet match the surface
+            if self.IncludeAppendage == true and i == iterateUntil then
+                local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Parent
+                local previousLimbCF = previousLimbPart.CFrame
+                local empty = Vector3.new()
+                --self.Motor6DTable[#self.Motor6DTable].C0 = CFrame.new()
+
+                --Make feet point upright to floor
+                --If not inputted then make feet points up towards sky
+                local upright = floorNormal
+                if upright == nil then
+                    upright = Vector3.new(0,1,0)
+                end
+
+                --Obtain the CFrame operations needed to rotate the limb to the goal
+                local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
+                local rotateLimbCF =CFrame.fromMatrix(empty,previousLimbCF.RightVector,upright)
+            
+                --Changes the current motor6d through c0
+                self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
+    
+            end
+        end
+
+    
+    end
+
+
+
+end
+
+
+--Prints  the limb vector and iterated limb vector
+--For debugging not needed now
+function LimbChain:PrintLimbVectors()
+
+    for i=1,#self.LimbVectorTable,1 do
+        --print("Limbvector table i:",i," Vector:",self.LimbVectorTable[i])
+    end
+    for i=1,#self.IteratedLimbVectorTable,1 do
+        print("Iterated self table i:",i," Vector:",self.IteratedLimbVectorTable[i])
+    end
+
+end
+
+--Gets the original vector limb direction relative to the part
+function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
+
+    local i = limbVectorNumber
+
+    --Obtains the current limb that is being worked on
+    local originalVectorLimb = self.LimbVectorTable[i]
+
+    --print(self.Motor6DTable[i].Parent)
+    --Obtains the CFrame of the part0 limb of the motor6d
+    local previousLimbPart = self.Motor6DTable[i].Parent
+    local previousLimbCF = previousLimbPart.CFrame
+
+    -- Obtains the vector relative to the previous part0
+    local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+    
+    return limbVectorRelativeToOriginal
+
+end
+
+--Testing for feet
+function LimbChain:GetOriginalFeetLimb()
+
+    --Obtains the current limb that is being worked on
+    local originalVectorLimb = self.extraLimbVector
+
+    --Obtains the CFrame of the part0 limb of the motor6d
+    local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Parent
+    local previousLimbCF = previousLimbPart.CFrame
+
+    -- Obtains the vector relative to the previous part0
+    local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+
+    return limbVectorRelativeToOriginal
+
+end
+
+return LimbChain
+]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>

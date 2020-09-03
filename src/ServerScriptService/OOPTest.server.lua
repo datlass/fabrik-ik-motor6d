@@ -44,13 +44,13 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 
 --Store the motor6d in table
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
-local leftLegChain = limbChain.new(motorTable)
---test
+local leftLegChain = LimbChain.new(motorTable,true)
+
+--Test rigid constraint
+--local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
-local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
-
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
@@ -58,7 +58,11 @@ local lKneeHinge = HingeConstraint.new(kneePart,10,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegHinge = HingeConstraint.new(lLegPart,90,120)
-local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
+
+--Make the FABRIK chain note move
+local rigidFeet = RigidConstraint.new(leftLegChain,4)
+
+local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
 
 --Test
 
