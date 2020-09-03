@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-24.1114578</X>
-					<Y>11.7882605</Y>
-					<Z>-2.22344065</Z>
-					<R00>0.24403891</R00>
-					<R01>0.145321071</R01>
-					<R02>-0.958815336</R02>
-					<R10>-3.7252903e-09</R10>
-					<R11>0.988708496</R11>
-					<R12>0.149851769</R12>
-					<R20>0.969765425</R20>
-					<R21>-0.0365696587</R21>
-					<R22>0.241283357</R22>
+					<X>-12.6638927</X>
+					<Y>17.5856495</Y>
+					<Z>18.9781475</Z>
+					<R00>0.955790877</R00>
+					<R01>-0.0815763324</R01>
+					<R02>0.282505125</R02>
+					<R10>-0</R10>
+					<R11>0.960747123</R11>
+					<R12>0.277425855</R12>
+					<R20>-0.294047326</R20>
+					<R21>-0.265161097</R21>
+					<R22>0.91827333</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-22.1938267</X>
-					<Y>11.4885569</Y>
-					<Z>-2.70600748</Z>
+					<X>-13.2289028</X>
+					<Y>17.030798</Y>
+					<Z>17.1416016</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1746,16 +1746,16 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-19.5000095</X>
 							<Y>18.5</Y>
-							<Z>2.00000334</Z>
-							<R00>0.851659715</R00>
-							<R01>-0.0584068745</R01>
-							<R02>0.520830572</R02>
-							<R10>-0.384374857</R10>
-							<R11>0.605946958</R11>
-							<R12>0.696479976</R12>
-							<R20>-0.356274873</R20>
-							<R21>-0.793358088</R21>
-							<R22>0.493610412</R22>
+							<Z>2.00000405</Z>
+							<R00>0.676715434</R00>
+							<R01>0.145185977</R01>
+							<R02>0.721787512</R02>
+							<R10>-0.644301355</R10>
+							<R11>0.591188431</R11>
+							<R12>0.485151619</R12>
+							<R20>-0.356275201</R20>
+							<R21>-0.793358326</R21>
+							<R22>0.493609786</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -1809,18 +1809,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="CFrame0">
-								<X>9.74703217</X>
-								<Y>0.828337669</Y>
-								<Z>4.31471443</Z>
-								<R00>0.851659715</R00>
-								<R01>-0.384374857</R01>
-								<R02>-0.356274873</R02>
-								<R10>-0.0584068745</R10>
-								<R11>0.605946958</R11>
-								<R12>-0.793358088</R12>
-								<R20>0.520830572</R20>
-								<R21>0.696479976</R21>
-								<R22>0.493610412</R22>
+								<X>7.97236252</X>
+								<Y>2.9696002</Y>
+								<Z>6.47537374</Z>
+								<R00>0.676715434</R00>
+								<R01>-0.644301355</R01>
+								<R02>-0.356275201</R02>
+								<R10>0.145185977</R10>
+								<R11>0.591188431</R11>
+								<R12>-0.793358326</R12>
+								<R20>0.721787512</R20>
+								<R21>0.485151619</R21>
+								<R22>0.493609786</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="CFrame1">
 								<X>0</X>
@@ -3287,6 +3287,11 @@ local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -------------------Import all the Constraints Types-----------------
 
+--BallSocketConstraint
+local BallSocketConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.BallSocketConstraint
+local BallSocketConstraint = require(BallSocketConstraintPointer)
+
+
 --HingeConstraint
 local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
@@ -3312,18 +3317,17 @@ local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMot
 local leftLegChain = LimbChain.new(motorTable)
 
 --Testing the constraint
-local testRigidJoint = lowerBody.Constraints.UpperLegConstraint
+local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
+
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,10,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegHinge = HingeConstraint.new(lLegPart,90,90)
-local limbConstraintTable = {nil,lKneeHinge,lLegHinge}
-
--- Random Parts to debug position of where joints should be according to the algorithm
-local part1 = game.Workspace.test1
+local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
 
 --Test
 
@@ -3479,7 +3483,9 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
     local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
 
     local isOppositeDirection = false
-    if projScalar < 0 then isOppositeDirection = true end
+    if projScalar < 0 then
+         isOppositeDirection = true
+    end
 
     projScalar = math.abs(projScalar)
 
@@ -3529,33 +3535,47 @@ local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
     return limbVector
 end
 
-
 --[[
     Constraining the forwards operation only makes it weird I dont think it simply does enough
     So constraints are also applied to backwards now
     
-]] 
+]]
 local function ConstraintBackwards(originCF, targetPos, limbVectorTable,
-    limbLengthTable,limbConstraintTable)
-local vectorSumFromOrigin = Vector3.new()
+                                   limbLengthTable, limbConstraintTable)
+    local vectorSumFromOrigin = Vector3.new()
 
-for i = #limbVectorTable, 1, -1 do
-local vectorSum = Vector3.new(0, 0, 0)
--- print("Index: ",i," Vectable: ",limbVectorTable[i])
+    for i = #limbVectorTable, 1, -1 do
+        local vectorSum = Vector3.new(0, 0, 0)
 
-for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
--- print("vec sum: ",vectorSum)
+        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
 
--- Gets the new direction of the new vector along the chain
--- direction is Target Pos to the next point on the chain
-local pointTo = originCF.Position + vectorSum - targetPos -
-    vectorSumFromOrigin
+        local pointTowards = originCF.Position + vectorSum
+        local pointFrom = targetPos + vectorSumFromOrigin
 
-    -- constructs the new vectable
-limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
-vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
-end
-return originCF, targetPos, limbVectorTable, limbLengthTable
+        -- Gets the new direction of the new vector along the chain
+        -- direction is Target Pos to the next point on the chain
+        local pointTo = pointTowards - pointFrom
+
+        -- Gotta reverse the direction first
+        --The constraint only works if the direction is opposite
+        local newLimbVector = -pointTo.Unit * limbLengthTable[i]
+
+        -- Checks if there is a limb constraint for the current limb in the iteration
+        if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+
+            local limbLength = limbLengthTable[i]
+            -- Start the constraint according to the method
+            -- print(limbConstraintTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
+                                pointTowards, newLimbVector, limbLength)
+            -- print("Index: ",i,"Vector: ",newLimbVector)
+        end
+        -- constructs the new vectable
+        --Gotta make it negative though to counteract
+        limbVectorTable[i] = -newLimbVector
+        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
+    end
+    return originCF, targetPos, limbVectorTable, limbLengthTable
 end
 
 --[[
@@ -3571,27 +3591,28 @@ local function ConstraintForwards(originCF, targetPos, limbVectorTable,
         local vectorSum = Vector3.new(0, 0, 0)
 
         -- Sums up the vectors in order to get the target position on the chain
-        --target position is the next joint from origin to target
+        -- target position is the next joint from origin to target
         for v = i + 1, #limbVectorTable, 1 do
             vectorSum = vectorSum + limbVectorTable[v]
         end
 
-        local nextJointPosition =vectorSum + targetPos
+        local nextJointPosition = vectorSum + targetPos
         local jointPosition = originCF.Position + vectorSumFromOrigin
         -- Gets the new direction of the new vector along the chain
         -- direction of the new vector is from origin to target
         local pointTo = nextJointPosition - jointPosition
         -- This time constraint the vector using the conical constraint function
         local newLimbVector = pointTo.Unit * limbLengthTable[i]
-        
+
         -- Checks if there is a limb constraint for the current limb in the iteration
         if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-           
+
             local limbLength = limbLengthTable[i]
-            --Start the constraint according to the method
-            --print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition,newLimbVector,limbLength)
-            --print("Index: ",i,"Vector: ",newLimbVector)
+            -- Start the constraint according to the method
+            -- print(limbConstraintTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
+                                jointPosition, newLimbVector, limbLength)
+            -- print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
         limbVectorTable[i] = newLimbVector
@@ -3627,7 +3648,8 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
         -- If there is a constraint table then use constraint forwards else use unconstraint
         if limbConstraintTable ~= nil then
             local originCF, targetPos, limbVectorTable, limbLengthTable =
-                Backwards(originCF, targetPos, limbVectorTable, limbLengthTable)
+                ConstraintBackwards(originCF, targetPos, limbVectorTable,
+                                    limbLengthTable, limbConstraintTable)
             _, _, limbVectorTable, _ = ConstraintForwards(originCF, targetPos,
                                                           limbVectorTable,
                                                           limbLengthTable,
@@ -3635,6 +3657,7 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
 
             return limbVectorTable
         else
+            -- Does the normal forwards and backwards iteration
             _, _, limbVectorTable, _ = Forwards(
                                            Backwards(originCF, targetPos,
                                                      limbVectorTable,
@@ -5265,7 +5288,6 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
     --Gets the part's current CFrame
     self:UpdateAxis()
-    print(self.CenterAxis)
     
     --Create a plane that is located on the joint with a surface normal to the rightvector
     local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)
@@ -5403,10 +5425,15 @@ function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
     --Checks if there is a part to set the constraint axis to
     if self.Part ~=nil then
 
+        --Get the constraining part current axis
+        self:UpdateAxis()
+
+        --Make it point in the part's center axis
         return self.CenterAxis.Unit*limbLength
 
     else
         
+        --Else get the original limbvector
         return self.LimbChain:GetOriginalLimbDirection(self.LimbNumber).Unit*limbLength
 
     end
@@ -5414,6 +5441,126 @@ end
 
 
 return RigidConstraint]]></ProtectedString>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBXa26c44ad69f34d7db78460af80301213">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">BallSocketConstraint</string>
+							<string name="ScriptGuid">{dd92ce8b-4a92-4fd7-b075-990c05bfd56d}</string>
+							<ProtectedString name="Source"><![CDATA[
+
+-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
+
+--Require the FabrikConstraint for Inheritance
+local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
+local FabrikConstraint = require(FabrikConstraintPointer)
+
+--Initialize the Self Class
+local BallSocketConstraint = Object.newExtends("BallSocketConstraint",FabrikConstraint)
+
+--[[--------------------------------------------------------
+    Create the constraint
+    Parameters:
+]]
+function BallSocketConstraint.new(Part,AngleOfWidth,AngleOfHeight)
+        
+    local obj = BallSocketConstraint:super(Part)
+   
+    obj.AngleOfHeight = math.rad(AngleOfHeight)
+    
+    obj.AngleOfWidth = math.rad(AngleOfWidth)
+    
+	return obj
+end
+
+--[[
+    Constraints the limbVector like a ball socket joint
+]]
+function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+    
+        --Get the parts current CFrame
+        self:UpdateAxis()
+
+        --Get the Axis
+        local centerAxis = self.CenterAxis.Unit
+        local yAxis = self.YAxis.Unit
+        local xAxis = self.XAxis.Unit
+
+        -- ellipse width and height of the constraint
+        local heightCenterAngle = self.AngleOfHeight
+        local widthCenterAngle = self.AngleOfWidth
+    
+        -- Convert Angles into height and width
+        -- Height and width are in terms of radius height from origin
+        local height = limbLength * math.sin(heightCenterAngle)
+        local width = limbLength * math.sin(widthCenterAngle)
+    
+        -- Perform vector resolution on limbvector
+        -- Represents the center of the 2d plane that will be constructed
+        -- Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
+        local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
+    
+        local isOppositeDirection = false
+
+        --Detects the direction of the projection and adjust bool accordingly
+        if projScalar < 0 then 
+            isOppositeDirection = true
+        end
+    
+        projScalar = math.abs(projScalar)
+    
+        local minScalar = limbLength * math.cos(widthCenterAngle)
+        projScalar = math.clamp(projScalar, minScalar, limbLength)
+    
+        -- Always make projection scalar positive so that the projCenter faces the center Axis
+        local projCenter = projScalar * centerAxis.Unit
+    
+        -- position the current limbvector within the 2d plane as another vector
+        local posVector = limbVector - projCenter
+    
+        -- translate into 2d plane
+    
+        -- Construct the oval
+        -- Get the X and Y Coordinates
+        local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
+        local xPoint = xAxis:Dot(posVector) / (xAxis.Magnitude)
+    
+        -- Construct the oval constrain formula
+        local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
+    
+        -- check if the limbvector point is outside the formula constraint
+        -- Also checks for directionality if its in the isOppositeDirection then constraint
+        if ovalFormula >= 1 or isOppositeDirection then
+            -- Obtain the angle from the xaxis
+            local angleToXAxis = math.atan(yPoint, xPoint)
+    
+            -- Place it on the edge of the oval within the contraints placed
+            local newXPoint = width * math.cos(angleToXAxis)
+            local newYPoint = height * math.sin(angleToXAxis)
+    
+            -- now reconstruct the limbVector
+            -- Now we convert it back to a 3d vector
+            local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
+    
+            -- Gets the new direction of the v2 limb
+            local newPosVector = posVector.Unit * newMagnitude
+    
+            local newDir = projCenter + newPosVector
+            -- Constructs the new limbvector in a different direction but same length
+            limbVector = newDir.Unit * limbVector.Magnitude
+        end
+    
+        return limbVector
+
+end
+
+
+return BallSocketConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
