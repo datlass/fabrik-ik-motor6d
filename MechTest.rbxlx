@@ -60,9 +60,9 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-16.085104</X>
-					<Y>15.4796724</Y>
-					<Z>-12.1368313</Z>
+					<X>-21.5029049</X>
+					<Y>20.0203094</Y>
+					<Z>-19.9008541</Z>
 					<R00>-0.82007587</R00>
 					<R01>0.247466832</R01>
 					<R02>-0.515980542</R02>
@@ -77,9 +77,9 @@
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-15.0531425</X>
-					<Y>14.614789</Y>
-					<Z>-10.6579685</Z>
+					<X>-20.4709435</X>
+					<Y>19.155426</Y>
+					<Z>-18.4219913</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -4497,7 +4497,7 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
     --Debug the angle to adjust your own Rig
     --print(math.deg(angleAdjust))
-
+    --Issue: It looks pretty buggy if continuosly iterated
     --Checks for elevation or depression
     if angleAdjust < self.AngleOfDepression then
 
