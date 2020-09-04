@@ -61,7 +61,7 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
     --Debug the angle to adjust your own Rig
     --print(math.deg(angleAdjust))
-
+    --Issue: It looks pretty buggy if continuosly iterated
     --Checks for elevation or depression
     if angleAdjust < self.AngleOfDepression then
 
