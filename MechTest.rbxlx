@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-21.5029049</X>
-					<Y>20.0203094</Y>
-					<Z>-19.9008541</Z>
-					<R00>-0.82007587</R00>
-					<R01>0.247466832</R01>
-					<R02>-0.515980542</R02>
-					<R10>-1.4901163e-08</R10>
-					<R11>0.901662111</R11>
-					<R12>0.432441562</R12>
-					<R20>0.572255015</R20>
-					<R21>0.354634881</R21>
-					<R22>-0.739431143</R22>
+					<X>-10.3063583</X>
+					<Y>11.5423679</Y>
+					<Z>-8.70622063</Z>
+					<R00>-0.590098739</R00>
+					<R01>0.267934799</R01>
+					<R02>-0.761573672</R02>
+					<R10>-0</R10>
+					<R11>0.943322599</R11>
+					<R12>0.331877202</R12>
+					<R20>0.807331145</R20>
+					<R21>0.195840314</R21>
+					<R22>-0.55665344</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-20.4709435</X>
-					<Y>19.155426</Y>
-					<Z>-18.4219913</Z>
+					<X>-8.78321075</X>
+					<Y>10.8786135</Y>
+					<Z>-7.59291363</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3443,7 +3443,7 @@ local lKneeHinge = HingeConstraint.new(kneePart,10,90)
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegHinge = HingeConstraint.new(lLegPart,90,120)
 
---Make the FABRIK chain note move
+--Make the FABRIK chain not move
 local rigidFeet = RigidConstraint.new(leftLegChain,4)
 
 local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
@@ -3705,7 +3705,8 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
 
             return limbVectorTable
         end
-    else
+    else    -- Limb is within tolerance so don't iterate for this condition
+
         return limbVectorTable
     end
 end

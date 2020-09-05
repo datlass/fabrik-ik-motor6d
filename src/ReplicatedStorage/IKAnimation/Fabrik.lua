@@ -103,7 +103,6 @@ end
 --[[
 	Same as forwards Function
 	limbConstraintTable
-
 ]]
 local function ConstraintForwards(originCF, targetPos, limbVectorTable,
                                   limbLengthTable, limbConstraintTable)
@@ -187,7 +186,8 @@ local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
 
             return limbVectorTable
         end
-    else
+    else    -- Limb is within tolerance so don't iterate for this condition
+
         return limbVectorTable
     end
 end

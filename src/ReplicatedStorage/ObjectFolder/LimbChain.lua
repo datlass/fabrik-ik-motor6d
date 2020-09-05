@@ -5,6 +5,12 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
 local FabrikAlgo = require(fabrik)
 
+
+-- Import the Fabrik Module Object
+--test
+local fabrikSolver = ReplicatedStorage.Source.ObjectFolder:WaitForChild("FabrikSolver")
+local FabrikSolver = require(fabrikSolver)
+
 -- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
@@ -15,7 +21,7 @@ local LimbChain = Object.new("LimbChain")
     Calculates the limbs from joint to joint as a vector
     And also measures the limb's length
 ]]
-function LimbChain.new(Motor6DTable,IncludeAppendage)
+function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
@@ -52,7 +58,6 @@ function LimbChain.new(Motor6DTable,IncludeAppendage)
     -- Stores the limb vector table in the iterated version
     obj.IteratedLimbVectorTable = IteratedLimbVectorTable
 
-
     -- Finds the length of the limb vectors and puts them in a table for the FABRIK algorithm
     -- Important as it reduces .Magnitude calls therefore reduces Activity
     local LimbLengthTable = {}
@@ -61,6 +66,13 @@ function LimbChain.new(Motor6DTable,IncludeAppendage)
     end
     
     obj.LimbLengthTable = LimbLengthTable
+
+    --Store the constraint table
+    obj.LimbConstraintTable = LimbConstraintTable
+    --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik
+    local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable)
+    obj.LimbFabrikSolver = LimbFabrikSolver
+
 
     return obj
 end
@@ -83,6 +95,8 @@ function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
 end
 --[[
     Function that executes 1 iteration of the Fabrik Algorithm towards the target position
+    Deprecated method uses old IK module which does some inefficient stuff
+    (like continually summing up to find the max length every iteration)
 ]]
 function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
 
@@ -92,6 +106,32 @@ function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
     --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
     --Recursive function
     self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
+                                              
+
+end
+
+--[[
+    Newer iteration method that uses the Fabrik Object instead of a module
+    The object stores its own
+]]
+function LimbChain:IterateOnce(targetPosition,tolerance)
+
+    -- Gets the CFrame of the first joint at world space
+    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+
+    --Does the fabrik iteration once if not in goal
+    self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
+                                              
+
+end
+
+function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
+
+    -- Gets the CFrame of the first joint at world space
+    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+
+    --Does the fabrik iteration once if not in goal
+    self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
                                               
 
 end
@@ -230,6 +270,15 @@ function LimbChain:GetOriginalFeetLimb()
     local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
 
     return limbVectorRelativeToOriginal
+
+end
+
+function LimbChain:SetConstraints(LimbConstraintTable)
+
+    --Changes the constraint table and the fabrik solvers as well
+    self.LimbConstraintTable = LimbConstraintTable
+    self.LimbFabrikSolver.LimbConstraintTable = LimbConstraintTable
+
 
 end
 
