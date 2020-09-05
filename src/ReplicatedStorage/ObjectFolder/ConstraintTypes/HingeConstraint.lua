@@ -68,8 +68,12 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
         --Get the rotation Axis
         local rotationAxis = newDir:Cross(self.CenterAxis)
 
+        --Very strict and doesn't fit the iteration
         --Get Cframe and rotate it to max possible angle
         local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,-self.AngleOfDepression)
+        
+        --Rotate it anti clockwise from parts right vector method
+        --local refCF = CFrame.new(Vector3.new(),newDir)*CFrame.fromAxisAngle(rotationAxis,math.rad(1))
 
         return refCF.LookVector.Unit*limbLength
 
@@ -78,8 +82,12 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
         --Get the rotation Axis
         local rotationAxis = newDir:Cross(self.CenterAxis)
 
+        --Very strict and doesn't fit the iteration method
         --Get Cframe and rotate it to max possible angle
         local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,self.AngleOfElevation)
+        
+        --Rotate it clockwise from parts right vector view
+        --local refCF = CFrame.new(Vector3.new(),newDir)*CFrame.fromAxisAngle(rotationAxis,-math.rad(1))
 
         return refCF.LookVector.Unit*limbLength 
 

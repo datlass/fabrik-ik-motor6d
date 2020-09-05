@@ -130,7 +130,7 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
     -- Gets the CFrame of the first joint at world space
     local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
 
-    --Does the fabrik iteration once if not in goal
+    --Does the fabrik iteration until goal
     self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
                                               
 

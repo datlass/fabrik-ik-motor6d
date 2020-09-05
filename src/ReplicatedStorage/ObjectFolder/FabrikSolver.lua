@@ -77,13 +77,14 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
     -- If not then don't execute the iteration to save FPS
     -- Now includes a maximum iteration count
     local maxBreakCount
-    if maxBreakCount and type(maxBreakCount) == "number" then
+    if InputtedMaxBreakCount and type(InputtedMaxBreakCount) == "number" then
         maxBreakCount = InputtedMaxBreakCount
     else
         -- default is maximum 10 iterations
         maxBreakCount = 10
     end
 
+    --print("maxbreak count: ",maxBreakCount)
     local bcount = 0
 
     while distanceToGoal >= tolerance do
@@ -91,15 +92,28 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
         -- Do backwards on itself first then forwards until it reaches goal
         self:Backwards(originCF, targetPosition)
         self:Forwards(originCF, targetPosition)
-
+    
+        --measure distance again
+        -- initialize measure feet to where it should be in the world position
+        local vectorSum = Vector3.new(0, 0, 0)
+        for i = 1, #self.LimbVectorTable, 1 do
+          vectorSum = vectorSum + self.LimbVectorTable[i]
+        end
+        local feetJoint = originCF.Position + vectorSum
+        local feetToTarget = targetPosition - feetJoint
+        distanceToGoal = feetToTarget.Magnitude
+        
         --Counts the amount of iterations, if impossible to solve stops after max default at 10 iterations
         bcount += 1
 
-        if bcount > maxBreakCount then return self.LimbVectorTable end
+        if bcount > maxBreakCount then 
+            --print("bcount:", bcount,"failed to reach goal: ", distanceToGoal)
+            return self.LimbVectorTable 
+        end
 
     end
     -- Limb is within tolerance/already reached goal so don't do anything
-
+    --print("bcount:", bcount,"Reached goal: ", distanceToGoal)
     return self.LimbVectorTable
 
 end

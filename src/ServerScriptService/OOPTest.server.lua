@@ -64,8 +64,10 @@ local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,r
 --Set the constraints of the object
 leftLegChain:SetConstraints(limbConstraintTable)
 
+
+
 --[[
-    Then use the object to control the motor every heartbeat
+    Then use the LimbChain object to control the motor every heartbeat
     ]]
 RunService.Heartbeat:Connect(function()
         
@@ -77,3 +79,23 @@ RunService.Heartbeat:Connect(function()
 
 end)
 
+
+--[[
+
+--Moves position back and forth
+local back = Vector3.new(0,0,15)
+local goalPosition = workspace.LTarget.Position
+
+for i=1,100,1 do
+    
+    workspace.LTarget.Position = workspace.LTarget.Position+back
+    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+    leftLegChain:UpdateMotors()
+    wait(1)
+    workspace.LTarget.Position = workspace.LTarget.Position-back
+    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+    leftLegChain:UpdateMotors()
+    wait(1)
+end
+
+]]
