@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-10.3063583</X>
-					<Y>11.5423679</Y>
-					<Z>-8.70622063</Z>
-					<R00>-0.590098739</R00>
-					<R01>0.267934799</R01>
-					<R02>-0.761573672</R02>
+					<X>-40.7584763</X>
+					<Y>18.318325</Y>
+					<Z>-0.267932475</Z>
+					<R00>-0.100987986</R00>
+					<R01>0.191783011</R01>
+					<R02>-0.97622782</R02>
 					<R10>-0</R10>
-					<R11>0.943322599</R11>
-					<R12>0.331877202</R12>
-					<R20>0.807331145</R20>
-					<R21>0.195840314</R21>
-					<R22>-0.55665344</R22>
+					<R11>0.981244326</R11>
+					<R12>0.192768499</R12>
+					<R20>0.99488771</R20>
+					<R21>0.0194673017</R21>
+					<R22>-0.0990938768</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-8.78321075</X>
-					<Y>10.8786135</Y>
-					<Z>-7.59291363</Z>
+					<X>-38.806015</X>
+					<Y>17.9327869</Y>
+					<Z>-0.0697441548</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2086,9 +2086,9 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurface">0</token>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
-					<X>-14.5</X>
-					<Y>1.23102605</Y>
-					<Z>0.5</Z>
+					<X>-16.5</X>
+					<Y>3.23102617</Y>
+					<Z>-7.5</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3430,9 +3430,6 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 local leftLegChain = LimbChain.new(motorTable,true)
 
---Test rigid constraint
---local upperLegRigidJoint = RigidConstraint.new(leftLegChain,1)
-
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
@@ -3448,21 +3445,44 @@ local rigidFeet = RigidConstraint.new(leftLegChain,4)
 
 local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
 
---Test
+--Set the constraints of the object
+leftLegChain:SetConstraints(limbConstraintTable)
+
+
 
 --[[
-    Then use the object to control the motor every heartbeat
+    Then use the LimbChain object to control the motor every heartbeat
     ]]
 RunService.Heartbeat:Connect(function()
         
     --The Goal position
     local goalPosition = workspace.LTarget.Position
 
-    leftLegChain:Iterate(0.1,goalPosition,limbConstraintTable)
+    leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
 end)
-]]></ProtectedString>
+
+
+--[[
+
+--Moves position back and forth
+local back = Vector3.new(0,0,15)
+local goalPosition = workspace.LTarget.Position
+
+for i=1,100,1 do
+    
+    workspace.LTarget.Position = workspace.LTarget.Position+back
+    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+    leftLegChain:UpdateMotors()
+    wait(1)
+    workspace.LTarget.Position = workspace.LTarget.Position-back
+    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+    leftLegChain:UpdateMotors()
+    wait(1)
+end
+
+]]]]></ProtectedString>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -3621,7 +3641,6 @@ end
 --[[
 	Same as forwards Function
 	limbConstraintTable
-
 ]]
 local function ConstraintForwards(originCF, targetPos, limbVectorTable,
                                   limbLengthTable, limbConstraintTable)
@@ -4505,8 +4524,12 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
         --Get the rotation Axis
         local rotationAxis = newDir:Cross(self.CenterAxis)
 
+        --Very strict and doesn't fit the iteration
         --Get Cframe and rotate it to max possible angle
         local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,-self.AngleOfDepression)
+        
+        --Rotate it anti clockwise from parts right vector method
+        --local refCF = CFrame.new(Vector3.new(),newDir)*CFrame.fromAxisAngle(rotationAxis,math.rad(1))
 
         return refCF.LookVector.Unit*limbLength
 
@@ -4515,8 +4538,12 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
         --Get the rotation Axis
         local rotationAxis = newDir:Cross(self.CenterAxis)
 
+        --Very strict and doesn't fit the iteration method
         --Get Cframe and rotate it to max possible angle
         local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,self.AngleOfElevation)
+        
+        --Rotate it clockwise from parts right vector view
+        --local refCF = CFrame.new(Vector3.new(),newDir)*CFrame.fromAxisAngle(rotationAxis,-math.rad(1))
 
         return refCF.LookVector.Unit*limbLength 
 
@@ -5464,6 +5491,12 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
 local FabrikAlgo = require(fabrik)
 
+
+-- Import the Fabrik Module Object
+--test
+local fabrikSolver = ReplicatedStorage.Source.ObjectFolder:WaitForChild("FabrikSolver")
+local FabrikSolver = require(fabrikSolver)
+
 -- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
@@ -5474,7 +5507,7 @@ local LimbChain = Object.new("LimbChain")
     Calculates the limbs from joint to joint as a vector
     And also measures the limb's length
 ]]
-function LimbChain.new(Motor6DTable,IncludeAppendage)
+function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
@@ -5511,7 +5544,6 @@ function LimbChain.new(Motor6DTable,IncludeAppendage)
     -- Stores the limb vector table in the iterated version
     obj.IteratedLimbVectorTable = IteratedLimbVectorTable
 
-
     -- Finds the length of the limb vectors and puts them in a table for the FABRIK algorithm
     -- Important as it reduces .Magnitude calls therefore reduces Activity
     local LimbLengthTable = {}
@@ -5520,6 +5552,13 @@ function LimbChain.new(Motor6DTable,IncludeAppendage)
     end
     
     obj.LimbLengthTable = LimbLengthTable
+
+    --Store the constraint table
+    obj.LimbConstraintTable = LimbConstraintTable
+    --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik
+    local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable)
+    obj.LimbFabrikSolver = LimbFabrikSolver
+
 
     return obj
 end
@@ -5542,6 +5581,8 @@ function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
 end
 --[[
     Function that executes 1 iteration of the Fabrik Algorithm towards the target position
+    Deprecated method uses old IK module which does some inefficient stuff
+    (like continually summing up to find the max length every iteration)
 ]]
 function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
 
@@ -5551,6 +5592,32 @@ function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
     --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
     --Recursive function
     self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
+                                              
+
+end
+
+--[[
+    Newer iteration method that uses the Fabrik Object instead of a module
+    The object stores its own
+]]
+function LimbChain:IterateOnce(targetPosition,tolerance)
+
+    -- Gets the CFrame of the first joint at world space
+    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+
+    --Does the fabrik iteration once if not in goal
+    self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
+                                              
+
+end
+
+function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
+
+    -- Gets the CFrame of the first joint at world space
+    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+
+    --Does the fabrik iteration until goal
+    self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
                                               
 
 end
@@ -5692,7 +5759,249 @@ function LimbChain:GetOriginalFeetLimb()
 
 end
 
+function LimbChain:SetConstraints(LimbConstraintTable)
+
+    --Changes the constraint table and the fabrik solvers as well
+    self.LimbConstraintTable = LimbConstraintTable
+    self.LimbFabrikSolver.LimbConstraintTable = LimbConstraintTable
+
+
+end
+
 return LimbChain
+]]></ProtectedString>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXc9f968ca526e47798d6aaa99e64f5704">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">FabrikSolver</string>
+						<string name="ScriptGuid">{5f4fc945-299d-488b-b0cb-f1caf5b2aa10}</string>
+						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
+
+local FabrikSolver = Object.new("FabrikSolver")
+
+function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable)
+    local obj = FabrikSolver:make()
+
+    -- Initialize the object class
+    obj.LimbVectorTable = LimbVectorTable
+
+    obj.LimbLengthTable = LimbLengthTable
+
+    obj.LimbConstraintTable = LimbConstraintTable
+
+    -- Initialize number for summing
+    local MaxLength = 0
+    -- adds all the magnitudes of the limb vector
+    for i = 1, #LimbLengthTable, 1 do
+        MaxLength = MaxLength + LimbLengthTable[i]
+    end
+
+    obj.MaxLength = MaxLength
+
+    return obj
+end
+
+--[[---------------------------------------------------------
+    Executes one iteration of the Fabrik algo or not depending on the tolerance level
+]]
+function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
+
+    -- initialize measure feet to where it should be in the world position
+    local vectorSum = Vector3.new(0, 0, 0)
+    for i = 1, #self.LimbVectorTable, 1 do
+        vectorSum = vectorSum + self.LimbVectorTable[i]
+    end
+    local feetJoint = originCF.Position + vectorSum
+    local feetToTarget = targetPosition - feetJoint
+    local distanceToGoal = feetToTarget.Magnitude
+
+    -- target point is "reachable"
+    -- if Distance is more than tolerance then iterate to move the new vectors closer
+    -- If not then don't execute the iteration to save FPS
+
+    if distanceToGoal >= tolerance then
+
+        -- Do backwards on itself first then forwards
+        self:Backwards(originCF, targetPosition)
+        self:Forwards(originCF, targetPosition)
+
+        return self.LimbVectorTable
+
+    else
+        -- Limb is within tolerance/already reached goal so don't do anything
+
+        return self.LimbVectorTable
+    end
+
+end
+
+function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
+                                       InputtedMaxBreakCount)
+
+    -- initialize measure feet to where it should be in the world position
+    local vectorSum = Vector3.new(0, 0, 0)
+    for i = 1, #self.LimbVectorTable, 1 do
+        vectorSum = vectorSum + self.LimbVectorTable[i]
+    end
+    local feetJoint = originCF.Position + vectorSum
+    local feetToTarget = targetPosition - feetJoint
+    local distanceToGoal = feetToTarget.Magnitude
+
+    -- target point is "reachable"
+    -- if Distance is more than tolerance then iterate to move the new vectors closer
+    -- If not then don't execute the iteration to save FPS
+    -- Now includes a maximum iteration count
+    local maxBreakCount
+    if InputtedMaxBreakCount and type(InputtedMaxBreakCount) == "number" then
+        maxBreakCount = InputtedMaxBreakCount
+    else
+        -- default is maximum 10 iterations
+        maxBreakCount = 10
+    end
+
+    --print("maxbreak count: ",maxBreakCount)
+    local bcount = 0
+
+    while distanceToGoal >= tolerance do
+
+        -- Do backwards on itself first then forwards until it reaches goal
+        self:Backwards(originCF, targetPosition)
+        self:Forwards(originCF, targetPosition)
+    
+        --measure distance again
+        -- initialize measure feet to where it should be in the world position
+        local vectorSum = Vector3.new(0, 0, 0)
+        for i = 1, #self.LimbVectorTable, 1 do
+          vectorSum = vectorSum + self.LimbVectorTable[i]
+        end
+        local feetJoint = originCF.Position + vectorSum
+        local feetToTarget = targetPosition - feetJoint
+        distanceToGoal = feetToTarget.Magnitude
+        
+        --Counts the amount of iterations, if impossible to solve stops after max default at 10 iterations
+        bcount += 1
+
+        if bcount > maxBreakCount then 
+            --print("bcount:", bcount,"failed to reach goal: ", distanceToGoal)
+            return self.LimbVectorTable 
+        end
+
+    end
+    -- Limb is within tolerance/already reached goal so don't do anything
+    --print("bcount:", bcount,"Reached goal: ", distanceToGoal)
+    return self.LimbVectorTable
+
+end
+
+--[[
+    Constraining the forwards operation only makes it weird I dont think it simply does enough
+    So constraints are also applied to backwards now
+    Now is generalized with less parameters thanks to meta table objects storing the properties
+]]
+function FabrikSolver:Backwards(originCF, targetPos)
+
+    -- Transporting from module scrip to class so gotta do this
+    local limbVectorTable = self.LimbVectorTable
+    local limbLengthTable = self.LimbLengthTable
+    local limbConstraintTable = self.LimbConstraintTable
+
+    local vectorSumFromOrigin = Vector3.new()
+    -- Iterate through all the limb vectors and performs the backwards operation
+    for i = #limbVectorTable, 1, -1 do
+        local vectorSum = Vector3.new(0, 0, 0)
+
+        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
+
+        local pointTowards = originCF.Position + vectorSum
+        local pointFrom = targetPos + vectorSumFromOrigin
+
+        -- Gets the new direction of the new vector along the chain
+        -- direction is Target Pos to the next point on the chain
+        local pointTo = pointTowards - pointFrom
+
+        -- Gotta reverse the direction first
+        -- The constraint only works if the direction is opposite
+        local newLimbVector = -pointTo.Unit * limbLengthTable[i]
+
+        -- Checks if there is a limb constraint for the current limb in the iteration
+        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+
+            local limbLength = limbLengthTable[i]
+            -- Start the constraint according to the method
+            -- print(limbConstraintTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
+                                pointTowards, newLimbVector, limbLength)
+            -- print("Index: ",i,"Vector: ",newLimbVector)
+        end
+        -- constructs the new vectable
+        -- Gotta make it negative though to counteract
+        limbVectorTable[i] = -newLimbVector
+        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
+    end
+
+    -- Change the objects self vector table
+    self.LimbVectorTable = limbVectorTable
+
+end
+
+--[[
+	Does the forward chain of the FABRIK Algorithm
+	Function should be called after the Backwards function in order to prevent the vector direction from changing
+	Assumes vector chain is from endpoint to startpoint
+	Returns parameters with new vector chain direction from Startpoint to EndPoint
+]]
+function FabrikSolver:Forwards(originCF, targetPos)
+
+    local limbVectorTable = self.LimbVectorTable
+    local limbLengthTable = self.LimbLengthTable
+    local limbConstraintTable = self.LimbConstraintTable
+
+    local vectorSumFromOrigin = Vector3.new()
+    for i = 1, #limbVectorTable, 1 do
+        -- initialize empty vector for summing
+        local vectorSum = Vector3.new(0, 0, 0)
+
+        -- Sums up the vectors in order to get the target position on the chain
+        -- target position is the next joint from origin to target
+        for v = i + 1, #limbVectorTable, 1 do
+            vectorSum = vectorSum + limbVectorTable[v]
+        end
+
+        local nextJointPosition = vectorSum + targetPos
+        local jointPosition = originCF.Position + vectorSumFromOrigin
+        -- Gets the new direction of the new vector along the chain
+        -- direction of the new vector is from origin to target
+        local pointTo = nextJointPosition - jointPosition
+        -- This time constraint the vector using the conical constraint function
+        local newLimbVector = pointTo.Unit * limbLengthTable[i]
+
+        -- Checks if there is a limb constraint for the current limb in the iteration
+        --Also if even the table exist in the first place to avoid indexing nil value
+        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+
+            local limbLength = limbLengthTable[i]
+            -- Start the constraint according to the method
+
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
+                                jointPosition, newLimbVector, limbLength)
+
+        end
+        -- constructs the new vectable
+        limbVectorTable[i] = newLimbVector
+        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
+    end
+
+    -- Change the objects self vector table
+    self.LimbVectorTable = limbVectorTable
+end
+
+return FabrikSolver
 ]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
