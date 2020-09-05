@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-40.7584763</X>
-					<Y>18.318325</Y>
-					<Z>-0.267932475</Z>
-					<R00>-0.100987986</R00>
-					<R01>0.191783011</R01>
-					<R02>-0.97622782</R02>
-					<R10>-0</R10>
-					<R11>0.981244326</R11>
-					<R12>0.192768499</R12>
-					<R20>0.99488771</R20>
-					<R21>0.0194673017</R21>
-					<R22>-0.0990938768</R22>
+					<X>-17.7866917</X>
+					<Y>19.1512394</Y>
+					<Z>26.6444016</Z>
+					<R00>0.936827064</R00>
+					<R01>-0.112485968</R01>
+					<R02>0.331212848</R02>
+					<R10>-7.45057971e-09</R10>
+					<R11>0.946882784</R11>
+					<R12>0.32157883</R12>
+					<R20>-0.349792838</R20>
+					<R21>-0.30126375</R21>
+					<R22>0.88706547</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-38.806015</X>
-					<Y>17.9327869</Y>
-					<Z>-0.0697441548</Z>
+					<X>-18.4491177</X>
+					<Y>18.5080814</Y>
+					<Z>24.8702698</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3432,7 +3432,7 @@ local leftLegChain = LimbChain.new(motorTable,true)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
-local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,40)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,10,90)
@@ -3482,6 +3482,14 @@ for i=1,100,1 do
     wait(1)
 end
 
+]]
+
+--[[
+for i=1,10000,1 do
+leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+leftLegChain:UpdateMotors()
+wait(1)
+end
 ]]]]></ProtectedString>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>

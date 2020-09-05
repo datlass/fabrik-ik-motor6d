@@ -46,7 +46,7 @@ local leftLegChain = LimbChain.new(motorTable,true)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
-local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,40)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,10,90)
@@ -96,4 +96,12 @@ for i=1,100,1 do
     wait(1)
 end
 
+]]
+
+--[[
+for i=1,10000,1 do
+leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+leftLegChain:UpdateMotors()
+wait(1)
+end
 ]]
