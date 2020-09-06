@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-15.846468</X>
-					<Y>19.9919052</Y>
-					<Z>-11.6716433</Z>
-					<R00>-0.470301658</R00>
-					<R01>0.604702771</R01>
-					<R02>-0.642768323</R02>
-					<R10>1.49011612e-08</R10>
-					<R11>0.728344679</R11>
-					<R12>0.685211122</R12>
-					<R20>0.882505774</R20>
-					<R21>0.322255939</R21>
-					<R22>-0.342541665</R22>
+					<X>-21.7254066</X>
+					<Y>24.5390244</Y>
+					<Z>-12.5753241</Z>
+					<R00>-0.708471179</R00>
+					<R01>0.271889001</R01>
+					<R02>-0.651264191</R02>
+					<R10>1.49011594e-08</R10>
+					<R11>0.922810733</R11>
+					<R12>0.385253906</R12>
+					<R20>0.705739796</R20>
+					<R21>0.272941291</R21>
+					<R22>-0.653784752</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-14.5609312</X>
-					<Y>18.6214828</Y>
-					<Z>-10.9865599</Z>
+					<X>-20.4228783</X>
+					<Y>23.7685165</Y>
+					<Z>-11.2677546</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1647,7 +1647,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<CoordinateFrame name="C0">
-							<X>2.5</X>
+							<X>2</X>
 							<Y>3.81469727e-06</Y>
 							<Z>1.625</Z>
 							<R00>1</R00>
@@ -1661,7 +1661,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<R22>1</R22>
 						</CoordinateFrame>
 						<CoordinateFrame name="C1">
-							<X>-2</X>
+							<X>-2.5</X>
 							<Y>2.75</Y>
 							<Z>2</Z>
 							<R00>1</R00>
@@ -1687,7 +1687,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<CoordinateFrame name="C0">
-							<X>-2.5</X>
+							<X>-2</X>
 							<Y>3.81469727e-06</Y>
 							<Z>1.625</Z>
 							<R00>1</R00>
@@ -1701,7 +1701,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<R22>1</R22>
 						</CoordinateFrame>
 						<CoordinateFrame name="C1">
-							<X>2</X>
+							<X>2.5</X>
 							<Y>2.75</Y>
 							<Z>2</Z>
 							<R00>1</R00>
@@ -1972,18 +1972,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-19.5</X>
-							<Y>18.5</Y>
-							<Z>1.99999917</Z>
-							<R00>-0.0626700222</R00>
-							<R01>0</R01>
-							<R02>0.998034358</R02>
-							<R10>0</R10>
-							<R11>1</R11>
-							<R12>0</R12>
-							<R20>-0.998034358</R20>
-							<R21>0</R21>
-							<R22>-0.0626700222</R22>
+							<X>-11.5000038</X>
+							<Y>18.4999962</Y>
+							<Z>1.99999976</Z>
+							<R00>0.573223352</R00>
+							<R01>-0.150187656</R01>
+							<R02>0.805517614</R02>
+							<R10>-0.353553444</R10>
+							<R11>0.841506243</R11>
+							<R12>0.408493757</R12>
+							<R20>-0.739198864</R20>
+							<R21>-0.518951654</R21>
+							<R22>0.429271638</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2033,22 +2033,22 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>2</Z>
 						</Vector3>
 					</Properties>
-					<Item class="WeldConstraint" referent="RBXdd366f74daaa4c41a8117b0afb974eda">
+					<Item class="WeldConstraint" referent="RBX2c51c11e09774d7cae51785c635f57c4">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="CFrame0">
-								<X>1.33803248</X>
-								<Y>-0.239473343</Y>
-								<Z>10.6047001</Z>
-								<R00>-0.0626700222</R00>
-								<R01>0</R01>
-								<R02>-0.998034358</R02>
-								<R10>0</R10>
-								<R11>1</R11>
-								<R12>0</R12>
-								<R20>0.998034358</R20>
-								<R21>0</R21>
-								<R22>-0.0626700222</R22>
+								<X>2.99612331</X>
+								<Y>0.460918427</Y>
+								<Z>1.05743194</Z>
+								<R00>0.573223352</R00>
+								<R01>-0.353553444</R01>
+								<R02>-0.739198864</R02>
+								<R10>-0.150187656</R10>
+								<R11>0.841506243</R11>
+								<R12>-0.518951654</R12>
+								<R20>0.805517614</R20>
+								<R21>0.408493757</R21>
+								<R22>0.429271638</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="CFrame1">
 								<X>0</X>
@@ -3616,26 +3616,36 @@ local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
 local lJKneeToLowMotor = lowerBody.LeftLeg.LKnee.LLowerLeg
 local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 
+-- Obtain Motor6d's in Right leg
+local rHipToLegMotor = lowerBody.Hip.RUpperLeg
+local rUpToKneeMotor = lowerBody.RightLeg.RUpperLeg.RKnee
+local rJKneeToLowMotor = lowerBody.RightLeg.RKnee.RLowerLeg
+local rLowToFeetMotor = lowerBody.RightLeg.RLowerLeg.RFeet
+
 --Store the motor6d in table
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 
-
-local lowerBody = workspace.LowerBody.Hip
+--Store the motor6d in table
+local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
 
 --Initialize the left leg chain
 local leftLegChain = LimbChain.new(motorTable,true)
 
+--Initialize the right leg chain
+local rightLegChain = LimbChain.new(motorRightTable,true)
+
+
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
-local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,80,80)
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,30,90)
-local lKneeHinge = BallSocketConstraint.new(kneePart,15,60)
+local lKneeHinge = BallSocketConstraint.new(kneePart,15,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegHinge = HingeConstraint.new(lLegPart,90,180)
-local lLegHinge = BallSocketConstraint.new(lLegPart,15,80)
+local lLegHinge = BallSocketConstraint.new(lLegPart,10,80)
 
 --Make the FABRIK chain not move
 local rigidFeet = RigidConstraint.new(leftLegChain,4)
@@ -3654,10 +3664,13 @@ RunService.Heartbeat:Connect(function()
         
     --The Goal position
     local goalPosition = workspace.LTarget.Position
+    local goalRightPosition = workspace.RTarget.Position
 
     leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
+    rightLegChain:IterateOnce(goalRightPosition,0.1)
+    rightLegChain:UpdateMotors()
 end)
 
 

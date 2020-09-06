@@ -42,26 +42,36 @@ local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
 local lJKneeToLowMotor = lowerBody.LeftLeg.LKnee.LLowerLeg
 local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 
+-- Obtain Motor6d's in Right leg
+local rHipToLegMotor = lowerBody.Hip.RUpperLeg
+local rUpToKneeMotor = lowerBody.RightLeg.RUpperLeg.RKnee
+local rJKneeToLowMotor = lowerBody.RightLeg.RKnee.RLowerLeg
+local rLowToFeetMotor = lowerBody.RightLeg.RLowerLeg.RFeet
+
 --Store the motor6d in table
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
 
-
-local lowerBody = workspace.LowerBody.Hip
+--Store the motor6d in table
+local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
 
 --Initialize the left leg chain
 local leftLegChain = LimbChain.new(motorTable,true)
 
+--Initialize the right leg chain
+local rightLegChain = LimbChain.new(motorRightTable,true)
+
+
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
-local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,80,80)
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,30,90)
-local lKneeHinge = BallSocketConstraint.new(kneePart,15,60)
+local lKneeHinge = BallSocketConstraint.new(kneePart,15,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegHinge = HingeConstraint.new(lLegPart,90,180)
-local lLegHinge = BallSocketConstraint.new(lLegPart,15,80)
+local lLegHinge = BallSocketConstraint.new(lLegPart,10,80)
 
 --Make the FABRIK chain not move
 local rigidFeet = RigidConstraint.new(leftLegChain,4)
@@ -80,10 +90,13 @@ RunService.Heartbeat:Connect(function()
         
     --The Goal position
     local goalPosition = workspace.LTarget.Position
+    local goalRightPosition = workspace.RTarget.Position
 
     leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
+    rightLegChain:IterateOnce(goalRightPosition,0.1)
+    rightLegChain:UpdateMotors()
 end)
 
 
