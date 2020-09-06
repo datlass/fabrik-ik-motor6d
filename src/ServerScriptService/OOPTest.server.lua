@@ -44,17 +44,24 @@ local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
 
 --Store the motor6d in table
 local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
+
+
+local lowerBody = workspace.LowerBody.Hip
+
+--Initialize the left leg chain
 local leftLegChain = LimbChain.new(motorTable,true)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
-local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,60,60)
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,80,80)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,30,90)
+local lKneeHinge = BallSocketConstraint.new(kneePart,15,60)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegHinge = HingeConstraint.new(lLegPart,75,120)
+local lLegHinge = HingeConstraint.new(lLegPart,90,180)
+local lLegHinge = BallSocketConstraint.new(lLegPart,15,80)
 
 --Make the FABRIK chain not move
 local rigidFeet = RigidConstraint.new(leftLegChain,4)
@@ -68,7 +75,7 @@ leftLegChain:SetConstraints(limbConstraintTable)
 
 --[[
     Then use the LimbChain object to control the motor every heartbeat
-    
+    ]]
 RunService.Heartbeat:Connect(function()
         
     --The Goal position
@@ -78,7 +85,7 @@ RunService.Heartbeat:Connect(function()
     leftLegChain:UpdateMotors()
 
 end)
-]]
+
 
 
 --[[
@@ -101,10 +108,10 @@ end
 ]]
 
 
---[[]]
+--[[
 for i=1,10000,1 do
 leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
 leftLegChain:UpdateMotors()
 wait(1)
 end
-
+]]
