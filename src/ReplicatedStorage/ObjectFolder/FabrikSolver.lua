@@ -210,8 +210,7 @@ function FabrikSolver:Forwards(originCF, targetPos)
             local limbLength = limbLengthTable[i]
             -- Start the constraint according to the method
 
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
-                                jointPosition, newLimbVector, limbLength)
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength)
 
         end
         -- constructs the new vectable
