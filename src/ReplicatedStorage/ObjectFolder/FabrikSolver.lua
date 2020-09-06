@@ -105,13 +105,16 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
         
         --Counts the amount of iterations, if impossible to solve stops after max default at 10 iterations
         bcount += 1
-
         if bcount > maxBreakCount then 
             --print("bcount:", bcount,"failed to reach goal: ", distanceToGoal)
             return self.LimbVectorTable 
         end
 
     end
+    --Iterate once in case
+    self:Backwards(originCF, targetPosition)
+    self:Forwards(originCF, targetPosition)
+
     -- Limb is within tolerance/already reached goal so don't do anything
     --print("bcount:", bcount,"Reached goal: ", distanceToGoal)
     return self.LimbVectorTable

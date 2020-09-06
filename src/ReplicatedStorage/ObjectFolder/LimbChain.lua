@@ -73,6 +73,8 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
     local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable)
     obj.LimbFabrikSolver = LimbFabrikSolver
 
+    --Creates a empty table to store motor c0
+    obj.MotorsC0Store = {}
 
     return obj
 end
@@ -222,6 +224,89 @@ function LimbChain:UpdateMotors(floorNormal)
 
 end
 
+function LimbChain:StoreMotorsC0(floorNormal)
+
+    --Initialize empty table to store variables
+    local MotorsC0Store = {}
+
+    -- Gets the CFrame of the Initial joint at world space
+    local initialJointCFrame = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+
+    --Vector sum for the for loop to get the series of position of the next joint based on the algorithm
+    local vectorSumFromFirstJoint = Vector3.new()
+
+    local iterateUntil = #self.LimbVectorTable
+
+    --Iterates and start rotating the limbs starting from the first joint
+    for i = 1, iterateUntil, 1 do
+
+        --Obtains the current limb that is being worked on
+        local originalVectorLimb = self.LimbVectorTable[i]
+        local currentVectorLimb = self.IteratedLimbVectorTable[i]
+
+        --Obtains the CFrame of the part0 limb of the motor6d
+        local previousLimbPart = self.Motor6DTable[i].Parent
+        local previousLimbCF = previousLimbPart.CFrame
+
+        -- Obtains the CFrame rotation calculation for CFrame.fromAxis
+        local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+        local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
+        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+        local limbRotationAngle = math.acos(safetyClamp)
+        local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+
+        --Checks if the axis exists if cross product returns zero somehow
+        if limbRotationAxis~=Vector3.new(0,0,0) then
+        
+        --Gets the world space of the joint from the iterated limb vectors
+        if i ~= 1 then
+        vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[i-1]
+        end
+
+        --Gets the position of the current limb joint
+        local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
+
+        --Obtain the CFrame operations needed to rotate the limb to the goal
+        local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
+        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
+        
+        --This time instead of changing the current motor C0 stores them and adds them in the table
+        MotorsC0Store[#MotorsC0Store + 1] = undoPreviousLimbCF*rotateLimbCF
+
+            --Testing to keep foot appendage upright
+            --Seems to work for now to make the feet look down visually
+            --doesn't adhere to constraints but it works for now
+            --I really need help making the feet match the surface
+            if self.IncludeAppendage == true and i == iterateUntil then
+                local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Parent
+                local previousLimbCF = previousLimbPart.CFrame
+                local empty = Vector3.new()
+                --self.Motor6DTable[#self.Motor6DTable].C0 = CFrame.new()
+
+                --Make feet point upright to floor
+                --If not inputted then make feet points up towards sky
+                local upright = floorNormal
+                if upright == nil then
+                    upright = Vector3.new(0,1,0)
+                end
+
+                --Obtain the CFrame operations needed to rotate the limb to the goal
+                local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
+                local rotateLimbCF =CFrame.fromMatrix(empty,previousLimbCF.RightVector,upright)
+                            
+                --This time instead of changing the current motor C0 stores them and adds them in the table
+                MotorsC0Store[#MotorsC0Store + 1] = undoPreviousLimbCF*rotateLimbCF
+            end
+        end
+
+    
+    end
+
+    --Updates the objects self table
+    self.MotorsC0Store = MotorsC0Store
+
+
+end
 
 --Prints  the limb vector and iterated limb vector
 --For debugging not needed now

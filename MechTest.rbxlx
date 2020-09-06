@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-13.7265863</X>
-					<Y>19.9668999</Y>
-					<Z>-33.4141426</Z>
-					<R00>-0.991079271</R00>
-					<R01>0.00734385801</R01>
-					<R02>-0.133071885</R02>
-					<R10>-0</R10>
-					<R11>0.998480737</R11>
-					<R12>0.0551032946</R12>
-					<R20>0.133274391</R20>
-					<R21>0.0546117313</R21>
-					<R22>-0.989573359</R22>
+					<X>-30.8430901</X>
+					<Y>25.2966938</Y>
+					<Z>-0.100799471</Z>
+					<R00>0.109165065</R00>
+					<R01>0.520136476</R01>
+					<R02>-0.847077906</R02>
+					<R10>3.72529074e-09</R10>
+					<R11>0.852170825</R11>
+					<R12>0.523263693</R12>
+					<R20>0.994023681</R20>
+					<R21>-0.0571221188</R21>
+					<R22>0.0930272788</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-13.4604425</X>
-					<Y>19.8566933</Y>
-					<Z>-31.4349957</Z>
+					<X>-29.1489334</X>
+					<Y>24.2501659</Y>
+					<Z>-0.286854118</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1858,18 +1858,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-19.5000095</X>
+							<X>-19.5</X>
 							<Y>18.5</Y>
-							<Z>2.00000405</Z>
-							<R00>0.676715434</R00>
-							<R01>0.145185977</R01>
-							<R02>0.721787512</R02>
-							<R10>-0.644301355</R10>
-							<R11>0.591188431</R11>
-							<R12>0.485151619</R12>
-							<R20>-0.356275201</R20>
-							<R21>-0.793358326</R21>
-							<R22>0.493609786</R22>
+							<Z>1.99999917</Z>
+							<R00>-0.0626700222</R00>
+							<R01>0</R01>
+							<R02>0.998034358</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>-0.998034358</R20>
+							<R21>0</R21>
+							<R22>-0.0626700222</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -1923,18 +1923,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="CFrame0">
-								<X>7.97236252</X>
-								<Y>2.9696002</Y>
-								<Z>6.47537374</Z>
-								<R00>0.676715434</R00>
-								<R01>-0.644301355</R01>
-								<R02>-0.356275201</R02>
-								<R10>0.145185977</R10>
-								<R11>0.591188431</R11>
-								<R12>-0.793358326</R12>
-								<R20>0.721787512</R20>
-								<R21>0.485151619</R21>
-								<R22>0.493609786</R22>
+								<X>1.33803248</X>
+								<Y>-0.239473343</Y>
+								<Z>10.6047001</Z>
+								<R00>-0.0626700222</R00>
+								<R01>0</R01>
+								<R02>-0.998034358</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0.998034358</R20>
+								<R21>0</R21>
+								<R22>-0.0626700222</R22>
 							</CoordinateFrame>
 							<CoordinateFrame name="CFrame1">
 								<X>0</X>
@@ -2087,8 +2087,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
 					<X>-13.5</X>
-					<Y>4.23102617</Y>
-					<Z>-0.5</Z>
+					<Y>8.2310257</Y>
+					<Z>-5.5</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3432,13 +3432,13 @@ local leftLegChain = LimbChain.new(motorTable,true)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
-local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,40)
+local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,60,60)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
 local lKneeHinge = HingeConstraint.new(kneePart,30,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegHinge = HingeConstraint.new(lLegPart,90,120)
+local lLegHinge = HingeConstraint.new(lLegPart,75,120)
 
 --Make the FABRIK chain not move
 local rigidFeet = RigidConstraint.new(leftLegChain,4)
@@ -3464,25 +3464,25 @@ RunService.Heartbeat:Connect(function()
 end)
 
 
---[[
 
+--[[
 --Moves position back and forth
 local back = Vector3.new(0,0,15)
 local goalPosition = workspace.LTarget.Position
 
-for i=1,100,1 do
+for i=1,1000,1 do
     
     workspace.LTarget.Position = workspace.LTarget.Position+back
-    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,20)
     leftLegChain:UpdateMotors()
     wait(1)
     workspace.LTarget.Position = workspace.LTarget.Position-back
-    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,20)
     leftLegChain:UpdateMotors()
     wait(1)
 end
-
 ]]
+
 
 --[[
 for i=1,10000,1 do
@@ -5894,13 +5894,17 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
         
         --Counts the amount of iterations, if impossible to solve stops after max default at 10 iterations
         bcount += 1
-
+        wait()
         if bcount > maxBreakCount then 
             --print("bcount:", bcount,"failed to reach goal: ", distanceToGoal)
             return self.LimbVectorTable 
         end
 
     end
+    --Iterate once in case
+    self:Backwards(originCF, targetPosition)
+    self:Forwards(originCF, targetPosition)
+
     -- Limb is within tolerance/already reached goal so don't do anything
     --print("bcount:", bcount,"Reached goal: ", distanceToGoal)
     return self.LimbVectorTable
