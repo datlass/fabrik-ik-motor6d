@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-17.7866917</X>
-					<Y>19.1512394</Y>
-					<Z>26.6444016</Z>
-					<R00>0.936827064</R00>
-					<R01>-0.112485968</R01>
-					<R02>0.331212848</R02>
-					<R10>-7.45057971e-09</R10>
-					<R11>0.946882784</R11>
-					<R12>0.32157883</R12>
-					<R20>-0.349792838</R20>
-					<R21>-0.30126375</R21>
-					<R22>0.88706547</R22>
+					<X>-13.7265863</X>
+					<Y>19.9668999</Y>
+					<Z>-33.4141426</Z>
+					<R00>-0.991079271</R00>
+					<R01>0.00734385801</R01>
+					<R02>-0.133071885</R02>
+					<R10>-0</R10>
+					<R11>0.998480737</R11>
+					<R12>0.0551032946</R12>
+					<R20>0.133274391</R20>
+					<R21>0.0546117313</R21>
+					<R22>-0.989573359</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-18.4491177</X>
-					<Y>18.5080814</Y>
-					<Z>24.8702698</Z>
+					<X>-13.4604425</X>
+					<Y>19.8566933</Y>
+					<Z>-31.4349957</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2086,9 +2086,9 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurface">0</token>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
-					<X>-16.5</X>
-					<Y>3.23102617</Y>
-					<Z>-7.5</Z>
+					<X>-13.5</X>
+					<Y>4.23102617</Y>
+					<Z>-0.5</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3435,7 +3435,7 @@ local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,40)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
-local lKneeHinge = HingeConstraint.new(kneePart,10,90)
+local lKneeHinge = HingeConstraint.new(kneePart,30,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegHinge = HingeConstraint.new(lLegPart,90,120)

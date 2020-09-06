@@ -49,7 +49,7 @@ local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,40)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
-local lKneeHinge = HingeConstraint.new(kneePart,10,90)
+local lKneeHinge = HingeConstraint.new(kneePart,30,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegHinge = HingeConstraint.new(lLegPart,90,120)
