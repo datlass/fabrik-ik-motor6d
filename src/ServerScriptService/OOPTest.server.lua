@@ -72,11 +72,9 @@ local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
-local lKneeHinge = HingeConstraint.new(kneePart,30,90)
 local lKneeHinge = BallSocketConstraint.new(kneePart,15,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegHinge = HingeConstraint.new(lLegPart,90,180)
 local lLegHinge = BallSocketConstraint.new(lLegPart,10,80)
 
 --Make the FABRIK chain not move
