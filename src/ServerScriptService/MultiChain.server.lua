@@ -6,6 +6,12 @@ local RunService = game:GetService("RunService")
 local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
 local LimbChain = require(IKControllerPointer)
 
+
+--Left leg chain motors
+local dummy = workspace.Dummy
+
+--Get the motors of the left leg chain
+
 RunService.Heartbeat:Connect(function()
 
 
