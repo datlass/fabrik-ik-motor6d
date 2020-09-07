@@ -29,7 +29,8 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
 
     obj.Motor6DTable = Motor6DTable
     obj.FirstJointC0 = Motor6DTable[1].C0
-    -- initialize LimbVectorTable to store the limb vectors and stores it into the object
+
+    -- initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
     local IteratedLimbVectorTable = {}
     for i = 1, #Motor6DTable - 1, 1 do
@@ -40,7 +41,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
     end
 
-    --Checks if this bool is true then adds it into the vector limb
+    --Checks if this setting is true then adds the c1 joint into the vector limb
     if IncludeAppendage == true then
         local lastMotor = Motor6DTable[#Motor6DTable]
         --print(lastMotor)
@@ -75,6 +76,9 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
 
     --Creates a empty table to store motor c0
     obj.MotorsC0Store = {}
+
+    --adds a bool setting for debug mode
+    obj.DebugMode = false
 
     return obj
 end
@@ -183,6 +187,11 @@ function LimbChain:UpdateMotors(floorNormal)
         --Gets the position of the current limb joint
         local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
 
+        --Now adding a debug mode----------------------------------------------------------------
+        if self.DebugMode then
+            workspace["LimbVector:"..i].Position = motorPosition
+        end
+        ----------------------------------------------------------------
         --Obtain the CFrame operations needed to rotate the limb to the goal
         local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
         local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
@@ -365,6 +374,22 @@ function LimbChain:SetConstraints(LimbConstraintTable)
     self.LimbFabrikSolver.LimbConstraintTable = LimbConstraintTable
 
 
+end
+
+function LimbChain:DebugModeOn()
+
+    --Stores all the limb vectors in a table
+    local limbVectors = self.IteratedLimbVectorTable
+
+    --Creates a part for each limb vector
+    for i=1,#limbVectors,1 do
+    local part = Instance.new("Part")
+    part.Anchored = true
+    part.Name = "LimbVector:"..i
+    part.BrickColor = BrickColor.random()
+    part.Parent = workspace
+    end
+    self.DebugMode = true
 end
 
 return LimbChain
