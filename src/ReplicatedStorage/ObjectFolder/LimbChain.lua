@@ -21,7 +21,7 @@ local LimbChain = Object.new("LimbChain")
     Calculates the limbs from joint to joint as a vector
     And also measures the limb's length
 ]]
-function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
+function LimbChain.new(Motor6DTable,IncludeAppendage,ReverseInitial)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
@@ -37,6 +37,18 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
         --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
         --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
         local currentVectorStore = LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
+
+        --Testing
+        if i==1 and ReverseInitial then
+            print("reversing limb vector")
+            local test1 = Motor6DTable[i].C0.Position
+            local test2 = -Motor6DTable[i+1].C0.Position
+            currentVectorStore = (test1+test2)
+            print(currentVectorStore.Magnitude)
+        end
+        if ReverseInitial then
+            currentVectorStore = currentVectorStore
+        end
         LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
     end
