@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-14.5731964</X>
-					<Y>30.6067619</Y>
-					<Z>-25.3924141</Z>
-					<R00>-0.970568895</R00>
-					<R01>0.126004726</R01>
-					<R02>-0.205228835</R02>
-					<R10>-7.45057971e-09</R10>
-					<R11>0.852195323</R11>
-					<R12>0.523223937</R12>
-					<R20>0.240823716</R20>
-					<R21>0.507824898</R21>
-					<R22>-0.827114224</R22>
+					<X>-16.1527748</X>
+					<Y>22.7031765</Y>
+					<Z>-16.9743767</Z>
+					<R00>-0.589602351</R00>
+					<R01>0.472017884</R01>
+					<R02>-0.655414581</R02>
+					<R10>-0</R10>
+					<R11>0.81146431</R11>
+					<R12>0.584402084</R12>
+					<R20>0.80769372</R20>
+					<R21>0.344564855</R21>
+					<R22>-0.478441238</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-14.1627388</X>
-					<Y>29.5603142</Y>
-					<Z>-23.7381859</Z>
+					<X>-14.8419456</X>
+					<Y>21.5343723</Y>
+					<Z>-16.0174942</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3909,7 +3909,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 			<Item class="Script" referent="RBX44c71c78a11a4875bc67044e56568c65">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
-					<bool name="Disabled">false</bool>
+					<bool name="Disabled">true</bool>
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">OOPTest</string>
 					<string name="ScriptGuid">{5bda8775-5617-438b-b76a-d1f4f591160d}</string>
