@@ -110,6 +110,9 @@ local rightLimbConstraints = {rupperLegBallSocketConstraint,rKneeHinge,rLegHinge
 --Set the constraints of the object
 rightLegChain:SetConstraints(rightLimbConstraints)
 
+--turn on debug mode
+leftLegChain:DebugModeOn()
+
 
 --[[
     Then use the LimbChain object to control the motor every heartbeat
