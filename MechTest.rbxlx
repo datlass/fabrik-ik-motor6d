@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-10.656167</X>
-					<Y>23.7640953</Y>
-					<Z>-14.2290354</Z>
-					<R00>-0.999578118</R00>
-					<R01>-0.0156662483</R01>
-					<R02>0.0244579352</R02>
-					<R10>9.31322464e-10</R10>
-					<R11>0.842065454</R11>
-					<R12>0.539375365</R12>
-					<R20>-0.0290451683</R20>
-					<R21>0.539147794</R21>
-					<R22>-0.84171021</R22>
+					<X>-14.5731964</X>
+					<Y>30.6067619</Y>
+					<Z>-25.3924141</Z>
+					<R00>-0.970568895</R00>
+					<R01>0.126004726</R01>
+					<R02>-0.205228835</R02>
+					<R10>-7.45057971e-09</R10>
+					<R11>0.852195323</R11>
+					<R12>0.523223937</R12>
+					<R20>0.240823716</R20>
+					<R21>0.507824898</R21>
+					<R22>-0.827114224</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-10.7050829</X>
-					<Y>22.6853447</Y>
-					<Z>-12.5456152</Z>
+					<X>-14.1627388</X>
+					<Y>29.5603142</Y>
+					<Z>-23.7381859</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3987,11 +3987,9 @@ local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
-local lKneeHinge = HingeConstraint.new(kneePart,30,90)
 local lKneeHinge = BallSocketConstraint.new(kneePart,15,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegHinge = HingeConstraint.new(lLegPart,90,180)
 local lLegHinge = BallSocketConstraint.new(lLegPart,10,80)
 
 --Make the FABRIK chain not move
@@ -4022,6 +4020,9 @@ local rightLimbConstraints = {rupperLegBallSocketConstraint,rKneeHinge,rLegHinge
 
 --Set the constraints of the object
 rightLegChain:SetConstraints(rightLimbConstraints)
+
+--turn on debug mode
+leftLegChain:DebugModeOn()
 
 
 --[[
@@ -6523,7 +6524,8 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
 
     obj.Motor6DTable = Motor6DTable
     obj.FirstJointC0 = Motor6DTable[1].C0
-    -- initialize LimbVectorTable to store the limb vectors and stores it into the object
+
+    -- initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
     local IteratedLimbVectorTable = {}
     for i = 1, #Motor6DTable - 1, 1 do
@@ -6534,7 +6536,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
     end
 
-    --Checks if this bool is true then adds it into the vector limb
+    --Checks if this setting is true then adds the c1 joint into the vector limb
     if IncludeAppendage == true then
         local lastMotor = Motor6DTable[#Motor6DTable]
         --print(lastMotor)
@@ -6569,6 +6571,9 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,LimbConstraintTable)
 
     --Creates a empty table to store motor c0
     obj.MotorsC0Store = {}
+
+    --adds a bool setting for debug mode
+    obj.DebugMode = false
 
     return obj
 end
@@ -6677,6 +6682,11 @@ function LimbChain:UpdateMotors(floorNormal)
         --Gets the position of the current limb joint
         local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
 
+        --Now adding a debug mode----------------------------------------------------------------
+        if self.DebugMode then
+            workspace["LimbVector:"..i].Position = motorPosition
+        end
+        ----------------------------------------------------------------
         --Obtain the CFrame operations needed to rotate the limb to the goal
         local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
         local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
@@ -6859,6 +6869,22 @@ function LimbChain:SetConstraints(LimbConstraintTable)
     self.LimbFabrikSolver.LimbConstraintTable = LimbConstraintTable
 
 
+end
+
+function LimbChain:DebugModeOn()
+
+    --Stores all the limb vectors in a table
+    local limbVectors = self.IteratedLimbVectorTable
+
+    --Creates a part for each limb vector
+    for i=1,#limbVectors,1 do
+    local part = Instance.new("Part")
+    part.Anchored = true
+    part.Name = "LimbVector:"..i
+    part.BrickColor = BrickColor.random()
+    part.Parent = workspace
+    end
+    self.DebugMode = true
 end
 
 return LimbChain
