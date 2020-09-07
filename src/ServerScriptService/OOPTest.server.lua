@@ -34,6 +34,8 @@ local RigidConstraint = require(RigidConstraintPointer)
 -- Pointers
 local lowerBody = workspace.LowerBody
 
+local hipMotor = lowerBody.HipBase.Hip
+
 -- Obtain Motor6d's in left leg
 local lHipToLegMotor = lowerBody.Hip.LUpperLeg
 local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
@@ -52,11 +54,17 @@ local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMot
 --Store the motor6d in table
 local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
 
+--Store the motor6d in table
+local motorHip = {hipMotor,lHipToLegMotor}
+
 --Initialize the left leg chain
 local leftLegChain = LimbChain.new(motorTable,true)
 
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable,true)
+
+--Initialize the hip
+local hipChain = LimbChain.new(motorHip)
 
 
 --Testing the constraint
@@ -79,6 +87,26 @@ local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,r
 --Set the constraints of the object
 leftLegChain:SetConstraints(limbConstraintTable)
 
+--Repeat for the right leg
+
+--Testing the constraint
+local testBallSocketConstraint = lowerBody.Constraints.rUpperLegConstraint
+local rupperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
+
+local kneePart = lowerBody.Constraints.rKneeConstraint
+local rKneeHinge = BallSocketConstraint.new(kneePart,15,90)
+
+local lLegPart = lowerBody.Constraints.rLowerLegConstraint
+local rLegHinge = BallSocketConstraint.new(lLegPart,10,80)
+
+--Make the FABRIK chain not move
+local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
+
+
+local rightLimbConstraints = {rupperLegBallSocketConstraint,rKneeHinge,rLegHinge,rigidRightFeet}
+
+--Set the constraints of the object
+rightLegChain:SetConstraints(rightLimbConstraints)
 
 
 --[[
@@ -95,6 +123,10 @@ RunService.Heartbeat:Connect(function()
 
     rightLegChain:IterateOnce(goalRightPosition,0.1)
     rightLegChain:UpdateMotors()
+
+    --hipChain:IterateOnce(hipGoal,0.1)
+    --hipChain:UpdateMotors()
+
 end)
 
 
