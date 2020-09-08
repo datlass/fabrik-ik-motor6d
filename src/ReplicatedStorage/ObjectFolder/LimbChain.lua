@@ -52,11 +52,11 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
         obj.SpineMotor = SpineMotor
         if i==1 and SpineMotor then
             obj.SpineMotorC0 = SpineMotor.C0
-            print("reversing limb vector")
+            --print("reversing limb vector")
             local test1 = Motor6DTable[i].C0.Position
             local test2 = -Motor6DTable[i+1].C0.Position
             currentVectorStore = (test1+test2)
-            print(currentVectorStore.Magnitude)
+            --print(currentVectorStore.Magnitude)
         end
 
         LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
