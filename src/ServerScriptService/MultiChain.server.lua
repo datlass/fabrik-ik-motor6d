@@ -42,8 +42,9 @@ local spineChain = LimbChain.new(spineMotorTable,false,lowerTorsoMotor)
 
 RunService.Heartbeat:Connect(function()
     --targets for left and right leg and spine
-    local target = workspace.LTarget.Position
-    local rightTarget = workspace.RTarget.Position
+    --Oops I think I swapped the perspective of the left and right of the feet, oh well
+    local target = workspace.BigLTarget.Position
+    local rightTarget = workspace.BigRTarget.Position
     local upTarget = workspace.UpTarget.Position
 
     leftLegChain:IterateOnce(target,0.1)
