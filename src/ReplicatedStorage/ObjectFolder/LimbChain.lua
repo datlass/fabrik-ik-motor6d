@@ -21,34 +21,44 @@ local LimbChain = Object.new("LimbChain")
     Calculates the limbs from joint to joint as a vector
     And also measures the limb's length
 ]]
-function LimbChain.new(Motor6DTable,IncludeAppendage,ReverseInitial)
+function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
     obj.IncludeAppendage = IncludeAppendage
 
+    --Stores the motor6ds used and also the original C0 of the first joint
     obj.Motor6DTable = Motor6DTable
     obj.FirstJointC0 = Motor6DTable[1].C0
 
     -- initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
     local IteratedLimbVectorTable = {}
+
     for i = 1, #Motor6DTable - 1, 1 do
         --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
         --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
         local currentVectorStore = LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
 
-        --Testing
-        if i==1 and ReverseInitial then
+        --[[
+            the SpineMotor option, allows the creation of a spine from a hip to uppertorso
+            This skips the lower torso which is typically connected to the humanoid root part.
+
+            Has to be done as the default limb rotation method using CFrame.fromAxis()
+            doesn't work well with how the root part rotates the ENTIRE body.
+
+            also stores it's original C0 Position
+        ]]
+        obj.SpineMotor = SpineMotor
+        if i==1 and SpineMotor then
+            obj.SpineMotorC0Position = SpineMotor.C0.Position
             print("reversing limb vector")
             local test1 = Motor6DTable[i].C0.Position
             local test2 = -Motor6DTable[i+1].C0.Position
             currentVectorStore = (test1+test2)
             print(currentVectorStore.Magnitude)
         end
-        if ReverseInitial then
-            currentVectorStore = currentVectorStore
-        end
+
         LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
     end
@@ -80,9 +90,13 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,ReverseInitial)
     
     obj.LimbLengthTable = LimbLengthTable
 
-    --Store the constraint table
+    --[[
+        Creates the constraint table variable with nil.
+        I was planning on initiailizing the object with constraints but the constraints methods
+        require the LimbChain to be CREATED FIRST in order to do stuff like find the rigid joint vector.
+    ]]
     obj.LimbConstraintTable = LimbConstraintTable
-    --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik
+    --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
     local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable)
     obj.LimbFabrikSolver = LimbFabrikSolver
 
@@ -96,8 +110,8 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,ReverseInitial)
 end
 --[[
     Function that limb chain has to calculate vector limbs
-    Input 2 Motor6d
-    Returns a vector from motorOne to motorTwo  joint
+    Input 2 Motor6d joints
+    Returns a vector from motorOne to motorTwo joint
     Always constant based on the c0 and c1 Position of the motors
 ]]
 function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
@@ -170,8 +184,25 @@ function LimbChain:UpdateMotors(floorNormal)
 
     local iterateUntil = #self.LimbVectorTable
 
+    --[[
+        if there is a spine chain skip the first motor
+        First motor will usually control the hip (taken by another chain)
+        But what we really want to control is the one connected to the RootPart
+        motor w/ part 0 = HumanoidRootPart / RootPart,part 1 = LowerTorso
+        ]]
+    local skip = 0
+    if self.SpineMotor then
+        skip = 1
+        --Then does the rotation for the spine chain
+        local firstMotorWorldPosition = initialJointCFrame.Position
+        local secondMotorWorldPosition = initialJointCFrame.Position+self.IteratedLimbVectorTable[1]
+        local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
+        local newRight = -Vector3.new(0,0,1):Cross(newUpVector)
+        self.SpineMotor.C0 = CFrame.fromMatrix(self.SpineMotorC0Position,newRight,newUpVector)
+    end
+
     --Iterates and start rotating the limbs starting from the first joint
-    for i = 1, iterateUntil, 1 do
+    for i = 1+skip, iterateUntil, 1 do
 
         --Obtains the current limb that is being worked on
         local originalVectorLimb = self.LimbVectorTable[i]
@@ -390,7 +421,7 @@ end
 
 function LimbChain:DebugModeOn()
 
-    --Stores all the limb vectors in a table
+    --Stores all the limb vectors in a table so I don't have to self call everytime
     local limbVectors = self.IteratedLimbVectorTable
 
     --Creates a part for each limb vector

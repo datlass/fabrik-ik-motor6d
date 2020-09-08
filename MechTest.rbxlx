@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-30.0514088</X>
-					<Y>14.3276443</Y>
-					<Z>-65.6544342</Z>
-					<R00>-0.951652825</R00>
-					<R01>-0.176795453</R01>
-					<R02>0.251197904</R02>
-					<R10>-0</R10>
-					<R11>0.817765832</R11>
-					<R12>0.575551212</R12>
-					<R20>-0.307175875</R20>
-					<R21>0.547724962</R21>
-					<R22>-0.778229058</R22>
+					<X>-24.0315094</X>
+					<Y>12.0031462</Y>
+					<Z>-66.596077</Z>
+					<R00>-0.747837067</R00>
+					<R01>-0.116878487</R01>
+					<R02>0.653512895</R02>
+					<R10>7.4505806e-09</R10>
+					<R11>0.984380722</R11>
+					<R12>0.176053032</R12>
+					<R20>-0.663882315</R20>
+					<R21>0.131658986</R21>
+					<R22>-0.736156404</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-30.5538044</X>
-					<Y>13.1765423</Y>
-					<Z>-64.0979767</Z>
+					<X>-25.3385353</X>
+					<Y>11.6510401</Y>
+					<Z>-65.123764</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1071,8 +1071,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-44.25</X>
-							<Y>9.25</Y>
+							<X>-40</X>
+							<Y>9.5</Y>
 							<Z>-55</Z>
 							<R00>1</R00>
 							<R01>0</R01>
@@ -1119,7 +1119,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0.5</float>
+						<float name="Transparency">1</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -1133,12 +1133,12 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>4</Z>
 						</Vector3>
 					</Properties>
-					<Item class="Motor6D" referent="RBX5328041c0a6b49e29f2b4feba869b6e1">
+					<Item class="Motor6D" referent="RBX0ee86d3925f545318c2a6910e25b7496">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="C0">
-								<X>5.25</X>
-								<Y>0.25</Y>
+								<X>1</X>
+								<Y>0</Y>
 								<Z>0</Z>
 								<R00>1</R00>
 								<R01>0</R01>
@@ -1682,6 +1682,20 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Item>
 				</Item>
 			</Item>
+			<Item class="AnimationController" referent="RBXf0b8b927783a44a3a4db7a90cf008109">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">AnimationController</string>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Animator" referent="RBXadbd1680fb15447392818866f778ada6">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Animator</string>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+			</Item>
 		</Item>
 		<Item class="Part" referent="RBXb0529d7a6d1340d59c1e725f8213cb3b">
 			<Properties>
@@ -1696,8 +1710,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurface">0</token>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
-					<X>-32.5</X>
-					<Y>2.375</Y>
+					<X>-37.5</X>
+					<Y>1.125</Y>
 					<Z>-53.1299973</Z>
 					<R00>1</R00>
 					<R01>0</R01>
@@ -1772,8 +1786,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurface">0</token>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
-					<X>-32.5</X>
-					<Y>1.62499905</Y>
+					<X>-37.5</X>
+					<Y>0.374999046</Y>
 					<Z>-56.8799973</Z>
 					<R00>1</R00>
 					<R01>0</R01>
@@ -2864,7 +2878,11 @@ local rightLegChain = LimbChain.new(rightLegMotorTable)
 
 --create the spine chain
 local spineMotorTable = {hipMotor,upperTorsoMotor,headMotor}
-local spineChain = LimbChain.new(spineMotorTable,false,true)
+local spineChain = LimbChain.new(spineMotorTable,false,lowerTorsoMotor)
+
+--Find a way to include root motor
+
+
 
 --spineChain:DebugModeOn()
 
@@ -2873,6 +2891,8 @@ local lowerTorsoStore = lowerTorsoMotor.C0
 local lowerTorsoStorePosition = lowerTorsoMotor.C0.Position
 
 local xUnit = Vector3.new(1,0,0)
+local zUnit = Vector3.new(0,0,1)
+local yUnit = Vector3.new(0,1,0)
 
 RunService.Heartbeat:Connect(function()
     --targets for left and right leg
@@ -2883,15 +2903,16 @@ RunService.Heartbeat:Connect(function()
     --workspace.UpTarget.Position = dummyHipCF.Position + dummyHipCF.UpVector*10
     local upTarget = workspace.UpTarget.Position
 
-    local newUpVector = workspace.Dummy.Body.UpperTorso.CFrame.Position -dummyHipCF.Position 
-    local newRight = xUnit:Cross(newUpVector)
-    lowerTorsoMotor.C0 = CFrame.fromMatrix(lowerTorsoStorePosition,newRight,newUpVector)
+    --local newUpVector = workspace.Dummy.Body.UpperTorso.CFrame.Position-dummyHipCF.Position 
+  ---  local newRight = -zUnit:Cross(newUpVector)
+   -- lowerTorsoMotor.C0 = CFrame.fromMatrix(lowerTorsoStorePosition,newRight,newUpVector)
 
-    spineChain:IterateOnce(upTarget,0.1)
-    spineChain:UpdateMotors()
 
     leftLegChain:IterateOnce(target,0.1)
     leftLegChain:UpdateMotors()
+
+    spineChain:IterateOnce(upTarget,0.1)
+    spineChain:UpdateMotors()
 
     rightLegChain:IterateOnce(rightTarget,0.1)
     rightLegChain:UpdateMotors()
@@ -5346,34 +5367,44 @@ local LimbChain = Object.new("LimbChain")
     Calculates the limbs from joint to joint as a vector
     And also measures the limb's length
 ]]
-function LimbChain.new(Motor6DTable,IncludeAppendage,ReverseInitial)
+function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
     obj.IncludeAppendage = IncludeAppendage
 
+    --Stores the motor6ds used and also the original C0 of the first joint
     obj.Motor6DTable = Motor6DTable
     obj.FirstJointC0 = Motor6DTable[1].C0
 
     -- initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
     local IteratedLimbVectorTable = {}
+
     for i = 1, #Motor6DTable - 1, 1 do
         --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
         --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
         local currentVectorStore = LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
 
-        --Testing
-        if i==1 and ReverseInitial then
+        --[[
+            the SpineMotor option, allows the creation of a spine from a hip to uppertorso
+            This skips the lower torso which is typically connected to the humanoid root part.
+
+            Has to be done as the default limb rotation method using CFrame.fromAxis()
+            doesn't work well with how the root part rotates the ENTIRE body.
+
+            also stores it's original C0 Position
+        ]]
+        obj.SpineMotor = SpineMotor
+        if i==1 and SpineMotor then
+            obj.SpineMotorC0Position = SpineMotor.C0.Position
             print("reversing limb vector")
             local test1 = Motor6DTable[i].C0.Position
             local test2 = -Motor6DTable[i+1].C0.Position
             currentVectorStore = (test1+test2)
             print(currentVectorStore.Magnitude)
         end
-        if ReverseInitial then
-            currentVectorStore = currentVectorStore
-        end
+
         LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
     end
@@ -5405,9 +5436,13 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,ReverseInitial)
     
     obj.LimbLengthTable = LimbLengthTable
 
-    --Store the constraint table
+    --[[
+        Creates the constraint table variable with nil.
+        I was planning on initiailizing the object with constraints but the constraints methods
+        require the LimbChain to be CREATED FIRST in order to do stuff like find the rigid joint vector.
+    ]]
     obj.LimbConstraintTable = LimbConstraintTable
-    --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik
+    --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
     local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable)
     obj.LimbFabrikSolver = LimbFabrikSolver
 
@@ -5421,8 +5456,8 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,ReverseInitial)
 end
 --[[
     Function that limb chain has to calculate vector limbs
-    Input 2 Motor6d
-    Returns a vector from motorOne to motorTwo  joint
+    Input 2 Motor6d joints
+    Returns a vector from motorOne to motorTwo joint
     Always constant based on the c0 and c1 Position of the motors
 ]]
 function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
@@ -5495,8 +5530,26 @@ function LimbChain:UpdateMotors(floorNormal)
 
     local iterateUntil = #self.LimbVectorTable
 
+    --[[
+        if there is a spine chain skip the first motor
+        First motor will usually control the hip (taken by another chain)
+        But what we really want to control is the one connected to the RootPart
+        motor w/ part 0 = HumanoidRootPart / RootPart,part 1 = LowerTorso
+        ]]
+    local skip = 0
+    if self.SpineMotor then
+        skip = 1
+
+        --Then does the rotation for the spine chain
+        local firstMotorWorldPosition = initialJointCFrame.Position
+        local secondMotorWorldPosition = initialJointCFrame.Position+self.IteratedLimbVectorTable[1]
+        local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
+        local newRight = -Vector3.new(0,0,1):Cross(newUpVector)
+        self.SpineMotor.C0 = CFrame.fromMatrix(self.SpineMotorC0Position,newRight,newUpVector)
+    end
+
     --Iterates and start rotating the limbs starting from the first joint
-    for i = 1, iterateUntil, 1 do
+    for i = 1+skip, iterateUntil, 1 do
 
         --Obtains the current limb that is being worked on
         local originalVectorLimb = self.LimbVectorTable[i]
@@ -5715,7 +5768,7 @@ end
 
 function LimbChain:DebugModeOn()
 
-    --Stores all the limb vectors in a table
+    --Stores all the limb vectors in a table so I don't have to self call everytime
     local limbVectors = self.IteratedLimbVectorTable
 
     --Creates a part for each limb vector
