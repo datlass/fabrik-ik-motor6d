@@ -7,44 +7,48 @@ local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
 local LimbChain = require(IKControllerPointer)
 
 
---Left leg chain motors
-local dummy = workspace.Dummy
+--Point to dummy in the workspace
+local dummy = workspace.R15Dummy
 
---Now including torso motors and head
-local upperTorsoMotor = dummy.Body.LowerTorso.UpperTorso
-local headMotor = dummy.Body.UpperTorso.Head
-
---Dont mess with root motor or else entire body will speeen
-local lowerTorsoMotor = dummy.Body.HumanoidRootPart.LowerTorso
+------------Left Leg--------------------------
 
 --Get the motors of the left leg chain
-local hipMotor = dummy.Body.LowerTorso.Hip
-local lUpperLegMotor = dummy.Body.Hip.LUpperLeg
-local lLowerLegMotor = dummy.LLeg.LUpperLeg.LLowerLeg
-local lfoot = dummy.LLeg.LLowerLeg.LFeet
-
---Get the motors of the right leg chain
-local rUpperLegMotor = dummy.Body.Hip.RUpperLeg
-local rLowerLegMotor = dummy.RLeg.RUpperLeg.RLowerLeg
-local rfoot = dummy.RLeg.RLowerLeg.RFeet
+local rootMotor = dummy.LowerTorso.Root
+local lUpperLegMotor = dummy.LeftUpperLeg.LeftHip
+local lLowerLegMotor = dummy.LeftLowerLeg.LeftKnee
+local lfoot = dummy.LeftFoot.LeftAnkle
 
 --Create the left leg chain
-local leftLegMotorTable = {hipMotor,lUpperLegMotor,lLowerLegMotor,lfoot}
+local leftLegMotorTable = {lUpperLegMotor,lLowerLegMotor,lfoot}
 local leftLegChain = LimbChain.new(leftLegMotorTable)
 
---create the right leg chain
+------------Right Leg--------------------------
+
+--Get the motors of the right leg chain
+local rUpperLegMotor = dummy.RightUpperLeg.RightHip
+local rLowerLegMotor = dummy.RightLowerLeg.RightKnee
+local rfoot = dummy.RightFoot.RightAnkle
+
+--Create the right leg chain
 local rightLegMotorTable = {rUpperLegMotor,rLowerLegMotor,rfoot}
 local rightLegChain = LimbChain.new(rightLegMotorTable)
 
+----------Spine Chain--------------------
+--idk waist
+local waistMotor = dummy.UpperTorso.Waist
+local neck = dummy.Head.Neck
+
 --create the spine chain
-local spineMotorTable = {hipMotor,upperTorsoMotor,headMotor}
-local spineChain = LimbChain.new(spineMotorTable,false,lowerTorsoMotor)
+local spineMotorTable = {rootMotor,neck}
+local spineChain = LimbChain.new(spineMotorTable,false,waistMotor)
+
+
 
 RunService.Heartbeat:Connect(function()
     --targets for left and right leg and spine
     local target = workspace.LTarget.Position
     local rightTarget = workspace.RTarget.Position
-    local upTarget = workspace.UpTarget.Position
+    local upTarget = workspace.R15UpTarget.Position
 
     leftLegChain:IterateOnce(target,0.1)
     leftLegChain:UpdateMotors()

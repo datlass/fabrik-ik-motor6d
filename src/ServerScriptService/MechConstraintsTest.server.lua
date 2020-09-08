@@ -13,7 +13,6 @@ local limbChain = require(IKControllerPointer)
 --RotatedRegion3 Module
 local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegion3
 local RotatedRegion3 = require(RotatedRegion3Pointer)
---It works time
 
 -------------------Import all the Constraints Types-----------------
 
@@ -65,7 +64,7 @@ local leftLegChain = LimbChain.new(motorTable,true)
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable,true)
 
---Initialize the hip
+--Initialize the hip nvm later
 local hipChain = LimbChain.new(motorHip)
 
 
@@ -108,8 +107,8 @@ local rightLimbConstraints = {rupperLegBallSocketConstraint,rKneeHinge,rLegHinge
 --Set the constraints of the object
 rightLegChain:SetConstraints(rightLimbConstraints)
 
---turn on debug mode
-leftLegChain:DebugModeOn()
+--turn on debug mode if u want
+--leftLegChain:DebugModeOn()
 
 
 --[[
@@ -118,8 +117,8 @@ leftLegChain:DebugModeOn()
 RunService.Heartbeat:Connect(function()
         
     --The Goal position
-    local goalPosition = workspace.LTarget.Position
-    local goalRightPosition = workspace.RTarget.Position
+    local goalPosition = workspace.MechLTarget.Position
+    local goalRightPosition = workspace.MechRTarget.Position
 
     leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()

@@ -133,7 +133,7 @@ end
 function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
 
     -- Gets the CFrame of the first joint at world space
-    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+    local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
     --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
     --Recursive function
@@ -149,7 +149,8 @@ end
 function LimbChain:IterateOnce(targetPosition,tolerance)
 
     -- Gets the CFrame of the first joint at world space
-    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+    --local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
+    local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
     --Does the fabrik iteration once if not in goal
     self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
@@ -160,7 +161,7 @@ end
 function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
 
     -- Gets the CFrame of the first joint at world space
-    local originJointCF = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+    local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
     --Does the fabrik iteration until goal
     self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
@@ -177,7 +178,7 @@ end
 function LimbChain:UpdateMotors(floorNormal)
 
     -- Gets the CFrame of the Initial joint at world space
-    local initialJointCFrame = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+    local initialJointCFrame = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
     --Vector sum for the for loop to get the series of position of the next joint based on the algorithm
     local vectorSumFromFirstJoint = Vector3.new()
@@ -199,7 +200,7 @@ function LimbChain:UpdateMotors(floorNormal)
         local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
 
         --Obtains the CFrame of the part0 limb of the motor6d
-        local previousLimbPart = self.SpineMotor.Parent
+        local previousLimbPart = self.SpineMotor.Part0
         local previousLimbCF = previousLimbPart.CFrame 
 
         local SpineMotorWorldPosition = previousLimbCF*self.SpineMotorC0.Position
@@ -219,7 +220,7 @@ function LimbChain:UpdateMotors(floorNormal)
         local currentVectorLimb = self.IteratedLimbVectorTable[i]
 
         --Obtains the CFrame of the part0 limb of the motor6d
-        local previousLimbPart = self.Motor6DTable[i].Parent
+        local previousLimbPart = self.Motor6DTable[i].Part0
         local previousLimbCF = previousLimbPart.CFrame
 
         -- Obtains the CFrame rotation calculation for CFrame.fromAxis
@@ -258,7 +259,7 @@ function LimbChain:UpdateMotors(floorNormal)
             --doesn't adhere to constraints but it works for now
             --I really need help making the feet match the surface
             if self.IncludeAppendage == true and i == iterateUntil then
-                local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Parent
+                local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
                 local previousLimbCF = previousLimbPart.CFrame
                 local empty = Vector3.new()
                 --self.Motor6DTable[#self.Motor6DTable].C0 = CFrame.new()
@@ -293,7 +294,7 @@ function LimbChain:StoreMotorsC0(floorNormal)
     local MotorsC0Store = {}
 
     -- Gets the CFrame of the Initial joint at world space
-    local initialJointCFrame = self.Motor6DTable[1].Parent.CFrame * self.FirstJointC0
+    local initialJointCFrame = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
     --Vector sum for the for loop to get the series of position of the next joint based on the algorithm
     local vectorSumFromFirstJoint = Vector3.new()
@@ -315,7 +316,7 @@ function LimbChain:StoreMotorsC0(floorNormal)
             local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
     
             --Obtains the CFrame of the part0 limb of the motor6d
-            local previousLimbPart = self.SpineMotor.Parent
+            local previousLimbPart = self.SpineMotor.Part0
             local previousLimbCF = previousLimbPart.CFrame 
     
             local SpineMotorWorldPosition = previousLimbCF*self.SpineMotorC0.Position
@@ -335,7 +336,7 @@ function LimbChain:StoreMotorsC0(floorNormal)
         local currentVectorLimb = self.IteratedLimbVectorTable[i]
 
         --Obtains the CFrame of the part0 limb of the motor6d
-        local previousLimbPart = self.Motor6DTable[i].Parent
+        local previousLimbPart = self.Motor6DTable[i].Part0
         local previousLimbCF = previousLimbPart.CFrame
 
         -- Obtains the CFrame rotation calculation for CFrame.fromAxis
@@ -368,7 +369,7 @@ function LimbChain:StoreMotorsC0(floorNormal)
             --doesn't adhere to constraints but it works for now
             --I really need help making the feet match the surface
             if self.IncludeAppendage == true and i == iterateUntil then
-                local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Parent
+                local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
                 local previousLimbCF = previousLimbPart.CFrame
                 local empty = Vector3.new()
                 --self.Motor6DTable[#self.Motor6DTable].C0 = CFrame.new()
@@ -419,9 +420,9 @@ function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
     --Obtains the current limb that is being worked on
     local originalVectorLimb = self.LimbVectorTable[i]
 
-    --print(self.Motor6DTable[i].Parent)
+    --print(self.Motor6DTable[i].Part0)
     --Obtains the CFrame of the part0 limb of the motor6d
-    local previousLimbPart = self.Motor6DTable[i].Parent
+    local previousLimbPart = self.Motor6DTable[i].Part0
     local previousLimbCF = previousLimbPart.CFrame
 
     -- Obtains the vector relative to the previous part0
@@ -438,7 +439,7 @@ function LimbChain:GetOriginalFeetLimb()
     local originalVectorLimb = self.extraLimbVector
 
     --Obtains the CFrame of the part0 limb of the motor6d
-    local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Parent
+    local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
     local previousLimbCF = previousLimbPart.CFrame
 
     -- Obtains the vector relative to the previous part0
