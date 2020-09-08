@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-24.0315094</X>
-					<Y>12.0031462</Y>
-					<Z>-66.596077</Z>
-					<R00>-0.747837067</R00>
-					<R01>-0.116878487</R01>
-					<R02>0.653512895</R02>
-					<R10>7.4505806e-09</R10>
-					<R11>0.984380722</R11>
-					<R12>0.176053032</R12>
-					<R20>-0.663882315</R20>
-					<R21>0.131658986</R21>
-					<R22>-0.736156404</R22>
+					<X>-40.161705</X>
+					<Y>18.2236443</Y>
+					<Z>-64.1898422</Z>
+					<R00>-0.898761809</R00>
+					<R01>0.275918096</R01>
+					<R02>-0.340729177</R02>
+					<R10>-0</R10>
+					<R11>0.77714473</R11>
+					<R12>0.629321873</R12>
+					<R20>0.438437164</R20>
+					<R21>0.565610468</R21>
+					<R22>-0.698468089</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-25.3385353</X>
-					<Y>11.6510401</Y>
-					<Z>-65.123764</Z>
+					<X>-39.4802475</X>
+					<Y>16.9650021</Y>
+					<Z>-62.7929077</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1119,7 +1119,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">1</float>
+						<float name="Transparency">0.800000012</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -5397,7 +5397,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
         ]]
         obj.SpineMotor = SpineMotor
         if i==1 and SpineMotor then
-            obj.SpineMotorC0Position = SpineMotor.C0.Position
+            obj.SpineMotorC0 = SpineMotor.C0
             print("reversing limb vector")
             local test1 = Motor6DTable[i].C0.Position
             local test2 = -Motor6DTable[i+1].C0.Position
@@ -5539,13 +5539,22 @@ function LimbChain:UpdateMotors(floorNormal)
     local skip = 0
     if self.SpineMotor then
         skip = 1
-
         --Then does the rotation for the spine chain
         local firstMotorWorldPosition = initialJointCFrame.Position
         local secondMotorWorldPosition = initialJointCFrame.Position+self.IteratedLimbVectorTable[1]
         local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
-        local newRight = -Vector3.new(0,0,1):Cross(newUpVector)
-        self.SpineMotor.C0 = CFrame.fromMatrix(self.SpineMotorC0Position,newRight,newUpVector)
+
+        --Obtains the CFrame of the part0 limb of the motor6d
+        local previousLimbPart = self.SpineMotor.Parent
+        local previousLimbCF = previousLimbPart.CFrame 
+
+        local SpineMotorWorldPosition = previousLimbCF*self.SpineMotorC0.Position
+
+        local newRight = previousLimbCF.LookVector:Cross(newUpVector)
+
+        local undoPreviousLimbCF = previousLimbCF:Inverse()
+        local rotateSpine = CFrame.fromMatrix(SpineMotorWorldPosition,newRight,newUpVector)
+        self.SpineMotor.C0 = undoPreviousLimbCF*rotateSpine
     end
 
     --Iterates and start rotating the limbs starting from the first joint
@@ -5578,6 +5587,7 @@ function LimbChain:UpdateMotors(floorNormal)
         local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
 
         --Now adding a debug mode----------------------------------------------------------------
+        --Puts the created parts according to the motor position
         if self.DebugMode then
             workspace["LimbVector:"..i].Position = motorPosition
         end

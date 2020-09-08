@@ -51,7 +51,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
         ]]
         obj.SpineMotor = SpineMotor
         if i==1 and SpineMotor then
-            obj.SpineMotorC0Position = SpineMotor.C0.Position
+            obj.SpineMotorC0 = SpineMotor.C0
             print("reversing limb vector")
             local test1 = Motor6DTable[i].C0.Position
             local test2 = -Motor6DTable[i+1].C0.Position
@@ -100,7 +100,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable)
     obj.LimbFabrikSolver = LimbFabrikSolver
 
-    --Creates a empty table to store motor c0
+    --Creates a empty table to store motor c0 for tweening
     obj.MotorsC0Store = {}
 
     --adds a bool setting for debug mode
@@ -197,8 +197,18 @@ function LimbChain:UpdateMotors(floorNormal)
         local firstMotorWorldPosition = initialJointCFrame.Position
         local secondMotorWorldPosition = initialJointCFrame.Position+self.IteratedLimbVectorTable[1]
         local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
-        local newRight = -Vector3.new(0,0,1):Cross(newUpVector)
-        self.SpineMotor.C0 = CFrame.fromMatrix(self.SpineMotorC0Position,newRight,newUpVector)
+
+        --Obtains the CFrame of the part0 limb of the motor6d
+        local previousLimbPart = self.SpineMotor.Parent
+        local previousLimbCF = previousLimbPart.CFrame 
+
+        local SpineMotorWorldPosition = previousLimbCF*self.SpineMotorC0.Position
+
+        local newRight = previousLimbCF.LookVector:Cross(newUpVector)
+
+        local undoPreviousLimbCF = previousLimbCF:Inverse()
+        local rotateSpine = CFrame.fromMatrix(SpineMotorWorldPosition,newRight,newUpVector)
+        self.SpineMotor.C0 = undoPreviousLimbCF*rotateSpine
     end
 
     --Iterates and start rotating the limbs starting from the first joint
@@ -231,6 +241,7 @@ function LimbChain:UpdateMotors(floorNormal)
         local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
 
         --Now adding a debug mode----------------------------------------------------------------
+        --Puts the created parts according to the motor position
         if self.DebugMode then
             workspace["LimbVector:"..i].Position = motorPosition
         end
@@ -278,7 +289,7 @@ end
 
 function LimbChain:StoreMotorsC0(floorNormal)
 
-    --Initialize empty table to store variables
+    --Initialize empty table to store the motor c0 Cframe data 
     local MotorsC0Store = {}
 
     -- Gets the CFrame of the Initial joint at world space
@@ -289,8 +300,35 @@ function LimbChain:StoreMotorsC0(floorNormal)
 
     local iterateUntil = #self.LimbVectorTable
 
+        --[[
+        if there is a spine chain skip the first motor
+        First motor will usually control the hip (taken by another chain)
+        But what we really want to control is the one connected to the RootPart
+        motor w/ part 0 = HumanoidRootPart / RootPart,part 1 = LowerTorso
+        ]]
+        local skip = 0
+        if self.SpineMotor then
+            skip = 1
+            --Then does the rotation for the spine chain
+            local firstMotorWorldPosition = initialJointCFrame.Position
+            local secondMotorWorldPosition = initialJointCFrame.Position+self.IteratedLimbVectorTable[1]
+            local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
+    
+            --Obtains the CFrame of the part0 limb of the motor6d
+            local previousLimbPart = self.SpineMotor.Parent
+            local previousLimbCF = previousLimbPart.CFrame 
+    
+            local SpineMotorWorldPosition = previousLimbCF*self.SpineMotorC0.Position
+    
+            local newRight = previousLimbCF.LookVector:Cross(newUpVector)
+    
+            local undoPreviousLimbCF = previousLimbCF:Inverse()
+            local rotateSpine = CFrame.fromMatrix(SpineMotorWorldPosition,newRight,newUpVector)
+            MotorsC0Store[#MotorsC0Store + 1] = undoPreviousLimbCF*rotateSpine
+        end
+    
     --Iterates and start rotating the limbs starting from the first joint
-    for i = 1, iterateUntil, 1 do
+    for i = 1+skip, iterateUntil, 1 do
 
         --Obtains the current limb that is being worked on
         local originalVectorLimb = self.LimbVectorTable[i]
