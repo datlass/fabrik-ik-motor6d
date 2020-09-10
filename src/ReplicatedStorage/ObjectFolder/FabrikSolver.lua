@@ -40,6 +40,15 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
     local feetToTarget = targetPosition - feetJoint
     local distanceToGoal = feetToTarget.Magnitude
 
+    --[[ Measures origin joint to target position, not needed for now due to how constraints work
+    local originToGoalLength = (targetPosition-originCF.Position).Magnitude
+    if originToGoalLength<self.MaxLength then
+        print("in range")
+    else
+        print("out of range")
+    end
+    ]]
+
     -- target point is "reachable"
     -- if Distance is more than tolerance then iterate to move the new vectors closer
     -- If not then don't execute the iteration to save FPS

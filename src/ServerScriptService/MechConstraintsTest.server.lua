@@ -71,39 +71,57 @@ local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
-local lKneeHinge = BallSocketConstraint.new(kneePart,15,90)
+local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,90)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegHinge = BallSocketConstraint.new(lLegPart,10,80)
+local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,80)
 
 --Make the FABRIK chain not move
 local rigidFeet = RigidConstraint.new(leftLegChain,4)
 
-local limbConstraintTable = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
+--[[
+    Create the alternative constraints which uses hinge
+    More restrictive and glitchy close to original joint but better fitting and looks nicer visually
+]]
+local upperLegBallSocketConstraintAlternative = BallSocketConstraint.new(testBallSocketConstraint,40,40)
+local lKneeHinge = HingeConstraint.new(kneePart,90,90)
+local lLegHinge = HingeConstraint.new(lLegPart,90,90)
+
+
+--Set up two constraint tables to allow
+local leftLegConstraints = {upperLegBallSocketConstraintAlternative,lKneeHinge,lLegHinge,rigidFeet}
+local leftLegConstraintsAlternative = {upperLegBallSocketConstraint,lKneeBallSocket,lLegBallSocket,rigidFeet}
 
 --Set the constraints of the object
-leftLegChain:SetConstraints(limbConstraintTable)
+leftLegChain:SetPrimaryConstraints(leftLegConstraints)
+leftLegChain:SetSecondaryConstraints(leftLegConstraintsAlternative)
+
+--Set the region for the primary constraints
+local leftLegRegionPart1 = lowerBody.ConstraintZones.LeftLegPart1
+local leftLegRegionPart2 = lowerBody.ConstraintZones.LeftLegPart2
+local leftLegRegion = {leftLegRegionPart1,leftLegRegionPart2}
+leftLegChain:SetPrimaryConstraintRegion(leftLegRegion)
 
 --Repeat for the right leg
 
---Testing the constraint
+--Same constraints but for right leg
 local testBallSocketConstraint = lowerBody.Constraints.rUpperLegConstraint
 local rupperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.rKneeConstraint
-local rKneeHinge = BallSocketConstraint.new(kneePart,15,90)
+local rKneeHinge = BallSocketConstraint.new(kneePart,20,90)
 
 local lLegPart = lowerBody.Constraints.rLowerLegConstraint
-local rLegHinge = BallSocketConstraint.new(lLegPart,10,80)
+local rLegHinge = BallSocketConstraint.new(lLegPart,20,80)
 
 --Make the FABRIK chain not move
 local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
 
 
-local rightLimbConstraints = {rupperLegBallSocketConstraint,rKneeHinge,rLegHinge,rigidRightFeet}
+local rightLegConstraints = {rupperLegBallSocketConstraint,rKneeHinge,rLegHinge,rigidRightFeet}
 
 --Set the constraints of the object
-rightLegChain:SetConstraints(rightLimbConstraints)
+rightLegChain:SetCurrentConstraints(rightLegConstraints)
 
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn()
@@ -121,8 +139,8 @@ RunService.Heartbeat:Connect(function()
     leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
-    rightLegChain:IterateOnce(goalRightPosition,0.1)
-    rightLegChain:UpdateMotors()
+    --rightLegChain:IterateOnce(goalRightPosition,0.1)
+    --rightLegChain:UpdateMotors()
 
     --hipChain:IterateOnce(hipGoal,0.1)
     --hipChain:UpdateMotors()

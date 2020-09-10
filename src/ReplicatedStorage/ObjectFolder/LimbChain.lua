@@ -2,14 +2,17 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Import the Fabrik Module
-local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
-local FabrikAlgo = require(fabrik)
+-- Deprecated FabrikSolver is the better version but still here
+local fabrikPointer = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
+local FabrikAlgo = require(fabrikPointer)
 
+-- Import the Fabrik Solver Object
+local FabrikSolverPointer = ReplicatedStorage.Source.ObjectFolder:WaitForChild("FabrikSolver")
+local FabrikSolver = require(FabrikSolverPointer)
 
--- Import the Fabrik Module Object
---test
-local fabrikSolver = ReplicatedStorage.Source.ObjectFolder:WaitForChild("FabrikSolver")
-local FabrikSolver = require(fabrikSolver)
+-- Import Rotated Region 3
+local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder:WaitForChild("RotatedRegion3")
+local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
@@ -31,7 +34,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     obj.Motor6DTable = Motor6DTable
     obj.FirstJointC0 = Motor6DTable[1].C0
 
-    -- initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
+    -----initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
     local IteratedLimbVectorTable = {}
 
@@ -106,6 +109,14 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     --adds a bool setting for debug mode
     obj.DebugMode = false
 
+    --Adds a setting for enabling constraint regions
+    --By default it is nill
+    obj.PrimaryConstraintRegionFromParts = nil
+    
+    --Store the primary and secondary LimbConstraint settings in a table
+    obj.PrimaryLimbConstraintTable = {}
+    obj.SecondaryLimbConstraintTable = {}
+
     return obj
 end
 --[[
@@ -147,6 +158,9 @@ end
     The object stores its own
 ]]
 function LimbChain:IterateOnce(targetPosition,tolerance)
+    
+    --Does the constraint region check to change constraints if so
+    self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
     --local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
@@ -159,6 +173,9 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
 end
 
 function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
+
+    --Does the constraint region check to change constraints if so
+    self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
     local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
@@ -449,14 +466,94 @@ function LimbChain:GetOriginalFeetLimb()
 
 end
 
-function LimbChain:SetConstraints(LimbConstraintTable)
+--[[--------------------------------------------------------
+    Sets the current constraints that the FABRIK algorithm will take note of
+
+]]
+function LimbChain:SetCurrentConstraints(LimbConstraintTable)
 
     --Changes the constraint table and the fabrik solvers as well
     self.LimbConstraintTable = LimbConstraintTable
     self.LimbFabrikSolver.LimbConstraintTable = LimbConstraintTable
 
+end
+
+--[[--------------------------------------------------------
+    Stores the primary constraints that is fits for the model
+
+]]
+function LimbChain:SetPrimaryConstraints(PrimaryLimbConstraintTable)
+
+    --Stores in itself the primary table
+    self.PrimaryLimbConstraintTable = PrimaryLimbConstraintTable
 
 end
+
+--[[--------------------------------------------------------
+    Stores the secondary constraints intended for the worst case scenario for when
+    The primary constraints start glitching out due to algorithm unable to work out
+    the constraints.
+]]
+function LimbChain:SetSecondaryConstraints(PrimaryLimbConstraintTable)
+
+    --Stores in itself the primary table
+    self.SecondaryLimbConstraintTable = PrimaryLimbConstraintTable
+
+end
+
+--[[--------------------------------------------------------
+    Defines the parts that the primary constraints is only allowed to be
+    activated in.
+]]
+function LimbChain:SetPrimaryConstraintRegion(PrimaryConstraintRegionFromParts)
+
+    self.PrimaryConstraintRegionFromParts = PrimaryConstraintRegionFromParts
+
+end
+
+--[[--------------------------------------------------------
+    Defines the parts that the primary constraints is only allowed to be
+    activated in
+]]
+function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
+
+    --
+    local PrimaryConstraintRegionFromParts = self.PrimaryConstraintRegionFromParts
+
+
+    --[[
+        Checks if the region is set in the first place
+        ]]
+    if PrimaryConstraintRegionFromParts then
+
+        --bool by default is false
+        local isTargetInsideConstraintRegion = false
+
+        --Iterate through the parts and if at least
+        for i=1,#PrimaryConstraintRegionFromParts,1 do
+            --Creates a region for each part checks if the target position is inside the parts
+            local PartConstraintRegion = RotatedRegion3.FromPart(PrimaryConstraintRegionFromParts[i])
+
+            local check = PartConstraintRegion:CastPoint(targetPosition)
+
+            if check == true then
+             isTargetInsideConstraintRegion = true
+            end
+
+        end
+
+        if isTargetInsideConstraintRegion then
+            --Out of region use Primary region
+            self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
+        else
+            --Out of region use secondary region
+            self:SetCurrentConstraints(self.SecondaryLimbConstraintTable)
+        end
+
+    end
+
+end--end of function
+
 
 function LimbChain:DebugModeOn()
 
