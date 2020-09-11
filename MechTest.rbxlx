@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-20.0727997</X>
-					<Y>20.4718781</Y>
-					<Z>14.3457661</Z>
-					<R00>0.703682065</R00>
-					<R01>-0.24446854</R01>
-					<R02>0.667133272</R02>
-					<R10>-0</R10>
-					<R11>0.938943207</R11>
-					<R12>0.344072312</R12>
-					<R20>-0.710515022</R20>
-					<R21>-0.242117509</R21>
-					<R22>0.660717428</R22>
+					<X>-45.1016083</X>
+					<Y>12.2388735</Y>
+					<Z>-19.205759</Z>
+					<R00>-0.994733036</R00>
+					<R01>-0.00362434168</R01>
+					<R02>-0.102436051</R02>
+					<R10>2.32830644e-10</R10>
+					<R11>0.999374688</R11>
+					<R12>-0.0353593789</R12>
+					<R20>0.102500156</R20>
+					<R21>-0.0351731405</R21>
+					<R22>-0.994110942</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-21.4070663</X>
-					<Y>19.7837334</Y>
-					<Z>13.0243311</Z>
+					<X>-44.8967361</X>
+					<Y>12.3095922</Y>
+					<Z>-17.2175369</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -358,18 +358,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41.3565712</X>
+							<X>-44.5690536</X>
 							<Y>12.5087967</Y>
-							<Z>-4.98637867</Z>
-							<R00>0</R00>
+							<Z>1.30078053</Z>
+							<R00>1</R00>
 							<R01>0</R01>
-							<R02>-1</R02>
+							<R02>0</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>1</R20>
+							<R20>0</R20>
 							<R21>0</R21>
-							<R22>0</R22>
+							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
@@ -487,18 +487,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41.361557</X>
+							<X>-44.3192329</X>
 							<Y>15.5105286</Y>
-							<Z>-4.73655701</Z>
-							<R00>0</R00>
+							<Z>1.30576706</Z>
+							<R00>1</R00>
 							<R01>0</R01>
-							<R02>-1</R02>
+							<R02>0</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>1</R20>
+							<R20>0</R20>
 							<R21>0</R21>
-							<R22>0</R22>
+							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
@@ -616,18 +616,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-43.2365189</X>
+							<X>-44.5690155</X>
 							<Y>8.76040554</Y>
-							<Z>-4.98634052</Z>
-							<R00>-8.44887109e-06</R00>
-							<R01>9.65608615e-06</R01>
-							<R02>-1</R02>
+							<Z>3.18072939</Z>
+							<R00>1</R00>
+							<R01>-9.65567961e-06</R01>
+							<R02>-8.44896476e-06</R02>
 							<R10>9.65576328e-06</R10>
 							<R11>1</R11>
 							<R12>9.65600429e-06</R12>
-							<R20>1</R20>
-							<R21>-9.65567961e-06</R21>
-							<R22>-8.44896476e-06</R22>
+							<R20>8.44887109e-06</R20>
+							<R21>-9.65608615e-06</R21>
+							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
@@ -744,18 +744,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41.8615112</X>
+							<X>-44.5692596</X>
 							<Y>3.51066208</Y>
-							<Z>-4.98658419</Z>
-							<R00>0</R00>
-							<R01>0</R01>
-							<R02>-1</R02>
+							<Z>1.8057214</Z>
+							<R00>1</R00>
+							<R01>4.66555128e-11</R01>
+							<R02>0</R02>
 							<R10>4.66555128e-11</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>1</R20>
-							<R21>4.66555128e-11</R21>
-							<R22>0</R22>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
@@ -820,18 +820,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<token name="BottomSurface">0</token>
 							<token name="BottomSurfaceInput">0</token>
 							<CoordinateFrame name="CFrame">
-								<X>-41.8615112</X>
+								<X>-44.5692596</X>
 								<Y>3.51066208</Y>
-								<Z>-4.98658419</Z>
-								<R00>8.91996679e-05</R00>
-								<R01>7.82300267e-05</R01>
-								<R02>-0.999997079</R02>
+								<Z>1.8057214</Z>
+								<R00>9.89228574e-05</R00>
+								<R01>1</R01>
+								<R02>8.2463579e-05</R02>
 								<R10>-0.999990106</R10>
 								<R11>0.000103757891</R11>
 								<R12>-9.40186801e-05</R12>
-								<R20>9.89228574e-05</R20>
-								<R21>1</R21>
-								<R22>8.2463579e-05</R22>
+								<R20>-8.91996679e-05</R20>
+								<R21>-7.82300267e-05</R21>
+								<R22>0.999997079</R22>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
@@ -991,18 +991,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41.361557</X>
+							<X>-35.3192329</X>
 							<Y>15.5105286</Y>
-							<Z>4.26344299</Z>
-							<R00>0</R00>
+							<Z>1.30576706</Z>
+							<R00>1</R00>
 							<R01>0</R01>
-							<R02>-1</R02>
+							<R02>0</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>1</R20>
+							<R20>0</R20>
 							<R21>0</R21>
-							<R22>0</R22>
+							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
@@ -1120,18 +1120,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41.3502388</X>
+							<X>-35.0694122</X>
 							<Y>12.4927998</Y>
-							<Z>4.51326561</Z>
-							<R00>0</R00>
+							<Z>1.29445064</Z>
+							<R00>1</R00>
 							<R01>0</R01>
-							<R02>-1</R02>
+							<R02>0</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>1</R20>
+							<R20>0</R20>
 							<R21>0</R21>
-							<R22>0</R22>
+							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
@@ -1249,18 +1249,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-43.2365303</X>
+							<X>-35.0694466</X>
 							<Y>8.76045227</Y>
-							<Z>4.51323271</Z>
-							<R00>4.2244551e-06</R00>
-							<R01>4.82802989e-06</R01>
-							<R02>-1</R02>
+							<Z>3.18074131</Z>
+							<R00>1</R00>
+							<R01>4.82792166e-06</R01>
+							<R02>4.22449875e-06</R02>
 							<R10>-4.8279262e-06</R10>
 							<R11>1</R11>
 							<R12>4.82802989e-06</R12>
-							<R20>1</R20>
-							<R21>4.82792166e-06</R21>
-							<R22>4.22449875e-06</R22>
+							<R20>-4.2244551e-06</R20>
+							<R21>-4.82802989e-06</R21>
+							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
@@ -1377,18 +1377,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41.8615112</X>
+							<X>-35.0692635</X>
 							<Y>3.51084995</Y>
-							<Z>4.51341534</Z>
-							<R00>-8.44919305e-06</R00>
-							<R01>9.65561048e-06</R01>
-							<R02>-1</R02>
+							<Z>1.80572116</Z>
+							<R00>1</R00>
+							<R01>-9.65609433e-06</R01>
+							<R02>-8.44876377e-06</R02>
 							<R10>9.65657182e-06</R10>
 							<R11>1</R11>
 							<R12>9.65603795e-06</R12>
-							<R20>1</R20>
-							<R21>-9.65609433e-06</R21>
-							<R22>-8.44876377e-06</R22>
+							<R20>8.44919305e-06</R20>
+							<R21>-9.65561048e-06</R21>
+							<R22>1</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
@@ -1453,18 +1453,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<token name="BottomSurface">0</token>
 							<token name="BottomSurfaceInput">0</token>
 							<CoordinateFrame name="CFrame">
-								<X>-41.8615112</X>
+								<X>-35.0692635</X>
 								<Y>3.51084995</Y>
-								<Z>4.51341534</Z>
-								<R00>8.43715825e-05</R00>
-								<R01>7.40057949e-05</R01>
-								<R02>-0.999997079</R02>
+								<Z>1.80572116</Z>
+								<R00>0.000103751096</R00>
+								<R01>1</R01>
+								<R02>7.82398129e-05</R02>
 								<R10>-0.999990106</R10>
 								<R11>0.000108585846</R11>
 								<R12>-8.91900927e-05</R12>
-								<R20>0.000103751096</R20>
-								<R21>1</R21>
-								<R22>7.82398129e-05</R22>
+								<R20>-8.43715825e-05</R20>
+								<R21>-7.40057949e-05</R21>
+								<R22>0.999997079</R22>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
@@ -1581,18 +1581,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<token name="BottomSurface">0</token>
 					<token name="BottomSurfaceInput">0</token>
 					<CoordinateFrame name="CFrame">
-						<X>-41.736557</X>
+						<X>-39.8192329</X>
 						<Y>18.2605247</Y>
-						<Z>-0.236557007</Z>
-						<R00>0</R00>
+						<Z>1.68076706</Z>
+						<R00>1</R00>
 						<R01>0</R01>
-						<R02>-1</R02>
+						<R02>0</R02>
 						<R10>0</R10>
 						<R11>1</R11>
 						<R12>0</R12>
-						<R20>1</R20>
+						<R20>0</R20>
 						<R21>0</R21>
-						<R22>0</R22>
+						<R22>1</R22>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
@@ -1737,18 +1737,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<token name="BottomSurface">0</token>
 					<token name="BottomSurfaceInput">0</token>
 					<CoordinateFrame name="CFrame">
-						<X>-41.736557</X>
+						<X>-39.8192329</X>
 						<Y>20.5105247</Y>
-						<Z>-0.236557007</Z>
-						<R00>0</R00>
+						<Z>1.68076706</Z>
+						<R00>1</R00>
 						<R01>0</R01>
-						<R02>-1</R02>
+						<R02>0</R02>
 						<R10>0</R10>
 						<R11>1</R11>
 						<R12>0</R12>
-						<R20>1</R20>
+						<R20>0</R20>
 						<R21>0</R21>
-						<R22>0</R22>
+						<R22>1</R22>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
@@ -1859,18 +1859,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-34.7365608</X>
+							<X>-44.3192406</X>
 							<Y>12.1503162</Y>
-							<Z>-4.73656464</Z>
-							<R00>0</R00>
-							<R01>-0.607406318</R01>
-							<R02>0.794391334</R02>
+							<Z>-5.31923008</Z>
+							<R00>-1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
 							<R10>0</R10>
 							<R11>0.794391334</R11>
 							<R12>0.607406318</R12>
-							<R20>-1</R20>
-							<R21>0</R21>
-							<R22>0</R22>
+							<R20>0</R20>
+							<R21>0.607406318</R21>
+							<R22>-0.794391334</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -1972,18 +1972,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-43.736557</X>
+							<X>-42.3192368</X>
 							<Y>18.4999943</Y>
-							<Z>-2.73656082</Z>
-							<R00>0.739198864</R00>
-							<R01>0.518951654</R01>
-							<R02>-0.429271638</R02>
+							<Z>3.68076682</Z>
+							<R00>0.573223352</R00>
+							<R01>-0.150187656</R01>
+							<R02>0.805517614</R02>
 							<R10>-0.353553444</R10>
 							<R11>0.841506243</R11>
 							<R12>0.408493757</R12>
-							<R20>0.573223352</R20>
-							<R21>-0.150187656</R21>
-							<R22>0.805517614</R22>
+							<R20>-0.739198864</R20>
+							<R21>-0.518951654</R21>
+							<R22>0.429271638</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2085,18 +2085,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-43.7365608</X>
+							<X>-50.3192444</X>
 							<Y>11.1503153</Y>
-							<Z>-10.7365704</Z>
-							<R00>0</R00>
-							<R01>0.999999881</R01>
-							<R02>4.47034836e-08</R02>
+							<Z>3.68076873</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>-4.4408921e-16</R02>
 							<R10>0</R10>
 							<R11>-4.47034836e-08</R11>
 							<R12>0.999999881</R12>
-							<R20>1</R20>
-							<R21>0</R21>
-							<R22>-4.4408921e-16</R22>
+							<R20>0</R20>
+							<R21>-0.999999881</R21>
+							<R22>-4.47034836e-08</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2198,18 +2198,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-34.7365799</X>
+							<X>-35.3192368</X>
 							<Y>12.1503344</Y>
-							<Z>4.26344109</Z>
-							<R00>8.94069174e-08</R00>
-							<R01>-0.607405722</R01>
-							<R02>0.794390559</R02>
+							<Z>-5.31920815</Z>
+							<R00>-0.999999881</R00>
+							<R01>1.19757871e-07</R01>
+							<R02>-5.84945781e-08</R02>
 							<R10>-2.98023011e-08</R10>
 							<R11>0.794390559</R11>
 							<R12>0.607405782</R12>
-							<R20>-0.999999881</R20>
-							<R21>1.19757871e-07</R21>
-							<R22>-5.84945781e-08</R22>
+							<R20>-8.94069174e-08</R20>
+							<R21>0.607405722</R21>
+							<R22>-0.794390559</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2311,18 +2311,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-43.7365532</X>
+							<X>-29.3192215</X>
 							<Y>11.1503191</Y>
-							<Z>10.2634573</Z>
-							<R00>0</R00>
-							<R01>0.999999881</R01>
-							<R02>4.47034836e-08</R02>
+							<Z>3.68076515</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>4.4408921e-16</R02>
 							<R10>0</R10>
 							<R11>-4.47034836e-08</R11>
 							<R12>0.999999881</R12>
-							<R20>1</R20>
-							<R21>0</R21>
-							<R22>4.4408921e-16</R22>
+							<R20>0</R20>
+							<R21>-0.999999881</R21>
+							<R22>-4.47034836e-08</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2424,18 +2424,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-43.7365532</X>
+							<X>-37.3192329</X>
 							<Y>18.4999981</Y>
-							<Z>2.26344442</Z>
-							<R00>-0.739198506</R00>
-							<R01>0.518951416</R01>
-							<R02>-0.42927146</R02>
+							<Z>3.68076277</Z>
+							<R00>0.573223352</R00>
+							<R01>0.150187656</R01>
+							<R02>-0.805517614</R02>
 							<R10>0.353553265</R10>
 							<R11>0.841505885</R11>
 							<R12>0.408493578</R12>
-							<R20>0.573223352</R20>
-							<R21>0.150187656</R21>
-							<R22>-0.805517614</R22>
+							<R20>0.739198506</R20>
+							<R21>-0.518951416</R21>
+							<R22>0.42927146</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2544,18 +2544,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41</X>
+							<X>-46.5826759</X>
 							<Y>5.5</Y>
-							<Z>-7</Z>
-							<R00>1</R00>
+							<Z>0.944210052</Z>
+							<R00>0</R00>
 							<R01>0</R01>
-							<R02>0</R02>
+							<R02>1</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>0</R20>
+							<R20>-1</R20>
 							<R21>0</R21>
-							<R22>1</R22>
+							<R22>0</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2658,18 +2658,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41</X>
+							<X>-49.5826759</X>
 							<Y>9.26053238</Y>
-							<Z>-10</Z>
-							<R00>1</R00>
+							<Z>0.944210052</Z>
+							<R00>0</R00>
 							<R01>0</R01>
-							<R02>0</R02>
+							<R02>1</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>0</R20>
+							<R20>-1</R20>
 							<R21>0</R21>
-							<R22>1</R22>
+							<R22>0</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2772,18 +2772,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41</X>
+							<X>-33.0557899</X>
 							<Y>5.5</Y>
-							<Z>6.52688599</Z>
-							<R00>-1</R00>
+							<Z>0.944210052</Z>
+							<R00>0</R00>
 							<R01>0</R01>
-							<R02>0</R02>
+							<R02>-1</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>0</R20>
+							<R20>1</R20>
 							<R21>0</R21>
-							<R22>-1</R22>
+							<R22>0</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -2886,18 +2886,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="BottomSurface">0</token>
 						<token name="BottomSurfaceInput">0</token>
 						<CoordinateFrame name="CFrame">
-							<X>-41</X>
+							<X>-30.0557899</X>
 							<Y>9.26053238</Y>
-							<Z>9.52688599</Z>
-							<R00>-1</R00>
+							<Z>0.944210052</Z>
+							<R00>0</R00>
 							<R01>0</R01>
-							<R02>0</R02>
+							<R02>-1</R02>
 							<R10>0</R10>
 							<R11>1</R11>
 							<R12>0</R12>
-							<R20>0</R20>
+							<R20>1</R20>
 							<R21>0</R21>
-							<R22>-1</R22>
+							<R22>0</R22>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
@@ -3002,9 +3002,9 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurface">0</token>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
-					<X>-42.486557</X>
+					<X>-46.486557</X>
 					<Y>3.23102474</Y>
-					<Z>-8.73655701</Z>
+					<Z>0.263442993</Z>
 					<R00>0</R00>
 					<R01>0</R01>
 					<R02>-1</R02>
@@ -3078,9 +3078,9 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurface">0</token>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
-					<X>-42.486557</X>
+					<X>-32.486557</X>
 					<Y>4.23101807</Y>
-					<Z>7.26344204</Z>
+					<Z>0.263442039</Z>
 					<R00>0</R00>
 					<R01>0</R01>
 					<R02>-1</R02>
@@ -3762,28 +3762,21 @@ local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMot
 --Store the motor6d in table
 local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
 
---Store the motor6d in table
-local motorHip = {hipMotor,lHipToLegMotor}
-
 --Initialize the left leg chain
 local leftLegChain = LimbChain.new(motorTable,true)
 
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable,true)
 
---Initialize the hip nvm later
-local hipChain = LimbChain.new(motorHip)
-
-
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
-local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,90)
+local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,89)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,80)
+local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
 
 --Make the FABRIK chain not move
 local rigidFeet = RigidConstraint.new(leftLegChain,4)
@@ -3798,8 +3791,8 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraints = {upperLegBallSocketConstraintAlternative,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraintsAlternative = {upperLegBallSocketConstraint,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraints = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
+local leftLegConstraintsAlternative = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
 
 --Set the constraints of the object
 leftLegChain:SetPrimaryConstraints(leftLegConstraints)
@@ -3839,7 +3832,7 @@ rightLegChain:SetCurrentConstraints(rightLegConstraints)
 --[[
     Then use the LimbChain object to control the motor every heartbeat
     ]]
-RunService.Heartbeat:Connect(function()
+RunService.Heartbeat:Connect(function(step)
         
     --The Goal position
     local goalPosition = workspace.MechLTarget.Position
@@ -3856,6 +3849,7 @@ RunService.Heartbeat:Connect(function()
 
 end)
 
+--Below is testing for Iterate until goal, still pretty glitchy idk why
 
 
 --[[
@@ -3879,13 +3873,14 @@ end
 
 
 --[[
+    
 for i=1,10000,1 do
-leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+leftLegChain:IterateUntilGoal(workspace.MechLTarget.Position,0.1,15)
 leftLegChain:UpdateMotors()
 wait(1)
 end
-]]
-]]></ProtectedString>
+
+]]]]></ProtectedString>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -6486,10 +6481,13 @@ function FabrikConstraint.new(Part)
 
     --If there is a part, relative constraint axis is set accordingly
     if Part then
-    obj.Part = Part
-    obj.CenterAxis = Part.CFrame.LookVector
-    obj.XAxis = Part.CFrame.RightVector
-    obj.YAxis = Part.CFrame.UpVector
+        obj.Part = Part
+        obj.CenterAxis = Part.CFrame.LookVector
+        obj.XAxis = Part.CFrame.RightVector
+        obj.YAxis = Part.CFrame.UpVector
+
+        obj.InitialCFrame = Part.CFrame
+        obj.PartWeld = Part:FindFirstChild("WeldConstraint")
     end
 
     return obj
@@ -6524,6 +6522,7 @@ end
 --[[
     Methods to set and get the current axis of the part
     fairly activity intensive goes from 1-2% to 4-6% max
+    relies on the part welds moving
 ]]
 function FabrikConstraint:UpdateAxis()
 
@@ -6667,6 +6666,13 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     --Stores the motor6ds used and also the original C0 of the first joint
     obj.Motor6DTable = Motor6DTable
     obj.FirstJointC0 = Motor6DTable[1].C0
+
+    --Store the initial C0
+    local Motor6DC0Table = {}
+    for i = 1, #Motor6DTable, 1 do
+        Motor6DC0Table[#Motor6DC0Table+1] = Motor6DTable[i].C0
+    end
+    obj.Motor6DC0Table = Motor6DC0Table
 
     -----initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
@@ -6934,8 +6940,6 @@ function LimbChain:UpdateMotors(floorNormal)
 
     
     end
-
-
 
 end
 

@@ -34,6 +34,13 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     obj.Motor6DTable = Motor6DTable
     obj.FirstJointC0 = Motor6DTable[1].C0
 
+    --Store the initial C0
+    local Motor6DC0Table = {}
+    for i = 1, #Motor6DTable, 1 do
+        Motor6DC0Table[#Motor6DC0Table+1] = Motor6DTable[i].C0
+    end
+    obj.Motor6DC0Table = Motor6DC0Table
+
     -----initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
     local IteratedLimbVectorTable = {}
@@ -300,8 +307,6 @@ function LimbChain:UpdateMotors(floorNormal)
 
     
     end
-
-
 
 end
 
