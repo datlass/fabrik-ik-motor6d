@@ -55,28 +55,21 @@ local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMot
 --Store the motor6d in table
 local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
 
---Store the motor6d in table
-local motorHip = {hipMotor,lHipToLegMotor}
-
 --Initialize the left leg chain
 local leftLegChain = LimbChain.new(motorTable,true)
 
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable,true)
 
---Initialize the hip nvm later
-local hipChain = LimbChain.new(motorHip)
-
-
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
 local kneePart = lowerBody.Constraints.KneeConstraint
-local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,90)
+local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,89)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
-local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,80)
+local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
 
 --Make the FABRIK chain not move
 local rigidFeet = RigidConstraint.new(leftLegChain,4)
@@ -91,8 +84,8 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraints = {upperLegBallSocketConstraintAlternative,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraintsAlternative = {upperLegBallSocketConstraint,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraints = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
+local leftLegConstraintsAlternative = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
 
 --Set the constraints of the object
 leftLegChain:SetPrimaryConstraints(leftLegConstraints)
@@ -132,7 +125,7 @@ rightLegChain:SetCurrentConstraints(rightLegConstraints)
 --[[
     Then use the LimbChain object to control the motor every heartbeat
     ]]
-RunService.Heartbeat:Connect(function()
+RunService.Heartbeat:Connect(function(step)
         
     --The Goal position
     local goalPosition = workspace.MechLTarget.Position
@@ -149,6 +142,7 @@ RunService.Heartbeat:Connect(function()
 
 end)
 
+--Below is testing for Iterate until goal, still pretty glitchy idk why
 
 
 --[[
@@ -172,9 +166,11 @@ end
 
 
 --[[
+    
 for i=1,10000,1 do
-leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,15)
+leftLegChain:IterateUntilGoal(workspace.MechLTarget.Position,0.1,15)
 leftLegChain:UpdateMotors()
 wait(1)
 end
+
 ]]
