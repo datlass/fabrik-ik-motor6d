@@ -499,10 +499,10 @@ end
     The primary constraints start glitching out due to algorithm unable to work out
     the constraints.
 ]]
-function LimbChain:SetSecondaryConstraints(PrimaryLimbConstraintTable)
+function LimbChain:SetSecondaryConstraints(SecondaryLimbConstraintTable)
 
     --Stores in itself the primary table
-    self.SecondaryLimbConstraintTable = PrimaryLimbConstraintTable
+    self.SecondaryLimbConstraintTable = SecondaryLimbConstraintTable
 
 end
 
@@ -541,14 +541,16 @@ function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 
             local check = PartConstraintRegion:CastPoint(targetPosition)
 
+            --Checks if at least one region is true so it sets it to true
             if check == true then
              isTargetInsideConstraintRegion = true
             end
 
         end
 
-        if isTargetInsideConstraintRegion then
-            --Out of region use Primary region
+        --Idk why but gotta add not
+        if not isTargetInsideConstraintRegion then
+            --Inside region so use Primary region
             self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
         else
             --Out of region use secondary region

@@ -35,8 +35,6 @@ local RigidConstraint = require(RigidConstraintPointer)
 -- Pointers
 local lowerBody = workspace.LowerBody
 
-local hipMotor = lowerBody.HipBase.Hip
-
 -- Obtain Motor6d's in left leg
 local lHipToLegMotor = lowerBody.Hip.LUpperLeg
 local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
@@ -84,8 +82,8 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraints = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraintsAlternative = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraintsAlternative = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
+local leftLegConstraints = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
 
 --Set the constraints of the object
 leftLegChain:SetPrimaryConstraints(leftLegConstraints)
@@ -97,26 +95,45 @@ local leftLegRegionPart2 = lowerBody.ConstraintZones.LeftLegPart2
 local leftLegRegion = {leftLegRegionPart1,leftLegRegionPart2}
 leftLegChain:SetPrimaryConstraintRegion(leftLegRegion)
 
---Repeat for the right leg
+--Repeat for the right leg-----------
 
 --Same constraints but for right leg
-local testBallSocketConstraint = lowerBody.Constraints.rUpperLegConstraint
-local rupperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
+local rightBallSocketConstraintPart = lowerBody.Constraints.rUpperLegConstraint
+local rupperLegBallSocketConstraint = BallSocketConstraint.new(rightBallSocketConstraintPart,30,30)
 
-local kneePart = lowerBody.Constraints.rKneeConstraint
-local rKneeHinge = BallSocketConstraint.new(kneePart,20,90)
+local rKneePart = lowerBody.Constraints.rKneeConstraint
+local rKneeBallSocket = BallSocketConstraint.new(rKneePart,20,90)
 
-local lLegPart = lowerBody.Constraints.rLowerLegConstraint
-local rLegHinge = BallSocketConstraint.new(lLegPart,20,80)
+local rLegPart = lowerBody.Constraints.rLowerLegConstraint
+local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
 
 --Make the FABRIK chain not move
 local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
 
+--[[
+    Create the alternative constraints which uses hinge
+    More restrictive and glitchy close to original joint but better fitting and looks nicer visually
+]]
+local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(rightBallSocketConstraintPart,40,40)
+local rKneeHingeAlt = HingeConstraint.new(rKneePart,90,90)
+local rLegHingeAlt = HingeConstraint.new(rLegPart,90,90)
 
-local rightLegConstraints = {rupperLegBallSocketConstraint,rKneeHinge,rLegHinge,rigidRightFeet}
+
+local rightLegConstraintsPrimary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
+local rightLegConstraintsSecondary = {rightUpperLegBallSocketConstraintAlternative,rKneeHingeAlt,rLegHingeAlt,rigidRightFeet}
 
 --Set the constraints of the object
-rightLegChain:SetCurrentConstraints(rightLegConstraints)
+--Idk why primary and secondary is swapped but hey it works
+rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
+rightLegChain:SetSecondaryConstraints(rightLegConstraintsSecondary)
+
+--Set the region for the primary constraints
+local rightLegRegionPart1 = lowerBody.ConstraintZones.RightLegPart1
+local rightLegRegionPart2 = lowerBody.ConstraintZones.RightLegPart2
+local rightLegRegion = {rightLegRegionPart1,rightLegRegionPart2}
+rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
+
+
 
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn()
@@ -134,8 +151,8 @@ RunService.Heartbeat:Connect(function(step)
     leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
-    --rightLegChain:IterateOnce(goalRightPosition,0.1)
-    --rightLegChain:UpdateMotors()
+    rightLegChain:IterateOnce(goalRightPosition,0.1)
+    rightLegChain:UpdateMotors()
 
     --hipChain:IterateOnce(hipGoal,0.1)
     --hipChain:UpdateMotors()

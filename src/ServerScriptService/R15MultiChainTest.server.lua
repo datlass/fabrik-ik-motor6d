@@ -1,3 +1,5 @@
+--This script controls the r15 avatar
+
 --Get service
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
