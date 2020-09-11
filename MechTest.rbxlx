@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-45.1016083</X>
-					<Y>12.2388735</Y>
-					<Z>-19.205759</Z>
-					<R00>-0.994733036</R00>
-					<R01>-0.00362434168</R01>
-					<R02>-0.102436051</R02>
-					<R10>2.32830644e-10</R10>
-					<R11>0.999374688</R11>
-					<R12>-0.0353593789</R12>
-					<R20>0.102500156</R20>
-					<R21>-0.0351731405</R21>
-					<R22>-0.994110942</R22>
+					<X>-41.7389946</X>
+					<Y>21.5860405</Y>
+					<Z>-16.0067558</Z>
+					<R00>-0.982231855</R00>
+					<R01>-0.0636090636</R01>
+					<R02>0.176563278</R02>
+					<R10>-3.7252903e-09</R10>
+					<R11>0.940808952</R11>
+					<R12>0.338937789</R12>
+					<R20>-0.187671795</R20>
+					<R21>0.332915485</R21>
+					<R22>-0.924092412</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-44.8967361</X>
-					<Y>12.3095922</Y>
-					<Z>-17.2175369</Z>
+					<X>-42.0921211</X>
+					<Y>20.908165</Y>
+					<Z>-14.1585712</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -299,7 +299,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Z>0</Z>
 				</Vector3>
 				<string name="Name">LowerBody</string>
-				<Ref name="PrimaryPart">RBXb17ed67e9a75467d927a7f7030645f08</Ref>
+				<Ref name="PrimaryPart">RBX188e8a8e15d74cb8834775553224e145</Ref>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="Model" referent="RBX654e5b0d493444b99a080d0421bbfbe8">
@@ -1726,7 +1726,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			</Item>
 			<Item class="Part" referent="RBXb17ed67e9a75467d927a7f7030645f08">
 				<Properties>
-					<bool name="Anchored">true</bool>
+					<bool name="Anchored">false</bool>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<float name="BackParamA">-0.5</float>
 					<float name="BackParamB">0.5</float>
@@ -1768,7 +1768,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<bool name="Locked">false</bool>
 					<bool name="Massless">false</bool>
 					<token name="Material">256</token>
-					<string name="Name">HipBase</string>
+					<string name="Name">LowerTorso</string>
 					<float name="Reflectance">0</float>
 					<float name="RightParamA">-0.5</float>
 					<float name="RightParamB">0.5</float>
@@ -1804,8 +1804,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<CoordinateFrame name="C0">
 							<X>0</X>
-							<Y>-0.5</Y>
-							<Z>0</Z>
+							<Y>-2.5</Y>
+							<Z>2</Z>
 							<R00>1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -1818,8 +1818,8 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<CoordinateFrame name="C1">
 							<X>0</X>
-							<Y>1.75</Y>
-							<Z>0</Z>
+							<Y>-0.25</Y>
+							<Z>2</Z>
 							<R00>1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -2988,6 +2988,269 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Item>
 				</Item>
 			</Item>
+			<Item class="Part" referent="RBX188e8a8e15d74cb8834775553224e145">
+				<Properties>
+					<bool name="Anchored">true</bool>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<float name="BackParamA">-0.5</float>
+					<float name="BackParamB">0.5</float>
+					<token name="BackSurface">0</token>
+					<token name="BackSurfaceInput">0</token>
+					<float name="BottomParamA">-0.5</float>
+					<float name="BottomParamB">0.5</float>
+					<token name="BottomSurface">0</token>
+					<token name="BottomSurfaceInput">0</token>
+					<CoordinateFrame name="CFrame">
+						<X>-39.8192329</X>
+						<Y>20.5105343</Y>
+						<Z>1.68076706</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<bool name="CanCollide">true</bool>
+					<bool name="CastShadow">true</bool>
+					<int name="CollisionGroupId">0</int>
+					<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+					<PhysicalProperties name="CustomPhysicalProperties">
+						<CustomPhysics>false</CustomPhysics>
+					</PhysicalProperties>
+					<float name="FrontParamA">-0.5</float>
+					<float name="FrontParamB">0.5</float>
+					<token name="FrontSurface">0</token>
+					<token name="FrontSurfaceInput">0</token>
+					<float name="LeftParamA">-0.5</float>
+					<float name="LeftParamB">0.5</float>
+					<token name="LeftSurface">0</token>
+					<token name="LeftSurfaceInput">0</token>
+					<bool name="Locked">false</bool>
+					<bool name="Massless">false</bool>
+					<token name="Material">256</token>
+					<string name="Name">HumanoidRootPart</string>
+					<float name="Reflectance">0</float>
+					<float name="RightParamA">-0.5</float>
+					<float name="RightParamB">0.5</float>
+					<token name="RightSurface">0</token>
+					<token name="RightSurfaceInput">0</token>
+					<int name="RootPriority">1</int>
+					<Vector3 name="RotVelocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<BinaryString name="Tags"></BinaryString>
+					<float name="TopParamA">-0.5</float>
+					<float name="TopParamB">0.5</float>
+					<token name="TopSurface">0</token>
+					<token name="TopSurfaceInput">0</token>
+					<float name="Transparency">0</float>
+					<Vector3 name="Velocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<token name="formFactorRaw">1</token>
+					<token name="shape">1</token>
+					<Vector3 name="size">
+						<X>4</X>
+						<Y>0.5</Y>
+						<Z>7</Z>
+					</Vector3>
+				</Properties>
+				<Item class="Motor6D" referent="RBXaf955b4e6ed54e29902123513d9febc4">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<CoordinateFrame name="C0">
+							<X>0</X>
+							<Y>-9.53674316e-06</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<CoordinateFrame name="C1">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="DesiredAngle">0</float>
+						<bool name="Enabled">true</bool>
+						<float name="MaxVelocity">0</float>
+						<string name="Name">LowerTorso</string>
+						<Ref name="Part0">RBX188e8a8e15d74cb8834775553224e145</Ref>
+						<Ref name="Part1">RBXb17ed67e9a75467d927a7f7030645f08</Ref>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="AnimationController" referent="RBX493a8f189736415bbb00acced801b75d">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">AnimationController</string>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Animator" referent="RBXe4330feb66254c1db3387f2e869ad2a2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Animator</string>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Model" referent="RBX9367a46c6c7d475ea343c478e63fee32">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<token name="LevelOfDetail">0</token>
+					<CoordinateFrame name="ModelInPrimary">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<CoordinateFrame name="ModelMeshCFrame">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<SharedString name="ModelMeshData">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
+					<Vector3 name="ModelMeshSize">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<string name="Name">AnimSaves</string>
+					<Ref name="PrimaryPart">null</Ref>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="KeyframeSequence" referent="RBX2eff7d668b964be092d61cbcb30fe30d">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<float name="AuthoredHipHeight">2</float>
+						<bool name="Loop">false</bool>
+						<string name="Name">Automatic Save</string>
+						<token name="Priority">1000</token>
+						<BinaryString name="Tags">MTU5OTgxNTExMQ==</BinaryString>
+					</Properties>
+					<Item class="Keyframe" referent="RBX1a94e096fedd43aabd744d279f0cedb6">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<string name="Name">Keyframe</string>
+							<BinaryString name="Tags"></BinaryString>
+							<float name="Time">0</float>
+						</Properties>
+						<Item class="Pose" referent="RBXb8f1273f88a14d93bcf79d422c9558b3">
+							<Properties>
+								<BinaryString name="AttributesSerialize"></BinaryString>
+								<CoordinateFrame name="CFrame">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+									<R00>1</R00>
+									<R01>0</R01>
+									<R02>0</R02>
+									<R10>0</R10>
+									<R11>1</R11>
+									<R12>0</R12>
+									<R20>0</R20>
+									<R21>0</R21>
+									<R22>1</R22>
+								</CoordinateFrame>
+								<token name="EasingDirection">0</token>
+								<token name="EasingStyle">0</token>
+								<string name="Name">HumanoidRootPart</string>
+								<BinaryString name="Tags"></BinaryString>
+								<float name="Weight">0</float>
+							</Properties>
+							<Item class="Pose" referent="RBXc4a11cb4b6734e81a8ed231a9f8f751d">
+								<Properties>
+									<BinaryString name="AttributesSerialize"></BinaryString>
+									<CoordinateFrame name="CFrame">
+										<X>0</X>
+										<Y>0</Y>
+										<Z>0</Z>
+										<R00>0.250770688</R00>
+										<R01>0</R01>
+										<R02>-0.968046546</R02>
+										<R10>0</R10>
+										<R11>1</R11>
+										<R12>0</R12>
+										<R20>0.968046546</R20>
+										<R21>0</R21>
+										<R22>0.250770688</R22>
+									</CoordinateFrame>
+									<token name="EasingDirection">0</token>
+									<token name="EasingStyle">0</token>
+									<string name="Name">LowerTorso</string>
+									<BinaryString name="Tags"></BinaryString>
+									<float name="Weight">1</float>
+								</Properties>
+								<Item class="Pose" referent="RBXce7854d075714bf5baf6441202ebeb87">
+									<Properties>
+										<BinaryString name="AttributesSerialize"></BinaryString>
+										<CoordinateFrame name="CFrame">
+											<X>0</X>
+											<Y>0</Y>
+											<Z>0</Z>
+											<R00>0.955389977</R00>
+											<R01>0</R01>
+											<R02>-0.295347214</R02>
+											<R10>0</R10>
+											<R11>1</R11>
+											<R12>0</R12>
+											<R20>0.295347214</R20>
+											<R21>0</R21>
+											<R22>0.955389977</R22>
+										</CoordinateFrame>
+										<token name="EasingDirection">0</token>
+										<token name="EasingStyle">0</token>
+										<string name="Name">Hip</string>
+										<BinaryString name="Tags"></BinaryString>
+										<float name="Weight">1</float>
+									</Properties>
+								</Item>
+							</Item>
+						</Item>
+					</Item>
+				</Item>
+			</Item>
 		</Item>
 		<Item class="Part" referent="RBX8ac4f2adca9f43f09d47ed74d52351a8">
 			<Properties>
@@ -3742,8 +4005,6 @@ local RigidConstraint = require(RigidConstraintPointer)
 -- Pointers
 local lowerBody = workspace.LowerBody
 
-local hipMotor = lowerBody.HipBase.Hip
-
 -- Obtain Motor6d's in left leg
 local lHipToLegMotor = lowerBody.Hip.LUpperLeg
 local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
@@ -3791,8 +4052,8 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraints = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraintsAlternative = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraintsAlternative = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
+local leftLegConstraints = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
 
 --Set the constraints of the object
 leftLegChain:SetPrimaryConstraints(leftLegConstraints)
@@ -3804,26 +4065,45 @@ local leftLegRegionPart2 = lowerBody.ConstraintZones.LeftLegPart2
 local leftLegRegion = {leftLegRegionPart1,leftLegRegionPart2}
 leftLegChain:SetPrimaryConstraintRegion(leftLegRegion)
 
---Repeat for the right leg
+--Repeat for the right leg-----------
 
 --Same constraints but for right leg
-local testBallSocketConstraint = lowerBody.Constraints.rUpperLegConstraint
-local rupperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
+local rightBallSocketConstraintPart = lowerBody.Constraints.rUpperLegConstraint
+local rupperLegBallSocketConstraint = BallSocketConstraint.new(rightBallSocketConstraintPart,30,30)
 
-local kneePart = lowerBody.Constraints.rKneeConstraint
-local rKneeHinge = BallSocketConstraint.new(kneePart,20,90)
+local rKneePart = lowerBody.Constraints.rKneeConstraint
+local rKneeBallSocket = BallSocketConstraint.new(rKneePart,20,90)
 
-local lLegPart = lowerBody.Constraints.rLowerLegConstraint
-local rLegHinge = BallSocketConstraint.new(lLegPart,20,80)
+local rLegPart = lowerBody.Constraints.rLowerLegConstraint
+local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
 
 --Make the FABRIK chain not move
 local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
 
+--[[
+    Create the alternative constraints which uses hinge
+    More restrictive and glitchy close to original joint but better fitting and looks nicer visually
+]]
+local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(rightBallSocketConstraintPart,40,40)
+local rKneeHingeAlt = HingeConstraint.new(rKneePart,90,90)
+local rLegHingeAlt = HingeConstraint.new(rLegPart,90,90)
 
-local rightLegConstraints = {rupperLegBallSocketConstraint,rKneeHinge,rLegHinge,rigidRightFeet}
+
+local rightLegConstraintsPrimary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
+local rightLegConstraintsSecondary = {rightUpperLegBallSocketConstraintAlternative,rKneeHingeAlt,rLegHingeAlt,rigidRightFeet}
 
 --Set the constraints of the object
-rightLegChain:SetCurrentConstraints(rightLegConstraints)
+--Idk why primary and secondary is swapped but hey it works
+rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
+rightLegChain:SetSecondaryConstraints(rightLegConstraintsSecondary)
+
+--Set the region for the primary constraints
+local rightLegRegionPart1 = lowerBody.ConstraintZones.RightLegPart1
+local rightLegRegionPart2 = lowerBody.ConstraintZones.RightLegPart2
+local rightLegRegion = {rightLegRegionPart1,rightLegRegionPart2}
+rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
+
+
 
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn()
@@ -3841,8 +4121,8 @@ RunService.Heartbeat:Connect(function(step)
     leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
-    --rightLegChain:IterateOnce(goalRightPosition,0.1)
-    --rightLegChain:UpdateMotors()
+    rightLegChain:IterateOnce(goalRightPosition,0.1)
+    rightLegChain:UpdateMotors()
 
     --hipChain:IterateOnce(hipGoal,0.1)
     --hipChain:UpdateMotors()
@@ -6481,13 +6761,10 @@ function FabrikConstraint.new(Part)
 
     --If there is a part, relative constraint axis is set accordingly
     if Part then
-        obj.Part = Part
-        obj.CenterAxis = Part.CFrame.LookVector
-        obj.XAxis = Part.CFrame.RightVector
-        obj.YAxis = Part.CFrame.UpVector
-
-        obj.InitialCFrame = Part.CFrame
-        obj.PartWeld = Part:FindFirstChild("WeldConstraint")
+    obj.Part = Part
+    obj.CenterAxis = Part.CFrame.LookVector
+    obj.XAxis = Part.CFrame.RightVector
+    obj.YAxis = Part.CFrame.UpVector
     end
 
     return obj
@@ -6522,7 +6799,6 @@ end
 --[[
     Methods to set and get the current axis of the part
     fairly activity intensive goes from 1-2% to 4-6% max
-    relies on the part welds moving
 ]]
 function FabrikConstraint:UpdateAxis()
 
@@ -7132,10 +7408,10 @@ end
     The primary constraints start glitching out due to algorithm unable to work out
     the constraints.
 ]]
-function LimbChain:SetSecondaryConstraints(PrimaryLimbConstraintTable)
+function LimbChain:SetSecondaryConstraints(SecondaryLimbConstraintTable)
 
     --Stores in itself the primary table
-    self.SecondaryLimbConstraintTable = PrimaryLimbConstraintTable
+    self.SecondaryLimbConstraintTable = SecondaryLimbConstraintTable
 
 end
 
@@ -7174,14 +7450,16 @@ function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 
             local check = PartConstraintRegion:CastPoint(targetPosition)
 
+            --Checks if at least one region is true so it sets it to true
             if check == true then
              isTargetInsideConstraintRegion = true
             end
 
         end
 
-        if isTargetInsideConstraintRegion then
-            --Out of region use Primary region
+        --Idk why but gotta add not
+        if not isTargetInsideConstraintRegion then
+            --Inside region so use Primary region
             self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
         else
             --Out of region use secondary region
@@ -8002,6 +8280,81 @@ end
 
 return limbVector
 end]]></ProtectedString>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXfae77444d3ec4273be47c3db99f5d624">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">format</string>
+						<string name="ScriptGuid">{c6a52003-27f9-4bae-8461-57eb8b61f7d9}</string>
+						<ProtectedString name="Source"><![CDATA[-- File to just shift alt F format all
+
+function LimbChain:UpdateMotorAtIndex(Index)
+
+    -- Gets the CFrame of the Initial joint at world space
+    local initialJointCFrame = self.Motor6DTable[1].Part0.CFrame *
+                                   self.FirstJointC0
+
+    -- Vector sum for the for loop to get the series of position of the next joint based on the algorithm
+    local vectorSumFromFirstJoint = Vector3.new()
+
+    -- Only rotates at motor at index
+
+    -- Obtains the current limb that is being worked on
+    local originalVectorLimb = self.LimbVectorTable[i]
+    local currentVectorLimb = self.IteratedLimbVectorTable[i]
+
+    -- Obtains the CFrame of the part0 limb of the motor6d
+    local previousLimbPart = self.Motor6DTable[i].Part0
+    local previousLimbCF = previousLimbPart.CFrame
+
+    -- Obtains the CFrame rotation calculation for CFrame.fromAxis
+    local limbVectorRelativeToOriginal =
+        previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+    local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(
+                                currentVectorLimb.Unit)
+    local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+    local limbRotationAngle = math.acos(safetyClamp)
+    local limbRotationAxis = limbVectorRelativeToOriginal:Cross(
+                                 currentVectorLimb) -- obtain the rotation axis
+
+    -- Checks if the axis exists if cross product returns zero somehow
+    if limbRotationAxis ~= Vector3.new(0, 0, 0) then
+
+        -- Gets the world space of the joint from the iterated limb vectors
+        if i ~= 1 then
+            vectorSumFromFirstJoint = vectorSumFromFirstJoint +
+                                          self.IteratedLimbVectorTable[i - 1]
+        end
+
+        -- Gets the position of the current limb joint
+        local motorPosition = initialJointCFrame.Position +
+                                  vectorSumFromFirstJoint
+
+        -- Now adding a debug mode----------------------------------------------------------------
+        -- Puts the created parts according to the motor position
+        if self.DebugMode then
+            workspace["LimbVector:" .. i].Position = motorPosition
+        end
+        ----------------------------------------------------------------
+        -- Obtain the CFrame operations needed to rotate the limb to the goal
+        local undoPreviousLimbCF = previousLimbCF:Inverse() *
+                                       CFrame.new(motorPosition)
+        local rotateLimbCF = CFrame.fromAxisAngle(limbRotationAxis,
+                                                  limbRotationAngle) *
+                                 CFrame.fromMatrix(Vector3.new(),
+                                                   previousLimbCF.RightVector,
+                                                   previousLimbCF.UpVector)
+
+        -- Changes the current motor6d through c0
+        self.Motor6DTable[i].C0 = undoPreviousLimbCF * rotateLimbCF
+
+    end
+
+end
+]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
