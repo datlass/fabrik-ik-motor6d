@@ -135,7 +135,7 @@ rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
 
 
 --turn on debug mode if u want
-leftLegChain:DebugModeOn()
+--leftLegChain:DebugModeOn()
 
 
 --[[
