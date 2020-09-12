@@ -107,7 +107,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     ]]
     obj.LimbConstraintTable = LimbConstraintTable
     --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
-    local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable)
+    local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable,obj)
     obj.LimbFabrikSolver = LimbFabrikSolver
 
     --Creates a empty table to store motor c0 for tweening
