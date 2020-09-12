@@ -82,12 +82,12 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraintsAlternative = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraints = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
+local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
 
 --Set the constraints of the object
-leftLegChain:SetPrimaryConstraints(leftLegConstraints)
-leftLegChain:SetSecondaryConstraints(leftLegConstraintsAlternative)
+leftLegChain:SetPrimaryConstraints(leftLegConstraintsPrimary)
+leftLegChain:SetSecondaryConstraints(leftLegConstraintsSecondary)
 
 --Set the region for the primary constraints
 local leftLegRegionPart1 = lowerBody.ConstraintZones.LeftLegPart1
@@ -115,15 +115,14 @@ local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(rightBallSocketConstraintPart,40,40)
-local rKneeHingeAlt = HingeConstraint.new(rKneePart,90,90)
-local rLegHingeAlt = HingeConstraint.new(rLegPart,90,90)
+local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
+local rLegHinge = HingeConstraint.new(rLegPart,90,90)
 
-
-local rightLegConstraintsPrimary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
-local rightLegConstraintsSecondary = {rightUpperLegBallSocketConstraintAlternative,rKneeHingeAlt,rLegHingeAlt,rigidRightFeet}
+--Construct the constraints table
+local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge,rigidRightFeet}
+local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
 
 --Set the constraints of the object
---Idk why primary and secondary is swapped but hey it works
 rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
 rightLegChain:SetSecondaryConstraints(rightLegConstraintsSecondary)
 
@@ -136,7 +135,7 @@ rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
 
 
 --turn on debug mode if u want
---leftLegChain:DebugModeOn()
+leftLegChain:DebugModeOn()
 
 
 --[[

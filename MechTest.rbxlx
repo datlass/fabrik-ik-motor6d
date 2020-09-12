@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-39.1091232</X>
-					<Y>27.5124683</Y>
-					<Z>-28.6356335</Z>
-					<R00>-0.977150321</R00>
-					<R01>0.138208553</R01>
-					<R02>-0.161479831</R02>
-					<R10>7.4505806e-09</R10>
-					<R11>0.759727776</R11>
-					<R12>0.650241375</R12>
-					<R20>0.212549612</R20>
-					<R21>0.635383546</R21>
-					<R22>-0.742368162</R22>
+					<X>-51.9314041</X>
+					<Y>13.1164837</Y>
+					<Z>-17.907032</Z>
+					<R00>-0.966956139</R00>
+					<R01>0.0864087865</R01>
+					<R02>-0.239852875</R02>
+					<R10>-7.4505806e-09</R10>
+					<R11>0.940810263</R11>
+					<R12>0.338933915</R12>
+					<R20>0.254942894</R20>
+					<R21>0.327734232</R21>
+					<R22>-0.909722209</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-38.7861633</X>
-					<Y>26.2119846</Y>
-					<Z>-27.1508961</Z>
+					<X>-51.4516983</X>
+					<Y>12.4386158</Y>
+					<Z>-16.0875874</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -11557,12 +11557,12 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraintsAlternative = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraints = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
+local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
 
 --Set the constraints of the object
-leftLegChain:SetPrimaryConstraints(leftLegConstraints)
-leftLegChain:SetSecondaryConstraints(leftLegConstraintsAlternative)
+leftLegChain:SetPrimaryConstraints(leftLegConstraintsPrimary)
+leftLegChain:SetSecondaryConstraints(leftLegConstraintsSecondary)
 
 --Set the region for the primary constraints
 local leftLegRegionPart1 = lowerBody.ConstraintZones.LeftLegPart1
@@ -11590,15 +11590,14 @@ local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(rightBallSocketConstraintPart,40,40)
-local rKneeHingeAlt = HingeConstraint.new(rKneePart,90,90)
-local rLegHingeAlt = HingeConstraint.new(rLegPart,90,90)
+local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
+local rLegHinge = HingeConstraint.new(rLegPart,90,90)
 
-
-local rightLegConstraintsPrimary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
-local rightLegConstraintsSecondary = {rightUpperLegBallSocketConstraintAlternative,rKneeHingeAlt,rLegHingeAlt,rigidRightFeet}
+--Construct the constraints table
+local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge,rigidRightFeet}
+local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
 
 --Set the constraints of the object
---Idk why primary and secondary is swapped but hey it works
 rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
 rightLegChain:SetSecondaryConstraints(rightLegConstraintsSecondary)
 
@@ -11611,12 +11610,12 @@ rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
 
 
 --turn on debug mode if u want
---leftLegChain:DebugModeOn()
+leftLegChain:DebugModeOn()
 
 
 --[[
     Then use the LimbChain object to control the motor every heartbeat
-    
+    ]]
 RunService.Heartbeat:Connect(function(step)
         
     --The Goal position
@@ -11629,11 +11628,8 @@ RunService.Heartbeat:Connect(function(step)
     rightLegChain:IterateOnce(goalRightPosition,0.1)
     rightLegChain:UpdateMotors()
 
-    --hipChain:IterateOnce(hipGoal,0.1)
-    --hipChain:UpdateMotors()
-
 end)
-]]
+
 --Below is testing for Iterate until goal, still pretty glitchy idk why
 --Constraints not updating
 
@@ -11658,12 +11654,13 @@ end
 
 
 --[[
-    ]]
+    
 for i=1,10000,1 do
 leftLegChain:IterateUntilGoal(workspace.MechLTarget.Position,0.1,15)
 leftLegChain:UpdateMotors()
 wait(1)
 end
+]]
 
 ]]></ProtectedString>
 					<BinaryString name="Tags"></BinaryString>
@@ -14495,7 +14492,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
         --print(lastMotor)
         --local test = -lastMotor.C1.Position
         --This is more accurate than getting C1 position for some reason
-        local ExtraLimbVector = lastMotor.Part1.Position-(lastMotor.Part0.Position+lastMotor.C0.Position)
+        local ExtraLimbVector = lastMotor.Part1.CFrame.Position-(lastMotor.Part0.CFrame*lastMotor.C0.Position)
 
         LimbVectorTable[#LimbVectorTable + 1] = ExtraLimbVector
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = ExtraLimbVector
@@ -14582,7 +14579,8 @@ end
 ]]
 function LimbChain:IterateOnce(targetPosition,tolerance)
     
-    --Does the constraint region check to change constraints if so
+    --Does the constraint region check and change constraints if in region
+    --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
@@ -14597,7 +14595,8 @@ end
 
 function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
 
-    --Does the constraint region check to change constraints if so
+    --Does the constraint region check and change constraints
+    --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
@@ -14964,15 +14963,18 @@ function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 
         end
 
-        --Idk why but gotta add not
-        if not isTargetInsideConstraintRegion then
-            --Inside region so use Primary region
+        --Checks the condition
+        if isTargetInsideConstraintRegion then
+            --Inside region so use Primary constraints region
             self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
         else
-            --Out of region use secondary region
+            --Out of region use secondary constraints region
             self:SetCurrentConstraints(self.SecondaryLimbConstraintTable)
         end
 
+    else
+        --Use primary constraints only if no region is set
+        self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
     end
 
 end--end of function

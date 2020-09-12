@@ -79,7 +79,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
         --print(lastMotor)
         --local test = -lastMotor.C1.Position
         --This is more accurate than getting C1 position for some reason
-        local ExtraLimbVector = lastMotor.Part1.Position-(lastMotor.Part0.Position+lastMotor.C0.Position)
+        local ExtraLimbVector = lastMotor.Part1.CFrame.Position-(lastMotor.Part0.CFrame*lastMotor.C0.Position)
 
         LimbVectorTable[#LimbVectorTable + 1] = ExtraLimbVector
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = ExtraLimbVector
@@ -166,7 +166,8 @@ end
 ]]
 function LimbChain:IterateOnce(targetPosition,tolerance)
     
-    --Does the constraint region check to change constraints if so
+    --Does the constraint region check and change constraints if in region
+    --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
@@ -181,7 +182,8 @@ end
 
 function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
 
-    --Does the constraint region check to change constraints if so
+    --Does the constraint region check and change constraints
+    --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
@@ -548,15 +550,18 @@ function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 
         end
 
-        --Idk why but gotta add not
-        if not isTargetInsideConstraintRegion then
-            --Inside region so use Primary region
+        --Checks the condition
+        if isTargetInsideConstraintRegion then
+            --Inside region so use Primary constraints region
             self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
         else
-            --Out of region use secondary region
+            --Out of region use secondary constraints region
             self:SetCurrentConstraints(self.SecondaryLimbConstraintTable)
         end
 
+    else
+        --Use primary constraints only if no region is set
+        self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
     end
 
 end--end of function
