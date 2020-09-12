@@ -4,9 +4,10 @@ local Object = require(Package.BaseRedirect)
 
 local FabrikSolver = Object.new("FabrikSolver")
 
-function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable)
+function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,LimbChain)
     local obj = FabrikSolver:make()
 
+    obj.LimbChain = LimbChain
     -- Initialize the object class
     obj.LimbVectorTable = LimbVectorTable
 
@@ -101,7 +102,11 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
         -- Do backwards on itself first then forwards until it reaches goal
         self:Backwards(originCF, targetPosition)
         self:Forwards(originCF, targetPosition)
-    
+        
+        --Issue constraints don't update unless motors are updated
+        --Solution update the motors lol
+        self.LimbChain:UpdateMotors()
+
         --measure distance again
         -- initialize measure feet to where it should be in the world position
         local vectorSum = Vector3.new(0, 0, 0)

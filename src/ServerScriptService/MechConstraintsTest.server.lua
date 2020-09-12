@@ -152,13 +152,10 @@ RunService.Heartbeat:Connect(function(step)
     rightLegChain:IterateOnce(goalRightPosition,0.1)
     rightLegChain:UpdateMotors()
 
-    --hipChain:IterateOnce(hipGoal,0.1)
-    --hipChain:UpdateMotors()
-
 end)
 
 --Below is testing for Iterate until goal, still pretty glitchy idk why
-
+--Constraints not updating
 
 --[[
     
@@ -187,5 +184,5 @@ leftLegChain:IterateUntilGoal(workspace.MechLTarget.Position,0.1,15)
 leftLegChain:UpdateMotors()
 wait(1)
 end
-
 ]]
+
