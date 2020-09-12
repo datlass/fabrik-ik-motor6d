@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-51.9314041</X>
-					<Y>13.1164837</Y>
-					<Z>-17.907032</Z>
-					<R00>-0.966956139</R00>
-					<R01>0.0864087865</R01>
-					<R02>-0.239852875</R02>
-					<R10>-7.4505806e-09</R10>
-					<R11>0.940810263</R11>
-					<R12>0.338933915</R12>
-					<R20>0.254942894</R20>
-					<R21>0.327734232</R21>
-					<R22>-0.909722209</R22>
+					<X>-45.9010925</X>
+					<Y>27.9297314</Y>
+					<Z>-38.1971245</Z>
+					<R00>-0.971424341</R00>
+					<R01>0.116255991</R01>
+					<R02>-0.206928357</R02>
+					<R10>-0</R10>
+					<R11>0.871829748</R11>
+					<R12>0.489809275</R12>
+					<R20>0.23734951</R20>
+					<R21>0.475812644</R21>
+					<R22>-0.846916616</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-51.4516983</X>
-					<Y>12.4386158</Y>
-					<Z>-16.0875874</Z>
+					<X>-45.487236</X>
+					<Y>26.9501133</Y>
+					<Z>-36.5032921</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -11610,7 +11610,7 @@ rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
 
 
 --turn on debug mode if u want
-leftLegChain:DebugModeOn()
+--leftLegChain:DebugModeOn()
 
 
 --[[
