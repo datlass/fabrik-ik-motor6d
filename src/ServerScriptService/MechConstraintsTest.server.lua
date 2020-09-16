@@ -56,6 +56,16 @@ local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFe
 --Initialize the left leg chain
 local leftLegChain = LimbChain.new(motorTable,true)
 
+--Foot placement system
+local footParams = RaycastParams.new()
+footParams.CollisionGroup = "MovementSys"
+
+leftLegChain.FootPlacementRaycastParams = footParams
+leftLegChain.LengthToFloor = 20
+
+--Get all the attachments in the left foot
+leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
+leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable,true)
 
@@ -69,9 +79,6 @@ local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,89)
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
 
---Make the FABRIK chain not move
-local rigidFeet = RigidConstraint.new(leftLegChain,4)
-
 --[[
     Create the alternative constraints which uses hinge
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
@@ -82,8 +89,8 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
+local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket}
 
 --Set the constraints of the object
 leftLegChain:SetPrimaryConstraints(leftLegConstraintsPrimary)
@@ -107,9 +114,6 @@ local rKneeBallSocket = BallSocketConstraint.new(rKneePart,20,90)
 local rLegPart = lowerBody.Constraints.rLowerLegConstraint
 local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
 
---Make the FABRIK chain not move
-local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
-
 --[[
     Create the alternative constraints which uses hinge
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
@@ -119,8 +123,8 @@ local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
 local rLegHinge = HingeConstraint.new(rLegPart,90,90)
 
 --Construct the constraints table
-local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge,rigidRightFeet}
-local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
+local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
+local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object
 rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
@@ -137,7 +141,7 @@ rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn()
 
-
+local down = Vector3.new(0,-20,0)
 --[[
     Then use the LimbChain object to control the motor every heartbeat
     ]]
@@ -146,8 +150,11 @@ RunService.Heartbeat:Connect(function(step)
     --The Goal position
     local goalPosition = workspace.MechLTarget.Position
     local goalRightPosition = workspace.MechRTarget.Position
-
-    leftLegChain:IterateOnce(goalPosition,0.1)
+    local rayResult = workspace:Raycast(workspace.MechLTarget.Position,down,footParams)
+    if rayResult then
+       leftLegChain:IterateOnce(rayResult.Position,0.1)
+    end
+    --leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
     rightLegChain:IterateOnce(goalRightPosition,0.1)

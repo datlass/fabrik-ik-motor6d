@@ -5,13 +5,14 @@
 		<Properties>
 			<bool name="AllowThirdPartySales">false</bool>
 			<BinaryString name="AttributesSerialize"></BinaryString>
-			<string name="CollisionGroups">Default^0^1</string>
+			<string name="CollisionGroups">Default^0^5\MechModel^1^2\MovementSys^2^1</string>
 			<Ref name="CurrentCamera">RBX8cdb28debbf64c34b2c8cf05b38b8a0b</Ref>
 			<double name="DistributedGameTime">0</double>
 			<bool name="ExplicitAutoJoints">true</bool>
 			<float name="FallenPartsDestroyHeight">-500</float>
 			<bool name="FilteringEnabled">true</bool>
 			<float name="Gravity">196.199997</float>
+			<token name="InterpolationThrottling">0</token>
 			<token name="LevelOfDetail">0</token>
 			<CoordinateFrame name="ModelInPrimary">
 				<X>0</X>
@@ -49,6 +50,7 @@
 			</Vector3>
 			<string name="Name">Workspace</string>
 			<Ref name="PrimaryPart">null</Ref>
+			<int64 name="SourceAssetId">-1</int64>
 			<bool name="StreamingEnabled">false</bool>
 			<int name="StreamingMinRadius">64</int>
 			<token name="StreamingPauseMode">0</token>
@@ -60,26 +62,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-45.9010925</X>
-					<Y>27.9297314</Y>
-					<Z>-38.1971245</Z>
-					<R00>-0.971424341</R00>
-					<R01>0.116255991</R01>
-					<R02>-0.206928357</R02>
+					<X>-31.9893932</X>
+					<Y>24.9086609</Y>
+					<Z>22.801548</Z>
+					<R00>0.997958064</R00>
+					<R01>-0.035439726</R01>
+					<R02>0.053139694</R02>
 					<R10>-0</R10>
-					<R11>0.871829748</R11>
-					<R12>0.489809275</R12>
-					<R20>0.23734951</R20>
-					<R21>0.475812644</R21>
-					<R22>-0.846916616</R22>
+					<R11>0.831954479</R11>
+					<R12>0.554843962</R12>
+					<R20>-0.0638733208</R20>
+					<R21>-0.553710997</R21>
+					<R22>0.830255628</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-45.487236</X>
-					<Y>26.9501133</Y>
-					<Z>-36.5032921</Z>
+					<X>-32.0956726</X>
+					<Y>23.7989731</Y>
+					<Z>21.141037</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -93,6 +95,7 @@
 				<bool name="HeadLocked">true</bool>
 				<float name="HeadScale">1</float>
 				<string name="Name">Camera</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 		</Item>
@@ -157,6 +160,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Z>0</Z>
 				</Vector3>
 				<BinaryString name="SmoothGrid">AQU=</BinaryString>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 				<float name="TopParamA">-0.5</float>
 				<float name="TopParamB">0.5</float>
@@ -240,6 +244,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Y>0</Y>
 					<Z>0</Z>
 				</Vector3>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 				<float name="TopParamA">-0.5</float>
 				<float name="TopParamB">0.5</float>
@@ -300,6 +305,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				</Vector3>
 				<string name="Name">LowerBody</string>
 				<Ref name="PrimaryPart">RBX188e8a8e15d74cb8834775553224e145</Ref>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="Model" referent="RBX654e5b0d493444b99a080d0421bbfbe8">
@@ -342,6 +348,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Vector3>
 					<string name="Name">LeftLeg</string>
 					<Ref name="PrimaryPart">null</Ref>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="UnionOperation" referent="RBX715d8d11959a4ed1b751c4e37ebc5745">
@@ -374,7 +381,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
 						<BinaryString name="ChildData"></BinaryString>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4279308561</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -414,6 +421,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>0</Z>
 						</Vector3>
 						<float name="SmoothingAngle">0</float>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -469,6 +477,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LLowerLeg</string>
 							<Ref name="Part0">RBX715d8d11959a4ed1b751c4e37ebc5745</Ref>
 							<Ref name="Part1">RBXbd1a43acd5e24addb5f2e33de566290e</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -503,7 +512,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
 						<BinaryString name="ChildData"></BinaryString>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4279308561</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -543,6 +552,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>0</Z>
 						</Vector3>
 						<float name="SmoothingAngle">0</float>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -598,6 +608,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LKnee</string>
 							<Ref name="Part0">RBX33544b4ff2714e70b3dbd4de6a5ee7a4</Ref>
 							<Ref name="Part1">RBX715d8d11959a4ed1b751c4e37ebc5745</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -632,7 +643,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
 						<BinaryString name="ChildData"></BinaryString>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4279308561</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -672,6 +683,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>0</Z>
 						</Vector3>
 						<float name="SmoothingAngle">0</float>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -727,6 +739,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LFeet</string>
 							<Ref name="Part0">RBXbd1a43acd5e24addb5f2e33de566290e</Ref>
 							<Ref name="Part1">RBX80bf1459796c4bdf892595f6839d2776</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -759,7 +772,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -787,6 +800,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -823,11 +837,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<X>-44.5692596</X>
 								<Y>3.51066208</Y>
 								<Z>1.8057214</Z>
-								<R00>9.89228574e-05</R00>
+								<R00>9.89227701e-05</R00>
 								<R01>1</R01>
 								<R02>8.2463579e-05</R02>
 								<R10>-0.999990106</R10>
-								<R11>0.000103757891</R11>
+								<R11>0.000103757979</R11>
 								<R12>-9.40186801e-05</R12>
 								<R20>-8.91996679e-05</R20>
 								<R21>-7.82300267e-05</R21>
@@ -836,7 +850,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
 							<BinaryString name="ChildData"></BinaryString>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -876,6 +890,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Z>0</Z>
 							</Vector3>
 							<float name="SmoothingAngle">0</float>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -894,43 +909,90 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Z>7.50001383</Z>
 							</Vector3>
 						</Properties>
+						<Item class="WeldConstraint" referent="RBX2f5527c9bb384c5b8beb5076386c56af">
+							<Properties>
+								<BinaryString name="AttributesSerialize"></BinaryString>
+								<CoordinateFrame name="CFrame0">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+									<R00>9.89228138e-05</R00>
+									<R01>-0.999990106</R01>
+									<R02>-8.91996679e-05</R02>
+									<R10>1</R10>
+									<R11>0.000103757935</R11>
+									<R12>-7.82300267e-05</R12>
+									<R20>8.2463579e-05</R20>
+									<R21>-9.40186801e-05</R21>
+									<R22>0.999997079</R22>
+								</CoordinateFrame>
+								<CoordinateFrame name="CFrame1">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+									<R00>1</R00>
+									<R01>0</R01>
+									<R02>0</R02>
+									<R10>0</R10>
+									<R11>1</R11>
+									<R12>0</R12>
+									<R20>0</R20>
+									<R21>0</R21>
+									<R22>1</R22>
+								</CoordinateFrame>
+								<bool name="Enabled">true</bool>
+								<string name="Name">WeldConstraint</string>
+								<Ref name="Part0Internal">RBX4c020f2b794d40468a15bf09e5d23d72</Ref>
+								<Ref name="Part1Internal">RBX80bf1459796c4bdf892595f6839d2776</Ref>
+								<int64 name="SourceAssetId">-1</int64>
+								<BinaryString name="Tags"></BinaryString>
+							</Properties>
+						</Item>
 					</Item>
-					<Item class="Weld" referent="RBX4a71b63983004bf8988e3067494cf32c">
+					<Item class="Attachment" referent="RBX06531a9141854d1fa6df5e1de529e185">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
-							<CoordinateFrame name="C0">
+							<CoordinateFrame name="CFrame">
 								<X>0</X>
-								<Y>0</Y>
-								<Z>0</Z>
-								<R00>9.89229011e-05</R00>
-								<R01>1</R01>
-								<R02>8.2463579e-05</R02>
-								<R10>-0.999990106</R10>
-								<R11>0.000103757848</R11>
-								<R12>-9.40186801e-05</R12>
-								<R20>-8.91996679e-05</R20>
-								<R21>-7.82300267e-05</R21>
-								<R22>0.999997079</R22>
-							</CoordinateFrame>
-							<CoordinateFrame name="C1">
-								<X>0</X>
-								<Y>0</Y>
+								<Y>-0.5</Y>
 								<Z>0</Z>
 								<R00>1</R00>
-								<R01>0</R01>
+								<R01>-9.33110256e-11</R01>
 								<R02>0</R02>
-								<R10>0</R10>
+								<R10>9.33110256e-11</R10>
 								<R11>1</R11>
-								<R12>0</R12>
+								<R12>-0</R12>
 								<R20>0</R20>
 								<R21>0</R21>
 								<R22>1</R22>
 							</CoordinateFrame>
-							<bool name="Enabled">true</bool>
-							<string name="Name">LFeet &#240;&#159;&#161;&#170; LFeetDecoration</string>
-							<Ref name="Part0">RBX80bf1459796c4bdf892595f6839d2776</Ref>
-							<Ref name="Part1">RBX4c020f2b794d40468a15bf09e5d23d72</Ref>
+							<string name="Name">FootBottom</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX1052b305d157423d95471c44f8e89813">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<CoordinateFrame name="CFrame">
+								<X>0.100000001</X>
+								<Y>-0.5</Y>
+								<Z>0</Z>
+								<R00>1</R00>
+								<R01>-9.33110256e-11</R01>
+								<R02>0</R02>
+								<R10>9.33110256e-11</R10>
+								<R11>1</R11>
+								<R12>-0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<string name="Name">FootBottomRight</string>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<bool name="Visible">false</bool>
 						</Properties>
 					</Item>
 				</Item>
@@ -975,6 +1037,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Vector3>
 					<string name="Name">RightLeg</string>
 					<Ref name="PrimaryPart">null</Ref>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="UnionOperation" referent="RBXc03eab9abcbd4fab919ee39cc7af6d8d">
@@ -1007,7 +1070,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
 						<BinaryString name="ChildData"></BinaryString>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4279308561</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -1047,6 +1110,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>0</Z>
 						</Vector3>
 						<float name="SmoothingAngle">0</float>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -1102,6 +1166,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RKnee</string>
 							<Ref name="Part0">RBXc03eab9abcbd4fab919ee39cc7af6d8d</Ref>
 							<Ref name="Part1">RBX0438b89218554ba4a5b5663c1a5018f6</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -1136,7 +1201,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
 						<BinaryString name="ChildData"></BinaryString>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4279308561</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -1176,6 +1241,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>0</Z>
 						</Vector3>
 						<float name="SmoothingAngle">0</float>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -1231,6 +1297,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RLowerLeg</string>
 							<Ref name="Part0">RBX0438b89218554ba4a5b5663c1a5018f6</Ref>
 							<Ref name="Part1">RBX2e03dcf6e7be4b9bb89cd97a164f1e99</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -1265,7 +1332,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
 						<BinaryString name="ChildData"></BinaryString>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4279308561</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -1305,6 +1372,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Z>0</Z>
 						</Vector3>
 						<float name="SmoothingAngle">0</float>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -1360,6 +1428,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RFeet</string>
 							<Ref name="Part0">RBX2e03dcf6e7be4b9bb89cd97a164f1e99</Ref>
 							<Ref name="Part1">RBXcc837dbfb95f45c593cfa5dd0a670bc1</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -1392,7 +1461,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -1420,12 +1489,13 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">1</float>
+						<float name="Transparency">0</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -1469,7 +1539,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
 							<BinaryString name="ChildData"></BinaryString>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -1509,6 +1579,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Z>0</Z>
 							</Vector3>
 							<float name="SmoothingAngle">0</float>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -1563,6 +1634,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RFeet &#240;&#159;&#161;&#170; RFeetDecoration</string>
 							<Ref name="Part0">RBXcc837dbfb95f45c593cfa5dd0a670bc1</Ref>
 							<Ref name="Part1">RBXa411dd3511d7415a86ac6c6cf54c0f29</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -1596,7 +1668,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -1624,6 +1696,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -1680,6 +1753,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<string name="Name">RUpperLeg</string>
 						<Ref name="Part0">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 						<Ref name="Part1">RBXc03eab9abcbd4fab919ee39cc7af6d8d</Ref>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -1720,6 +1794,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<string name="Name">LUpperLeg</string>
 						<Ref name="Part0">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 						<Ref name="Part1">RBX33544b4ff2714e70b3dbd4de6a5ee7a4</Ref>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -1752,7 +1827,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -1780,6 +1855,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -1836,6 +1912,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<string name="Name">Hip</string>
 						<Ref name="Part0">RBXb17ed67e9a75467d927a7f7030645f08</Ref>
 						<Ref name="Part1">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -1844,6 +1921,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">Constraints</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="WedgePart" referent="RBXbb365bcbee434605951939acb27dcfff">
@@ -1861,7 +1939,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-44.3192406</X>
 							<Y>12.1503162</Y>
-							<Z>-5.31923008</Z>
+							<Z>-5.31922913</Z>
 							<R00>-1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -1874,7 +1952,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -1902,6 +1980,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -1925,7 +2004,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="CFrame0">
 								<X>-7.62939453e-06</X>
-								<Y>6.69338846</Y>
+								<Y>6.69338799</Y>
 								<Z>-3.2218256</Z>
 								<R00>-1</R00>
 								<R01>0</R01>
@@ -1955,6 +2034,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBXbb365bcbee434605951939acb27dcfff</Ref>
 							<Ref name="Part1Internal">RBX33544b4ff2714e70b3dbd4de6a5ee7a4</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -1987,7 +2067,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4294946816</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2015,6 +2095,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -2068,6 +2149,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX1646ae3200db46b7ad887cdf63e70bc4</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2100,7 +2182,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4281099549</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2128,6 +2210,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -2181,6 +2264,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX8098c60f5c6d4818af9c74cfdf8b9c19</Ref>
 							<Ref name="Part1Internal">RBX715d8d11959a4ed1b751c4e37ebc5745</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2213,7 +2297,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2241,6 +2325,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -2294,6 +2379,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX588de253163f4d2a86c557feb4d8e9a2</Ref>
 							<Ref name="Part1Internal">RBXc03eab9abcbd4fab919ee39cc7af6d8d</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2326,7 +2412,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4281099549</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2354,6 +2440,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -2407,6 +2494,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBXba79321be53b403183c514434437c968</Ref>
 							<Ref name="Part1Internal">RBX0438b89218554ba4a5b5663c1a5018f6</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2439,7 +2527,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4294946816</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2467,6 +2555,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -2520,6 +2609,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX89304487c1e945788a68d6fbf22ca84f</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2529,6 +2619,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">ConstraintZones</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="Part" referent="RBX49383c349aab4008821a7929c1cf9798">
@@ -2559,7 +2650,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4294506744</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2587,12 +2678,13 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0.5</float>
+						<float name="Transparency">1</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -2641,6 +2733,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX49383c349aab4008821a7929c1cf9798</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2673,7 +2766,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4294506744</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2701,12 +2794,13 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0.5</float>
+						<float name="Transparency">1</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -2755,6 +2849,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX15a4065ab7194f8f9a96e13f6dd8172e</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2787,7 +2882,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4294506744</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2815,12 +2910,13 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0.5</float>
+						<float name="Transparency">1</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -2869,6 +2965,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX64c469f85c3d4411ae8e6a1af866764f</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2901,7 +2998,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4294506744</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -2929,12 +3026,13 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0.5</float>
+						<float name="Transparency">1</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -2983,6 +3081,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBXf7f32cf52906417a81fd2196c1195077</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -3016,7 +3115,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -3044,6 +3143,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -3100,6 +3200,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<string name="Name">LowerTorso</string>
 						<Ref name="Part0">RBX188e8a8e15d74cb8834775553224e145</Ref>
 						<Ref name="Part1">RBXb17ed67e9a75467d927a7f7030645f08</Ref>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -3108,12 +3209,14 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">AnimationController</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="Animator" referent="RBXe4330feb66254c1db3387f2e869ad2a2">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<string name="Name">Animator</string>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -3158,6 +3261,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Vector3>
 					<string name="Name">AnimSaves</string>
 					<Ref name="PrimaryPart">null</Ref>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="KeyframeSequence" referent="RBX2eff7d668b964be092d61cbcb30fe30d">
@@ -3167,12 +3271,14 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<bool name="Loop">false</bool>
 						<string name="Name">Automatic Save</string>
 						<token name="Priority">1000</token>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags">MTU5OTgxNTExMQ==</BinaryString>
 					</Properties>
 					<Item class="Keyframe" referent="RBX1a94e096fedd43aabd744d279f0cedb6">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">Keyframe</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="Time">0</float>
 						</Properties>
@@ -3196,6 +3302,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<token name="EasingDirection">0</token>
 								<token name="EasingStyle">0</token>
 								<string name="Name">HumanoidRootPart</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<float name="Weight">0</float>
 							</Properties>
@@ -3219,6 +3326,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 									<token name="EasingDirection">0</token>
 									<token name="EasingStyle">0</token>
 									<string name="Name">LowerTorso</string>
+									<int64 name="SourceAssetId">-1</int64>
 									<BinaryString name="Tags"></BinaryString>
 									<float name="Weight">1</float>
 								</Properties>
@@ -3242,6 +3350,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 										<token name="EasingDirection">0</token>
 										<token name="EasingStyle">0</token>
 										<string name="Name">Hip</string>
+										<int64 name="SourceAssetId">-1</int64>
 										<BinaryString name="Tags"></BinaryString>
 										<float name="Weight">1</float>
 									</Properties>
@@ -3266,7 +3375,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
 					<X>-46.486557</X>
-					<Y>3.23102474</Y>
+					<Y>5.48102474</Y>
 					<Z>0.263442993</Z>
 					<R00>0</R00>
 					<R01>0</R01>
@@ -3280,7 +3389,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				</CoordinateFrame>
 				<bool name="CanCollide">false</bool>
 				<bool name="CastShadow">true</bool>
-				<int name="CollisionGroupId">0</int>
+				<int name="CollisionGroupId">1</int>
 				<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
 				<PhysicalProperties name="CustomPhysicalProperties">
 					<CustomPhysics>false</CustomPhysics>
@@ -3308,6 +3417,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Y>0</Y>
 					<Z>0</Z>
 				</Vector3>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 				<float name="TopParamA">-0.5</float>
 				<float name="TopParamB">0.5</float>
@@ -3356,7 +3466,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				</CoordinateFrame>
 				<bool name="CanCollide">false</bool>
 				<bool name="CastShadow">true</bool>
-				<int name="CollisionGroupId">0</int>
+				<int name="CollisionGroupId">1</int>
 				<Color3uint8 name="Color3uint8">4294967040</Color3uint8>
 				<PhysicalProperties name="CustomPhysicalProperties">
 					<CustomPhysics>false</CustomPhysics>
@@ -3384,6 +3494,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Y>0</Y>
 					<Z>0</Z>
 				</Vector3>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 				<float name="TopParamA">-0.5</float>
 				<float name="TopParamB">0.5</float>
@@ -3444,6 +3555,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				</Vector3>
 				<string name="Name">FloopDummyCopy</string>
 				<Ref name="PrimaryPart">RBXf234c078a15e484e959c4bbe6971e05a</Ref>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="Part" referent="RBX65f144c9b43e400181d330616ef3b79c">
@@ -3502,6 +3614,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -3531,6 +3644,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</Color3>
 						<token name="Face">5</token>
 						<string name="Name">Face</string>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="Texture"><url>rbxasset://textures/face.png</url></Content>
 						<float name="Transparency">0</float>
@@ -3577,6 +3691,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Vector3>
 					<string name="Name">RLeg</string>
 					<Ref name="PrimaryPart">null</Ref>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="Part" referent="RBX17b888fe6b164d02afe25f3a19960b34">
@@ -3635,6 +3750,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -3691,6 +3807,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RLowerLeg</string>
 							<Ref name="Part0">RBX17b888fe6b164d02afe25f3a19960b34</Ref>
 							<Ref name="Part1">RBXf8ec82de3a044a9fa5ff219146e64223</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -3751,6 +3868,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -3807,6 +3925,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RFeet</string>
 							<Ref name="Part0">RBXf8ec82de3a044a9fa5ff219146e64223</Ref>
 							<Ref name="Part1">RBX7ea313e016a641b2beffaccd74219805</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -3867,6 +3986,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -3928,6 +4048,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Vector3>
 					<string name="Name">Body</string>
 					<Ref name="PrimaryPart">null</Ref>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="Part" referent="RBX93089f493f0d436082ae0d76cf50ceab">
@@ -3986,6 +4107,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -4042,6 +4164,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">Hip</string>
 							<Ref name="Part0">RBX93089f493f0d436082ae0d76cf50ceab</Ref>
 							<Ref name="Part1">RBX33d502ac41234f6194396fbc439d76d3</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -4082,6 +4205,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">UpperTorso</string>
 							<Ref name="Part0">RBX93089f493f0d436082ae0d76cf50ceab</Ref>
 							<Ref name="Part1">RBX09bb515787954c919f6d2b808c838968</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -4142,6 +4266,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -4198,6 +4323,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">Head</string>
 							<Ref name="Part0">RBX09bb515787954c919f6d2b808c838968</Ref>
 							<Ref name="Part1">RBX65f144c9b43e400181d330616ef3b79c</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -4258,6 +4384,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -4314,6 +4441,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LowerTorso</string>
 							<Ref name="Part0">RBXf234c078a15e484e959c4bbe6971e05a</Ref>
 							<Ref name="Part1">RBX93089f493f0d436082ae0d76cf50ceab</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -4374,6 +4502,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -4430,6 +4559,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LUpperLeg</string>
 							<Ref name="Part0">RBX33d502ac41234f6194396fbc439d76d3</Ref>
 							<Ref name="Part1">RBXebfffaf9fa4c42c9bdb014c2a2f16d45</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -4470,6 +4600,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RUpperLeg</string>
 							<Ref name="Part0">RBX33d502ac41234f6194396fbc439d76d3</Ref>
 							<Ref name="Part1">RBX17b888fe6b164d02afe25f3a19960b34</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -4515,6 +4646,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Vector3>
 					<string name="Name">LLeg</string>
 					<Ref name="PrimaryPart">null</Ref>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="Part" referent="RBX4eed2d553b1f47708d4c01ee692af535">
@@ -4573,6 +4705,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -4649,6 +4782,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -4705,6 +4839,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LLowerLeg</string>
 							<Ref name="Part0">RBXebfffaf9fa4c42c9bdb014c2a2f16d45</Ref>
 							<Ref name="Part1">RBX3c7db03564414728a67267a6533e74b3</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -4765,6 +4900,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -4821,6 +4957,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LFeet</string>
 							<Ref name="Part0">RBX3c7db03564414728a67267a6533e74b3</Ref>
 							<Ref name="Part1">RBX4eed2d553b1f47708d4c01ee692af535</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -4867,6 +5004,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				</Vector3>
 				<string name="Name">TinyModel</string>
 				<Ref name="PrimaryPart">null</Ref>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="Model" referent="RBXf5257591ed034cd38d1a62ac1cb82db1">
@@ -4909,6 +5047,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Vector3>
 					<string name="Name">Dummy</string>
 					<Ref name="PrimaryPart">RBX863ea79098b7452593dd03a4fcefffc8</Ref>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="Part" referent="RBXdb92ac5a775b4fcc82c6035e6dc222de">
@@ -4939,7 +5078,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -4967,6 +5106,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -4996,6 +5136,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</Color3>
 							<token name="Face">5</token>
 							<string name="Name">Face</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Content name="Texture"><url>rbxasset://textures/face.png</url></Content>
 							<float name="Transparency">0</float>
@@ -5042,6 +5183,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</Vector3>
 						<string name="Name">RLeg</string>
 						<Ref name="PrimaryPart">null</Ref>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 					<Item class="Part" referent="RBXa0e58bbed965472cbc20306812662341">
@@ -5072,7 +5214,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4294967244</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -5100,6 +5242,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -5156,6 +5299,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">RLowerLeg</string>
 								<Ref name="Part0">RBXa0e58bbed965472cbc20306812662341</Ref>
 								<Ref name="Part1">RBX890237a46313408fbdab9f3efb9a55c5</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -5188,7 +5332,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4294498669</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -5216,6 +5360,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -5272,6 +5417,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">RFeet</string>
 								<Ref name="Part0">RBX890237a46313408fbdab9f3efb9a55c5</Ref>
 								<Ref name="Part1">RBXe84cec28003846cf9ed3213818527faf</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -5304,7 +5450,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4294298928</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -5332,6 +5478,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -5393,6 +5540,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</Vector3>
 						<string name="Name">Body</string>
 						<Ref name="PrimaryPart">null</Ref>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 					<Item class="Part" referent="RBX2203cf0c71ee43209829ede744510503">
@@ -5423,7 +5571,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4290040548</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -5451,6 +5599,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -5507,6 +5656,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">Hip</string>
 								<Ref name="Part0">RBX2203cf0c71ee43209829ede744510503</Ref>
 								<Ref name="Part1">RBX00305cab1cbe465abf9fd3401f2aecae</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -5547,6 +5697,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">UpperTorso</string>
 								<Ref name="Part0">RBX2203cf0c71ee43209829ede744510503</Ref>
 								<Ref name="Part1">RBX780a790b57fc42f6825b67871c789401</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -5579,7 +5730,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4288201435</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -5607,6 +5758,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -5663,6 +5815,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">Head</string>
 								<Ref name="Part0">RBX780a790b57fc42f6825b67871c789401</Ref>
 								<Ref name="Part1">RBXdb92ac5a775b4fcc82c6035e6dc222de</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -5695,7 +5848,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">false</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4286251131</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -5723,6 +5876,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -5779,6 +5933,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">LowerTorso</string>
 								<Ref name="Part0">RBX863ea79098b7452593dd03a4fcefffc8</Ref>
 								<Ref name="Part1">RBX2203cf0c71ee43209829ede744510503</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -5811,7 +5966,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4293256415</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -5839,6 +5994,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -5895,6 +6051,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">LUpperLeg</string>
 								<Ref name="Part0">RBX00305cab1cbe465abf9fd3401f2aecae</Ref>
 								<Ref name="Part1">RBXf2301401c19f476c8a631bade68c89a1</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -5935,6 +6092,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">RUpperLeg</string>
 								<Ref name="Part0">RBX00305cab1cbe465abf9fd3401f2aecae</Ref>
 								<Ref name="Part1">RBXa0e58bbed965472cbc20306812662341</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -5980,6 +6138,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</Vector3>
 						<string name="Name">LLeg</string>
 						<Ref name="PrimaryPart">null</Ref>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 					<Item class="Part" referent="RBXb109156bbc7542329172c2b10e0704aa">
@@ -6010,7 +6169,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4294928076</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -6038,6 +6197,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -6086,7 +6246,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4289331370</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -6114,6 +6274,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -6170,6 +6331,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">LLowerLeg</string>
 								<Ref name="Part0">RBXf2301401c19f476c8a631bade68c89a1</Ref>
 								<Ref name="Part1">RBX31365ddc9dce4dca973cecf246a35f11</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -6202,7 +6364,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</CoordinateFrame>
 							<bool name="CanCollide">true</bool>
 							<bool name="CastShadow">true</bool>
-							<int name="CollisionGroupId">0</int>
+							<int name="CollisionGroupId">1</int>
 							<Color3uint8 name="Color3uint8">4294901951</Color3uint8>
 							<PhysicalProperties name="CustomPhysicalProperties">
 								<CustomPhysics>false</CustomPhysics>
@@ -6230,6 +6392,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>0</Y>
 								<Z>0</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="TopParamA">-0.5</float>
 							<float name="TopParamB">0.5</float>
@@ -6286,6 +6449,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<string name="Name">LFeet</string>
 								<Ref name="Part0">RBX31365ddc9dce4dca973cecf246a35f11</Ref>
 								<Ref name="Part1">RBXb109156bbc7542329172c2b10e0704aa</Ref>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -6295,12 +6459,14 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<string name="Name">AnimationController</string>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 					<Item class="Animator" referent="RBXadbd1680fb15447392818866f778ada6">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">Animator</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -6346,6 +6512,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</Vector3>
 					<string name="Name">R15Dummy</string>
 					<Ref name="PrimaryPart">RBX29bea05648654571a6af841f0de9e2ba</Ref>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="Part" referent="RBX29bea05648654571a6af841f0de9e2ba">
@@ -6376,7 +6543,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -6404,6 +6571,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -6441,6 +6609,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RootRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -6448,6 +6617,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0</X>
@@ -6461,6 +6631,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>2</X>
@@ -6498,7 +6669,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -6544,6 +6715,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -6580,6 +6752,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftWristRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -6587,6 +6760,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0.000478982925</X>
@@ -6614,6 +6788,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>6.12323426e-17</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftGripAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -6621,6 +6796,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0</X>
@@ -6667,6 +6843,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LeftWrist</string>
 							<Ref name="Part0">RBXccacd0393ac945929a6de66769bc647a</Ref>
 							<Ref name="Part1">RBX2d8eb3521f63497fa6096b122451ca65</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -6674,6 +6851,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.999999762</X>
@@ -6711,7 +6889,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -6757,6 +6935,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -6793,6 +6972,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftElbowRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -6800,6 +6980,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0.000478625298</X>
@@ -6827,6 +7008,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftWristRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -6834,6 +7016,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0.000478625298</X>
@@ -6880,6 +7063,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LeftElbow</string>
 							<Ref name="Part0">RBXeffb8ddc20974cba9d845c4446843ee6</Ref>
 							<Ref name="Part1">RBXccacd0393ac945929a6de66769bc647a</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -6887,6 +7071,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.999999642</X>
@@ -6924,7 +7109,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -6970,6 +7155,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -7006,6 +7192,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftShoulderRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7013,6 +7200,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0.500000358</X>
@@ -7040,6 +7228,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftElbowRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7047,6 +7236,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0.000479221344</X>
@@ -7074,6 +7264,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftShoulderAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7081,6 +7272,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>2.38418579e-07</X>
@@ -7127,6 +7319,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LeftShoulder</string>
 							<Ref name="Part0">RBX102afa7470004b419d6c3ff89aa41325</Ref>
 							<Ref name="Part1">RBXeffb8ddc20974cba9d845c4446843ee6</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -7134,6 +7327,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.999999762</X>
@@ -7171,7 +7365,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -7217,6 +7411,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -7253,6 +7448,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightWristRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7260,6 +7456,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>3.57627869e-07</X>
@@ -7287,6 +7484,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>6.12323426e-17</R22>
 							</CoordinateFrame>
 							<string name="Name">RightGripAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7294,6 +7492,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0</X>
@@ -7340,6 +7539,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RightWrist</string>
 							<Ref name="Part0">RBX7d3e45ec32a6401f8ce00d0ef71b2ad3</Ref>
 							<Ref name="Part1">RBXfeaa39aa42c9462cbc572fb161f81757</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -7347,6 +7547,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.999999881</X>
@@ -7384,7 +7585,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -7430,6 +7631,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -7466,6 +7668,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightElbowRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7473,6 +7676,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>1.1920929e-07</X>
@@ -7500,6 +7704,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightWristRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7507,6 +7712,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>1.1920929e-07</X>
@@ -7553,6 +7759,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RightElbow</string>
 							<Ref name="Part0">RBXcc2c2b1d4c724102b554e2d0fad7a0f9</Ref>
 							<Ref name="Part1">RBX7d3e45ec32a6401f8ce00d0ef71b2ad3</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -7560,6 +7767,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.999999762</X>
@@ -7597,7 +7805,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -7643,6 +7851,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -7679,6 +7888,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightShoulderRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7686,6 +7896,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-0.500000715</X>
@@ -7713,6 +7924,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightElbowRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7720,6 +7932,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-5.96046448e-07</X>
@@ -7747,6 +7960,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightShoulderAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7754,6 +7968,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-8.34465027e-07</X>
@@ -7800,6 +8015,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RightShoulder</string>
 							<Ref name="Part0">RBX102afa7470004b419d6c3ff89aa41325</Ref>
 							<Ref name="Part1">RBXcc2c2b1d4c724102b554e2d0fad7a0f9</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -7807,6 +8023,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.999999642</X>
@@ -7844,7 +8061,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -7890,6 +8107,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -7926,6 +8144,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">WaistRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7933,6 +8152,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-5.96046448e-08</X>
@@ -7960,6 +8180,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">NeckRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -7967,6 +8188,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-5.96046448e-08</X>
@@ -7994,6 +8216,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftShoulderRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8001,6 +8224,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-1</X>
@@ -8028,6 +8252,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightShoulderRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8035,6 +8260,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0.99999994</X>
@@ -8062,6 +8288,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">BodyFrontAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8069,6 +8296,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-5.96046448e-08</X>
@@ -8096,6 +8324,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">BodyBackAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8103,6 +8332,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-5.96046448e-08</X>
@@ -8130,6 +8360,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftCollarAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8137,6 +8368,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-0.999999881</X>
@@ -8164,6 +8396,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightCollarAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8171,6 +8404,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0.99999994</X>
@@ -8198,6 +8432,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">NeckAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8205,6 +8440,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-5.05859497e-08</X>
@@ -8251,6 +8487,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">Waist</string>
 							<Ref name="Part0">RBX19b7065296d642868e81541da3480feb</Ref>
 							<Ref name="Part1">RBX102afa7470004b419d6c3ff89aa41325</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -8258,6 +8495,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>2</X>
@@ -8295,7 +8533,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -8341,6 +8579,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -8377,6 +8616,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftAnkleRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8384,6 +8624,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-1.78813934e-07</X>
@@ -8430,6 +8671,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LeftAnkle</string>
 							<Ref name="Part0">RBX2122e89445444133a95f107624792276</Ref>
 							<Ref name="Part1">RBXc0ed770df9244a51b8bc14e9fb6f714d</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -8437,6 +8679,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>1</X>
@@ -8474,7 +8717,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -8520,6 +8763,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -8556,6 +8800,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftKneeRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8563,6 +8808,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>2.98023224e-08</X>
@@ -8590,6 +8836,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftAnkleRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8597,6 +8844,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-1.1920929e-07</X>
@@ -8643,6 +8891,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LeftKnee</string>
 							<Ref name="Part0">RBXb94a41ffdbf640748d664f321f85a730</Ref>
 							<Ref name="Part1">RBX2122e89445444133a95f107624792276</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -8650,6 +8899,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.99999994</X>
@@ -8687,7 +8937,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -8733,6 +8983,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -8769,6 +9020,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftHipRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8776,6 +9028,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>5.96046448e-08</X>
@@ -8803,6 +9056,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftKneeRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8810,6 +9064,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>8.94069672e-08</X>
@@ -8856,6 +9111,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">LeftHip</string>
 							<Ref name="Part0">RBX19b7065296d642868e81541da3480feb</Ref>
 							<Ref name="Part1">RBXb94a41ffdbf640748d664f321f85a730</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -8863,6 +9119,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>1.00000036</X>
@@ -8900,7 +9157,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -8946,6 +9203,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -8982,6 +9240,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightAnkleRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -8989,6 +9248,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-0</X>
@@ -9035,6 +9295,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RightAnkle</string>
 							<Ref name="Part0">RBX034c0adb52d944b09cee875ece3d7fca</Ref>
 							<Ref name="Part1">RBX2993ae29028d4642ab7d4f44b4a3c8e4</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -9042,6 +9303,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.99999994</X>
@@ -9079,7 +9341,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -9125,6 +9387,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -9161,6 +9424,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightKneeRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9168,6 +9432,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-0</X>
@@ -9195,6 +9460,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightAnkleRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9202,6 +9468,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-0</X>
@@ -9248,6 +9515,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RightKnee</string>
 							<Ref name="Part0">RBXf381ca9ced05428988f7f2b3139d4e41</Ref>
 							<Ref name="Part1">RBX034c0adb52d944b09cee875ece3d7fca</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -9255,6 +9523,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>0.99999994</X>
@@ -9292,7 +9561,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">false</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -9338,6 +9607,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -9374,6 +9644,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightHipRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9381,6 +9652,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-0</X>
@@ -9408,6 +9680,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightKneeRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9415,6 +9688,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-0</X>
@@ -9461,6 +9735,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">RightHip</string>
 							<Ref name="Part0">RBX19b7065296d642868e81541da3480feb</Ref>
 							<Ref name="Part1">RBXf381ca9ced05428988f7f2b3139d4e41</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -9468,6 +9743,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>1.00000048</X>
@@ -9505,7 +9781,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -9551,6 +9827,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<Content name="TextureID"><null></null></Content>
 						<float name="TopParamA">-0.5</float>
@@ -9587,6 +9864,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RootRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9594,6 +9872,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-1.1920929e-07</X>
@@ -9621,6 +9900,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">WaistRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9628,6 +9908,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-1.1920929e-07</X>
@@ -9655,6 +9936,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">LeftHipRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9662,6 +9944,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-0.500000119</X>
@@ -9689,6 +9972,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">RightHipRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9696,6 +9980,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0.499999881</X>
@@ -9723,6 +10008,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">WaistCenterAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9730,6 +10016,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-4.2200088e-07</X>
@@ -9757,6 +10044,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">WaistFrontAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9764,6 +10052,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-1.32219867e-07</X>
@@ -9791,6 +10080,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">WaistBackAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -9798,6 +10088,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>-1.46413214e-07</X>
@@ -9844,6 +10135,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">Root</string>
 							<Ref name="Part0">RBX29bea05648654571a6af841f0de9e2ba</Ref>
 							<Ref name="Part1">RBX19b7065296d642868e81541da3480feb</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -9851,6 +10143,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>1.99999976</X>
@@ -9889,6 +10182,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<token name="NameOcclusion">2</token>
 						<bool name="RequiresNeck">true</bool>
 						<token name="RigType">1</token>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<bool name="UseJumpPower">true</bool>
 						<float name="WalkSpeed">16</float>
@@ -9897,6 +10191,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">Animator</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -9929,7 +10224,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</CoordinateFrame>
 						<bool name="CanCollide">true</bool>
 						<bool name="CastShadow">true</bool>
-						<int name="CollisionGroupId">0</int>
+						<int name="CollisionGroupId">1</int>
 						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
 						<PhysicalProperties name="CustomPhysicalProperties">
 							<CustomPhysics>false</CustomPhysics>
@@ -9957,6 +10252,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Y>0</Y>
 							<Z>0</Z>
 						</Vector3>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="TopParamA">-0.5</float>
 						<float name="TopParamB">0.5</float>
@@ -9994,6 +10290,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<Y>1.25</Y>
 								<Z>1.25</Z>
 							</Vector3>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Content name="TextureId"><null></null></Content>
 							<Vector3 name="VertexColor">
@@ -10006,6 +10303,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalSize</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>1.25</X>
@@ -10033,6 +10331,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">FaceCenterAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -10040,6 +10339,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0</X>
@@ -10067,6 +10367,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">FaceFrontAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -10074,6 +10375,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0</X>
@@ -10101,6 +10403,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">HairAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -10108,6 +10411,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0</X>
@@ -10135,6 +10439,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">HatAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -10142,6 +10447,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0</X>
@@ -10169,6 +10475,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>1</R22>
 							</CoordinateFrame>
 							<string name="Name">NeckRigAttachment</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
@@ -10176,6 +10483,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">OriginalPosition</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<Vector3 name="Value">
 									<X>0</X>
@@ -10195,6 +10503,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</Color3>
 							<token name="Face">5</token>
 							<string name="Name">face</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Content name="Texture"><url>rbxasset://textures/face.png</url></Content>
 							<float name="Transparency">0</float>
@@ -10237,6 +10546,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<string name="Name">Neck</string>
 							<Ref name="Part0">RBX102afa7470004b419d6c3ff89aa41325</Ref>
 							<Ref name="Part1">RBXfe390f0369774507acf1c6b12374f570</Ref>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -10244,6 +10554,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">OriginalSize</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Vector3 name="Value">
 								<X>2</X>
@@ -10262,6 +10573,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							</Color3>
 							<token name="Face">5</token>
 							<string name="Name">face</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<Content name="Texture"><url>rbxasset://textures/face.png</url></Content>
 							<float name="Transparency">0</float>
@@ -10308,6 +10620,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</Vector3>
 						<string name="Name">AnimSaves</string>
 						<Ref name="PrimaryPart">null</Ref>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 					<Item class="KeyframeSequence" referent="RBX800423d81e1d4549bc1e2a3b2114224b">
@@ -10317,12 +10630,14 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<bool name="Loop">false</bool>
 							<string name="Name">Automatic Save</string>
 							<token name="Priority">1000</token>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags">MTU5OTU4MjI3Ng==</BinaryString>
 						</Properties>
 						<Item class="Keyframe" referent="RBX094e9498e2854d11afe241828ae4d90f">
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Keyframe</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<float name="Time">0</float>
 							</Properties>
@@ -10346,6 +10661,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 									<token name="EasingDirection">0</token>
 									<token name="EasingStyle">0</token>
 									<string name="Name">HumanoidRootPart</string>
+									<int64 name="SourceAssetId">-1</int64>
 									<BinaryString name="Tags"></BinaryString>
 									<float name="Weight">0</float>
 								</Properties>
@@ -10369,6 +10685,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 										<token name="EasingDirection">0</token>
 										<token name="EasingStyle">0</token>
 										<string name="Name">LowerTorso</string>
+										<int64 name="SourceAssetId">-1</int64>
 										<BinaryString name="Tags"></BinaryString>
 										<float name="Weight">0</float>
 									</Properties>
@@ -10392,6 +10709,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 											<token name="EasingDirection">0</token>
 											<token name="EasingStyle">0</token>
 											<string name="Name">LeftUpperLeg</string>
+											<int64 name="SourceAssetId">-1</int64>
 											<BinaryString name="Tags"></BinaryString>
 											<float name="Weight">1</float>
 										</Properties>
@@ -10415,6 +10733,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 												<token name="EasingDirection">0</token>
 												<token name="EasingStyle">0</token>
 												<string name="Name">LeftLowerLeg</string>
+												<int64 name="SourceAssetId">-1</int64>
 												<BinaryString name="Tags"></BinaryString>
 												<float name="Weight">1</float>
 											</Properties>
@@ -10438,6 +10757,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 													<token name="EasingDirection">0</token>
 													<token name="EasingStyle">0</token>
 													<string name="Name">LeftFoot</string>
+													<int64 name="SourceAssetId">-1</int64>
 													<BinaryString name="Tags"></BinaryString>
 													<float name="Weight">1</float>
 												</Properties>
@@ -10478,7 +10798,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4278226844</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -10506,6 +10826,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -10554,7 +10875,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4278226844</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -10582,6 +10903,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -10630,7 +10952,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -10658,6 +10980,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -10706,7 +11029,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4280254493</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -10734,6 +11057,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -10782,7 +11106,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -10810,6 +11134,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -10858,7 +11183,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					</CoordinateFrame>
 					<bool name="CanCollide">true</bool>
 					<bool name="CastShadow">true</bool>
-					<int name="CollisionGroupId">0</int>
+					<int name="CollisionGroupId">1</int>
 					<Color3uint8 name="Color3uint8">4280254493</Color3uint8>
 					<PhysicalProperties name="CustomPhysicalProperties">
 						<CustomPhysics>false</CustomPhysics>
@@ -10886,6 +11211,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>0</Y>
 						<Z>0</Z>
 					</Vector3>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<float name="TopParamA">-0.5</float>
 					<float name="TopParamB">0.5</float>
@@ -10907,6 +11233,159 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				</Properties>
 			</Item>
 		</Item>
+		<Item class="Part" referent="RBX04d86e7d10ea44c897013960e6f5b281">
+			<Properties>
+				<bool name="Anchored">true</bool>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<CoordinateFrame name="CFrame">
+					<X>-45.25</X>
+					<Y>-3.74999523</Y>
+					<Z>6.75</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="CastShadow">true</bool>
+				<int name="CollisionGroupId">0</int>
+				<Color3uint8 name="Color3uint8">4280844103</Color3uint8>
+				<PhysicalProperties name="CustomPhysicalProperties">
+					<CustomPhysics>false</CustomPhysics>
+				</PhysicalProperties>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<bool name="Massless">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Part</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<int name="RootPriority">0</int>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">1</token>
+				<token name="shape">0</token>
+				<Vector3 name="size">
+					<X>12</X>
+					<Y>12</Y>
+					<Z>12</Z>
+				</Vector3>
+			</Properties>
+		</Item>
+		<Item class="WedgePart" referent="RBX0dd72a83abb54fd097ba5381f0dd68c1">
+			<Properties>
+				<bool name="Anchored">true</bool>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<CoordinateFrame name="CFrame">
+					<X>-43.25</X>
+					<Y>3.62500405</Y>
+					<Z>-9</Z>
+					<R00>-1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>-1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="CastShadow">true</bool>
+				<int name="CollisionGroupId">0</int>
+				<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+				<PhysicalProperties name="CustomPhysicalProperties">
+					<CustomPhysics>false</CustomPhysics>
+				</PhysicalProperties>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<bool name="Massless">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Wedge</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<int name="RootPriority">0</int>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">1</token>
+				<Vector3 name="size">
+					<X>7.5</X>
+					<Y>7.25</Y>
+					<Z>14</Z>
+				</Vector3>
+			</Properties>
+		</Item>
 	</Item>
 	<Item class="SoundService" referent="5">
 		<Properties>
@@ -10917,6 +11396,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<string name="Name">SoundService</string>
 			<bool name="RespectFilteringEnabled">true</bool>
 			<float name="RolloffScale">1</float>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10924,6 +11404,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">NonReplicatedCSGDictionaryService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10931,6 +11412,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">CSGDictionaryService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10940,6 +11422,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<bool name="BubbleChatEnabled">false</bool>
 			<bool name="LoadDefaultChat">true</bool>
 			<string name="Name">Chat</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10947,6 +11430,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">Instance</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10958,6 +11442,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<string name="Name">Players</string>
 			<int name="PreferredPlayersInternal">0</int>
 			<float name="RespawnTime">5</float>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10965,6 +11450,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">ReplicatedFirst</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10972,6 +11458,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">TweenService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10979,6 +11466,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">PermissionsService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -10992,6 +11480,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<bool name="EnableScriptCollabOnLoad">false</bool>
 			<bool name="EnableScriptCollabVersionHistoryOnLoad">false</bool>
 			<string name="Name">StudioData</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<int64 name="SrcPlaceId">0</int64>
 			<int64 name="SrcUniverseId">0</int64>
 			<BinaryString name="Tags"></BinaryString>
@@ -11037,6 +11526,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<bool name="LoadCharacterAppearance">true</bool>
 			<string name="Name">StarterPlayer</string>
 			<float name="NameDisplayDistance">100</float>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 			<bool name="UserEmotesEnabled">true</bool>
 		</Properties>
@@ -11044,6 +11534,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<string name="Name">StarterPlayerScripts</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="LocalScript" referent="RBX2a95fcf0a98a46d091a59d97b7de1566">
@@ -11239,6 +11730,7 @@ RunService.Heartbeat:Connect(function()
 	-- lJKneeToLowMotor.C0 = newLowLegCF
 end)
 ]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -11247,6 +11739,7 @@ end)
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<string name="Name">StarterCharacterScripts</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 		</Item>
@@ -11255,6 +11748,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">StarterPack</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11265,6 +11759,7 @@ end)
 			<bool name="ResetPlayerGuiOnSpawn">true</bool>
 			<token name="ScreenOrientation">2</token>
 			<bool name="ShowDevelopmentGui">true</bool>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11272,6 +11767,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">LocalizationService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11279,6 +11775,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">Teleport Service</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11286,6 +11783,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">CollectionService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11293,6 +11791,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">PhysicsService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11300,6 +11799,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">Geometry</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11309,6 +11809,7 @@ end)
 			<bool name="AllowInsertFreeModels">false</bool>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">InsertService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11316,6 +11817,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">GamePassService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11324,6 +11826,7 @@ end)
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<int name="MaxItems">1000</int>
 			<string name="Name">Debris</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11331,6 +11834,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">CookiesService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11338,6 +11842,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">VRService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11345,6 +11850,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">ContextActionService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11352,6 +11858,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">Instance</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11359,6 +11866,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">AssetService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11366,6 +11874,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">TouchInputService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11374,6 +11883,7 @@ end)
 			<string name="ApiKey"></string>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">AnalyticsService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11381,6 +11891,7 @@ end)
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">Selection</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -11389,12 +11900,14 @@ end)
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<bool name="LoadStringEnabled">false</bool>
 			<string name="Name">ServerScriptService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 		<Item class="Folder" referent="RBX54a518ad8e6e4b328ba9894c6ab7c517">
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<string name="Name">Source</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="Script" referent="RBX558f4e499aef45c58a016c667b834cb2">
@@ -11465,6 +11978,7 @@ RunService.Heartbeat:Connect(function()
     rightLegChain:UpdateMotors()
 
 end)]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -11531,6 +12045,16 @@ local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFe
 --Initialize the left leg chain
 local leftLegChain = LimbChain.new(motorTable,true)
 
+--Foot placement system
+local footParams = RaycastParams.new()
+footParams.CollisionGroup = "MovementSys"
+
+leftLegChain.FootPlacementRaycastParams = footParams
+leftLegChain.LengthToFloor = 20
+
+--Get all the attachments in the left foot
+leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
+leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable,true)
 
@@ -11544,9 +12068,6 @@ local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,89)
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
 
---Make the FABRIK chain not move
-local rigidFeet = RigidConstraint.new(leftLegChain,4)
-
 --[[
     Create the alternative constraints which uses hinge
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
@@ -11557,8 +12078,8 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
+local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket}
 
 --Set the constraints of the object
 leftLegChain:SetPrimaryConstraints(leftLegConstraintsPrimary)
@@ -11582,9 +12103,6 @@ local rKneeBallSocket = BallSocketConstraint.new(rKneePart,20,90)
 local rLegPart = lowerBody.Constraints.rLowerLegConstraint
 local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
 
---Make the FABRIK chain not move
-local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
-
 --[[
     Create the alternative constraints which uses hinge
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
@@ -11594,8 +12112,8 @@ local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
 local rLegHinge = HingeConstraint.new(rLegPart,90,90)
 
 --Construct the constraints table
-local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge,rigidRightFeet}
-local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
+local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
+local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object
 rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
@@ -11612,7 +12130,7 @@ rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn()
 
-
+local down = Vector3.new(0,-20,0)
 --[[
     Then use the LimbChain object to control the motor every heartbeat
     ]]
@@ -11621,8 +12139,11 @@ RunService.Heartbeat:Connect(function(step)
     --The Goal position
     local goalPosition = workspace.MechLTarget.Position
     local goalRightPosition = workspace.MechRTarget.Position
-
-    leftLegChain:IterateOnce(goalPosition,0.1)
+    local rayResult = workspace:Raycast(workspace.MechLTarget.Position,down,footParams)
+    if rayResult then
+       leftLegChain:IterateOnce(rayResult.Position,0.1)
+    end
+    --leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
     rightLegChain:IterateOnce(goalRightPosition,0.1)
@@ -11663,6 +12184,7 @@ end
 ]]
 
 ]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -11738,6 +12260,7 @@ RunService.Heartbeat:Connect(function()
 
 end)
 ]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -11746,6 +12269,7 @@ end)
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<string name="Name">OldUnusedCodeServer</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="Script" referent="RBXd3760ca318a740c583a37e9d3837b4aa">
@@ -11966,6 +12490,7 @@ RunService.Heartbeat:Connect(function()
 end)
 
 ]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -11989,6 +12514,7 @@ local limbChain = require(IKControllerPointer)
 local leftLegChain = limbChain.new("UpperLeg")
 
 print(leftLegChain.Part)]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -11998,12 +12524,14 @@ print(leftLegChain.Part)]]></ProtectedString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">ServerStorage</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 		<Item class="Folder" referent="RBXc72f22076c7149caa635a2f9cc41c6df">
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<string name="Name">Source</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="ModuleScript" referent="RBXdaec9e4b80f947bba1ba400888914aad">
@@ -12013,6 +12541,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 					<string name="Name">placeholder</string>
 					<string name="ScriptGuid">{9eee5b0a-aa10-40d8-a69d-aa5cce6dde11}</string>
 					<ProtectedString name="Source">--Place holder for rojo file</ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -12021,12 +12550,14 @@ print(leftLegChain.Part)]]></ProtectedString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<string name="Name">MoonAnimatorSaves</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="StringValue" referent="RBX25436e39f1734c1ba14b3b1bdcebdc16">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">MechWalk.xsixx</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<string name="Value">{&quot;Items&quot;:[{&quot;Path&quot;:{&quot;InstanceNames&quot;:[&quot;game&quot;,&quot;Workspace&quot;,&quot;LowerBody&quot;],&quot;ItemType&quot;:&quot;Rig&quot;,&quot;InstanceTypes&quot;:[&quot;DataModel&quot;,&quot;Workspace&quot;,&quot;Model&quot;]},&quot;Prop&quot;:[&quot;Rig&quot;]}],&quot;Information&quot;:{&quot;Looped&quot;:false,&quot;Length&quot;:300,&quot;Modified&quot;:1599383197,&quot;Created&quot;:1599383135}}</string>
 				</Properties>
@@ -12034,36 +12565,42 @@ print(leftLegChain.Part)]]></ProtectedString>
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<string name="Name">1</string>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 					<Item class="Folder" referent="RBXcb5f46d1f4624b0490dd1fef690a4d2a">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">Rig</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 						<Item class="Folder" referent="RBX80ec65e05f9b4da6bc16d903322d804b">
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip.LUpperLeg.LKnee.LLowerLeg</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 							<Item class="Folder" referent="RBXa53e6677f5ae46bf89ef9ed390d593d1">
 								<Properties>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<string name="Name">0</string>
+									<int64 name="SourceAssetId">-1</int64>
 									<BinaryString name="Tags"></BinaryString>
 								</Properties>
 								<Item class="Folder" referent="RBX39b86a059dc64d769e3825f289f973e0">
 									<Properties>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<string name="Name">Values</string>
+										<int64 name="SourceAssetId">-1</int64>
 										<BinaryString name="Tags"></BinaryString>
 									</Properties>
 									<Item class="CFrameValue" referent="RBX10dafa7abb364b85a9b303aff65d2c5e">
 										<Properties>
 											<BinaryString name="AttributesSerialize"></BinaryString>
 											<string name="Name">0</string>
+											<int64 name="SourceAssetId">-1</int64>
 											<BinaryString name="Tags"></BinaryString>
 											<CoordinateFrame name="Value">
 												<X>3.83213301e-05</X>
@@ -12088,24 +12625,28 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip.LUpperLeg.LKnee.LLowerLeg.LFeet</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 							<Item class="Folder" referent="RBX9db36f9dfd28425b9666535a5ed6766d">
 								<Properties>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<string name="Name">0</string>
+									<int64 name="SourceAssetId">-1</int64>
 									<BinaryString name="Tags"></BinaryString>
 								</Properties>
 								<Item class="Folder" referent="RBXfb2c9ec3562a405388eaf0d602662a14">
 									<Properties>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<string name="Name">Values</string>
+										<int64 name="SourceAssetId">-1</int64>
 										<BinaryString name="Tags"></BinaryString>
 									</Properties>
 									<Item class="CFrameValue" referent="RBX2dd2014721db403b8eb55487473cd7a2">
 										<Properties>
 											<BinaryString name="AttributesSerialize"></BinaryString>
 											<string name="Name">0</string>
+											<int64 name="SourceAssetId">-1</int64>
 											<BinaryString name="Tags"></BinaryString>
 											<CoordinateFrame name="Value">
 												<X>-2.5696685e-05</X>
@@ -12130,6 +12671,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip.RUpperLeg.RKnee.RLowerLeg.RFeet</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -12137,6 +12679,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip.RUpperLeg</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -12144,6 +12687,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip.RUpperLeg.RKnee.RLowerLeg</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -12151,6 +12695,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip.RUpperLeg.RKnee</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -12158,6 +12703,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -12165,24 +12711,28 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip.LUpperLeg.LKnee</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 							<Item class="Folder" referent="RBX826ec741f61d4c1e881418c89d04282a">
 								<Properties>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<string name="Name">0</string>
+									<int64 name="SourceAssetId">-1</int64>
 									<BinaryString name="Tags"></BinaryString>
 								</Properties>
 								<Item class="Folder" referent="RBXe24d73113dd8404e86cc17f783a72275">
 									<Properties>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<string name="Name">Values</string>
+										<int64 name="SourceAssetId">-1</int64>
 										<BinaryString name="Tags"></BinaryString>
 									</Properties>
 									<Item class="CFrameValue" referent="RBXf8a4177b2b77408b87b1a6f5a454060c">
 										<Properties>
 											<BinaryString name="AttributesSerialize"></BinaryString>
 											<string name="Name">0</string>
+											<int64 name="SourceAssetId">-1</int64>
 											<BinaryString name="Tags"></BinaryString>
 											<CoordinateFrame name="Value">
 												<X>0</X>
@@ -12207,24 +12757,28 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<string name="Name">Hip.LUpperLeg</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 							<Item class="Folder" referent="RBX59458ab0f71f4287bb66684237e535c7">
 								<Properties>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<string name="Name">0</string>
+									<int64 name="SourceAssetId">-1</int64>
 									<BinaryString name="Tags"></BinaryString>
 								</Properties>
 								<Item class="Folder" referent="RBX6e9193e162e94a5eb7417b151248666f">
 									<Properties>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<string name="Name">Values</string>
+										<int64 name="SourceAssetId">-1</int64>
 										<BinaryString name="Tags"></BinaryString>
 									</Properties>
 									<Item class="CFrameValue" referent="RBXdff6ae6ac66142b2aa320dd3cc2ee5bc">
 										<Properties>
 											<BinaryString name="AttributesSerialize"></BinaryString>
 											<string name="Name">0</string>
+											<int64 name="SourceAssetId">-1</int64>
 											<BinaryString name="Tags"></BinaryString>
 											<CoordinateFrame name="Value">
 												<X>2</X>
@@ -12252,6 +12806,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">Testing.xsixx</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<string name="Value">{&quot;Items&quot;:[],&quot;Information&quot;:{&quot;Looped&quot;:false,&quot;Created&quot;:1599405390,&quot;Length&quot;:300,&quot;Modified&quot;:1599405390}}</string>
 				</Properties>
@@ -12260,6 +12815,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">test.xsixx</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<string name="Value">{&quot;Items&quot;:[],&quot;Information&quot;:{&quot;Looped&quot;:false,&quot;Created&quot;:1599449167,&quot;Length&quot;:300,&quot;Modified&quot;:1599449167}}</string>
 				</Properties>
@@ -12268,6 +12824,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">DummyRig.xsixx</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 					<string name="Value">{&quot;Items&quot;:[],&quot;Information&quot;:{&quot;Looped&quot;:false,&quot;Created&quot;:1599453512,&quot;Length&quot;:300,&quot;Modified&quot;:1599453512}}</string>
 				</Properties>
@@ -12277,6 +12834,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<string name="Name">MoonAnimatorExport</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="KeyframeSequence" referent="RBXb5a49f71ad8b42f0be9b9b44d9262e79">
@@ -12286,12 +12844,14 @@ print(leftLegChain.Part)]]></ProtectedString>
 					<bool name="Loop">false</bool>
 					<string name="Name">MechWalk_LowerBody</string>
 					<token name="Priority">2</token>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="Keyframe" referent="RBX74e80d9427a844b8a02f3c9565973b22">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<string name="Name">Keyframe</string>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<float name="Time">0</float>
 					</Properties>
@@ -12315,6 +12875,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 							<token name="EasingDirection">0</token>
 							<token name="EasingStyle">0</token>
 							<string name="Name">RootPart</string>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="Weight">0</float>
 						</Properties>
@@ -12338,6 +12899,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 								<token name="EasingDirection">0</token>
 								<token name="EasingStyle">0</token>
 								<string name="Name">Hip</string>
+								<int64 name="SourceAssetId">-1</int64>
 								<BinaryString name="Tags"></BinaryString>
 								<float name="Weight">0</float>
 							</Properties>
@@ -12361,6 +12923,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 									<token name="EasingDirection">0</token>
 									<token name="EasingStyle">0</token>
 									<string name="Name">LUpperLeg</string>
+									<int64 name="SourceAssetId">-1</int64>
 									<BinaryString name="Tags"></BinaryString>
 									<float name="Weight">1</float>
 								</Properties>
@@ -12384,6 +12947,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 										<token name="EasingDirection">0</token>
 										<token name="EasingStyle">0</token>
 										<string name="Name">LKnee</string>
+										<int64 name="SourceAssetId">-1</int64>
 										<BinaryString name="Tags"></BinaryString>
 										<float name="Weight">1</float>
 									</Properties>
@@ -12407,6 +12971,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 											<token name="EasingDirection">0</token>
 											<token name="EasingStyle">0</token>
 											<string name="Name">LLowerLeg</string>
+											<int64 name="SourceAssetId">-1</int64>
 											<BinaryString name="Tags"></BinaryString>
 											<float name="Weight">1</float>
 										</Properties>
@@ -12430,6 +12995,7 @@ print(leftLegChain.Part)]]></ProtectedString>
 												<token name="EasingDirection">0</token>
 												<token name="EasingStyle">0</token>
 												<string name="Name">LFeet</string>
+												<int64 name="SourceAssetId">-1</int64>
 												<BinaryString name="Tags"></BinaryString>
 												<float name="Weight">1</float>
 											</Properties>
@@ -12447,18 +13013,21 @@ print(leftLegChain.Part)]]></ProtectedString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">ReplicatedStorage</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 		<Item class="Folder" referent="3">
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<string name="Name">Source</string>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="Folder" referent="RBXfdde6fe5247740e398433797f14bd53c">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">IKAnimation</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="ModuleScript" referent="RBXe945feee8d8b4554a8e2ff949186094c">
@@ -12663,6 +13232,7 @@ end
 
 return FabrikAlgo
 ]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -12671,6 +13241,7 @@ return FabrikAlgo
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">ObjectFolder</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="ModuleScript" referent="RBXe33c789b639c43c098d8d6461a494a11">
@@ -12686,6 +13257,7 @@ local baseModule = Package.Base
 
 return require(baseModule)
 ]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -13234,6 +13806,7 @@ function Base.DeSerialize(serial,objectsToUse)
 end
 
 return Base]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -13241,6 +13814,7 @@ return Base]]></ProtectedString>
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<string name="Name">ConstraintTypes</string>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 					<Item class="ModuleScript" referent="RBX85368e524b564b16b0f970d6c415e2a4">
@@ -13283,6 +13857,7 @@ end
 function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
     
         --Get the parts current CFrame
+        --Big problem as its relative to the part attached to the motor
         self:UpdateAxis()
 
         --Get the Axis
@@ -13360,6 +13935,7 @@ end
 
 
 return BallSocketConstraint]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -13376,6 +13952,7 @@ local baseModule = Package.Base
 
 return require(baseModule)
 ]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -13485,6 +14062,7 @@ end
 
 
 return HingeConstraint]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -13561,6 +14139,7 @@ end
 
 
 return RigidConstraint]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -13569,6 +14148,7 @@ return RigidConstraint]]></ProtectedString>
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<string name="Name">RotatedRegion3Children</string>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 					<Item class="ModuleScript" referent="RBX9db7328ec9a44c3b9a3c1488580a8c5c">
@@ -13693,6 +14273,7 @@ end
 --
 
 return GJK]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -13753,6 +14334,7 @@ function Supports.Ellipsoid(set, direction)
 end
 
 return Supports]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -13960,6 +14542,7 @@ return {
 	GetCentroid = getCentroidFromSet;
 	Classify = classify;
 }]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -13985,6 +14568,7 @@ function NAME.new()
 end
 
 return NAME]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -14244,6 +14828,7 @@ end
 --
 
 return RotatedRegion3]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -14303,6 +14888,7 @@ end
 --[[
     Methods to set and get the current axis of the part
     fairly activity intensive goes from 1-2% to 4-6% max
+    Also problem as it requires the part motor to update 
 ]]
 function FabrikConstraint:UpdateAxis()
 
@@ -14333,6 +14919,7 @@ end
 
 return FabrikConstraint
 ]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -14402,6 +14989,7 @@ function MathPlane:IsPointOnPlane(PositionVector)
 end
 
 return MathPlane]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -14437,11 +15025,20 @@ local LimbChain = Object.new("LimbChain")
     Calculates the limbs from joint to joint as a vector
     And also measures the limb's length
 ]]
-function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
+function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
-    obj.IncludeAppendage = IncludeAppendage
+    --Bool option to enable the foot placement system
+    obj.IncludeFoot = IncludeFoot
+
+    --attachments for the foot placement system
+    --where the ray casting begins
+    obj.FootBottomAttachment = nil
+    obj.FootBottomRightAttachment = nil
+
+    --The raycast params for the foot placement system
+    obj.FootPlacementRaycastParams = nil
 
     --Stores the motor6ds used and also the original C0 of the first joint
     obj.Motor6DTable = Motor6DTable
@@ -14484,20 +15081,6 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
 
         LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
         IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = currentVectorStore
-    end
-
-    --Checks if this setting is true then adds the c1 joint into the vector limb
-    if IncludeAppendage == true then
-        local lastMotor = Motor6DTable[#Motor6DTable]
-        --print(lastMotor)
-        --local test = -lastMotor.C1.Position
-        --This is more accurate than getting C1 position for some reason
-        local ExtraLimbVector = lastMotor.Part1.CFrame.Position-(lastMotor.Part0.CFrame*lastMotor.C0.Position)
-
-        LimbVectorTable[#LimbVectorTable + 1] = ExtraLimbVector
-        IteratedLimbVectorTable[#IteratedLimbVectorTable + 1] = ExtraLimbVector
-
-        obj.ExtraLimbVector = ExtraLimbVector
     end
 
     obj.LimbVectorTable = LimbVectorTable
@@ -14568,7 +15151,7 @@ function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
 
     --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
     --Recursive function
-    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
+    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition+bottomFootOffset, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
                                               
 
 end
@@ -14578,13 +15161,38 @@ end
     The object stores its own
 ]]
 function LimbChain:IterateOnce(targetPosition,tolerance)
+
+    --[[
+    self.TargetPosition = targetPosition
+    ]]
+    --Should go towards the ankle position instead
+    local offsetVector = Vector3.new()
+    if self.IncludeFoot then
+        --Gets the last motor
+        local footMotor = self.Motor6DTable[#self.Motor6DTable]
+        local currentLimbPart = footMotor.Part1
+
+        local footBottomToAnkleVector
+        --nill check for the foot bottom attachment if not then targetposition is the center
+        -- of the part
+        if self.FootBottomAttachment and self.FootBottomAttachment.Position then
+            footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
+        else
+            footBottomToAnkleVector = footMotor.C1.Position
+        end
+        offsetVector = currentLimbPart.CFrame:VectorToWorldSpace(footBottomToAnkleVector)
+
+    end
     
+    local targetPosition = targetPosition+offsetVector
+
     --Does the constraint region check and change constraints if in region
     --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
-    --local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
+    --Relative to the part 0 which is the Hip and it works
+    --I have to use it to map out constraint axis without relying on welds
     local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
     --Does the fabrik iteration once if not in goal
@@ -14594,6 +15202,23 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
 end
 
 function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
+
+    local offsetVector = Vector3.new()
+    if self.IncludeFoot then
+        local footMotor = self.Motor6DTable[#self.Motor6DTable]
+        local currentLimbPart = footMotor.Part1
+
+        local footBottomToAnkleVector
+        --nill check for the foot bottom attachment if not then targetposition is the center
+        -- of the part
+        if self.FootBottomAttachment and self.FootBottomAttachment.Position then
+            footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
+        else
+            footBottomToAnkleVector = footMotor.C1.Position
+        end
+        offsetVector = currentLimbPart.CFrame:VectorToWorldSpace(footBottomToAnkleVector)
+
+    end
 
     --Does the constraint region check and change constraints
     --If not then default to use the primary constraints
@@ -14610,11 +15235,8 @@ end
 --[[
     Function that rotates the motors to match the algorithm
     Operates by changing the motor's C0 Position to the goal CFrame
-    Optional Parameter floorNormal to make feet upright to the floor its being raycasted to
-    Feet implementation is real buggy tho and is not automatic implementation
-    And it only works for my mech model
 ]]
-function LimbChain:UpdateMotors(floorNormal)
+function LimbChain:UpdateMotors()
 
     -- Gets the CFrame of the Initial joint at world space
     local initialJointCFrame = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
@@ -14693,36 +15315,119 @@ function LimbChain:UpdateMotors(floorNormal)
         --Changes the current motor6d through c0
         self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
 
-            --Testing to keep foot appendage upright
-            --Seems to work for now to make the feet look down visually
-            --doesn't adhere to constraints but it works for now
-            --I really need help making the feet match the surface
-            if self.IncludeAppendage == true and i == iterateUntil then
-                local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
-                local previousLimbCF = previousLimbPart.CFrame
-                local empty = Vector3.new()
-                --self.Motor6DTable[#self.Motor6DTable].C0 = CFrame.new()
-
-                --Make feet point upright to floor
-                --If not inputted then make feet points up towards sky
-                local upright = floorNormal
-                if upright == nil then
-                    upright = Vector3.new(0,1,0)
-                end
-
-                --Obtain the CFrame operations needed to rotate the limb to the goal
-                local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
-                local rotateLimbCF =CFrame.fromMatrix(empty,previousLimbCF.RightVector,upright)
-            
-                --Changes the current motor6d through c0
-                self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
-    
-            end
         end
 
     
     end
 
+    --Special for the foot motor system which controls the last motor
+    if self.IncludeFoot then
+
+        --the last motor index
+        local footMotorIndex = #self.IteratedLimbVectorTable
+
+        --Sums up the limb vectors to get the last motor position
+        vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[footMotorIndex]
+    
+
+        --Gets the position of the current limb joint
+        local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
+
+        --Now adding a debug mode----------------------------------------------------------------
+        --Puts the created parts according to the motor position
+        if self.DebugMode then
+           workspace["LimbVector:"..footMotorIndex+1].Position = motorPosition
+        end
+
+        --Now does controls the motor
+        --ony if the attachments are set
+        if self.FootBottomAttachment and self.FootBottomRightAttachment then
+        self:UpdateFootMotor(motorPosition)
+        end
+
+    end
+
+end
+
+function LimbChain:UpdateFootMotor(footMotorPosition)
+
+    local footMotorPosition = footMotorPosition
+
+    --get the foot motor which is the last motor of the limb
+    local footMotor = self.Motor6DTable[#self.Motor6DTable]
+        
+    --Obtains the CFrame of the part0 limb of the motor6d
+    local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
+    local previousLimbCF = previousLimbPart.CFrame
+
+    --Obtain variables from self object
+    local lengthToFloor = self.LengthToFloor
+    if not self.LengthToFloor then
+        --Default is 10 units down
+        lengthToFloor = 10
+
+    end
+    local downDirection = lengthToFloor*Vector3.new(0,-1,0)
+
+    local FootPlacementRaycastParams = self.FootPlacementRaycastParams
+
+    local averageNormal = Vector3.new()
+    --[[
+        ray cast for each of the attachments here then average the normal
+    
+        Doesn't really work
+    for i , v in pairs(self.FootAttachments) do
+        
+        local normalRayCastResult = workspace:Raycast(v.WorldPosition,downDirection,FootPlacementRaycastParams)
+        if normalRayCastResult then 
+            averageNormal = averageNormal + normalRayCastResult.Normal
+        end
+    end
+    averageNormal = averageNormal/#self.FootAttachments
+    ]]
+    --print(averageNormal)
+    --move it up a bit to give raycast space
+    local up = Vector3.new(0,1,0)
+    local footBottomPosition = self.FootBottomAttachment.WorldPosition+up
+    local footBottomRaycastResult = workspace:Raycast(footBottomPosition,downDirection,FootPlacementRaycastParams)
+
+    local footBottomRightPosition = self.FootBottomRightAttachment.WorldPosition+up
+    local footBottomRightRaycastResult = workspace:Raycast(footBottomRightPosition,downDirection,FootPlacementRaycastParams)
+
+    --nill check for if its empty
+    if footBottomRaycastResult and footBottomRightRaycastResult then
+
+        --Get the average normal vector from both attachments
+        local footNormal = (footBottomRaycastResult.Normal+footBottomRightRaycastResult.Normal)/2
+        local footRightVector = footBottomRightRaycastResult.Position - footBottomRaycastResult.Position
+
+        local hipRightVector = self.Motor6DTable[1].Part0.CFrame.RightVector
+
+        --average it with how the hip is facing to keep the foot facing forwards
+        local footRightVector = (0.8*footRightVector+0.2*hipRightVector)/2
+
+        local undoPreviousLimbCF = previousLimbCF:Inverse()
+        --local empty = 
+        local orientToFloor = CFrame.new(footMotorPosition)
+        local rotateToFloor = CFrame.fromMatrix(Vector3.new(),footRightVector,footNormal)
+
+        --then updates the foot motor
+        footMotor.C0 = undoPreviousLimbCF*orientToFloor*rotateToFloor
+
+    else
+        --default to facing "Up" towards sky
+        local footNormal = Vector3.new(0,1,0)
+
+        local footRightVector = previousLimbCF.RightVector
+
+        local undoPreviousLimbCF = previousLimbCF:Inverse()
+        --local empty = 
+        local orientToFloor = CFrame.fromMatrix(footMotorPosition,footRightVector,footNormal)
+
+        --then updates the foot motor
+        footMotor.C0 = undoPreviousLimbCF*orientToFloor
+
+    end
 end
 
 function LimbChain:StoreMotorsC0(floorNormal)
@@ -14801,30 +15506,6 @@ function LimbChain:StoreMotorsC0(floorNormal)
         --This time instead of changing the current motor C0 stores them and adds them in the table
         MotorsC0Store[#MotorsC0Store + 1] = undoPreviousLimbCF*rotateLimbCF
 
-            --Testing to keep foot appendage upright
-            --Seems to work for now to make the feet look down visually
-            --doesn't adhere to constraints but it works for now
-            --I really need help making the feet match the surface
-            if self.IncludeAppendage == true and i == iterateUntil then
-                local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
-                local previousLimbCF = previousLimbPart.CFrame
-                local empty = Vector3.new()
-                --self.Motor6DTable[#self.Motor6DTable].C0 = CFrame.new()
-
-                --Make feet point upright to floor
-                --If not inputted then make feet points up towards sky
-                local upright = floorNormal
-                if upright == nil then
-                    upright = Vector3.new(0,1,0)
-                end
-
-                --Obtain the CFrame operations needed to rotate the limb to the goal
-                local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
-                local rotateLimbCF =CFrame.fromMatrix(empty,previousLimbCF.RightVector,upright)
-                            
-                --This time instead of changing the current motor C0 stores them and adds them in the table
-                MotorsC0Store[#MotorsC0Store + 1] = undoPreviousLimbCF*rotateLimbCF
-            end
         end
 
     
@@ -14985,8 +15666,13 @@ function LimbChain:DebugModeOn()
     --Stores all the limb vectors in a table so I don't have to self call everytime
     local limbVectors = self.IteratedLimbVectorTable
 
+    local additionalMotor = 0
+    if self.IncludeFoot then
+        additionalMotor += 1
+    end
+
     --Creates a part for each limb vector
-    for i=1,#limbVectors,1 do
+    for i=1,#limbVectors+additionalMotor,1 do
     local part = Instance.new("Part")
     part.Anchored = true
     part.Name = "LimbVector:"..i
@@ -14998,6 +15684,7 @@ end
 
 return LimbChain
 ]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -15247,6 +15934,7 @@ end
 
 return FabrikSolver
 ]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -15255,6 +15943,7 @@ return FabrikSolver
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">OldUnusedCode</string>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 				<Item class="ModuleScript" referent="RBX5a541e1e5b914b0b862beb27e5a8093c">
@@ -15463,6 +16152,7 @@ return fabrikAlgo
 		--local targetToJoint = targetPos - originCF.Position
 	--	local targetLength = targetToJoint.Magnitude
 	]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -15484,6 +16174,7 @@ end
 
 return test
 ]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -15501,6 +16192,7 @@ return test
 		print("LookVector: ",data.LookVector)
 	end
 end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -15698,6 +16390,7 @@ RunService.Heartbeat:Connect(function()
    -- lJKneeToLowMotor.C0 = newLowLegCF
 end)
 ]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -15794,6 +16487,7 @@ end
 
 return limbVector
 end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -15869,6 +16563,7 @@ function LimbChain:UpdateMotorAtIndex(Index)
 
 end
 ]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
@@ -16130,6 +16825,7 @@ end
 --
 
 return RotatedRegion3]]></ProtectedString>
+				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 			<Item class="ModuleScript" referent="RBXd0a164223bee407fa1c7ca78526b9e62">
@@ -16189,6 +16885,7 @@ function Supports.Ellipsoid(set, direction)
 end
 
 return Supports]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -16396,6 +17093,7 @@ return {
 	GetCentroid = getCentroidFromSet;
 	Classify = classify;
 }]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -16521,6 +17219,7 @@ end
 --
 
 return GJK]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
@@ -16530,6 +17229,7 @@ return GJK]]></ProtectedString>
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="Name">Instance</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -16572,6 +17272,7 @@ return GJK]]></ProtectedString>
 			</Color3>
 			<bool name="Outlines">false</bool>
 			<float name="ShadowSoftness">0.5</float>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 			<token name="Technology">1</token>
 			<string name="TimeOfDay">14:00:00</string>
@@ -16582,6 +17283,7 @@ return GJK]]></ProtectedString>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<bool name="HttpEnabled">true</bool>
 			<string name="Name">HttpService</string>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
@@ -16597,6 +17299,7 @@ return GJK]]></ProtectedString>
 			<string name="Name">TestService</string>
 			<int name="NumberOfPlayers">0</int>
 			<double name="SimulateSecondsLag">0</double>
+			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 			<double name="Timeout">10</double>
 		</Properties>
