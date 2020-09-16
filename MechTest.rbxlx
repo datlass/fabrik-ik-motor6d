@@ -60,26 +60,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-45.9010925</X>
-					<Y>27.9297314</Y>
-					<Z>-38.1971245</Z>
-					<R00>-0.971424341</R00>
-					<R01>0.116255991</R01>
-					<R02>-0.206928357</R02>
-					<R10>-0</R10>
-					<R11>0.871829748</R11>
-					<R12>0.489809275</R12>
-					<R20>0.23734951</R20>
-					<R21>0.475812644</R21>
-					<R22>-0.846916616</R22>
+					<X>-49.6817131</X>
+					<Y>23.8937569</Y>
+					<Z>-27.272171</Z>
+					<R00>-0.975571513</R00>
+					<R01>0.106034718</R01>
+					<R02>-0.192398071</R02>
+					<R10>7.4505806e-09</R10>
+					<R11>0.875800967</R11>
+					<R12>0.482672691</R12>
+					<R20>0.21968244</R20>
+					<R21>0.47088173</R21>
+					<R22>-0.854406357</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-45.487236</X>
-					<Y>26.9501133</Y>
-					<Z>-36.5032921</Z>
+					<X>-49.296917</X>
+					<Y>22.9284115</Y>
+					<Z>-25.5633583</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -11529,10 +11529,10 @@ local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMot
 local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
 
 --Initialize the left leg chain
-local leftLegChain = LimbChain.new(motorTable,true)
+local leftLegChain = LimbChain.new(motorTable)
 
 --Initialize the right leg chain
-local rightLegChain = LimbChain.new(motorRightTable,true)
+local rightLegChain = LimbChain.new(motorRightTable)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
@@ -11594,8 +11594,8 @@ local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
 local rLegHinge = HingeConstraint.new(rLegPart,90,90)
 
 --Construct the constraints table
-local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge,rigidRightFeet}
-local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
+local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
+local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object
 rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
@@ -14437,11 +14437,11 @@ local LimbChain = Object.new("LimbChain")
     Calculates the limbs from joint to joint as a vector
     And also measures the limb's length
 ]]
-function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
+function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
-    obj.IncludeAppendage = IncludeAppendage
+    obj.IncludeFoot = IncludeFoot
 
     --Stores the motor6ds used and also the original C0 of the first joint
     obj.Motor6DTable = Motor6DTable
@@ -14487,7 +14487,7 @@ function LimbChain.new(Motor6DTable,IncludeAppendage,SpineMotor)
     end
 
     --Checks if this setting is true then adds the c1 joint into the vector limb
-    if IncludeAppendage == true then
+    if IncludeFoot == true then
         local lastMotor = Motor6DTable[#Motor6DTable]
         --print(lastMotor)
         --local test = -lastMotor.C1.Position
@@ -14697,7 +14697,7 @@ function LimbChain:UpdateMotors(floorNormal)
             --Seems to work for now to make the feet look down visually
             --doesn't adhere to constraints but it works for now
             --I really need help making the feet match the surface
-            if self.IncludeAppendage == true and i == iterateUntil then
+            if self.IncludeFoot == true and i == iterateUntil then
                 local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
                 local previousLimbCF = previousLimbPart.CFrame
                 local empty = Vector3.new()
@@ -14805,7 +14805,7 @@ function LimbChain:StoreMotorsC0(floorNormal)
             --Seems to work for now to make the feet look down visually
             --doesn't adhere to constraints but it works for now
             --I really need help making the feet match the surface
-            if self.IncludeAppendage == true and i == iterateUntil then
+            if self.IncludeFoot == true and i == iterateUntil then
                 local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
                 local previousLimbCF = previousLimbPart.CFrame
                 local empty = Vector3.new()

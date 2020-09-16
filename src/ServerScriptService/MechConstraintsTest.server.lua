@@ -52,10 +52,10 @@ local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMot
 local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
 
 --Initialize the left leg chain
-local leftLegChain = LimbChain.new(motorTable,true)
+local leftLegChain = LimbChain.new(motorTable)
 
 --Initialize the right leg chain
-local rightLegChain = LimbChain.new(motorRightTable,true)
+local rightLegChain = LimbChain.new(motorRightTable)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
@@ -66,9 +66,6 @@ local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,89)
 
 local lLegPart = lowerBody.Constraints.LowerLegConstraint
 local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
-
---Make the FABRIK chain not move
-local rigidFeet = RigidConstraint.new(leftLegChain,4)
 
 --[[
     Create the alternative constraints which uses hinge
@@ -117,8 +114,8 @@ local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
 local rLegHinge = HingeConstraint.new(rLegPart,90,90)
 
 --Construct the constraints table
-local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge,rigidRightFeet}
-local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket,rigidRightFeet}
+local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
+local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object
 rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
