@@ -65,7 +65,7 @@ leftLegChain.LengthToFloor = 20
 local leftFootDescendants = lowerBody.LeftLeg.LFeet:GetDescendants()
 local leftFootAttachments = {}
 for index, descendant in pairs(leftFootDescendants) do
-    if descendant:IsA("Attachment") and not descendant.Name == "FootBottom" then
+    if descendant:IsA("Attachment") and not descendant.Name == "FootBottom" and not descendant.Name == "Ankle" then
         leftFootAttachments[#leftFootAttachments+1] = descendant
     end
 end
@@ -164,9 +164,9 @@ RunService.Heartbeat:Connect(function(step)
     local goalRightPosition = workspace.MechRTarget.Position
     local rayResult = workspace:Raycast(workspace.MechLTarget.Position,down,footParams)
     if rayResult then
-       leftLegChain:IterateOnce(rayResult.Position,0.1)
+       --leftLegChain:IterateOnce(rayResult.Position,0.1)
     end
-    --leftLegChain:IterateOnce(goalPosition,0.1)
+    leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
     rightLegChain:IterateOnce(goalRightPosition,0.1)
