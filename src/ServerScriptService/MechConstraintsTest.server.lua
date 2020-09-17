@@ -52,7 +52,28 @@ local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMot
 local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
 
 --Initialize the left leg chain
-local leftLegChain = LimbChain.new(motorTable)
+local leftLegChain = LimbChain.new(motorTable,true)
+
+--Foot placement system
+local footParams = RaycastParams.new()
+footParams.CollisionGroup = "MovementSys"
+
+leftLegChain.FootPlacementRaycastParams = footParams
+leftLegChain.LengthToFloor = 20
+
+--Get all the attachments in the left foot
+local leftFootDescendants = lowerBody.LeftLeg.LFeet:GetDescendants()
+local leftFootAttachments = {}
+for index, descendant in pairs(leftFootDescendants) do
+    if descendant:IsA("Attachment") and not descendant.Name == "FootBottom" then
+        leftFootAttachments[#leftFootAttachments+1] = descendant
+    end
+end
+
+leftLegChain.FootAttachments = leftFootAttachments
+leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
+leftLegChain.FootAnkleAttachment = lowerBody.LeftLeg.LFeet.Ankle
+--leftLegChain.FootRightAttachment = lowerBody.LeftLeg.LLowerLeg.rightAttachment
 
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable)
@@ -77,8 +98,8 @@ local lLegHinge = HingeConstraint.new(lLegPart,90,90)
 
 
 --Set up two constraint tables to allow
-local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge,rigidFeet}
-local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket,rigidFeet}
+local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
+local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket}
 
 --Set the constraints of the object
 leftLegChain:SetPrimaryConstraints(leftLegConstraintsPrimary)
@@ -132,7 +153,7 @@ rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn()
 
-
+local down = Vector3.new(0,-20,0)
 --[[
     Then use the LimbChain object to control the motor every heartbeat
     ]]
@@ -141,8 +162,11 @@ RunService.Heartbeat:Connect(function(step)
     --The Goal position
     local goalPosition = workspace.MechLTarget.Position
     local goalRightPosition = workspace.MechRTarget.Position
-
-    leftLegChain:IterateOnce(goalPosition,0.1)
+    local rayResult = workspace:Raycast(workspace.MechLTarget.Position,down,footParams)
+    if rayResult then
+       leftLegChain:IterateOnce(rayResult.Position,0.1)
+    end
+    --leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
     rightLegChain:IterateOnce(goalRightPosition,0.1)
