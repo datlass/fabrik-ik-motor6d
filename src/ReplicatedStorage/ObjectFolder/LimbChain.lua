@@ -172,9 +172,10 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
     --Should go towards the ankle position instead
     local offsetVector = Vector3.new()
     if self.IncludeFoot then
-        local currentLimbPart = self.Motor6DTable[#self.Motor6DTable].Part1
+        local footMotor = self.Motor6DTable[#self.Motor6DTable]
+        local currentLimbPart = footMotor.Part1
 
-        local footBottomToAnkleVector = self.FootAnkleAttachment.Position-self.FootBottomAttachment.Position
+        local footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         offsetVector = currentLimbPart.CFrame:VectorToWorldSpace(footBottomToAnkleVector)
 
     end
