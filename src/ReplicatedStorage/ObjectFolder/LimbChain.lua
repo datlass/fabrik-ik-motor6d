@@ -37,10 +37,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --attachments for the foot placement system
     --where the ray casting begins
     obj.FootAttachments = nil
-    obj.FootCenterAttachment = nil
-    obj.FootRightAttachment = nil
     obj.FootBottomAttachment = nil
-    obj.FootAnkleAttachment = nil
     --The raycast params
     obj.FootPlacementRaycastParams = nil
 
@@ -175,7 +172,14 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
         local footMotor = self.Motor6DTable[#self.Motor6DTable]
         local currentLimbPart = footMotor.Part1
 
-        local footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
+        local footBottomToAnkleVector
+        --nill check for the foot bottom attachment if not then targetposition is the center
+        -- of the part
+        if self.FootBottomAttachment.Position then
+            footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
+        else
+            footBottomToAnkleVector = footMotor.C1.Position
+        end
         offsetVector = currentLimbPart.CFrame:VectorToWorldSpace(footBottomToAnkleVector)
 
     end

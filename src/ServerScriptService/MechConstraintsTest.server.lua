@@ -72,8 +72,6 @@ end
 
 leftLegChain.FootAttachments = leftFootAttachments
 leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
-leftLegChain.FootAnkleAttachment = lowerBody.LeftLeg.LFeet.Ankle
---leftLegChain.FootRightAttachment = lowerBody.LeftLeg.LLowerLeg.rightAttachment
 
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable)
