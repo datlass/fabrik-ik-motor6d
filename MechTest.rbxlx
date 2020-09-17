@@ -1064,29 +1064,6 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<bool name="Visible">false</bool>
 						</Properties>
 					</Item>
-					<Item class="Attachment" referent="RBX0d76272a81944826ba0de71f6e1cbc69">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<CoordinateFrame name="CFrame">
-								<X>0</X>
-								<Y>1.25</Y>
-								<Z>1.74999988</Z>
-								<R00>1</R00>
-								<R01>-4.66555128e-10</R01>
-								<R02>0</R02>
-								<R10>4.66555128e-10</R10>
-								<R11>1</R11>
-								<R12>-0</R12>
-								<R20>0</R20>
-								<R21>0</R21>
-								<R22>1</R22>
-							</CoordinateFrame>
-							<string name="Name">Ankle</string>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-							<bool name="Visible">false</bool>
-						</Properties>
-					</Item>
 				</Item>
 			</Item>
 			<Item class="Model" referent="RBX97f665d2f4ab4ce7ae06694cfb101b8d">
@@ -12079,8 +12056,6 @@ end
 
 leftLegChain.FootAttachments = leftFootAttachments
 leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
-leftLegChain.FootAnkleAttachment = lowerBody.LeftLeg.LFeet.Ankle
---leftLegChain.FootRightAttachment = lowerBody.LeftLeg.LLowerLeg.rightAttachment
 
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable)
@@ -15066,10 +15041,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --attachments for the foot placement system
     --where the ray casting begins
     obj.FootAttachments = nil
-    obj.FootCenterAttachment = nil
-    obj.FootRightAttachment = nil
     obj.FootBottomAttachment = nil
-    obj.FootAnkleAttachment = nil
     --The raycast params
     obj.FootPlacementRaycastParams = nil
 
@@ -15204,9 +15176,14 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
         local footMotor = self.Motor6DTable[#self.Motor6DTable]
         local currentLimbPart = footMotor.Part1
 
-        --local footBottomToAnkleVector = self.FootAnkleAttachment.Position-self.FootBottomAttachment.Position
-
-        local footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
+        local footBottomToAnkleVector
+        --nill check for the foot bottom attachment if not then targetposition is the center
+        -- of the part
+        if self.FootBottomAttachment.Position then
+            footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
+        else
+            footBottomToAnkleVector = footMotor.C1.Position
+        end
         offsetVector = currentLimbPart.CFrame:VectorToWorldSpace(footBottomToAnkleVector)
 
     end
