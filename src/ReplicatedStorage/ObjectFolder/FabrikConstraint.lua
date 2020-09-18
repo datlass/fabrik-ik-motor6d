@@ -48,6 +48,7 @@ end
 --[[
     Methods to set and get the current axis of the part
     fairly activity intensive goes from 1-2% to 4-6% max
+    Also problem as it requires the part motor to update 
 ]]
 function FabrikConstraint:UpdateAxis()
 

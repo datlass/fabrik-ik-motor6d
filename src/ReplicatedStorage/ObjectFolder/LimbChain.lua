@@ -190,7 +190,8 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
     self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
-    --local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
+    --Relative to the part 0 which is the Hip and it works
+    --I have to use it to map out constraint axis without relying on welds
     local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
     --Does the fabrik iteration once if not in goal
