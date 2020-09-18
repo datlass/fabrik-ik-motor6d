@@ -33,7 +33,6 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
 
     --attachments for the foot placement system
     --where the ray casting begins
-    obj.FootAttachments = nil
     obj.FootBottomAttachment = nil
     obj.FootBottomRightAttachment = nil
 

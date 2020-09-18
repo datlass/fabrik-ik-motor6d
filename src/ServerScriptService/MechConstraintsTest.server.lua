@@ -62,24 +62,6 @@ leftLegChain.FootPlacementRaycastParams = footParams
 leftLegChain.LengthToFloor = 20
 
 --Get all the attachments in the left foot
-local leftFootDescendants = lowerBody.LeftLeg.LFeet:GetDescendants()
-
---[[--------------------------------------------------------
-    I was planning to use 4 raycasts to determine to foot normal but it doesn't work
-    with the point placement system of the foot
-    ]]
-local leftFootAttachments = {}
-
-for index, descendant in pairs(leftFootDescendants) do
-    if descendant:IsA("Attachment") and descendant.Name ~= "FootBottom" then
-        leftFootAttachments[#leftFootAttachments+1] = descendant
-        print(descendant)
-    end
-end
-
-
-leftLegChain.FootAttachments = leftFootAttachments
---------------------------------------------------------
 leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
 leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain

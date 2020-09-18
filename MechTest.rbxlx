@@ -62,26 +62,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-58.1485519</X>
-					<Y>17.6685219</Y>
-					<Z>-13.7275229</Z>
-					<R00>-0.705426753</R00>
-					<R01>0.190655887</R01>
-					<R02>-0.682659149</R02>
-					<R10>-0</R10>
-					<R11>0.963142872</R11>
-					<R12>0.268990517</R12>
-					<R20>0.708782911</R20>
-					<R21>0.1897531</R21>
-					<R22>-0.67942667</R22>
+					<X>-57.7091446</X>
+					<Y>18.6376476</Y>
+					<Z>-13.7317686</Z>
+					<R00>-0.84388268</R00>
+					<R01>0.165299445</R01>
+					<R02>-0.510429382</R02>
+					<R10>-1.49011612e-08</R10>
+					<R11>0.951356888</R11>
+					<R12>0.308091164</R12>
+					<R20>0.536527753</R20>
+					<R21>0.259992808</R21>
+					<R22>-0.802833557</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-56.7832336</X>
-					<Y>17.1305408</Y>
-					<Z>-12.3686695</Z>
+					<X>-56.6882858</X>
+					<Y>18.0214653</Y>
+					<Z>-12.1261015</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -948,98 +948,6 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
-					</Item>
-					<Item class="Attachment" referent="RBXfb369d3f0ea245d1817d008d5cc68bce">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<CoordinateFrame name="CFrame">
-								<X>2</X>
-								<Y>0</Y>
-								<Z>-3.75</Z>
-								<R00>1</R00>
-								<R01>-2.79933077e-10</R01>
-								<R02>0</R02>
-								<R10>2.79933077e-10</R10>
-								<R11>1</R11>
-								<R12>-0</R12>
-								<R20>0</R20>
-								<R21>0</R21>
-								<R22>1</R22>
-							</CoordinateFrame>
-							<string name="Name">TopRight</string>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-							<bool name="Visible">false</bool>
-						</Properties>
-					</Item>
-					<Item class="Attachment" referent="RBXb4f137553262457e8420ef5d00e023cc">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<CoordinateFrame name="CFrame">
-								<X>-1.75</X>
-								<Y>0</Y>
-								<Z>-3.75</Z>
-								<R00>1</R00>
-								<R01>-9.33110256e-11</R01>
-								<R02>0</R02>
-								<R10>9.33110256e-11</R10>
-								<R11>1</R11>
-								<R12>-0</R12>
-								<R20>0</R20>
-								<R21>0</R21>
-								<R22>1</R22>
-							</CoordinateFrame>
-							<string name="Name">TopLeft</string>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-							<bool name="Visible">false</bool>
-						</Properties>
-					</Item>
-					<Item class="Attachment" referent="RBX214bcd7b062047739cf0edba7d8afbe8">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<CoordinateFrame name="CFrame">
-								<X>2</X>
-								<Y>0</Y>
-								<Z>3.75</Z>
-								<R00>1</R00>
-								<R01>-2.79933077e-10</R01>
-								<R02>0</R02>
-								<R10>2.79933077e-10</R10>
-								<R11>1</R11>
-								<R12>-0</R12>
-								<R20>0</R20>
-								<R21>0</R21>
-								<R22>1</R22>
-							</CoordinateFrame>
-							<string name="Name">BottomRight</string>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-							<bool name="Visible">false</bool>
-						</Properties>
-					</Item>
-					<Item class="Attachment" referent="RBX2b2038b683a941b6ad432b25c81bd773">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<CoordinateFrame name="CFrame">
-								<X>-2</X>
-								<Y>0</Y>
-								<Z>3.75</Z>
-								<R00>1</R00>
-								<R01>-9.33110256e-11</R01>
-								<R02>0</R02>
-								<R10>9.33110256e-11</R10>
-								<R11>1</R11>
-								<R12>-0</R12>
-								<R20>0</R20>
-								<R21>0</R21>
-								<R22>1</R22>
-							</CoordinateFrame>
-							<string name="Name">BottomLeft</string>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-							<bool name="Visible">false</bool>
-						</Properties>
 					</Item>
 					<Item class="Attachment" referent="RBX06531a9141854d1fa6df5e1de529e185">
 						<Properties>
@@ -12145,24 +12053,6 @@ leftLegChain.FootPlacementRaycastParams = footParams
 leftLegChain.LengthToFloor = 20
 
 --Get all the attachments in the left foot
-local leftFootDescendants = lowerBody.LeftLeg.LFeet:GetDescendants()
-
---[[--------------------------------------------------------
-    I was planning to use 4 raycasts to determine to foot normal but it doesn't work
-    with the point placement system of the foot
-    ]]
-local leftFootAttachments = {}
-
-for index, descendant in pairs(leftFootDescendants) do
-    if descendant:IsA("Attachment") and descendant.Name ~= "FootBottom" then
-        leftFootAttachments[#leftFootAttachments+1] = descendant
-        print(descendant)
-    end
-end
-
-
-leftLegChain.FootAttachments = leftFootAttachments
---------------------------------------------------------
 leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
 leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain
@@ -15144,7 +15034,6 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
 
     --attachments for the foot placement system
     --where the ray casting begins
-    obj.FootAttachments = nil
     obj.FootBottomAttachment = nil
     obj.FootBottomRightAttachment = nil
 
