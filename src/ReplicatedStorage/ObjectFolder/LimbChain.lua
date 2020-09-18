@@ -31,14 +31,13 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --Bool option to enable the foot placement system
     obj.IncludeFoot = IncludeFoot
 
-    --store the self targetposition
-    obj.TargetPosition = nil
-
     --attachments for the foot placement system
     --where the ray casting begins
     obj.FootAttachments = nil
     obj.FootBottomAttachment = nil
-    --The raycast params
+    obj.FootBottomRightAttachment = nil
+
+    --The raycast params for the foot placement system
     obj.FootPlacementRaycastParams = nil
 
     --Stores the motor6ds used and also the original C0 of the first joint
@@ -202,6 +201,23 @@ end
 
 function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
 
+    local offsetVector = Vector3.new()
+    if self.IncludeFoot then
+        local footMotor = self.Motor6DTable[#self.Motor6DTable]
+        local currentLimbPart = footMotor.Part1
+
+        local footBottomToAnkleVector
+        --nill check for the foot bottom attachment if not then targetposition is the center
+        -- of the part
+        if self.FootBottomAttachment.Position then
+            footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
+        else
+            footBottomToAnkleVector = footMotor.C1.Position
+        end
+        offsetVector = currentLimbPart.CFrame:VectorToWorldSpace(footBottomToAnkleVector)
+
+    end
+
     --Does the constraint region check and change constraints
     --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
@@ -322,7 +338,7 @@ function LimbChain:UpdateMotors()
         end
 
         --Now does controls the motor
-        --self:UpdateFootMotor(motorPosition)
+        self:UpdateFootMotor(motorPosition)
 
     end
 
@@ -339,30 +355,57 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
     local previousLimbPart = self.Motor6DTable[#self.Motor6DTable].Part0
     local previousLimbCF = previousLimbPart.CFrame
 
-    --test
-    local currentLimbPart = self.Motor6DTable[#self.Motor6DTable].Part1
     --Obtain variables from self object
     local lengthToFloor = self.LengthToFloor
     local downDirection = lengthToFloor*Vector3.new(0,-1,0)
 
     local FootPlacementRaycastParams = self.FootPlacementRaycastParams
 
-    local averageNormal =Vector3.new(0,1,0)
+    local averageNormal = Vector3.new()
     --[[
-    --ray cast for each of the attachments here then average the normal
+        ray cast for each of the attachments here then average the normal
+    
+        Doesn't really work
     for i , v in pairs(self.FootAttachments) do
         
         local normalRayCastResult = workspace:Raycast(v.WorldPosition,downDirection,FootPlacementRaycastParams)
         if normalRayCastResult then 
-            averageNormal += normalRayCastResult.Normal
+            averageNormal = averageNormal + normalRayCastResult.Normal
         end
     end
     averageNormal = averageNormal/#self.FootAttachments
     ]]
-    --nill check
-    if averageNormal then
-       -- print("Orienting feet")
-        local footNormal = averageNormal
+    --print(averageNormal)
+    local up = Vector3.new(0,1,0)
+    local footBottomPosition = self.FootBottomAttachment.WorldPosition+up
+    local footBottomRaycastResult = workspace:Raycast(footBottomPosition,downDirection,FootPlacementRaycastParams)
+
+    local footBottomRightPosition = self.FootBottomRightAttachment.WorldPosition+up
+    local footBottomRightRaycastResult = workspace:Raycast(footBottomRightPosition,downDirection,FootPlacementRaycastParams)
+
+    --nill check for if its empty
+    if footBottomRaycastResult and footBottomRightRaycastResult then
+
+        local footNormal = footBottomRaycastResult.Normal
+        local footRightVector = footBottomRightRaycastResult.Position - footBottomRaycastResult.Position
+
+        local hipRightVector = self.Motor6DTable[1].Part0.CFrame.RightVector
+
+        --average it with how the hip is facing to keep the foot facing forwards
+        local footRightVector = (0.8*footRightVector+0.2*hipRightVector)/2
+
+        local undoPreviousLimbCF = previousLimbCF:Inverse()
+        --local empty = 
+        local orientToFloor = CFrame.new(footMotorPosition)
+        local rotateToFloor = CFrame.fromMatrix(Vector3.new(),footRightVector,footNormal)
+
+        --then updates the foot motor
+        footMotor.C0 = undoPreviousLimbCF*orientToFloor*rotateToFloor
+
+    else
+        --default to facing "Up" towards sky
+        local footNormal = Vector3.new(0,1,0)
+
         local footRightVector = previousLimbCF.RightVector
 
         local undoPreviousLimbCF = previousLimbCF:Inverse()

@@ -63,16 +63,25 @@ leftLegChain.LengthToFloor = 20
 
 --Get all the attachments in the left foot
 local leftFootDescendants = lowerBody.LeftLeg.LFeet:GetDescendants()
+
+--[[--------------------------------------------------------
+    I was planning to use 4 raycasts to determine to foot normal but it doesn't work
+    with the point placement system of the foot
+    ]]
 local leftFootAttachments = {}
+
 for index, descendant in pairs(leftFootDescendants) do
-    if descendant:IsA("Attachment") and not descendant.Name == "FootBottom" and not descendant.Name == "Ankle" then
+    if descendant:IsA("Attachment") and descendant.Name ~= "FootBottom" then
         leftFootAttachments[#leftFootAttachments+1] = descendant
+        print(descendant)
     end
 end
 
-leftLegChain.FootAttachments = leftFootAttachments
-leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
 
+leftLegChain.FootAttachments = leftFootAttachments
+--------------------------------------------------------
+leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
+leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain
 local rightLegChain = LimbChain.new(motorRightTable)
 
@@ -121,9 +130,6 @@ local rKneeBallSocket = BallSocketConstraint.new(rKneePart,20,90)
 local rLegPart = lowerBody.Constraints.rLowerLegConstraint
 local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
 
---Make the FABRIK chain not move
-local rigidRightFeet = RigidConstraint.new(rightLegChain,4)
-
 --[[
     Create the alternative constraints which uses hinge
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
@@ -162,9 +168,9 @@ RunService.Heartbeat:Connect(function(step)
     local goalRightPosition = workspace.MechRTarget.Position
     local rayResult = workspace:Raycast(workspace.MechLTarget.Position,down,footParams)
     if rayResult then
-       --leftLegChain:IterateOnce(rayResult.Position,0.1)
+       leftLegChain:IterateOnce(rayResult.Position,0.1)
     end
-    leftLegChain:IterateOnce(goalPosition,0.1)
+    --leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
     rightLegChain:IterateOnce(goalRightPosition,0.1)
