@@ -377,6 +377,7 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
     averageNormal = averageNormal/#self.FootAttachments
     ]]
     --print(averageNormal)
+    --move it up a bit to give raycast space
     local up = Vector3.new(0,1,0)
     local footBottomPosition = self.FootBottomAttachment.WorldPosition+up
     local footBottomRaycastResult = workspace:Raycast(footBottomPosition,downDirection,FootPlacementRaycastParams)
@@ -387,7 +388,8 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
     --nill check for if its empty
     if footBottomRaycastResult and footBottomRightRaycastResult then
 
-        local footNormal = footBottomRaycastResult.Normal
+        --Get the average normal vector from both attachments
+        local footNormal = (footBottomRaycastResult.Normal+footBottomRightRaycastResult.Normal)/2
         local footRightVector = footBottomRightRaycastResult.Position - footBottomRaycastResult.Position
 
         local hipRightVector = self.Motor6DTable[1].Part0.CFrame.RightVector

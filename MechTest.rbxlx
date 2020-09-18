@@ -62,26 +62,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-57.0872421</X>
-					<Y>9.41480827</Y>
-					<Z>-2.81653047</Z>
-					<R00>-0.288779169</R00>
-					<R01>0.377891839</R01>
-					<R02>-0.879661441</R02>
-					<R10>-7.4505806e-09</R10>
-					<R11>0.918806553</R11>
-					<R12>0.394708097</R12>
-					<R20>0.957395732</R20>
-					<R21>0.113983482</R21>
-					<R22>-0.265332192</R22>
+					<X>-58.1485519</X>
+					<Y>17.6685219</Y>
+					<Z>-13.7275229</Z>
+					<R00>-0.705426753</R00>
+					<R01>0.190655887</R01>
+					<R02>-0.682659149</R02>
+					<R10>-0</R10>
+					<R11>0.963142872</R11>
+					<R12>0.268990517</R12>
+					<R20>0.708782911</R20>
+					<R21>0.1897531</R21>
+					<R22>-0.67942667</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-55.327919</X>
-					<Y>8.62539196</Y>
-					<Z>-2.28586602</Z>
+					<X>-56.7832336</X>
+					<Y>17.1305408</Y>
+					<Z>-12.3686695</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -13967,6 +13967,7 @@ end
 function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
     
         --Get the parts current CFrame
+        --Big problem as its relative to the part attached to the motor
         self:UpdateAxis()
 
         --Get the Axis
@@ -14997,6 +14998,7 @@ end
 --[[
     Methods to set and get the current axis of the part
     fairly activity intensive goes from 1-2% to 4-6% max
+    Also problem as it requires the part motor to update 
 ]]
 function FabrikConstraint:UpdateAxis()
 
@@ -15299,7 +15301,8 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
     self:CheckAndChangeConstraintRegions(targetPosition)
 
     -- Gets the CFrame of the first joint at world space
-    --local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
+    --Relative to the part 0 which is the Hip and it works
+    --I have to use it to map out constraint axis without relying on welds
     local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
     --Does the fabrik iteration once if not in goal
@@ -15485,6 +15488,7 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
     averageNormal = averageNormal/#self.FootAttachments
     ]]
     --print(averageNormal)
+    --move it up a bit to give raycast space
     local up = Vector3.new(0,1,0)
     local footBottomPosition = self.FootBottomAttachment.WorldPosition+up
     local footBottomRaycastResult = workspace:Raycast(footBottomPosition,downDirection,FootPlacementRaycastParams)
@@ -15495,7 +15499,8 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
     --nill check for if its empty
     if footBottomRaycastResult and footBottomRightRaycastResult then
 
-        local footNormal = footBottomRaycastResult.Normal
+        --Get the average normal vector from both attachments
+        local footNormal = (footBottomRaycastResult.Normal+footBottomRightRaycastResult.Normal)/2
         local footRightVector = footBottomRightRaycastResult.Position - footBottomRaycastResult.Position
 
         local hipRightVector = self.Motor6DTable[1].Part0.CFrame.RightVector
