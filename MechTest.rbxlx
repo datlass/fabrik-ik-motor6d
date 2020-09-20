@@ -62,26 +62,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-57.7091446</X>
-					<Y>18.6376476</Y>
-					<Z>-13.7317686</Z>
-					<R00>-0.84388268</R00>
-					<R01>0.165299445</R01>
-					<R02>-0.510429382</R02>
-					<R10>-1.49011612e-08</R10>
-					<R11>0.951356888</R11>
-					<R12>0.308091164</R12>
-					<R20>0.536527753</R20>
-					<R21>0.259992808</R21>
-					<R22>-0.802833557</R22>
+					<X>-41.7783966</X>
+					<Y>20.4150467</Y>
+					<Z>17.683939</Z>
+					<R00>0.978373528</R00>
+					<R01>0.107163697</R01>
+					<R02>-0.176921859</R02>
+					<R10>-0</R10>
+					<R11>0.85533011</R11>
+					<R12>0.518083632</R12>
+					<R20>0.206846327</R20>
+					<R21>-0.50687933</R21>
+					<R22>0.836832166</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-56.6882858</X>
-					<Y>18.0214653</Y>
-					<Z>-12.1261015</Z>
+					<X>-41.4245529</X>
+					<Y>19.3788795</Y>
+					<Z>16.0102749</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1495,7 +1495,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">1</float>
+						<float name="Transparency">0</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -1939,7 +1939,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<CoordinateFrame name="CFrame">
 							<X>-44.3192406</X>
 							<Y>12.1503162</Y>
-							<Z>-5.31923008</Z>
+							<Z>-5.31922913</Z>
 							<R00>-1</R00>
 							<R01>0</R01>
 							<R02>0</R02>
@@ -2004,7 +2004,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<CoordinateFrame name="CFrame0">
 								<X>-7.62939453e-06</X>
-								<Y>6.69338846</Y>
+								<Y>6.69338799</Y>
 								<Z>-3.2218256</Z>
 								<R00>-1</R00>
 								<R01>0</R01>
