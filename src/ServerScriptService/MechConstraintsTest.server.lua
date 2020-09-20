@@ -65,7 +65,7 @@ leftLegChain.LengthToFloor = 20
 leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
 leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain
-local rightLegChain = LimbChain.new(motorRightTable)
+local rightLegChain = LimbChain.new(motorRightTable,true)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint

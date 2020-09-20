@@ -167,13 +167,14 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
     --Should go towards the ankle position instead
     local offsetVector = Vector3.new()
     if self.IncludeFoot then
+        --Gets the last motor
         local footMotor = self.Motor6DTable[#self.Motor6DTable]
         local currentLimbPart = footMotor.Part1
 
         local footBottomToAnkleVector
         --nill check for the foot bottom attachment if not then targetposition is the center
         -- of the part
-        if self.FootBottomAttachment.Position then
+        if self.FootBottomAttachment and self.FootBottomAttachment.Position then
             footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         else
             footBottomToAnkleVector = footMotor.C1.Position
@@ -209,7 +210,7 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
         local footBottomToAnkleVector
         --nill check for the foot bottom attachment if not then targetposition is the center
         -- of the part
-        if self.FootBottomAttachment.Position then
+        if self.FootBottomAttachment and self.FootBottomAttachment.Position then
             footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         else
             footBottomToAnkleVector = footMotor.C1.Position
@@ -338,7 +339,10 @@ function LimbChain:UpdateMotors()
         end
 
         --Now does controls the motor
+        --ony if the attachments are set
+        if self.FootBottomAttachment and self.FootBottomRightAttachment then
         self:UpdateFootMotor(motorPosition)
+        end
 
     end
 
@@ -357,6 +361,11 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
 
     --Obtain variables from self object
     local lengthToFloor = self.LengthToFloor
+    if not self.LengthToFloor then
+        --Default is 10 units down
+        lengthToFloor = 10
+
+    end
     local downDirection = lengthToFloor*Vector3.new(0,-1,0)
 
     local FootPlacementRaycastParams = self.FootPlacementRaycastParams
