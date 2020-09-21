@@ -15235,8 +15235,9 @@ end
 --[[
     Function that rotates the motors to match the algorithm
     Operates by changing the motor's C0 Position to the goal CFrame
+    New parameter dt to control lerp
 ]]
-function LimbChain:UpdateMotors()
+function LimbChain:UpdateMotors(dt)
 
     -- Gets the CFrame of the Initial joint at world space
     local initialJointCFrame = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
@@ -15312,8 +15313,14 @@ function LimbChain:UpdateMotors()
         local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
         local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
         
+        local goalCF = undoPreviousLimbCF*rotateLimbCF
+
+        local rotationOnly = goalCF-goalCF.Position
+
+        local currentRotation = self.Motor6DTable[i].C0-self.Motor6DTable[i].C0.Position
+        local newRotationCF = currentRotation:lerp(rotationOnly,1/4)
         --Changes the current motor6d through c0
-        self.Motor6DTable[i].C0 = undoPreviousLimbCF*rotateLimbCF
+        self.Motor6DTable[i].C0 = CFrame.new(self.Motor6DTable[i].C0.Position)*newRotationCF
 
         end
 
@@ -15430,6 +15437,9 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
     end
 end
 
+--[[
+    Not really updated since there is no testing done on it
+]]
 function LimbChain:StoreMotorsC0(floorNormal)
 
     --Initialize empty table to store the motor c0 Cframe data 
