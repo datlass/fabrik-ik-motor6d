@@ -62,26 +62,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-41.7783966</X>
-					<Y>20.4150467</Y>
-					<Z>17.683939</Z>
-					<R00>0.978373528</R00>
-					<R01>0.107163697</R01>
-					<R02>-0.176921859</R02>
+					<X>-31.9893932</X>
+					<Y>24.9086609</Y>
+					<Z>22.801548</Z>
+					<R00>0.997958064</R00>
+					<R01>-0.035439726</R01>
+					<R02>0.053139694</R02>
 					<R10>-0</R10>
-					<R11>0.85533011</R11>
-					<R12>0.518083632</R12>
-					<R20>0.206846327</R20>
-					<R21>-0.50687933</R21>
-					<R22>0.836832166</R22>
+					<R11>0.831954479</R11>
+					<R12>0.554843962</R12>
+					<R20>-0.0638733208</R20>
+					<R21>-0.553710997</R21>
+					<R22>0.830255628</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-41.4245529</X>
-					<Y>19.3788795</Y>
-					<Z>16.0102749</Z>
+					<X>-32.0956726</X>
+					<Y>23.7989731</Y>
+					<Z>21.141037</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -12056,7 +12056,7 @@ leftLegChain.LengthToFloor = 20
 leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
 leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain
-local rightLegChain = LimbChain.new(motorRightTable)
+local rightLegChain = LimbChain.new(motorRightTable,true)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
@@ -15168,13 +15168,14 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
     --Should go towards the ankle position instead
     local offsetVector = Vector3.new()
     if self.IncludeFoot then
+        --Gets the last motor
         local footMotor = self.Motor6DTable[#self.Motor6DTable]
         local currentLimbPart = footMotor.Part1
 
         local footBottomToAnkleVector
         --nill check for the foot bottom attachment if not then targetposition is the center
         -- of the part
-        if self.FootBottomAttachment.Position then
+        if self.FootBottomAttachment and self.FootBottomAttachment.Position then
             footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         else
             footBottomToAnkleVector = footMotor.C1.Position
@@ -15210,7 +15211,7 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
         local footBottomToAnkleVector
         --nill check for the foot bottom attachment if not then targetposition is the center
         -- of the part
-        if self.FootBottomAttachment.Position then
+        if self.FootBottomAttachment and self.FootBottomAttachment.Position then
             footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         else
             footBottomToAnkleVector = footMotor.C1.Position
@@ -15339,7 +15340,10 @@ function LimbChain:UpdateMotors()
         end
 
         --Now does controls the motor
+        --ony if the attachments are set
+        if self.FootBottomAttachment and self.FootBottomRightAttachment then
         self:UpdateFootMotor(motorPosition)
+        end
 
     end
 
@@ -15358,6 +15362,11 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
 
     --Obtain variables from self object
     local lengthToFloor = self.LengthToFloor
+    if not self.LengthToFloor then
+        --Default is 10 units down
+        lengthToFloor = 10
+
+    end
     local downDirection = lengthToFloor*Vector3.new(0,-1,0)
 
     local FootPlacementRaycastParams = self.FootPlacementRaycastParams
