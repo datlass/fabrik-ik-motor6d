@@ -219,6 +219,9 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
 
     end
 
+    --change offset the target position to the new one
+    local targetPosition = targetPosition+offsetVector
+
     --Does the constraint region check and change constraints
     --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
@@ -377,22 +380,7 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
 
     local FootPlacementRaycastParams = self.FootPlacementRaycastParams
 
-    local averageNormal = Vector3.new()
-    --[[
-        ray cast for each of the attachments here then average the normal
-    
-        Doesn't really work
-    for i , v in pairs(self.FootAttachments) do
-        
-        local normalRayCastResult = workspace:Raycast(v.WorldPosition,downDirection,FootPlacementRaycastParams)
-        if normalRayCastResult then 
-            averageNormal = averageNormal + normalRayCastResult.Normal
-        end
-    end
-    averageNormal = averageNormal/#self.FootAttachments
-    ]]
-    --print(averageNormal)
-    --move it up a bit to give raycast space
+    --move it up a bit to give raycast space from floor
     local up = Vector3.new(0,1,0)
     local footBottomPosition = self.FootBottomAttachment.WorldPosition+up
     local footBottomRaycastResult = workspace:Raycast(footBottomPosition,downDirection,FootPlacementRaycastParams)
@@ -413,12 +401,24 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
         local footRightVector = (0.8*footRightVector+0.2*hipRightVector)/2
 
         local undoPreviousLimbCF = previousLimbCF:Inverse()
-        --local empty = 
-        local orientToFloor = CFrame.new(footMotorPosition)
+
+        --Foot Motor position is the c0 joint in world terms
+        local placeAtFootMotor = CFrame.new(footMotorPosition)
         local rotateToFloor = CFrame.fromMatrix(Vector3.new(),footRightVector,footNormal)
 
+        --The goal rotation and Position of the foot C0 motor
+        local goalCF = undoPreviousLimbCF*placeAtFootMotor*rotateToFloor
+
+        local rotationOnly = goalCF-goalCF.Position
+
+        --finds the current rotation of the foot currently without position
+        local currentRotation = footMotor.C0-footMotor.C0.Position
+
+        --does the lerp for the rotation from current to the new goal
+        local newRotationCF = currentRotation:lerp(rotationOnly,1/4)
+
         --then updates the foot motor
-        footMotor.C0 = undoPreviousLimbCF*orientToFloor*rotateToFloor
+        footMotor.C0 = CFrame.new(footMotor.C0.Position)*newRotationCF
 
     else
         --default to facing "Up" towards sky

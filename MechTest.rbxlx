@@ -62,26 +62,26 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-31.9893932</X>
-					<Y>24.9086609</Y>
-					<Z>22.801548</Z>
-					<R00>0.997958064</R00>
-					<R01>-0.035439726</R01>
-					<R02>0.053139694</R02>
+					<X>-20.9732647</X>
+					<Y>24.9780464</Y>
+					<Z>-2.25814462</Z>
+					<R00>0.130629957</R00>
+					<R01>-0.780745327</R01>
+					<R02>0.611042321</R02>
 					<R10>-0</R10>
-					<R11>0.831954479</R11>
-					<R12>0.554843962</R12>
-					<R20>-0.0638733208</R20>
-					<R21>-0.553710997</R21>
-					<R22>0.830255628</R22>
+					<R11>0.616323531</R11>
+					<R12>0.78749311</R12>
+					<R20>-0.991431296</R20>
+					<R21>-0.102870189</R21>
+					<R22>0.0805102959</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<CoordinateFrame name="Focus">
-					<X>-32.0956726</X>
-					<Y>23.7989731</Y>
-					<Z>21.141037</Z>
+					<X>-22.1953487</X>
+					<Y>23.4030609</Y>
+					<Z>-2.41916513</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -15220,6 +15220,9 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
 
     end
 
+    --change offset the target position to the new one
+    local targetPosition = targetPosition+offsetVector
+
     --Does the constraint region check and change constraints
     --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
@@ -15378,22 +15381,7 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
 
     local FootPlacementRaycastParams = self.FootPlacementRaycastParams
 
-    local averageNormal = Vector3.new()
-    --[[
-        ray cast for each of the attachments here then average the normal
-    
-        Doesn't really work
-    for i , v in pairs(self.FootAttachments) do
-        
-        local normalRayCastResult = workspace:Raycast(v.WorldPosition,downDirection,FootPlacementRaycastParams)
-        if normalRayCastResult then 
-            averageNormal = averageNormal + normalRayCastResult.Normal
-        end
-    end
-    averageNormal = averageNormal/#self.FootAttachments
-    ]]
-    --print(averageNormal)
-    --move it up a bit to give raycast space
+    --move it up a bit to give raycast space from floor
     local up = Vector3.new(0,1,0)
     local footBottomPosition = self.FootBottomAttachment.WorldPosition+up
     local footBottomRaycastResult = workspace:Raycast(footBottomPosition,downDirection,FootPlacementRaycastParams)
@@ -15414,12 +15402,24 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
         local footRightVector = (0.8*footRightVector+0.2*hipRightVector)/2
 
         local undoPreviousLimbCF = previousLimbCF:Inverse()
-        --local empty = 
-        local orientToFloor = CFrame.new(footMotorPosition)
+
+        --Foot Motor position is the c0 joint in world terms
+        local placeAtFootMotor = CFrame.new(footMotorPosition)
         local rotateToFloor = CFrame.fromMatrix(Vector3.new(),footRightVector,footNormal)
 
+        --The goal rotation and Position of the foot C0 motor
+        local goalCF = undoPreviousLimbCF*placeAtFootMotor*rotateToFloor
+
+        local rotationOnly = goalCF-goalCF.Position
+
+        --finds the current rotation of the foot currently without position
+        local currentRotation = footMotor.C0-footMotor.C0.Position
+
+        --does the lerp for the rotation from current to the new goal
+        local newRotationCF = currentRotation:lerp(rotationOnly,1/4)
+
         --then updates the foot motor
-        footMotor.C0 = undoPreviousLimbCF*orientToFloor*rotateToFloor
+        footMotor.C0 = CFrame.new(footMotor.C0.Position)*newRotationCF
 
     else
         --default to facing "Up" towards sky
@@ -16507,71 +16507,7 @@ end]]></ProtectedString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">format</string>
 						<string name="ScriptGuid">{c6a52003-27f9-4bae-8461-57eb8b61f7d9}</string>
-						<ProtectedString name="Source"><![CDATA[-- File to just shift alt F format all
-
-function LimbChain:UpdateMotorAtIndex(Index)
-
-    -- Gets the CFrame of the Initial joint at world space
-    local initialJointCFrame = self.Motor6DTable[1].Part0.CFrame *
-                                   self.FirstJointC0
-
-    -- Vector sum for the for loop to get the series of position of the next joint based on the algorithm
-    local vectorSumFromFirstJoint = Vector3.new()
-
-    -- Only rotates at motor at index
-
-    -- Obtains the current limb that is being worked on
-    local originalVectorLimb = self.LimbVectorTable[i]
-    local currentVectorLimb = self.IteratedLimbVectorTable[i]
-
-    -- Obtains the CFrame of the part0 limb of the motor6d
-    local previousLimbPart = self.Motor6DTable[i].Part0
-    local previousLimbCF = previousLimbPart.CFrame
-
-    -- Obtains the CFrame rotation calculation for CFrame.fromAxis
-    local limbVectorRelativeToOriginal =
-        previousLimbCF:VectorToWorldSpace(originalVectorLimb)
-    local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(
-                                currentVectorLimb.Unit)
-    local safetyClamp = math.clamp(dotProductAngle, -1, 1)
-    local limbRotationAngle = math.acos(safetyClamp)
-    local limbRotationAxis = limbVectorRelativeToOriginal:Cross(
-                                 currentVectorLimb) -- obtain the rotation axis
-
-    -- Checks if the axis exists if cross product returns zero somehow
-    if limbRotationAxis ~= Vector3.new(0, 0, 0) then
-
-        -- Gets the world space of the joint from the iterated limb vectors
-        if i ~= 1 then
-            vectorSumFromFirstJoint = vectorSumFromFirstJoint +
-                                          self.IteratedLimbVectorTable[i - 1]
-        end
-
-        -- Gets the position of the current limb joint
-        local motorPosition = initialJointCFrame.Position +
-                                  vectorSumFromFirstJoint
-
-        -- Now adding a debug mode----------------------------------------------------------------
-        -- Puts the created parts according to the motor position
-        if self.DebugMode then
-            workspace["LimbVector:" .. i].Position = motorPosition
-        end
-        ----------------------------------------------------------------
-        -- Obtain the CFrame operations needed to rotate the limb to the goal
-        local undoPreviousLimbCF = previousLimbCF:Inverse() *
-                                       CFrame.new(motorPosition)
-        local rotateLimbCF = CFrame.fromAxisAngle(limbRotationAxis,
-                                                  limbRotationAngle) *
-                                 CFrame.fromMatrix(Vector3.new(),
-                                                   previousLimbCF.RightVector,
-                                                   previousLimbCF.UpVector)
-
-        -- Changes the current motor6d through c0
-        self.Motor6DTable[i].C0 = undoPreviousLimbCF * rotateLimbCF
-
-    end
-
-end
+						<ProtectedString name="Source"><![CDATA[
 ]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
@@ -17312,6 +17248,14 @@ return GJK]]></ProtectedString>
 			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 			<double name="Timeout">10</double>
+		</Properties>
+	</Item>
+	<Item class="LanguageService" referent="RBX3ea589d6886e4bf6accbe7b6cb8783e7">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">LanguageService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
 	<SharedStrings>
