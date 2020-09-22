@@ -87,7 +87,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     for i = 1, #Motor6DTable - 1, 1 do
         --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
         --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
-        local currentVectorStore = LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
+        local currentVectorStore = LimbChain.JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
 
         --[[
             the SpineMotor option, allows the creation of a spine from a hip to uppertorso
@@ -143,7 +143,7 @@ end
     Returns a vector from motorOne to motorTwo joint
     Always constant based on the c0 and c1 Position of the motors
 ]]
-function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
+function LimbChain.JointOneToTwoVector(motorOne, motorTwo)
     -- Check if its a motor6d
     if motorOne:IsA("Motor6D") and motorTwo:IsA("Motor6D") then
         local vecOne = motorOne.C1.Position

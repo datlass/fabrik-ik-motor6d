@@ -62,18 +62,18 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-20.9732647</X>
-					<Y>24.9780464</Y>
-					<Z>-2.25814462</Z>
-					<R00>0.130629957</R00>
-					<R01>-0.780745327</R01>
-					<R02>0.611042321</R02>
-					<R10>-0</R10>
-					<R11>0.616323531</R11>
-					<R12>0.78749311</R12>
-					<R20>-0.991431296</R20>
-					<R21>-0.102870189</R21>
-					<R22>0.0805102959</R22>
+					<X>-20.5545788</X>
+					<Y>24.5172691</Y>
+					<Z>-2.67686701</Z>
+					<R00>-0.155159459</R00>
+					<R01>-0.55035758</R01>
+					<R02>0.820385396</R02>
+					<R10>7.45058149e-09</R10>
+					<R11>0.830442607</R11>
+					<R12>0.557104349</R12>
+					<R20>-0.987889528</R20>
+					<R21>0.0864400193</R21>
+					<R22>-0.128850996</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
@@ -15088,7 +15088,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     for i = 1, #Motor6DTable - 1, 1 do
         --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
         --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
-        local currentVectorStore = LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
+        local currentVectorStore = LimbChain.JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
 
         --[[
             the SpineMotor option, allows the creation of a spine from a hip to uppertorso
@@ -15144,7 +15144,7 @@ end
     Returns a vector from motorOne to motorTwo joint
     Always constant based on the c0 and c1 Position of the motors
 ]]
-function LimbChain:JointOneToTwoVector(motorOne, motorTwo)
+function LimbChain.JointOneToTwoVector(motorOne, motorTwo)
     -- Check if its a motor6d
     if motorOne:IsA("Motor6D") and motorTwo:IsA("Motor6D") then
         local vecOne = motorOne.C1.Position
