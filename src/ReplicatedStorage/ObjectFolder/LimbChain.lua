@@ -28,8 +28,9 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
-    --Bool to turn on lerp mode
-    obj.LerpMotors = false
+    --Bool to turn on lerp mode and by default it's true because it just looks nicer
+    obj.LerpMotors = true
+    --Default LerpAlpha is 0.25 or 1/4 to make it look nicer like it has momentum,
     obj.LerpAlpha = 1/4
 
     --Bool option to enable the foot placement system
@@ -166,7 +167,7 @@ function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
 
     --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
     --Recursive function
-    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition+bottomFootOffset, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
+    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
                                               
 
 end
@@ -255,7 +256,7 @@ end
     Operates by changing the motor's C0 Position to the goal CFrame
     New parameter dt to control lerp
 ]]
-function LimbChain:UpdateMotors(dt)
+function LimbChain:UpdateMotors()
 
     -- Gets the CFrame of the Initial joint at world space
     local initialJointCFrame = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
@@ -289,7 +290,27 @@ function LimbChain:UpdateMotors(dt)
 
         local undoPreviousLimbCF = previousLimbCF:Inverse()
         local rotateSpine = CFrame.fromMatrix(SpineMotorWorldPosition,newRight,newUpVector)
-        self.SpineMotor.C0 = undoPreviousLimbCF*rotateSpine
+
+        --Obtain the goal world space CFrame
+        local goalCF = undoPreviousLimbCF*rotateSpine
+
+        local rotationOnly = goalCF-goalCF.Position
+
+        --Current rotation of motors
+        local currentRotation = self.SpineMotor.C0-self.SpineMotor.C0.Position
+
+        --if the bool is true then use lerp
+        if self.LerpMotors then
+            
+            local newRotationCF = currentRotation:lerp(rotationOnly,self.LerpAlpha)
+
+            --Changes the current motor6d through c0 and lerp
+            self.SpineMotor.C0 = CFrame.new(self.SpineMotor.C0.Position)*newRotationCF
+        else
+            self.SpineMotor.C0 = CFrame.new(self.SpineMotor.C0.Position)*rotationOnly
+        end
+
+
     end
 
     --Iterates and start rotating the limbs starting from the first joint
@@ -336,9 +357,17 @@ function LimbChain:UpdateMotors(dt)
         local rotationOnly = goalCF-goalCF.Position
 
         local currentRotation = self.Motor6DTable[i].C0-self.Motor6DTable[i].C0.Position
-        local newRotationCF = currentRotation:lerp(rotationOnly,1/4)
-        --Changes the current motor6d through c0
-        self.Motor6DTable[i].C0 = CFrame.new(self.Motor6DTable[i].C0.Position)*newRotationCF
+
+        --if the bool is true then use lerp
+        if self.LerpMotors then
+            
+            local newRotationCF = currentRotation:lerp(rotationOnly,self.LerpAlpha)
+
+            --Changes the current motor6d through c0 and lerp
+            self.Motor6DTable[i].C0 = CFrame.new(self.Motor6DTable[i].C0.Position)*newRotationCF
+        else
+            self.Motor6DTable[i].C0 = CFrame.new(self.Motor6DTable[i].C0.Position)*rotationOnly
+        end
 
         end
 
@@ -430,11 +459,17 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
         --finds the current rotation of the foot currently without position
         local currentRotation = footMotor.C0-footMotor.C0.Position
 
-        --does the lerp for the rotation from current to the new goal
-        local newRotationCF = currentRotation:lerp(rotationOnly,1/4)
+        if self.LerpMotors then
 
-        --then updates the foot motor
-        footMotor.C0 = CFrame.new(footMotor.C0.Position)*newRotationCF
+            --does the lerp for the rotation from current to the new goal
+            local newRotationCF = currentRotation:lerp(rotationOnly,self.LerpAlpha)
+
+            --then updates the foot motor
+            footMotor.C0 = CFrame.new(footMotor.C0.Position)*newRotationCF
+        else
+            --goes straight to the goal position
+            footMotor.C0 = CFrame.new(footMotor.C0.Position)*rotationOnly
+        end
 
     else
         --default to facing "Up" towards sky
@@ -446,14 +481,30 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
         --local empty = 
         local orientToFloor = CFrame.fromMatrix(footMotorPosition,footRightVector,footNormal)
 
-        --then updates the foot motor
-        footMotor.C0 = undoPreviousLimbCF*orientToFloor
+        local goalCF = undoPreviousLimbCF*orientToFloor
+
+        local rotationOnly = goalCF-goalCF.Position
+
+        --finds the current rotation of the foot currently without position
+        local currentRotation = footMotor.C0-footMotor.C0.Position
+
+        if self.LerpMotors then
+
+            local newRotationCF = currentRotation:lerp(rotationOnly,self.LerpAlpha)
+
+            --then updates the foot motor
+            footMotor.C0 = CFrame.new(footMotor.C0.Position)*newRotationCF
+
+        else
+            footMotor.C0 = CFrame.new(footMotor.C0.Position)*rotationOnly
+        end
 
     end
 end
 
 --[[
     Not really updated since there is no testing done on it
+    I don't recommend it at all
 ]]
 function LimbChain:StoreMotorsC0(floorNormal)
 
