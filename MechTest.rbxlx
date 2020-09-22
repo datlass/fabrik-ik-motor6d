@@ -15029,6 +15029,10 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --Does the meta table stuff
     local obj = LimbChain:make()
 
+    --Bool to turn on lerp mode
+    obj.LerpMotors = false
+    obj.LerpAlpha = 1/4
+
     --Bool option to enable the foot placement system
     obj.IncludeFoot = IncludeFoot
 
@@ -15040,6 +15044,32 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --The raycast params for the foot placement system
     obj.FootPlacementRaycastParams = nil
 
+    --[[
+        Stores the constraint table variable with nil.
+        I was planning on initiailizing the object with constraints but the constraints methods
+        require the LimbChain to be CREATED FIRST in order to do stuff like find the rigid joint vector.
+    ]]
+    
+    obj.LimbConstraintTable = LimbConstraintTable
+
+    --Creates a empty table to store motor c0 for tweening possibly if u want to do
+    --No need for procedural animation, possible for combining with roblox animation system
+    obj.MotorsC0Store = {}
+
+    --adds a bool setting for debug mode
+    obj.DebugMode = false
+
+    --Adds a setting for enabling constraint regions
+    --By default it is nill
+    obj.PrimaryConstraintRegionFromParts = nil
+    
+    --Store the primary and secondary LimbConstraint settings in a table
+    obj.PrimaryLimbConstraintTable = {}
+    obj.SecondaryLimbConstraintTable = {}
+
+    --[[--------------------------------------------------------------------------------
+        This is the beginning of the construction of all the limb vectors from motor6d
+    ]]----------------------------------------------------------------------------------
     --Stores the motor6ds used and also the original C0 of the first joint
     obj.Motor6DTable = Motor6DTable
     obj.FirstJointC0 = Motor6DTable[1].C0
@@ -15096,30 +15126,16 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     
     obj.LimbLengthTable = LimbLengthTable
 
-    --[[
-        Creates the constraint table variable with nil.
-        I was planning on initiailizing the object with constraints but the constraints methods
-        require the LimbChain to be CREATED FIRST in order to do stuff like find the rigid joint vector.
-    ]]
-    obj.LimbConstraintTable = LimbConstraintTable
     --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
     local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable,obj)
-    obj.LimbFabrikSolver = LimbFabrikSolver
-
-    --Creates a empty table to store motor c0 for tweening
-    obj.MotorsC0Store = {}
-
-    --adds a bool setting for debug mode
-    obj.DebugMode = false
-
-    --Adds a setting for enabling constraint regions
-    --By default it is nill
-    obj.PrimaryConstraintRegionFromParts = nil
     
-    --Store the primary and secondary LimbConstraint settings in a table
-    obj.PrimaryLimbConstraintTable = {}
-    obj.SecondaryLimbConstraintTable = {}
+    obj.LimbFabrikSolver = LimbFabrikSolver
+    
+    --[[--------------------------------------------------------------------------------
+        End of the limb vector constructions
+    ]]----------------------------------------------------------------------------------
 
+    --finaly return a metatable object thing to construct it
     return obj
 end
 --[[
