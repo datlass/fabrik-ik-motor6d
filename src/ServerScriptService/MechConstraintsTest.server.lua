@@ -5,28 +5,26 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 --Modules required
-
---Limb chain object
-local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.limbChain
-local limbChain = require(IKControllerPointer)
+local IKControllerPointer = ReplicatedStorage.Source.IKObjectsFolder.LimbChain
+local LimbChain = require(IKControllerPointer)
 
 --RotatedRegion3 Module
-local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegion3
+local RotatedRegion3Pointer = ReplicatedStorage.Source.IKObjectsFolder.RotatedRegion3
 local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -------------------Import all the Constraints Types-----------------
 
 --BallSocketConstraint
-local BallSocketConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.BallSocketConstraint
+local BallSocketConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.BallSocketConstraint
 local BallSocketConstraint = require(BallSocketConstraintPointer)
 
 
 --HingeConstraint
-local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
+local HingeConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
 
 --Rigid Constraint
-local RigidConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.RigidConstraint
+local RigidConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.RigidConstraint
 local RigidConstraint = require(RigidConstraintPointer)
 
 ----------------------------------------------------------------
@@ -93,14 +91,15 @@ local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegH
 local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket}
 
 --Set the constraints of the object
-leftLegChain:SetPrimaryConstraints(leftLegConstraintsPrimary)
-leftLegChain:SetSecondaryConstraints(leftLegConstraintsSecondary)
+leftLegChain.PrimaryLimbConstraintTable = leftLegConstraintsPrimary
+leftLegChain.SecondaryLimbConstraintTable = leftLegConstraintsSecondary
 
 --Set the region for the primary constraints
 local leftLegRegionPart1 = lowerBody.ConstraintZones.LeftLegPart1
 local leftLegRegionPart2 = lowerBody.ConstraintZones.LeftLegPart2
 local leftLegRegion = {leftLegRegionPart1,leftLegRegionPart2}
-leftLegChain:SetPrimaryConstraintRegion(leftLegRegion)
+
+leftLegChain.PrimaryConstraintRegionFromParts = leftLegRegion
 
 --Repeat for the right leg-----------
 
@@ -127,14 +126,14 @@ local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative
 local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object
-rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
-rightLegChain:SetSecondaryConstraints(rightLegConstraintsSecondary)
+rightLegChain.PrimaryLimbConstraintTable = rightLegConstraintsPrimary
+rightLegChain.SecondaryLimbConstraintTable = rightLegConstraintsSecondary
 
 --Set the region for the primary constraints
 local rightLegRegionPart1 = lowerBody.ConstraintZones.RightLegPart1
 local rightLegRegionPart2 = lowerBody.ConstraintZones.RightLegPart2
 local rightLegRegion = {rightLegRegionPart1,rightLegRegionPart2}
-rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
+rightLegChain.PrimaryConstraintRegionFromParts = rightLegRegion
 
 
 

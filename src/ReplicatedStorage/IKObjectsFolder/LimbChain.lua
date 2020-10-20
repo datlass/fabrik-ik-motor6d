@@ -1,17 +1,12 @@
 -- Get Roblox Services
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- Import the Fabrik Module
--- Deprecated FabrikSolver is the better version but still here
-local fabrikPointer = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
-local FabrikAlgo = require(fabrikPointer)
-
 -- Import the Fabrik Solver Object
-local FabrikSolverPointer = ReplicatedStorage.Source.ObjectFolder:WaitForChild("FabrikSolver")
+local FabrikSolverPointer = script.Parent:WaitForChild("FabrikSolver")
 local FabrikSolver = require(FabrikSolverPointer)
 
 -- Import Rotated Region 3
-local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder:WaitForChild("RotatedRegion3")
+local RotatedRegion3Pointer = script.Parent:WaitForChild("RotatedRegion3")
 local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -- Initialize Object Class
@@ -25,36 +20,18 @@ local LimbChain = Object.new("LimbChain")
     And also measures the limb's length
 ]]
 function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
-    --Does the meta table stuff
     local obj = LimbChain:make()
 
-    --Bool to turn on lerp mode and by default it's true because it just looks nicer
     obj.LerpMotors = true
-    --Default LerpAlpha is 0.25 or 1/4 to make it look nicer like it has momentum,
     obj.LerpAlpha = 1/4
 
-    --Bool option to enable the foot placement system
+    --Foot stuff
     obj.IncludeFoot = IncludeFoot
-
-    --attachments for the foot placement system
-    --where the ray casting begins
     obj.FootBottomAttachment = nil
     obj.FootBottomRightAttachment = nil
-
-    --The raycast params for the foot placement system
     obj.FootPlacementRaycastParams = nil
-
-    --[[
-        Stores the constraint table variable with nil.
-        I was planning on initiailizing the object with constraints but the constraints methods
-        require the LimbChain to be CREATED FIRST in order to do stuff like find the rigid joint vector.
-    ]]
     
-    obj.LimbConstraintTable = LimbConstraintTable
-
-    --Creates a empty table to store motor c0 for tweening possibly if u want to do
-    --No need for procedural animation, possible for combining with roblox animation system
-    obj.MotorsC0Store = {}
+    obj.LimbConstraintTable = nil
 
     --adds a bool setting for debug mode
     obj.DebugMode = false
@@ -86,27 +63,18 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     local IteratedLimbVectorTable = {}
 
     for i = 1, #Motor6DTable - 1, 1 do
-        --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
-        --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
+
         local currentVectorStore = LimbChain.JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
 
-        --[[
-            the SpineMotor option, allows the creation of a spine from a hip to uppertorso
-            This skips the lower torso which is typically connected to the humanoid root part.
-
-            Has to be done as the default limb rotation method using CFrame.fromAxis()
-            doesn't work well with how the root part rotates the ENTIRE body.
-
-            also stores it's original C0 Position
-        ]]
-        obj.SpineMotor = SpineMotor
-        if i==1 and SpineMotor then
-            obj.SpineMotorC0 = SpineMotor.C0
-            --print("reversing limb vector")
-            local test1 = Motor6DTable[i].C0.Position
-            local test2 = -Motor6DTable[i+1].C0.Position
-            currentVectorStore = (test1+test2)
-            --print(currentVectorStore.Magnitude)
+        --Planning to rework this spine motor system
+        if SpineMotor then
+            obj.SpineMotor = SpineMotor
+            if i==1 then
+                obj.SpineMotorC0 = SpineMotor.C0
+                local test1 = Motor6DTable[i].C0.Position
+                local test2 = -Motor6DTable[i+1].C0.Position
+                currentVectorStore = (test1+test2)
+            end
         end
 
         LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
@@ -155,49 +123,32 @@ function LimbChain.JointOneToTwoVector(motorOne, motorTwo)
         return "Error: motor 6ds are not inserted in the function"
     end
 end
---[[
-    Function that executes 1 iteration of the Fabrik Algorithm towards the target position
-    Deprecated method uses old IK module which does some inefficient stuff
-    (like continually summing up to find the max length every iteration)
-]]
-function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
-
-    -- Gets the CFrame of the first joint at world space
-    local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
-
-    --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
-    --Recursive function
-    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
-                                              
-
-end
 
 --[[
     Newer iteration method that uses the Fabrik Object instead of a module
     The object stores its own
+
+    CheckAndChangeConstraintRegions:
+    Does the constraint region check and change constraints if in region
+    If not then default to use the primary constraints
 ]]
 function LimbChain:IterateOnce(targetPosition,tolerance)
 
-    --[[
-    self.TargetPosition = targetPosition
-    ]]
-    --Should go towards the ankle position instead
     local offsetVector = Vector3.new()
+
     if self.IncludeFoot then
-        --Gets the last motor
+
         local footMotor = self.Motor6DTable[#self.Motor6DTable]
         local currentLimbPart = footMotor.Part1
 
         local footBottomToAnkleVector
-        --nill check for the foot bottom attachment if not then targetposition is the center
-        -- of the part
+
         if self.FootBottomAttachment and self.FootBottomAttachment.Position then
             footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         else
             footBottomToAnkleVector = footMotor.C1.Position
         end
 
-        --nill check
         if currentLimbPart then
             offsetVector = currentLimbPart.CFrame:VectorToWorldSpace(footBottomToAnkleVector)
         end
@@ -205,19 +156,13 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
     
     local targetPosition = targetPosition+offsetVector
 
-    --Does the constraint region check and change constraints if in region
-    --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
 
-    -- Gets the CFrame of the first joint at world space
-    --Relative to the part 0 which is the Hip and it works
-    --I have to use it to map out constraint axis without relying on welds
     if self.Motor6DTable[1].Part0 then
         
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
-        --Does the fabrik iteration once if not in goal
-        self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
+        self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
               
     end
 
@@ -226,13 +171,13 @@ end
 function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
 
     local offsetVector = Vector3.new()
+
     if self.IncludeFoot then
         local footMotor = self.Motor6DTable[#self.Motor6DTable]
         local currentLimbPart = footMotor.Part1
 
         local footBottomToAnkleVector
-        --nill check for the foot bottom attachment if not then targetposition is the center
-        -- of the part
+
         if self.FootBottomAttachment and self.FootBottomAttachment.Position then
             footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         else
@@ -256,7 +201,7 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
         --Does the fabrik iteration until goal
-        self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
+        self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
     end                             
 
 end
@@ -579,81 +524,41 @@ function LimbChain:SetCurrentConstraints(LimbConstraintTable)
 end
 
 --[[--------------------------------------------------------
-    Stores the primary constraints that is fits for the model
-
-]]
-function LimbChain:SetPrimaryConstraints(PrimaryLimbConstraintTable)
-
-    --Stores in itself the primary table
-    self.PrimaryLimbConstraintTable = PrimaryLimbConstraintTable
-
-end
-
---[[--------------------------------------------------------
-    Stores the secondary constraints intended for the worst case scenario for when
-    The primary constraints start glitching out due to algorithm unable to work out
-    the constraints.
-]]
-function LimbChain:SetSecondaryConstraints(SecondaryLimbConstraintTable)
-
-    --Stores in itself the primary table
-    self.SecondaryLimbConstraintTable = SecondaryLimbConstraintTable
-
-end
-
---[[--------------------------------------------------------
     Defines the parts that the primary constraints is only allowed to be
-    activated in.
-]]
-function LimbChain:SetPrimaryConstraintRegion(PrimaryConstraintRegionFromParts)
+    activated in using a region 3 check at the target position.
 
-    self.PrimaryConstraintRegionFromParts = PrimaryConstraintRegionFromParts
-
-end
-
---[[--------------------------------------------------------
-    Defines the parts that the primary constraints is only allowed to be
-    activated in
+    If outside primary region then switches to secondary region
 ]]
 function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 
-    --
     local PrimaryConstraintRegionFromParts = self.PrimaryConstraintRegionFromParts
-
 
     --[[
         Checks if the region is set in the first place
         ]]
     if PrimaryConstraintRegionFromParts then
 
-        --bool by default is false
         local isTargetInsideConstraintRegion = false
 
-        --Iterate through the parts and if at least
         for i=1,#PrimaryConstraintRegionFromParts,1 do
-            --Creates a region for each part checks if the target position is inside the parts
+
             local PartConstraintRegion = RotatedRegion3.FromPart(PrimaryConstraintRegionFromParts[i])
 
             local check = PartConstraintRegion:CastPoint(targetPosition)
 
-            --Checks if at least one region is true so it sets it to true
             if check == true then
              isTargetInsideConstraintRegion = true
             end
 
         end
 
-        --Checks the condition
         if isTargetInsideConstraintRegion then
-            --Inside region so use Primary constraints region
             self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
         else
-            --Out of region use secondary constraints region
             self:SetCurrentConstraints(self.SecondaryLimbConstraintTable)
         end
 
     else
-        --Use primary constraints only if no region is set
         self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
     end
 

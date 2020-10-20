@@ -5,9 +5,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 --Modules required
-local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
+local IKControllerPointer = ReplicatedStorage.Source.IKObjectsFolder.LimbChain
 local LimbChain = require(IKControllerPointer)
-
 
 --Point to dummy in the workspace
 local dummy = workspace.R15Dummy
