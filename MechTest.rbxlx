@@ -63,28 +63,27 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-30.5656166</X>
-					<Y>42.5474358</Y>
-					<Z>-37.395565</Z>
-					<R00>-0.966240168</R00>
-					<R01>-0.156758755</R01>
-					<R02>0.204466626</R02>
-					<R10>7.45057971e-09</R10>
-					<R11>0.793604434</R11>
-					<R12>0.608434081</R12>
-					<R20>-0.257642955</R20>
-					<R21>0.587893426</R21>
-					<R22>-0.766812563</R22>
+					<X>-40.3407593</X>
+					<Y>37.5278511</Y>
+					<Z>-30.0159283</Z>
+					<R00>-0.999990225</R00>
+					<R01>0.00269356882</R01>
+					<R02>-0.00351333735</R02>
+					<R10>-0</R10>
+					<R11>0.793605328</R11>
+					<R12>0.608433008</R12>
+					<R20>0.00442705909</R20>
+					<R21>0.608427048</R21>
+					<R22>-0.793597519</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
-				<float name="DiagonalFieldOfView">0</float>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-30.9745502</X>
-					<Y>41.3305664</Y>
-					<Z>-35.8619385</Z>
+					<X>-40.3337326</X>
+					<Y>36.3109856</Y>
+					<Z>-28.4287338</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -97,7 +96,6 @@
 				</CoordinateFrame>
 				<bool name="HeadLocked">true</bool>
 				<float name="HeadScale">1</float>
-				<float name="MaxAxisFieldOfView">0</float>
 				<string name="Name">Camera</string>
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
@@ -854,11 +852,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 									<R22>0.999997079</R22>
 								</CoordinateFrame>
 								<bool name="Enabled">true</bool>
-								<bool name="EnabledInternal">true</bool>
 								<string name="Name">WeldConstraint</string>
 								<Ref name="Part0Internal">RBX4c020f2b794d40468a15bf09e5d23d72</Ref>
 								<Ref name="Part1Internal">RBX80bf1459796c4bdf892595f6839d2776</Ref>
 								<int64 name="SourceAssetId">-1</int64>
+								<int name="State">3</int>
 								<BinaryString name="Tags"></BinaryString>
 							</Properties>
 						</Item>
@@ -1931,11 +1929,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>-0.794391334</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBXbb365bcbee434605951939acb27dcfff</Ref>
 							<Ref name="Part1Internal">RBX33544b4ff2714e70b3dbd4de6a5ee7a4</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2033,11 +2031,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>0.429271638</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX1646ae3200db46b7ad887cdf63e70bc4</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2135,11 +2133,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>-4.47034836e-08</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX8098c60f5c6d4818af9c74cfdf8b9c19</Ref>
 							<Ref name="Part1Internal">RBX715d8d11959a4ed1b751c4e37ebc5745</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2237,11 +2235,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>-0.794390559</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX588de253163f4d2a86c557feb4d8e9a2</Ref>
 							<Ref name="Part1Internal">RBXc03eab9abcbd4fab919ee39cc7af6d8d</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2339,11 +2337,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>-4.47034836e-08</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBXba79321be53b403183c514434437c968</Ref>
 							<Ref name="Part1Internal">RBX0438b89218554ba4a5b5663c1a5018f6</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2441,11 +2439,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>0.42927146</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX89304487c1e945788a68d6fbf22ca84f</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2552,11 +2550,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>0</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX49383c349aab4008821a7929c1cf9798</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2655,11 +2653,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>0</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX15a4065ab7194f8f9a96e13f6dd8172e</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2758,11 +2756,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>0</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBX64c469f85c3d4411ae8e6a1af866764f</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -2861,11 +2859,11 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<R22>0</R22>
 							</CoordinateFrame>
 							<bool name="Enabled">true</bool>
-							<bool name="EnabledInternal">true</bool>
 							<string name="Name">WeldConstraint</string>
 							<Ref name="Part0Internal">RBXf7f32cf52906417a81fd2196c1195077</Ref>
 							<Ref name="Part1Internal">RBX9a7e142aaad44108a85406e7ff1147fc</Ref>
 							<int64 name="SourceAssetId">-1</int64>
+							<int name="State">3</int>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
@@ -10427,9 +10425,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 --Modules required
-local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
+local IKControllerPointer = ReplicatedStorage.Source.IKObjectsFolder.LimbChain
 local LimbChain = require(IKControllerPointer)
-
 
 --Left leg chain motors
 local dummy = workspace.Dummy
@@ -10499,26 +10496,26 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 --Modules required
-local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
+local IKControllerPointer = ReplicatedStorage.Source.IKObjectsFolder.LimbChain
 local LimbChain = require(IKControllerPointer)
 
 --RotatedRegion3 Module
-local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder.RotatedRegion3
+local RotatedRegion3Pointer = ReplicatedStorage.Source.IKObjectsFolder.RotatedRegion3
 local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -------------------Import all the Constraints Types-----------------
 
 --BallSocketConstraint
-local BallSocketConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.BallSocketConstraint
+local BallSocketConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.BallSocketConstraint
 local BallSocketConstraint = require(BallSocketConstraintPointer)
 
 
 --HingeConstraint
-local HingeConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.HingeConstraint
+local HingeConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
 
 --Rigid Constraint
-local RigidConstraintPointer = ReplicatedStorage.Source.ObjectFolder.ConstraintTypes.RigidConstraint
+local RigidConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.RigidConstraint
 local RigidConstraint = require(RigidConstraintPointer)
 
 ----------------------------------------------------------------
@@ -10585,14 +10582,15 @@ local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegH
 local leftLegConstraintsSecondary = {upperLegBallSocketConstraintAlternative,lKneeBallSocket,lLegBallSocket}
 
 --Set the constraints of the object
-leftLegChain:SetPrimaryConstraints(leftLegConstraintsPrimary)
-leftLegChain:SetSecondaryConstraints(leftLegConstraintsSecondary)
+leftLegChain.PrimaryLimbConstraintTable = leftLegConstraintsPrimary
+leftLegChain.SecondaryLimbConstraintTable = leftLegConstraintsSecondary
 
 --Set the region for the primary constraints
 local leftLegRegionPart1 = lowerBody.ConstraintZones.LeftLegPart1
 local leftLegRegionPart2 = lowerBody.ConstraintZones.LeftLegPart2
 local leftLegRegion = {leftLegRegionPart1,leftLegRegionPart2}
-leftLegChain:SetPrimaryConstraintRegion(leftLegRegion)
+
+leftLegChain.PrimaryConstraintRegionFromParts = leftLegRegion
 
 --Repeat for the right leg-----------
 
@@ -10619,14 +10617,14 @@ local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative
 local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object
-rightLegChain:SetPrimaryConstraints(rightLegConstraintsPrimary)
-rightLegChain:SetSecondaryConstraints(rightLegConstraintsSecondary)
+rightLegChain.PrimaryLimbConstraintTable = rightLegConstraintsPrimary
+rightLegChain.SecondaryLimbConstraintTable = rightLegConstraintsSecondary
 
 --Set the region for the primary constraints
 local rightLegRegionPart1 = lowerBody.ConstraintZones.RightLegPart1
 local rightLegRegionPart2 = lowerBody.ConstraintZones.RightLegPart2
 local rightLegRegion = {rightLegRegionPart1,rightLegRegionPart2}
-rightLegChain:SetPrimaryConstraintRegion(rightLegRegion)
+rightLegChain.PrimaryConstraintRegionFromParts = rightLegRegion
 
 
 
@@ -10705,9 +10703,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 --Modules required
-local IKControllerPointer = ReplicatedStorage.Source.ObjectFolder.LimbChain
+local IKControllerPointer = ReplicatedStorage.Source.IKObjectsFolder.LimbChain
 local LimbChain = require(IKControllerPointer)
-
 
 --Point to dummy in the workspace
 local dummy = workspace.R15Dummy
@@ -11526,250 +11523,19 @@ print(leftLegChain.Part)]]></ProtectedString>
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
-			<Item class="Folder" referent="RBXfdde6fe5247740e398433797f14bd53c">
+			<Item class="Folder" referent="RBXaa911bca3f8c4a6b8c915b0c987c3872">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
-					<string name="Name">IKAnimation</string>
+					<string name="Name">IKObjectsFolder</string>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
-				<Item class="ModuleScript" referent="RBXe945feee8d8b4554a8e2ff949186094c">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Fabrik</string>
-						<string name="ScriptGuid">{84c0079e-1216-43b0-b981-db54832852b5}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-	Iterate the backward chain of the FABRIK Algorithm
-	Function should be called before the Forwards function in order to prevent the vector direction from changing
-	Assumes vector chain is from startpoint to endpoint
-	Returns parameters with new vector chain direction from endpoint to startpoint
-]] local function Backwards(originCF, targetPos, limbVectorTable,
-                            limbLengthTable)
-    local vectorSumFromOrigin = Vector3.new()
-
-    for i = #limbVectorTable, 1, -1 do
-        local vectorSum = Vector3.new(0, 0, 0)
-
-        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
-
-        -- Gets the new direction of the new vector along the chain
-        -- direction is Target Pos to the next point on the chain
-        local pointTowards = originCF.Position + vectorSum
-        local pointFrom = targetPos + vectorSumFromOrigin
-        local pointTo = pointTowards - pointFrom
-
-        -- constructs the new vectable
-        limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
-        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
-    end
-    return originCF, targetPos, limbVectorTable, limbLengthTable
-end
-
---[[
-	Does the forward chain of the FABRIK Algorithm
-	Function should be called after the Backwards function in order to prevent the vector direction from changing
-	Assumes vector chain is from endpoint to startpoint
-	Returns parameters with new vector chain direction from Startpoint to EndPoint
-]]
-local function Forwards(originCF, targetPos, limbVectorTable, limbLengthTable)
-    local vectorSumFromOrigin = Vector3.new()
-    for i = 1, #limbVectorTable, 1 do
-        -- initialize empty vector for summing
-        local vectorSum = Vector3.new(0, 0, 0)
-        -- print("Index: ",i," Vectable: ",limbVectorTable[i])
-
-        for v = i + 1, #limbVectorTable, 1 do
-            vectorSum = vectorSum + limbVectorTable[v]
-        end
-        -- print("vec sum: ",vectorSum)
-
-        local pointTowards = targetPos + vectorSum
-        local pointFrom = originCF.Position + vectorSumFromOrigin
-
-        -- Gets the new direction of the new vector along the chain
-        -- direction of the new vector is from origin to target
-        local pointTo = pointTowards - pointFrom
-
-        -- constructs the new vectable
-        limbVectorTable[i] = pointTo.Unit * limbLengthTable[i]
-        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
-    end
-    return originCF, targetPos, limbVectorTable, limbLengthTable
-end
-
---[[
-    Constraining the forwards operation only makes it weird I dont think it simply does enough
-    So constraints are also applied to backwards now
-    
-]]
-local function ConstraintBackwards(originCF, targetPos, limbVectorTable,
-                                   limbLengthTable, limbConstraintTable)
-    local vectorSumFromOrigin = Vector3.new()
-
-    for i = #limbVectorTable, 1, -1 do
-        local vectorSum = Vector3.new(0, 0, 0)
-
-        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
-
-        local pointTowards = originCF.Position + vectorSum
-        local pointFrom = targetPos + vectorSumFromOrigin
-
-        -- Gets the new direction of the new vector along the chain
-        -- direction is Target Pos to the next point on the chain
-        local pointTo = pointTowards - pointFrom
-
-        -- Gotta reverse the direction first
-        --The constraint only works if the direction is opposite
-        local newLimbVector = -pointTo.Unit * limbLengthTable[i]
-
-        -- Checks if there is a limb constraint for the current limb in the iteration
-        if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
-            local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-            -- print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
-                                pointTowards, newLimbVector, limbLength)
-            -- print("Index: ",i,"Vector: ",newLimbVector)
-        end
-        -- constructs the new vectable
-        --Gotta make it negative though to counteract
-        limbVectorTable[i] = -newLimbVector
-        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
-    end
-    return originCF, targetPos, limbVectorTable, limbLengthTable
-end
-
---[[
-	Same as forwards Function
-	limbConstraintTable
-]]
-local function ConstraintForwards(originCF, targetPos, limbVectorTable,
-                                  limbLengthTable, limbConstraintTable)
-    local vectorSumFromOrigin = Vector3.new()
-    for i = 1, #limbVectorTable, 1 do
-        -- initialize empty vector for summing
-        local vectorSum = Vector3.new(0, 0, 0)
-
-        -- Sums up the vectors in order to get the target position on the chain
-        -- target position is the next joint from origin to target
-        for v = i + 1, #limbVectorTable, 1 do
-            vectorSum = vectorSum + limbVectorTable[v]
-        end
-
-        local nextJointPosition = vectorSum + targetPos
-        local jointPosition = originCF.Position + vectorSumFromOrigin
-        -- Gets the new direction of the new vector along the chain
-        -- direction of the new vector is from origin to target
-        local pointTo = nextJointPosition - jointPosition
-        -- This time constraint the vector using the conical constraint function
-        local newLimbVector = pointTo.Unit * limbLengthTable[i]
-
-        -- Checks if there is a limb constraint for the current limb in the iteration
-        if limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
-            local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-            -- print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
-                                jointPosition, newLimbVector, limbLength)
-            -- print("Index: ",i,"Vector: ",newLimbVector)
-        end
-        -- constructs the new vectable
-        limbVectorTable[i] = newLimbVector
-        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
-    end
-    return originCF, targetPos, limbVectorTable, limbLengthTable
-end
-
--- newer function
-local function FabrikAlgo(tolerance, originCF, targetPos, limbVectorTable,
-                          limbLengthTable, limbConstraintTable)
-    -- get the magnitude of the leg parts
-    local maxLength = 0
-    -- adds all the magnitudes
-    for i = 1, #limbLengthTable, 1 do
-        maxLength = maxLength + limbLengthTable[i]
-    end
-
-    -- initialize measure feet to where it should be in the world position
-    local vectorSum = Vector3.new(0, 0, 0)
-    for i = 1, #limbVectorTable, 1 do
-        vectorSum = vectorSum + limbVectorTable[i]
-    end
-    local feetJoint = originCF.Position + vectorSum
-    local feetToTarget = targetPos - feetJoint
-    local distanceTolerate = feetToTarget.Magnitude
-
-    -- target point is "reachable"
-    -- if Distance is more than tolerance then iterate to move the new vectors closer
-    -- If not then don't execute the iteration to save FPS
-
-    if distanceTolerate >= tolerance then
-        -- If there is a constraint table then use constraint forwards else use unconstraint
-        if limbConstraintTable ~= nil then
-            local originCF, targetPos, limbVectorTable, limbLengthTable =
-                ConstraintBackwards(originCF, targetPos, limbVectorTable,
-                                    limbLengthTable, limbConstraintTable)
-            _, _, limbVectorTable, _ = ConstraintForwards(originCF, targetPos,
-                                                          limbVectorTable,
-                                                          limbLengthTable,
-                                                          limbConstraintTable)
-
-            return limbVectorTable
-        else
-            -- Does the normal forwards and backwards iteration
-            _, _, limbVectorTable, _ = Forwards(
-                                           Backwards(originCF, targetPos,
-                                                     limbVectorTable,
-                                                     limbLengthTable))
-
-            return limbVectorTable
-        end
-    else    -- Limb is within tolerance so don't iterate for this condition
-
-        return limbVectorTable
-    end
-end
-
-return FabrikAlgo
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-			</Item>
-			<Item class="Folder" referent="RBX693332e1e7a646bf8bc17f58cceae709">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<string name="Name">ObjectFolder</string>
-					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-				<Item class="ModuleScript" referent="RBXe33c789b639c43c098d8d6461a494a11">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">BaseRedirect</string>
-						<string name="ScriptGuid">{6b564544-96a4-4a1c-b819-f878662f3077}</string>
-						<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder")
-
-local baseModule = Package.Base
---^^ Simply adjust the variable so it matches the Base's location. ^^
-
-return require(baseModule)
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX9bb60cb0cd8849209ccd944a6bef6883">
+				<Item class="ModuleScript" referent="RBX091439b74ffa40e7816137d19061fe7a">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">Base</string>
-						<string name="ScriptGuid">{41e9a6bf-bf88-4809-b388-d821c9c2a421}</string>
+						<string name="ScriptGuid"></string>
 						<ProtectedString name="Source"><![CDATA[--[[
 	Advanced OOP Implementation v1.0, August 24th 2020
 	Designed and written by Kironte (49703460)
@@ -12313,19 +12079,36 @@ return Base]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="Folder" referent="RBX4ad2f7cbcfca49e1a35b6750494aa102">
+				<Item class="ModuleScript" referent="RBX79deda099ef5447a92352baf4dba3fda">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">BaseRedirect</string>
+						<string name="ScriptGuid"></string>
+						<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder")
+
+local baseModule = Package.Base
+--^^ Simply adjust the variable so it matches the Base's location. ^^
+
+return require(baseModule)
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+				<Item class="Folder" referent="RBXaadc4734211042f9a66f374c8bf45612">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<string name="Name">ConstraintTypes</string>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
-					<Item class="ModuleScript" referent="RBX85368e524b564b16b0f970d6c415e2a4">
+					<Item class="ModuleScript" referent="RBXa3e40cae461d4a4eb9f421640ad65e8f">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">BallSocketConstraint</string>
-							<string name="ScriptGuid">{9bca9a56-c064-4dc9-a4b7-731423a37423}</string>
+							<string name="ScriptGuid"></string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -12333,7 +12116,7 @@ local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
 --Require the FabrikConstraint for Inheritance
-local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
+local FabrikConstraintPointer = script.Parent.Parent:WaitForChild("FabrikConstraint")
 local FabrikConstraint = require(FabrikConstraintPointer)
 
 --Initialize the Self Class
@@ -12442,12 +12225,12 @@ return BallSocketConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX1f2228e1438941818b184f230e16c26e">
+					<Item class="ModuleScript" referent="RBX453102c36d9d40fe8b5825e5252d5a62">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">BaseRedirect</string>
-							<string name="ScriptGuid">{6711feb1-b8b5-4fea-b3d7-fcae6c4c3f6d}</string>
+							<string name="ScriptGuid"></string>
 							<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestorOfClass("Folder"):FindFirstAncestorOfClass("Folder")
 
 local baseModule = Package.Base
@@ -12459,12 +12242,12 @@ return require(baseModule)
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX1366e1827aac4d20b0e7c56c1ee7e8e7">
+					<Item class="ModuleScript" referent="RBXf79d43f2834a4b7c8843d028415c6ae2">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">HingeConstraint</string>
-							<string name="ScriptGuid">{e4778b51-aa14-417e-bc08-7765f525d176}</string>
+							<string name="ScriptGuid"></string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -12472,7 +12255,7 @@ local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
 --Require the FabrikConstraint for Inheritance
-local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
+local FabrikConstraintPointer = script.Parent.Parent:WaitForChild("FabrikConstraint")
 local FabrikConstraint = require(FabrikConstraintPointer)
 
 --Initialize the Self Class
@@ -12569,12 +12352,12 @@ return HingeConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX29d38d38ecca420cb3a728042edf6048">
+					<Item class="ModuleScript" referent="RBXab3512acb16746359c15632af8bdaabe">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">RigidConstraint</string>
-							<string name="ScriptGuid">{16dce366-2eb0-40b6-8ba3-fe3a20d298c0}</string>
+							<string name="ScriptGuid"></string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -12582,7 +12365,7 @@ local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
 --Require the FabrikConstraint for Inheritance
-local FabrikConstraintPointer = script.Parent.Parent.FabrikConstraint
+local FabrikConstraintPointer = script.Parent.Parent:WaitForChild("FabrikConstraint")
 local FabrikConstraint = require(FabrikConstraintPointer)
 
 --Initialize the Self Class
@@ -12647,700 +12430,12 @@ return RigidConstraint]]></ProtectedString>
 						</Properties>
 					</Item>
 				</Item>
-				<Item class="Folder" referent="RBX6da6cc6616104cec9aa70555c667c432">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<string name="Name">RotatedRegion3Children</string>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-					<Item class="ModuleScript" referent="RBX9db7328ec9a44c3b9a3c1488580a8c5c">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">GJK</string>
-							<string name="ScriptGuid">{3835a076-7f05-4b5d-a3d0-124349f76a22}</string>
-							<ProtectedString name="Source"><![CDATA[local MAX_TRIES = 20
-local ZERO3 = Vector3.new(0, 0, 0)
-
--- Class
-
-local GJK = {}
-GJK.__index = GJK
-
--- Private Functions
-
-local function tripleProduct(a, b, c)
-	return b * c:Dot(a) - a * c:Dot(b)
-end
-
-local function containsOrigin(self, simplex, direction)
-	local a = simplex[#simplex]
-	local ao = -a
-
-	if (#simplex == 4) then
-		local b, c, d = simplex[3], simplex[2], simplex[1]
-		local ab, ac, ad = b - a, c - a, d - a
-		local abc, acd, adb = ab:Cross(ac), ac:Cross(ad), ad:Cross(ab)
-		
-		abc = abc:Dot(ad) > 0 and -abc or abc
-		acd = acd:Dot(ab) > 0 and -acd or acd
-		adb = adb:Dot(ac) > 0 and -adb or adb
-		
-		if (abc:Dot(ao) > 0) then
-			table.remove(simplex, 1)
-			direction = abc
-		elseif (acd:Dot(ao) > 0) then
-			table.remove(simplex, 2)
-			direction = acd
-		elseif (adb:Dot(ao) > 0) then
-			table.remove(simplex, 3)
-			direction = adb
-		else
-			return true
-		end
-	elseif (#simplex == 3) then
-		local b, c = simplex[2], simplex[1]
-		local ab, ac = b - a, c - a
-		
-		local abc = ab:Cross(ac)
-		local abPerp = tripleProduct(ac, ab, ab).Unit
-		local acPerp = tripleProduct(ab, ac, ac).Unit
-		
-		if (abPerp:Dot(ao) > 0) then
-			table.remove(simplex, 1)
-			direction = abPerp
-		elseif (acPerp:Dot(ao) > 0) then
-			table.remove(simplex, 2)
-			direction = acPerp
-		else
-			local isV3 = ((a - a) == ZERO3)
-			if (not isV3) then
-				return true
-			else
-				direction = abc:Dot(ao) > 0 and abc or -abc
-			end
-		end
-	else
-		local b = simplex[1]
-		local ab = b - a
-		local bcPerp = tripleProduct(ab, ao, ab).Unit
-		direction = bcPerp
-	end
-	
-	return false, direction
-end
-
--- Public Constructors
-
-function GJK.new(SetA, SetB, CentroidA, CentroidB, SupportA, SupportB)
-	local self = setmetatable({}, GJK)
-	
-	self.SetA = SetA
-	self.SetB = SetB
-	self.CentroidA = CentroidA
-	self.CentroidB = CentroidB
-	self.SupportA = SupportA
-	self.SupportB = SupportB
-
-	return self
-end
-
--- Public Methods
-
-function GJK:IsColliding()
-	local direction = (self.CentroidA - self.CentroidB).Unit
-	local simplex = {self.SupportA(self.SetA, direction) - self.SupportB(self.SetB, -direction)}
-	
-	direction = -direction
-	
-	for i = 1, MAX_TRIES do
-		table.insert(simplex, self.SupportA(self.SetA, direction) - self.SupportB(self.SetB, -direction))
-		
-		if (simplex[#simplex]:Dot(direction) <= 0) then
-			return false
-		else
-			local passed, newDirection = containsOrigin(self, simplex, direction)
-			
-			if (passed) then
-				return true
-			end
-			
-			direction = newDirection
-		end
-	end
-	
-	return false
-end
-
---
-
-return GJK]]></ProtectedString>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-						</Properties>
-					</Item>
-					<Item class="ModuleScript" referent="RBXe6c7c0be74f8425da60bb455787ea0ed">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">Supports</string>
-							<string name="ScriptGuid">{bc583479-c808-4abb-9b42-cb772af3a9e8}</string>
-							<ProtectedString name="Source"><![CDATA[local ZERO = Vector3.new(0, 0, 0)
-local RIGHT = Vector3.new(1, 0, 0)
-
---
-
-local function rayPlane(p, v, s, n)
-	local r = p - s;
-	local t = -r:Dot(n) / v:Dot(n)
-	return p + t * v, t
-end;
-
---
-
-local Supports = {}
-
-function Supports.PointCloud(set, direction)
-	local max, maxDot = set[1], set[1]:Dot(direction)
-	for i = 2, #set do
-		local dot = set[i]:Dot(direction)
-		if (dot > maxDot) then
-			max = set[i]
-			maxDot = dot
-		end
-	end
-	return max
-end
-
-function Supports.Cylinder(set, direction)
-	local cf, size2 = unpack(set)
-	direction = cf:VectorToObjectSpace(direction)
-	local radius = math.min(size2.y, size2.z)
-	local dotT, cPoint = direction:Dot(RIGHT), Vector3.new(size2.x, 0, 0)
-	local h, t, final
-	
-	if (dotT == 0) then
-		final = direction.Unit * radius
-	else
-		cPoint = dotT > 0 and cPoint or -cPoint
-		h, t = rayPlane(ZERO, direction, cPoint, RIGHT)
-		final = cPoint + (h - cPoint).Unit * radius
-	end
-	
-	return cf:PointToWorldSpace(final)
-end
-
-function Supports.Ellipsoid(set, direction)
-	local cf, size2 = unpack(set)
-	return cf:PointToWorldSpace(size2 * (size2 * cf:VectorToObjectSpace(direction)).Unit)
-end
-
-return Supports]]></ProtectedString>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-						</Properties>
-					</Item>
-					<Item class="ModuleScript" referent="RBX3055ec5c84f84534863126200a3c084b">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">Vertices</string>
-							<string name="ScriptGuid">{4279934d-8daf-4b7c-829b-0860c37abbd6}</string>
-							<ProtectedString name="Source"><![CDATA[-- CONSTANTS
-
-local PI2 = math.pi*2
-local PHI = (1 + math.sqrt(5)) / 2
-
-local RIGHT 	= Vector3.new(1, 0, 0)
-local UP 		= Vector3.new(0, 1, 0)
-local BACK 		= Vector3.new(0, 0, 1)
-local LEFT 		= Vector3.new(-1, 0, 0)
-local DOWN 		= Vector3.new(0, -1, 0)
-local FORWARD 	= Vector3.new(0, 0, -1)
-
-local CORNERS = {
-	Vector3.new(1, 1, 1);
-	Vector3.new(-1, 1, 1);
-	Vector3.new(-1, 1, -1);
-	Vector3.new(1, 1, -1);
-	Vector3.new(1, -1, 1);
-	Vector3.new(-1, -1, 1);
-	Vector3.new(-1, -1, -1);
-	Vector3.new(1, -1, -1);
-}
-
--- VERTICE INDEX ARRAYS
-
-local BLOCK = {1, 2, 3, 4, 5, 6, 7, 8}
-local WEDGE = {1, 2, 5, 6, 7, 8}
-local CORNERWEDGE = {4, 5, 6, 7, 8}
-
--- VERTICE FUNCTIONS
-
-local function fromIndexArray(array)
-	local output = {}
-	for i = 1, #array do
-		output[i] = CORNERS[array[i]]
-	end
-	return output
-end
-
-local function cylinder(n)
-	local output = {}
-	local arc = PI2 / n
-	for i = 1, n do
-		local vi = CFrame.fromAxisAngle(RIGHT, i*arc) * UP
-		output[i] = RIGHT + vi
-		output[n + i] = LEFT + vi
-	end
-	return output
-end
-
-local function icoSphere(n)
-	local verts = {
-		Vector3.new(-1,  PHI, 0),
-		Vector3.new(1,  PHI, 0),
-		Vector3.new(-1, -PHI, 0),
-		Vector3.new(1, -PHI, 0),
-		
-		Vector3.new(0, -1,  PHI),
-		Vector3.new(0,  1,  PHI),
-		Vector3.new(0, -1, -PHI),
-		Vector3.new(0,  1, -PHI),
-		
-		Vector3.new(PHI, 0, -1),
-		Vector3.new(PHI, 0,  1),
-		Vector3.new(-PHI, 0, -1),
-		Vector3.new(-PHI, 0,  1)
-	}
-	
-	local indices = {
-		1, 12, 6,
-		1, 6, 2,
-		1, 2, 8,
-		1, 8, 11,
-		1, 11, 12,
-		
-		2, 6, 10,
-		6, 12, 5,
-		12, 11, 3,
-		11, 8, 7,
-		8, 2, 9,
-		
-		4, 10, 5,
-		4, 5, 3,
-		4, 3, 7,
-		4, 7, 9,
-		4, 9, 10,
-		
-		5, 10, 6,
-		3, 5, 12,
-		7, 3, 11,
-		9, 7, 8,
-		10, 9, 2
-	}
-	
-	local splits = {}
-	
-	local function split(i, j)
-		local key = i < j and (i .. "," .. j) or (j .. "," .. i)
-		
-		if (not splits[key]) then
-			verts[#verts+1] = (verts[i] + verts[j]) / 2
-			splits[key] = #verts
-		end
-		
-		return splits[key]
-	end
-	
-	for _ = 1, n do
-		for  i = #indices, 1, -3 do
-			local v1, v2, v3 = indices[i - 2], indices[i - 1], indices[i]
-			local a = split(v1, v2)
-			local b = split(v2, v3)
-			local c = split(v3, v1)
-			
-			indices[#indices+1] = v1
-			indices[#indices+1] = a
-			indices[#indices+1] = c
-			
-			indices[#indices+1] = v2
-			indices[#indices+1] = b
-			indices[#indices+1] = a
-			
-			indices[#indices+1] = v3
-			indices[#indices+1] = c
-			indices[#indices+1] = b
-			
-			indices[#indices+1] = a
-			indices[#indices+1] = b
-			indices[#indices+1] = c
-			
-			table.remove(indices, i)
-			table.remove(indices, i - 1)
-			table.remove(indices, i - 2)
-		end
-	end
-	
-	-- normalize
-	for i = 1, #verts do
-		verts[i] = verts[i].Unit
-	end
-	
-	return verts
-end
-
--- Useful functions
-
-local function vertShape(cf, size2, array)
-	local output = {}
-	for i = 1, #array do
-		output[i] = cf:PointToWorldSpace(array[i] * size2)
-	end
-	return output
-end
-
-local function getCentroidFromSet(set)
-	local sum = set[1]
-	for i = 2, #set do
-		sum = sum + set[2]
-	end
-	return sum / #set
-end
-
-local function classify(part)
-	if (part.ClassName == "Part") then
-		if (part.Shape == Enum.PartType.Block) then
-			return "Block"
-		elseif (part.Shape == Enum.PartType.Cylinder) then
-			return "Cylinder"
-		elseif (part.Shape == Enum.PartType.Ball) then
-			return "Ball"
-		end;
-	elseif (part.ClassName == "WedgePart") then
-		return "Wedge"
-	elseif (part.ClassName == "CornerWedgePart") then
-		return "CornerWedge"
-	elseif (part:IsA("BasePart")) then -- mesh, CSG, truss, etc... just use block
-		return "Block"
-	end
-end
-
--- 
-
-local BLOCK_ARRAY = fromIndexArray(BLOCK)
-local WEDGE_ARRAY = fromIndexArray(WEDGE)
-local CORNERWEDGE_ARRAY = fromIndexArray(CORNERWEDGE)
-local CYLINDER_ARRAY = cylinder(20)
-local SPHERE_ARRAY = icoSphere(2)
-
-return {
-	Block = function(cf, size2) return vertShape(cf, size2, BLOCK_ARRAY) end;
-	Wedge = function(cf, size2) return vertShape(cf, size2, WEDGE_ARRAY) end;
-	CornerWedge = function(cf, size2) return vertShape(cf, size2, CORNERWEDGE_ARRAY) end;
-	Cylinder = function(cf, size2) return vertShape(cf, size2, CYLINDER_ARRAY) end;
-	Ball = function(cf, size2) return vertShape(cf, size2, SPHERE_ARRAY) end;
-	
-	GetCentroid = getCentroidFromSet;
-	Classify = classify;
-}]]></ProtectedString>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-						</Properties>
-					</Item>
-				</Item>
-				<Item class="ModuleScript" referent="RBX8b9ccaee1cf449e29a45d3dfe4d124ec">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">ObjectTemplate</string>
-						<string name="ScriptGuid">{6eb926be-e3e4-4ba1-a4e3-e7bf7d763cdf}</string>
-						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
-local Object = require(Package.BaseRedirect)
-
-local NAME = Object.new("NAME")
---local NAME = Object.newExtends("NAME",?)
-
-function NAME.new()
-	local obj = NAME:make()
-	--local obj = NAME:super()
-	
-	return obj
-end
-
-return NAME]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX313f229336d14f94b39e363622d395df">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">RotatedRegion3</string>
-						<string name="ScriptGuid">{31536126-23ae-4279-8026-564ab1df67e8}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-
-This is a Rotated Region3 Class that behaves much the same as the standard Region3 class expect that it allows
-for both rotated regions and also a varying array of shapes.	
-
-API:
-
-Constructors:
-	RotatedRegion3.new(CFrame cframe, Vector3 size)
-		> Creates a region from a cframe which acts as the center of the region and size which extends to 
-		> the corners like a block part.
-	RotatedRegion3.Block(CFrame cframe, Vector3 size)
-		> This is the exact same as the region.new constructor, but has a different name.
-	RotatedRegion3.Wedge(CFrame cframe, Vector3 size)
-		> Creates a region from a cframe which acts as the center of the region and size which extends to 
-		> the corners like a wedge part.
-	RotatedRegion3.CornerWedge(CFrame cframe, Vector3 size)
-		> Creates a region from a cframe which acts as the center of the region and size which extends to 
-		> the corners like a cornerWedge part.
-	RotatedRegion3.Cylinder(CFrame cframe, Vector3 size)
-		> Creates a region from a cframe which acts as the center of the region and size which extends to 
-		> the corners like a cylinder part.
-	RotatedRegion3.Ball(CFrame cframe, Vector3 size)
-		> Creates a region from a cframe which acts as the center of the region and size which extends to 
-		> the corners like a ball part.
-	RotatedRegion3.FromPart(part)
-		> Creates a region from a part in the game. It can be used on any base part, but the region 
-		> will treat unknown shapes (meshes, unions, etc) as block shapes.
-
-Methods:
-	RotatedRegion3:CastPoint(Vector3 point)
-		> returns true or false if the point is within the RotatedRegion3 object
-	RotatedRegion3:CastPart(BasePart part)
-		> returns true or false if the part is withing the RotatedRegion3 object
-	RotatedRegion3:FindPartsInRegion3(Instance ignore, Integer maxParts)
-		> returns array of parts in the RotatedRegion3 object
-		> will return a maximum number of parts in array [maxParts] the default is 20
-		> parts that either are descendants of or actually are the [ignore] instance will be ignored
-	RotatedRegion3:FindPartsInRegion3WithIgnoreList(Instance Array ignore, Integer maxParts)
-		> returns array of parts in the RotatedRegion3 object
-		> will return a maximum number of parts in array [maxParts] the default is 20
-		> parts that either are descendants of the [ignore array] or actually are the [ignore array] instances will be ignored
-	RotatedRegion3:FindPartsInRegion3WithWhiteList(Instance Array whiteList, Integer maxParts)
-		> returns array of parts in the RotatedRegion3 object
-		> will return a maximum number of parts in array [maxParts] the default is 20
-		> parts that either are descendants of the [whiteList array] or actually are the [whiteList array] instances are all that will be checked
-	RotatedRegion3:Cast(Instance or Instance Array ignore, Integer maxParts)
-		> Same as the `:FindPartsInRegion3WithIgnoreList` method, but will check if the ignore argument is an array or single instance
-
-Properties:
-	RotatedRegion3.CFrame
-		> cframe that represents the center of the region
-	RotatedRegion3.Size
-		> vector3 that represents the size of the region
-	RotatedRegion3.Shape
-		> string that represents the shape type of the RotatedRegion3 object
-	RotatedRegion3.Set
-		> array of vector3 that are passed to the support function
-	RotatedRegion3.Support
-		> function that is used for support in the GJK algorithm
-	RotatedRegion3.Centroid
-		> vector3 that represents the center of the set, again used for the GJK algorithm
-	RotatedRegion3.AlignedRegion3
-		> standard region3 that represents the world bounding box of the RotatedRegion3 object
-
-Note: I haven't actually done anything to enforce this, but you should treat all these properties as read only
-
-Enjoy!
-- EgoMoose
-
---]]
-
---
-
-local GJK = require(script.Parent.RotatedRegion3Children:WaitForChild("GJK"))
-local Supports = require(script.Parent.RotatedRegion3Children:WaitForChild("Supports"))
-local Vertices = require(script.Parent.RotatedRegion3Children:WaitForChild("Vertices"))
-
--- Class
-
-local RotatedRegion3 = {}
-RotatedRegion3.__index = RotatedRegion3
-
--- Private functions
-
-local function getCorners(cf, s2)
-	return {
-		cf:PointToWorldSpace(Vector3.new(-s2.x, s2.y, s2.z));
-		cf:PointToWorldSpace(Vector3.new(-s2.x, -s2.y, s2.z));
-		cf:PointToWorldSpace(Vector3.new(-s2.x, -s2.y, -s2.z));
-		cf:PointToWorldSpace(Vector3.new(s2.x, -s2.y, -s2.z));
-		cf:PointToWorldSpace(Vector3.new(s2.x, s2.y, -s2.z));
-		cf:PointToWorldSpace(Vector3.new(s2.x, s2.y, s2.z));
-		cf:PointToWorldSpace(Vector3.new(s2.x, -s2.y, s2.z));
-		cf:PointToWorldSpace(Vector3.new(-s2.x, s2.y, -s2.z));
-	}
-end
-
-local function worldBoundingBox(set)
-	local x, y, z = {}, {}, {}
-	for i = 1, #set do x[i], y[i], z[i] = set[i].x, set[i].y, set[i].z end
-	local min = Vector3.new(math.min(unpack(x)), math.min(unpack(y)), math.min(unpack(z)))
-	local max = Vector3.new(math.max(unpack(x)), math.max(unpack(y)), math.max(unpack(z)))
-	return min, max
-end
-
--- Public Constructors
-
-function RotatedRegion3.new(cframe, size)
-	local self = setmetatable({}, RotatedRegion3)
-	
-	self.CFrame = cframe
-	self.Size = size
-	self.Shape = "Block"
-	
-	self.Set = Vertices.Block(cframe, size/2)
-	self.Support = Supports.PointCloud
-	self.Centroid = cframe.p
-	
-	self.AlignedRegion3 = Region3.new(worldBoundingBox(self.Set))
-
-	return self
-end
-
-RotatedRegion3.Block = RotatedRegion3.new
-
-function RotatedRegion3.Wedge(cframe, size)
-	local self = setmetatable({}, RotatedRegion3)
-
-	self.CFrame = cframe
-	self.Size = size
-	self.Shape = "Wedge"
-	
-	self.Set = Vertices.Wedge(cframe, size/2)
-	self.Support = Supports.PointCloud
-	self.Centroid = Vertices.GetCentroid(self.Set)
-	
-	self.AlignedRegion3 = Region3.new(worldBoundingBox(self.Set))
-
-	return self
-end
-
-function RotatedRegion3.CornerWedge(cframe, size)
-	local self = setmetatable({}, RotatedRegion3)
-
-	self.CFrame = cframe
-	self.Size = size
-	self.Shape = "CornerWedge"
-	
-	self.Set = Vertices.CornerWedge(cframe, size/2)
-	self.Support = Supports.PointCloud
-	self.Centroid = Vertices.GetCentroid(self.Set)
-	
-	self.AlignedRegion3 = Region3.new(worldBoundingBox(self.Set))
-
-	return self
-end
-
-function RotatedRegion3.Cylinder(cframe, size)
-	local self = setmetatable({}, RotatedRegion3)
-
-	self.CFrame = cframe
-	self.Size = size
-	self.Shape = "Cylinder"
-	
-	self.Set = {cframe, size/2}
-	self.Support = Supports.Cylinder
-	self.Centroid = cframe.p
-	
-	self.AlignedRegion3 = Region3.new(worldBoundingBox(getCorners(unpack(self.Set))))
-
-	return self
-end
-
-function RotatedRegion3.Ball(cframe, size)
-	local self = setmetatable({}, RotatedRegion3)
-
-	self.CFrame = cframe
-	self.Size = size
-	self.Shape = "Ball"
-	
-	self.Set = {cframe, size/2}
-	self.Support = Supports.Ellipsoid
-	self.Centroid = cframe.p
-	
-	self.AlignedRegion3 = Region3.new(worldBoundingBox(getCorners(unpack(self.Set))))
-
-	return self
-end
-
-function RotatedRegion3.FromPart(part)
-	return RotatedRegion3[Vertices.Classify(part)](part.CFrame, part.Size)
-end
-
--- Public Constructors
-
-function RotatedRegion3:CastPoint(point)
-	local gjk = GJK.new(self.Set, {point}, self.Centroid, point, self.Support, Supports.PointCloud)
-	return gjk:IsColliding()
-end
-
-function RotatedRegion3:CastPart(part)
-	local r3 = RotatedRegion3.FromPart(part)
-	local gjk = GJK.new(self.Set, r3.Set, self.Centroid, r3.Centroid, self.Support, r3.Support)
-	return gjk:IsColliding()
-end
-
-function RotatedRegion3:FindPartsInRegion3(ignore, maxParts)
-	local found = {}
-	local parts = game.Workspace:FindPartsInRegion3(self.AlignedRegion3, ignore, maxParts)
-	for i = 1, #parts do
-		if (self:CastPart(parts[i])) then
-			table.insert(found, parts[i])
-		end
-	end
-	return found
-end
-
-function RotatedRegion3:FindPartsInRegion3WithIgnoreList(ignore, maxParts)
-	ignore = ignore or {}
-	local found = {}
-	local parts = game.Workspace:FindPartsInRegion3WithIgnoreList(self.AlignedRegion3, ignore, maxParts)
-	for i = 1, #parts do
-		if (self:CastPart(parts[i])) then
-			table.insert(found, parts[i])
-		end
-	end
-	return found
-end
-
-function RotatedRegion3:FindPartsInRegion3WithWhiteList(whiteList, maxParts)
-	whiteList = whiteList or {}
-	local found = {}
-	local parts = game.Workspace:FindPartsInRegion3WithWhiteList(self.AlignedRegion3, whiteList, maxParts)
-	for i = 1, #parts do
-		if (self:CastPart(parts[i])) then
-			table.insert(found, parts[i])
-		end
-	end
-	return found
-end
-
-function RotatedRegion3:Cast(ignore, maxParts)
-	ignore = type(ignore) == "table" and ignore or {ignore}
-	return self:FindPartsInRegion3WithIgnoreList(ignore, maxParts)
-end
-
---
-
-return RotatedRegion3]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX7cedf7da6f9f4113b7a974ec734694eb">
+				<Item class="ModuleScript" referent="RBX21af4225fc694743a3692ea3ed9cf869">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">FabrikConstraint</string>
-						<string name="ScriptGuid">{fd2b4f77-e6f6-4c27-bf4c-509ae537f829}</string>
+						<string name="ScriptGuid"></string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
@@ -13426,96 +12521,267 @@ return FabrikConstraint
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX5330277ff33f4f7bafe4de65e3c25934">
+				<Item class="ModuleScript" referent="RBX837db307547d4ce4a26b6604211b5e17">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">MathPlane</string>
-						<string name="ScriptGuid">{c5788067-7297-48e3-95a1-d38c430e2897}</string>
+						<string name="Name">FabrikSolver</string>
+						<string name="ScriptGuid"></string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
-local MathPlane = Object.new("MathPlane")
+local FabrikSolver = Object.new("FabrikSolver")
 
---Squared Distance
-local function SquaredDistance(Vector)
+function FabrikSolver.new(LimbVectorTable, IteratedLimbVectorTable, LimbLengthTable, Motor6DTable,LimbChain)
+    local obj = FabrikSolver:make()
 
-    return Vector.X^2 + Vector.Y^2 + Vector.Z^2
+    obj.LimbChain = LimbChain
+    -- Initialize the object class
+    obj.LimbVectorTable = LimbVectorTable
+    obj.IteratedLimbVectorTable = IteratedLimbVectorTable
+    obj.LimbLengthTable = LimbLengthTable
+    obj.LimbConstraintTable = nil
 
+    obj.Motor6DTable = Motor6DTable
+
+    -- Initialize number for summing
+    local MaxLength = 0
+    -- adds all the magnitudes of the limb vector
+    for i = 1, #LimbLengthTable, 1 do
+        MaxLength = MaxLength + LimbLengthTable[i]
+    end
+
+    obj.MaxLength = MaxLength
+
+    return obj
 end
 
-
-function MathPlane.new(NormalVector,PlanePoint)
-	local obj = MathPlane:make()
-
-    --Stores the inputted NormalVector
-    obj.NormalVector = NormalVector
-
-    --Stores the point on the plane
-    obj.PlanePoint = PlanePoint
-
-    --Obtains the scalar dot product of the plane
-    obj.PlaneScalar = PlanePoint:Dot(NormalVector)
-
-	return obj
-end
-
---[[
-    Finds the closest point from a point to plane
-    Returns a vector 3 point in world space
+--[[---------------------------------------------------------
+    Executes one iteration of the Fabrik algo or not depending on the tolerance level
 ]]
-function MathPlane:FindClosestPointOnPlane(PointOnLine)
+function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
 
-    --Create a new line with direction of the plane normal and located at the InputPoint 
-    --lamda is the scalar of the line direction vector
-    local lambda = (self.PlanePoint - PointOnLine):Dot(self.NormalVector) /  SquaredDistance(self.NormalVector)
+    -- initialize measure feet to where it should be in the world position
+    local vectorSum = Vector3.new(0, 0, 0)
+    for i = 1, #self.IteratedLimbVectorTable, 1 do
+        vectorSum = vectorSum + self.IteratedLimbVectorTable[i]
+    end
+    local feetJoint = originCF.Position + vectorSum
+    local feetToTarget = targetPosition - feetJoint
+    local distanceToGoal = feetToTarget.Magnitude
 
-    return PointOnLine + lambda*self.NormalVector
-
-end
-
---[[
-    Checks if a vector3 point is on the plane object
-    Currently working fine
-]]
-function MathPlane:IsPointOnPlane(PositionVector)
-
-    local PositionScalar = PositionVector:Dot(self.NormalVector)
-
-    if PositionScalar == self.PlaneScalar then
-        return true
+    --[[ Measures origin joint to target position, not needed for now due to how constraints work
+    local originToGoalLength = (targetPosition-originCF.Position).Magnitude
+    if originToGoalLength<self.MaxLength then
+        print("in range")
     else
-        return false
+        print("out of range")
+    end
+    ]]
+
+    -- target point is "reachable"
+    -- if Distance is more than tolerance then iterate to move the new vectors closer
+    -- If not then don't execute the iteration to save FPS
+
+    if distanceToGoal >= tolerance then
+
+        -- Do backwards on itself first then forwards
+        self:Backwards(originCF, targetPosition)
+        self:Forwards(originCF, targetPosition)
+
+        return self.IteratedLimbVectorTable
+
+    else
+        -- Limb is within tolerance/already reached goal so don't do anything
+
+        return self.IteratedLimbVectorTable
     end
 
 end
 
-return MathPlane]]></ProtectedString>
+function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
+                                       InputtedMaxBreakCount)
+
+    -- initialize measure feet to where it should be in the world position
+    local vectorSum = Vector3.new(0, 0, 0)
+    for i = 1, #self.IteratedLimbVectorTable, 1 do
+        vectorSum = vectorSum + self.IteratedLimbVectorTable[i]
+    end
+    local feetJoint = originCF.Position + vectorSum
+    local feetToTarget = targetPosition - feetJoint
+    local distanceToGoal = feetToTarget.Magnitude
+
+    -- target point is "reachable"
+    -- if Distance is more than tolerance then iterate to move the new vectors closer
+    -- If not then don't execute the iteration to save FPS
+    -- Now includes a maximum iteration count
+    local maxBreakCount
+    if InputtedMaxBreakCount and type(InputtedMaxBreakCount) == "number" then
+        maxBreakCount = InputtedMaxBreakCount
+    else
+        -- default is maximum 10 iterations
+        maxBreakCount = 10
+    end
+
+    --print("maxbreak count: ",maxBreakCount)
+    local bcount = 0
+
+    while distanceToGoal >= tolerance do
+
+        -- Do backwards on itself first then forwards until it reaches goal
+        self:Backwards(originCF, targetPosition)
+        self:Forwards(originCF, targetPosition)
+        
+        --Issue constraints don't update unless motors are updated
+        --Solution update the motors lol
+        self.LimbChain:UpdateMotors()
+
+        --measure distance again
+        -- initialize measure feet to where it should be in the world position
+        local vectorSum = Vector3.new(0, 0, 0)
+        for i = 1, #self.IteratedLimbVectorTable, 1 do
+          vectorSum = vectorSum + self.IteratedLimbVectorTable[i]
+        end
+        local feetJoint = originCF.Position + vectorSum
+        local feetToTarget = targetPosition - feetJoint
+        distanceToGoal = feetToTarget.Magnitude
+        
+        --Counts the amount of iterations, if impossible to solve stops after max default at 10 iterations
+        bcount += 1
+        if bcount > maxBreakCount then 
+            --print("bcount:", bcount,"failed to reach goal: ", distanceToGoal)
+            return self.IteratedLimbVectorTable 
+        end
+
+    end
+    --Iterate once in case
+    self:Backwards(originCF, targetPosition)
+    self:Forwards(originCF, targetPosition)
+
+    -- Limb is within tolerance/already reached goal so don't do anything
+    --print("bcount:", bcount,"Reached goal: ", distanceToGoal)
+    return self.IteratedLimbVectorTable
+
+end
+
+--[[
+    Constraining the forwards operation only makes it weird I dont think it simply does enough
+    So constraints are also applied to backwards now
+    Now is generalized with less parameters thanks to meta table objects storing the properties
+]]
+function FabrikSolver:Backwards(originCF, targetPos)
+
+    -- Transporting from module scrip to class so gotta do this
+    local IteratedLimbVectorTable = self.IteratedLimbVectorTable
+    local limbLengthTable = self.LimbLengthTable
+    local limbConstraintTable = self.LimbConstraintTable
+
+    local vectorSumFromOrigin = Vector3.new()
+    -- Iterate through all the limb vectors and performs the backwards operation
+    for i = #IteratedLimbVectorTable, 1, -1 do
+        local vectorSum = Vector3.new(0, 0, 0)
+
+        for v = 1, i - 1, 1 do vectorSum = vectorSum + IteratedLimbVectorTable[v] end
+
+        local pointTowards = originCF.Position + vectorSum
+        local pointFrom = targetPos + vectorSumFromOrigin
+
+        -- Gets the new direction of the new vector along the chain
+        -- direction is Target Pos to the next point on the chain
+        local pointTo = pointTowards - pointFrom
+
+        -- Gotta reverse the direction first
+        -- The constraint only works if the direction is opposite
+        local newLimbVector = -pointTo.Unit * limbLengthTable[i]
+
+        -- Checks if there is a limb constraint for the current limb in the iteration
+        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+
+            local limbLength = limbLengthTable[i]
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength)
+
+        end
+        -- constructs the new vectable
+        -- Gotta make it negative though to counteract
+        IteratedLimbVectorTable[i] = -newLimbVector
+        vectorSumFromOrigin = vectorSumFromOrigin + IteratedLimbVectorTable[i]
+    end
+
+    self.IteratedLimbVectorTable = IteratedLimbVectorTable
+
+end
+
+--[[
+	Does the forward chain of the FABRIK Algorithm
+	Function should be called after the Backwards function in order to prevent the vector direction from changing
+	Assumes vector chain direction is from endpoint to startpoint
+	Returns parameters with new vector chain direction from Startpoint to EndPoint
+]]
+function FabrikSolver:Forwards(originCF, targetPos)
+
+    local IteratedLimbVectorTable = self.IteratedLimbVectorTable
+    local limbLengthTable = self.LimbLengthTable
+    local limbConstraintTable = self.LimbConstraintTable
+
+    local vectorSumFromOrigin = Vector3.new()
+    for i = 1, #IteratedLimbVectorTable, 1 do
+        -- initialize empty vector for summing
+        local vectorSum = Vector3.new(0, 0, 0)
+
+        -- Sums up the vectors in order to get the target position on the chain
+        -- target position is the next joint from origin to target
+        for v = i + 1, #IteratedLimbVectorTable, 1 do
+            vectorSum = vectorSum + IteratedLimbVectorTable[v]
+        end
+
+        local nextJointPosition = vectorSum + targetPos
+        local jointPosition = originCF.Position + vectorSumFromOrigin
+        -- Gets the new direction of the new vector along the chain
+        -- direction of the new vector is from origin to target
+        local pointTo = nextJointPosition - jointPosition
+        -- This time constraint the vector using the conical constraint function
+        local newLimbVector = pointTo.Unit * limbLengthTable[i]
+
+        -- Checks if there is a limb constraint for the current limb in the iteration
+        --Also if even the table exist in the first place to avoid indexing nil value
+        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+
+            local limbLength = limbLengthTable[i]
+            -- Start the constraint according to the method
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength)
+
+        end
+        -- constructs the new vectable
+        IteratedLimbVectorTable[i] = newLimbVector
+        vectorSumFromOrigin = vectorSumFromOrigin + IteratedLimbVectorTable[i]
+    end
+
+    -- Change the objects self vector table
+    self.IteratedLimbVectorTable = IteratedLimbVectorTable
+end
+
+return FabrikSolver
+]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX623a9e37c488432aa6a321ed09d8653b">
+				<Item class="ModuleScript" referent="RBX50d3d997f31241f6ab027fb1f6886ae6">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">LimbChain</string>
-						<string name="ScriptGuid">{6adacdf8-81c0-4258-a42d-5e2724161c05}</string>
+						<string name="ScriptGuid"></string>
 						<ProtectedString name="Source"><![CDATA[-- Get Roblox Services
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- Import the Fabrik Module
--- Deprecated FabrikSolver is the better version but still here
-local fabrikPointer = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
-local FabrikAlgo = require(fabrikPointer)
-
 -- Import the Fabrik Solver Object
-local FabrikSolverPointer = ReplicatedStorage.Source.ObjectFolder:WaitForChild("FabrikSolver")
+local FabrikSolverPointer = script.Parent:WaitForChild("FabrikSolver")
 local FabrikSolver = require(FabrikSolverPointer)
 
 -- Import Rotated Region 3
-local RotatedRegion3Pointer = ReplicatedStorage.Source.ObjectFolder:WaitForChild("RotatedRegion3")
+local RotatedRegion3Pointer = script.Parent:WaitForChild("RotatedRegion3")
 local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -- Initialize Object Class
@@ -13529,36 +12795,18 @@ local LimbChain = Object.new("LimbChain")
     And also measures the limb's length
 ]]
 function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
-    --Does the meta table stuff
     local obj = LimbChain:make()
 
-    --Bool to turn on lerp mode and by default it's true because it just looks nicer
     obj.LerpMotors = true
-    --Default LerpAlpha is 0.25 or 1/4 to make it look nicer like it has momentum,
     obj.LerpAlpha = 1/4
 
-    --Bool option to enable the foot placement system
+    --Foot stuff
     obj.IncludeFoot = IncludeFoot
-
-    --attachments for the foot placement system
-    --where the ray casting begins
     obj.FootBottomAttachment = nil
     obj.FootBottomRightAttachment = nil
-
-    --The raycast params for the foot placement system
     obj.FootPlacementRaycastParams = nil
-
-    --[[
-        Stores the constraint table variable with nil.
-        I was planning on initiailizing the object with constraints but the constraints methods
-        require the LimbChain to be CREATED FIRST in order to do stuff like find the rigid joint vector.
-    ]]
     
-    obj.LimbConstraintTable = LimbConstraintTable
-
-    --Creates a empty table to store motor c0 for tweening possibly if u want to do
-    --No need for procedural animation, possible for combining with roblox animation system
-    obj.MotorsC0Store = {}
+    obj.LimbConstraintTable = nil
 
     --adds a bool setting for debug mode
     obj.DebugMode = false
@@ -13590,27 +12838,18 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     local IteratedLimbVectorTable = {}
 
     for i = 1, #Motor6DTable - 1, 1 do
-        --print("motorOne: ", Motor6DTable[i].Name,"motorTwo: ",Motor6DTable[i+1].Name)
-        --print(LimbChain:JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1]))
+
         local currentVectorStore = LimbChain.JointOneToTwoVector(Motor6DTable[i], Motor6DTable[i + 1])
 
-        --[[
-            the SpineMotor option, allows the creation of a spine from a hip to uppertorso
-            This skips the lower torso which is typically connected to the humanoid root part.
-
-            Has to be done as the default limb rotation method using CFrame.fromAxis()
-            doesn't work well with how the root part rotates the ENTIRE body.
-
-            also stores it's original C0 Position
-        ]]
-        obj.SpineMotor = SpineMotor
-        if i==1 and SpineMotor then
-            obj.SpineMotorC0 = SpineMotor.C0
-            --print("reversing limb vector")
-            local test1 = Motor6DTable[i].C0.Position
-            local test2 = -Motor6DTable[i+1].C0.Position
-            currentVectorStore = (test1+test2)
-            --print(currentVectorStore.Magnitude)
+        --Planning to rework this spine motor system
+        if SpineMotor then
+            obj.SpineMotor = SpineMotor
+            if i==1 then
+                obj.SpineMotorC0 = SpineMotor.C0
+                local test1 = Motor6DTable[i].C0.Position
+                local test2 = -Motor6DTable[i+1].C0.Position
+                currentVectorStore = (test1+test2)
+            end
         end
 
         LimbVectorTable[#LimbVectorTable + 1] = currentVectorStore
@@ -13631,7 +12870,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     obj.LimbLengthTable = LimbLengthTable
 
     --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
-    local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable,obj)
+    local LimbFabrikSolver = FabrikSolver.new(LimbVectorTable, IteratedLimbVectorTable, LimbLengthTable, Motor6DTable, obj)
     
     obj.LimbFabrikSolver = LimbFabrikSolver
     
@@ -13659,49 +12898,32 @@ function LimbChain.JointOneToTwoVector(motorOne, motorTwo)
         return "Error: motor 6ds are not inserted in the function"
     end
 end
---[[
-    Function that executes 1 iteration of the Fabrik Algorithm towards the target position
-    Deprecated method uses old IK module which does some inefficient stuff
-    (like continually summing up to find the max length every iteration)
-]]
-function LimbChain:Iterate(tolerance, targetPosition,limbConstraintTable)
-
-    -- Gets the CFrame of the first joint at world space
-    local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
-
-    --Performs the iteration on the LimbChain object IteratedLimbVectorTable and rewrites it
-    --Recursive function
-    self.IteratedLimbVectorTable = FabrikAlgo(tolerance, originJointCF, targetPosition, self.IteratedLimbVectorTable, self.LimbLengthTable,limbConstraintTable)
-                                              
-
-end
 
 --[[
     Newer iteration method that uses the Fabrik Object instead of a module
     The object stores its own
+
+    CheckAndChangeConstraintRegions:
+    Does the constraint region check and change constraints if in region
+    If not then default to use the primary constraints
 ]]
 function LimbChain:IterateOnce(targetPosition,tolerance)
 
-    --[[
-    self.TargetPosition = targetPosition
-    ]]
-    --Should go towards the ankle position instead
     local offsetVector = Vector3.new()
+
     if self.IncludeFoot then
-        --Gets the last motor
+
         local footMotor = self.Motor6DTable[#self.Motor6DTable]
         local currentLimbPart = footMotor.Part1
 
         local footBottomToAnkleVector
-        --nill check for the foot bottom attachment if not then targetposition is the center
-        -- of the part
+
         if self.FootBottomAttachment and self.FootBottomAttachment.Position then
             footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         else
             footBottomToAnkleVector = footMotor.C1.Position
         end
 
-        --nill check
         if currentLimbPart then
             offsetVector = currentLimbPart.CFrame:VectorToWorldSpace(footBottomToAnkleVector)
         end
@@ -13709,19 +12931,13 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
     
     local targetPosition = targetPosition+offsetVector
 
-    --Does the constraint region check and change constraints if in region
-    --If not then default to use the primary constraints
     self:CheckAndChangeConstraintRegions(targetPosition)
 
-    -- Gets the CFrame of the first joint at world space
-    --Relative to the part 0 which is the Hip and it works
-    --I have to use it to map out constraint axis without relying on welds
     if self.Motor6DTable[1].Part0 then
         
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
-        --Does the fabrik iteration once if not in goal
-        self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
+        self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
               
     end
 
@@ -13730,13 +12946,13 @@ end
 function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCount)
 
     local offsetVector = Vector3.new()
+
     if self.IncludeFoot then
         local footMotor = self.Motor6DTable[#self.Motor6DTable]
         local currentLimbPart = footMotor.Part1
 
         local footBottomToAnkleVector
-        --nill check for the foot bottom attachment if not then targetposition is the center
-        -- of the part
+
         if self.FootBottomAttachment and self.FootBottomAttachment.Position then
             footBottomToAnkleVector = footMotor.C1.Position-self.FootBottomAttachment.Position
         else
@@ -13760,7 +12976,7 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
         --Does the fabrik iteration until goal
-        self.IteratedLimbVectorTable = self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
+        self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
     end                             
 
 end
@@ -14083,81 +13299,41 @@ function LimbChain:SetCurrentConstraints(LimbConstraintTable)
 end
 
 --[[--------------------------------------------------------
-    Stores the primary constraints that is fits for the model
-
-]]
-function LimbChain:SetPrimaryConstraints(PrimaryLimbConstraintTable)
-
-    --Stores in itself the primary table
-    self.PrimaryLimbConstraintTable = PrimaryLimbConstraintTable
-
-end
-
---[[--------------------------------------------------------
-    Stores the secondary constraints intended for the worst case scenario for when
-    The primary constraints start glitching out due to algorithm unable to work out
-    the constraints.
-]]
-function LimbChain:SetSecondaryConstraints(SecondaryLimbConstraintTable)
-
-    --Stores in itself the primary table
-    self.SecondaryLimbConstraintTable = SecondaryLimbConstraintTable
-
-end
-
---[[--------------------------------------------------------
     Defines the parts that the primary constraints is only allowed to be
-    activated in.
-]]
-function LimbChain:SetPrimaryConstraintRegion(PrimaryConstraintRegionFromParts)
+    activated in using a region 3 check at the target position.
 
-    self.PrimaryConstraintRegionFromParts = PrimaryConstraintRegionFromParts
-
-end
-
---[[--------------------------------------------------------
-    Defines the parts that the primary constraints is only allowed to be
-    activated in
+    If outside primary region then switches to secondary region
 ]]
 function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 
-    --
     local PrimaryConstraintRegionFromParts = self.PrimaryConstraintRegionFromParts
-
 
     --[[
         Checks if the region is set in the first place
         ]]
     if PrimaryConstraintRegionFromParts then
 
-        --bool by default is false
         local isTargetInsideConstraintRegion = false
 
-        --Iterate through the parts and if at least
         for i=1,#PrimaryConstraintRegionFromParts,1 do
-            --Creates a region for each part checks if the target position is inside the parts
+
             local PartConstraintRegion = RotatedRegion3.FromPart(PrimaryConstraintRegionFromParts[i])
 
             local check = PartConstraintRegion:CastPoint(targetPosition)
 
-            --Checks if at least one region is true so it sets it to true
             if check == true then
              isTargetInsideConstraintRegion = true
             end
 
         end
 
-        --Checks the condition
         if isTargetInsideConstraintRegion then
-            --Inside region so use Primary constraints region
             self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
         else
-            --Out of region use secondary constraints region
             self:SetCurrentConstraints(self.SecondaryLimbConstraintTable)
         end
 
     else
-        --Use primary constraints only if no region is set
         self:SetCurrentConstraints(self.PrimaryLimbConstraintTable)
     end
 
@@ -14191,820 +13367,763 @@ return LimbChain
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXc9f968ca526e47798d6aaa99e64f5704">
+				<Item class="ModuleScript" referent="RBXdb8e856abeac452b8147a918b1dd19db">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">FabrikSolver</string>
-						<string name="ScriptGuid">{5f4fc945-299d-488b-b0cb-f1caf5b2aa10}</string>
+						<string name="Name">MathPlane</string>
+						<string name="ScriptGuid"></string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
 
-local FabrikSolver = Object.new("FabrikSolver")
+local MathPlane = Object.new("MathPlane")
 
-function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,LimbChain)
-    local obj = FabrikSolver:make()
+--Squared Distance
+local function SquaredDistance(Vector)
 
-    obj.LimbChain = LimbChain
-    -- Initialize the object class
-    obj.LimbVectorTable = LimbVectorTable
+    return Vector.X^2 + Vector.Y^2 + Vector.Z^2
 
-    obj.LimbLengthTable = LimbLengthTable
-
-    obj.LimbConstraintTable = LimbConstraintTable
-
-    -- Initialize number for summing
-    local MaxLength = 0
-    -- adds all the magnitudes of the limb vector
-    for i = 1, #LimbLengthTable, 1 do
-        MaxLength = MaxLength + LimbLengthTable[i]
-    end
-
-    obj.MaxLength = MaxLength
-
-    return obj
 end
 
---[[---------------------------------------------------------
-    Executes one iteration of the Fabrik algo or not depending on the tolerance level
+
+function MathPlane.new(NormalVector,PlanePoint)
+	local obj = MathPlane:make()
+
+    --Stores the inputted NormalVector
+    obj.NormalVector = NormalVector
+
+    --Stores the point on the plane
+    obj.PlanePoint = PlanePoint
+
+    --Obtains the scalar dot product of the plane
+    obj.PlaneScalar = PlanePoint:Dot(NormalVector)
+
+	return obj
+end
+
+--[[
+    Finds the closest point from a point to plane
+    Returns a vector 3 point in world space
 ]]
-function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
+function MathPlane:FindClosestPointOnPlane(PointOnLine)
 
-    -- initialize measure feet to where it should be in the world position
-    local vectorSum = Vector3.new(0, 0, 0)
-    for i = 1, #self.LimbVectorTable, 1 do
-        vectorSum = vectorSum + self.LimbVectorTable[i]
-    end
-    local feetJoint = originCF.Position + vectorSum
-    local feetToTarget = targetPosition - feetJoint
-    local distanceToGoal = feetToTarget.Magnitude
+    --Create a new line with direction of the plane normal and located at the InputPoint 
+    --lamda is the scalar of the line direction vector
+    local lambda = (self.PlanePoint - PointOnLine):Dot(self.NormalVector) /  SquaredDistance(self.NormalVector)
 
-    --[[ Measures origin joint to target position, not needed for now due to how constraints work
-    local originToGoalLength = (targetPosition-originCF.Position).Magnitude
-    if originToGoalLength<self.MaxLength then
-        print("in range")
-    else
-        print("out of range")
-    end
-    ]]
-
-    -- target point is "reachable"
-    -- if Distance is more than tolerance then iterate to move the new vectors closer
-    -- If not then don't execute the iteration to save FPS
-
-    if distanceToGoal >= tolerance then
-
-        -- Do backwards on itself first then forwards
-        self:Backwards(originCF, targetPosition)
-        self:Forwards(originCF, targetPosition)
-
-        return self.LimbVectorTable
-
-    else
-        -- Limb is within tolerance/already reached goal so don't do anything
-
-        return self.LimbVectorTable
-    end
-
-end
-
-function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
-                                       InputtedMaxBreakCount)
-
-    -- initialize measure feet to where it should be in the world position
-    local vectorSum = Vector3.new(0, 0, 0)
-    for i = 1, #self.LimbVectorTable, 1 do
-        vectorSum = vectorSum + self.LimbVectorTable[i]
-    end
-    local feetJoint = originCF.Position + vectorSum
-    local feetToTarget = targetPosition - feetJoint
-    local distanceToGoal = feetToTarget.Magnitude
-
-    -- target point is "reachable"
-    -- if Distance is more than tolerance then iterate to move the new vectors closer
-    -- If not then don't execute the iteration to save FPS
-    -- Now includes a maximum iteration count
-    local maxBreakCount
-    if InputtedMaxBreakCount and type(InputtedMaxBreakCount) == "number" then
-        maxBreakCount = InputtedMaxBreakCount
-    else
-        -- default is maximum 10 iterations
-        maxBreakCount = 10
-    end
-
-    --print("maxbreak count: ",maxBreakCount)
-    local bcount = 0
-
-    while distanceToGoal >= tolerance do
-
-        -- Do backwards on itself first then forwards until it reaches goal
-        self:Backwards(originCF, targetPosition)
-        self:Forwards(originCF, targetPosition)
-        
-        --Issue constraints don't update unless motors are updated
-        --Solution update the motors lol
-        self.LimbChain:UpdateMotors()
-
-        --measure distance again
-        -- initialize measure feet to where it should be in the world position
-        local vectorSum = Vector3.new(0, 0, 0)
-        for i = 1, #self.LimbVectorTable, 1 do
-          vectorSum = vectorSum + self.LimbVectorTable[i]
-        end
-        local feetJoint = originCF.Position + vectorSum
-        local feetToTarget = targetPosition - feetJoint
-        distanceToGoal = feetToTarget.Magnitude
-        
-        --Counts the amount of iterations, if impossible to solve stops after max default at 10 iterations
-        bcount += 1
-        if bcount > maxBreakCount then 
-            --print("bcount:", bcount,"failed to reach goal: ", distanceToGoal)
-            return self.LimbVectorTable 
-        end
-
-    end
-    --Iterate once in case
-    self:Backwards(originCF, targetPosition)
-    self:Forwards(originCF, targetPosition)
-
-    -- Limb is within tolerance/already reached goal so don't do anything
-    --print("bcount:", bcount,"Reached goal: ", distanceToGoal)
-    return self.LimbVectorTable
+    return PointOnLine + lambda*self.NormalVector
 
 end
 
 --[[
-    Constraining the forwards operation only makes it weird I dont think it simply does enough
-    So constraints are also applied to backwards now
-    Now is generalized with less parameters thanks to meta table objects storing the properties
+    Checks if a vector3 point is on the plane object
+    Currently working fine
 ]]
-function FabrikSolver:Backwards(originCF, targetPos)
+function MathPlane:IsPointOnPlane(PositionVector)
 
-    -- Transporting from module scrip to class so gotta do this
-    local limbVectorTable = self.LimbVectorTable
-    local limbLengthTable = self.LimbLengthTable
-    local limbConstraintTable = self.LimbConstraintTable
+    local PositionScalar = PositionVector:Dot(self.NormalVector)
 
-    local vectorSumFromOrigin = Vector3.new()
-    -- Iterate through all the limb vectors and performs the backwards operation
-    for i = #limbVectorTable, 1, -1 do
-        local vectorSum = Vector3.new(0, 0, 0)
-
-        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
-
-        local pointTowards = originCF.Position + vectorSum
-        local pointFrom = targetPos + vectorSumFromOrigin
-
-        -- Gets the new direction of the new vector along the chain
-        -- direction is Target Pos to the next point on the chain
-        local pointTo = pointTowards - pointFrom
-
-        -- Gotta reverse the direction first
-        -- The constraint only works if the direction is opposite
-        local newLimbVector = -pointTo.Unit * limbLengthTable[i]
-
-        -- Checks if there is a limb constraint for the current limb in the iteration
-        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
-            local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-            -- print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
-                                pointTowards, newLimbVector, limbLength)
-            -- print("Index: ",i,"Vector: ",newLimbVector)
-        end
-        -- constructs the new vectable
-        -- Gotta make it negative though to counteract
-        limbVectorTable[i] = -newLimbVector
-        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
+    if PositionScalar == self.PlaneScalar then
+        return true
+    else
+        return false
     end
-
-    -- Change the objects self vector table
-    self.LimbVectorTable = limbVectorTable
 
 end
 
---[[
-	Does the forward chain of the FABRIK Algorithm
-	Function should be called after the Backwards function in order to prevent the vector direction from changing
-	Assumes vector chain is from endpoint to startpoint
-	Returns parameters with new vector chain direction from Startpoint to EndPoint
-]]
-function FabrikSolver:Forwards(originCF, targetPos)
-
-    local limbVectorTable = self.LimbVectorTable
-    local limbLengthTable = self.LimbLengthTable
-    local limbConstraintTable = self.LimbConstraintTable
-
-    local vectorSumFromOrigin = Vector3.new()
-    for i = 1, #limbVectorTable, 1 do
-        -- initialize empty vector for summing
-        local vectorSum = Vector3.new(0, 0, 0)
-
-        -- Sums up the vectors in order to get the target position on the chain
-        -- target position is the next joint from origin to target
-        for v = i + 1, #limbVectorTable, 1 do
-            vectorSum = vectorSum + limbVectorTable[v]
-        end
-
-        local nextJointPosition = vectorSum + targetPos
-        local jointPosition = originCF.Position + vectorSumFromOrigin
-        -- Gets the new direction of the new vector along the chain
-        -- direction of the new vector is from origin to target
-        local pointTo = nextJointPosition - jointPosition
-        -- This time constraint the vector using the conical constraint function
-        local newLimbVector = pointTo.Unit * limbLengthTable[i]
-
-        -- Checks if there is a limb constraint for the current limb in the iteration
-        --Also if even the table exist in the first place to avoid indexing nil value
-        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
-            local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength)
-
-        end
-        -- constructs the new vectable
-        limbVectorTable[i] = newLimbVector
-        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
-    end
-
-    -- Change the objects self vector table
-    self.LimbVectorTable = limbVectorTable
-end
-
-return FabrikSolver
-]]></ProtectedString>
+return MathPlane]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-			</Item>
-			<Item class="Folder" referent="RBX8d406cc5c3fa42968b42290b830b0610">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<string name="Name">OldUnusedCode</string>
-					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-				<Item class="ModuleScript" referent="RBX5a541e1e5b914b0b862beb27e5a8093c">
+				<Item class="ModuleScript" referent="RBXa36c61069fcb47d09f742e5cf99dd998">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">OldFabrik</string>
-						<string name="ScriptGuid">{82ee5397-dcd0-4fef-a094-3c3dadf8fd27}</string>
-						<ProtectedString name="Source"><![CDATA[--Storing the old Fabrik code here
+						<string name="Name">ObjectTemplate</string>
+						<string name="ScriptGuid"></string>
+						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
+local Package = script:FindFirstAncestorOfClass("Folder")
+local Object = require(Package.BaseRedirect)
 
---refer to diagram in tablet for information on which points are which
---this backwards function works but the v2 direction is in the opposite direction
---basically this function is deprecated
-local function backwards(originCF, targetPos, v1, v2, v3)
-	local pointThree = originCF.p + v1 + v2
+local NAME = Object.new("NAME")
+--local NAME = Object.newExtends("NAME",?)
 
-	--Construct the v3 into the new form closer to the goal
-	--vecNew is temporary storage for the new direction vector
-	--direction is targetPos to pointthree
-	local vecNew = pointThree - targetPos
-
-	local v3New = vecNew.Unit * v3.Magnitude
-
-	--reconstruct chain from targetPos
-	local vecFromPos = targetPos + v3New
-
-	local pointTwo = originCF.p + v1
-
-	--Construct the v2 with new direction
-	--direction of v2 is in the opposite direction use the new method
-	vecNew = vecFromPos - pointTwo
-
-	local v2New = vecNew.Unit * v2.Magnitude
-
-	--Rereconstruct the chain
-	local vecTwoFromPos = vecFromPos + v2New
-
-	vecNew = originCF.p - vecTwoFromPos
-
-	local v1New = vecNew.Unit * v1.Magnitude
-
-	return originCF, targetPos, v1New, v2New, v3New
-	--new  vector chain goes from goal towards the start position
+function NAME.new()
+	local obj = NAME:make()
+	--local obj = NAME:super()
+	
+	return obj
 end
 
---Function assumes backwards has been done
---Also assumes vector chain starts from target Pos towards the hip joint
-local function forwards(originCF, targetPos, v1, v2, v3)
-	local pointTwo = targetPos + v3 + v2
+return NAME]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX4a9a4df058504823884cdfc4cea485f7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">RotatedRegion3</string>
+						<string name="ScriptGuid"></string>
+						<ProtectedString name="Source"><![CDATA[--[[
 
-	local vecNew = pointTwo - originCF.p
+This is a Rotated Region3 Class that behaves much the same as the standard Region3 class expect that it allows
+for both rotated regions and also a varying array of shapes.	
 
-	--obtain new v1 pointing from start to goal in the chain
-	local v1New = vecNew.Unit * v1.Magnitude
+API:
 
-	--Build chain from start
-	local vecFromOrigin = originCF.p + v1New
+Constructors:
+	RotatedRegion3.new(CFrame cframe, Vector3 size)
+		> Creates a region from a cframe which acts as the center of the region and size which extends to 
+		> the corners like a block part.
+	RotatedRegion3.Block(CFrame cframe, Vector3 size)
+		> This is the exact same as the region.new constructor, but has a different name.
+	RotatedRegion3.Wedge(CFrame cframe, Vector3 size)
+		> Creates a region from a cframe which acts as the center of the region and size which extends to 
+		> the corners like a wedge part.
+	RotatedRegion3.CornerWedge(CFrame cframe, Vector3 size)
+		> Creates a region from a cframe which acts as the center of the region and size which extends to 
+		> the corners like a cornerWedge part.
+	RotatedRegion3.Cylinder(CFrame cframe, Vector3 size)
+		> Creates a region from a cframe which acts as the center of the region and size which extends to 
+		> the corners like a cylinder part.
+	RotatedRegion3.Ball(CFrame cframe, Vector3 size)
+		> Creates a region from a cframe which acts as the center of the region and size which extends to 
+		> the corners like a ball part.
+	RotatedRegion3.FromPart(part)
+		> Creates a region from a part in the game. It can be used on any base part, but the region 
+		> will treat unknown shapes (meshes, unions, etc) as block shapes.
 
-	local pointTwo = targetPos + v3
+Methods:
+	RotatedRegion3:CastPoint(Vector3 point)
+		> returns true or false if the point is within the RotatedRegion3 object
+	RotatedRegion3:CastPart(BasePart part)
+		> returns true or false if the part is withing the RotatedRegion3 object
+	RotatedRegion3:FindPartsInRegion3(Instance ignore, Integer maxParts)
+		> returns array of parts in the RotatedRegion3 object
+		> will return a maximum number of parts in array [maxParts] the default is 20
+		> parts that either are descendants of or actually are the [ignore] instance will be ignored
+	RotatedRegion3:FindPartsInRegion3WithIgnoreList(Instance Array ignore, Integer maxParts)
+		> returns array of parts in the RotatedRegion3 object
+		> will return a maximum number of parts in array [maxParts] the default is 20
+		> parts that either are descendants of the [ignore array] or actually are the [ignore array] instances will be ignored
+	RotatedRegion3:FindPartsInRegion3WithWhiteList(Instance Array whiteList, Integer maxParts)
+		> returns array of parts in the RotatedRegion3 object
+		> will return a maximum number of parts in array [maxParts] the default is 20
+		> parts that either are descendants of the [whiteList array] or actually are the [whiteList array] instances are all that will be checked
+	RotatedRegion3:Cast(Instance or Instance Array ignore, Integer maxParts)
+		> Same as the `:FindPartsInRegion3WithIgnoreList` method, but will check if the ignore argument is an array or single instance
 
-	vecNew = pointTwo - vecFromOrigin
+Properties:
+	RotatedRegion3.CFrame
+		> cframe that represents the center of the region
+	RotatedRegion3.Size
+		> vector3 that represents the size of the region
+	RotatedRegion3.Shape
+		> string that represents the shape type of the RotatedRegion3 object
+	RotatedRegion3.Set
+		> array of vector3 that are passed to the support function
+	RotatedRegion3.Support
+		> function that is used for support in the GJK algorithm
+	RotatedRegion3.Centroid
+		> vector3 that represents the center of the set, again used for the GJK algorithm
+	RotatedRegion3.AlignedRegion3
+		> standard region3 that represents the world bounding box of the RotatedRegion3 object
 
-	local v2New = vecNew.Unit * v2.Magnitude
+Note: I haven't actually done anything to enforce this, but you should treat all these properties as read only
 
-	--Build up on the chain
-	local vecTwoFromOrigin = vecFromOrigin + v2New
+Enjoy!
+- EgoMoose
 
-	vecNew = targetPos - vecTwoFromOrigin
+--]]
 
-	local v3New = vecNew.Unit * v3.Magnitude
+--
 
-	return originCF, targetPos, v1New, v2New, v3New
+local GJK = require(script.Parent.RotatedRegion3Children:WaitForChild("GJK"))
+local Supports = require(script.Parent.RotatedRegion3Children:WaitForChild("Supports"))
+local Vertices = require(script.Parent.RotatedRegion3Children:WaitForChild("Vertices"))
+
+-- Class
+
+local RotatedRegion3 = {}
+RotatedRegion3.__index = RotatedRegion3
+
+-- Private functions
+
+local function getCorners(cf, s2)
+	return {
+		cf:PointToWorldSpace(Vector3.new(-s2.x, s2.y, s2.z));
+		cf:PointToWorldSpace(Vector3.new(-s2.x, -s2.y, s2.z));
+		cf:PointToWorldSpace(Vector3.new(-s2.x, -s2.y, -s2.z));
+		cf:PointToWorldSpace(Vector3.new(s2.x, -s2.y, -s2.z));
+		cf:PointToWorldSpace(Vector3.new(s2.x, s2.y, -s2.z));
+		cf:PointToWorldSpace(Vector3.new(s2.x, s2.y, s2.z));
+		cf:PointToWorldSpace(Vector3.new(s2.x, -s2.y, s2.z));
+		cf:PointToWorldSpace(Vector3.new(-s2.x, s2.y, -s2.z));
+	}
 end
 
---Intended to function after the forwards chain
---refer to the doodle to explain
-local function constraintForwards(originCF, targetPos, v1, v2, v3)
-	--Elipse constraint for the v2 limb
-	local heightV2 = 1
-	local widthV2 = 1
+local function worldBoundingBox(set)
+	local x, y, z = {}, {}, {}
+	for i = 1, #set do x[i], y[i], z[i] = set[i].x, set[i].y, set[i].z end
+	local min = Vector3.new(math.min(unpack(x)), math.min(unpack(y)), math.min(unpack(z)))
+	local max = Vector3.new(math.max(unpack(x)), math.max(unpack(y)), math.max(unpack(z)))
+	return min, max
+end
 
-	--Obtain the new vectors if unchanged by the constraints
-	local v1New = v1
-	local v2New = v2
-	local v3New = v3
+-- Public Constructors
 
-	--look vector = along the vector limb v1 y axis
-	--Up vector = x axis
-	--right vector = z axis
-	local refCF = CFrame.new(Vector3.new(), v1)
-	local limbAxis = -refCF.LookVector
+function RotatedRegion3.new(cframe, size)
+	local self = setmetatable({}, RotatedRegion3)
+	
+	self.CFrame = cframe
+	self.Size = size
+	self.Shape = "Block"
+	
+	self.Set = Vertices.Block(cframe, size/2)
+	self.Support = Supports.PointCloud
+	self.Centroid = cframe.p
+	
+	self.AlignedRegion3 = Region3.new(worldBoundingBox(self.Set))
 
-	--cone center
-	local xAxisRef = -refCF.UpVector
+	return self
+end
 
-	--the projection point
-	local projection = xAxisRef.Unit:Dot(v2) * (1 / xAxisRef.Magnitude) * xAxisRef.Unit
+RotatedRegion3.Block = RotatedRegion3.new
 
-	--get the projection point to the v2 limb
-	local translate = v2 - projection
+function RotatedRegion3.Wedge(cframe, size)
+	local self = setmetatable({}, RotatedRegion3)
 
-	--Get the angle via cross product
-	local cross = limbAxis.Unit:Cross(translate.Unit)
-	local angleFromLook = math.asin(cross.Magnitude)
+	self.CFrame = cframe
+	self.Size = size
+	self.Shape = "Wedge"
+	
+	self.Set = Vertices.Wedge(cframe, size/2)
+	self.Support = Supports.PointCloud
+	self.Centroid = Vertices.GetCentroid(self.Set)
+	
+	self.AlignedRegion3 = Region3.new(worldBoundingBox(self.Set))
 
-	--now place it in a 2d plane
-	--xyz is now 2d plane
-	local xPoint = translate.Magnitude * math.sin(angleFromLook)
-	local yPoint = translate.Magnitude * math.cos(angleFromLook)
+	return self
+end
 
-	local angleToXAxis = math.atan(yPoint / xPoint)
+function RotatedRegion3.CornerWedge(cframe, size)
+	local self = setmetatable({}, RotatedRegion3)
 
-	--Now its time to constraint the xy points if outside the ellipse constraint
-	local ellipseEquation = (xPoint ^ 2) / (0.5 * widthV2) + (yPoint ^ 2) / (0.5 * heightV2)
-	--if the point is outside the ellipse then fix does the constraint fix
-	if ellipseEquation > 1 then
-		--change the point from outside the ellipse to inside the ellipse
-		xPoint = (0.5 * widthV2) * math.cos(angleToXAxis)
-		yPoint = (0.5 * heightV2) * math.sin(angleToXAxis)
+	self.CFrame = cframe
+	self.Size = size
+	self.Shape = "CornerWedge"
+	
+	self.Set = Vertices.CornerWedge(cframe, size/2)
+	self.Support = Supports.PointCloud
+	self.Centroid = Vertices.GetCentroid(self.Set)
+	
+	self.AlignedRegion3 = Region3.new(worldBoundingBox(self.Set))
 
-		--Now we conver it back to a 3d vector
-		local newMagnitude = math.sqrt(xPoint ^ 2 + yPoint ^ 2)
-		--Gets the new direction of the v2 limb
-		local translateNew = translate.Unit * newMagnitude
-		local newDir = projection + translateNew
-		--Constructs the new v2 with the new direction
-		v2New = newDir.Unit * v2.Magnitude
+	return self
+end
+
+function RotatedRegion3.Cylinder(cframe, size)
+	local self = setmetatable({}, RotatedRegion3)
+
+	self.CFrame = cframe
+	self.Size = size
+	self.Shape = "Cylinder"
+	
+	self.Set = {cframe, size/2}
+	self.Support = Supports.Cylinder
+	self.Centroid = cframe.p
+	
+	self.AlignedRegion3 = Region3.new(worldBoundingBox(getCorners(unpack(self.Set))))
+
+	return self
+end
+
+function RotatedRegion3.Ball(cframe, size)
+	local self = setmetatable({}, RotatedRegion3)
+
+	self.CFrame = cframe
+	self.Size = size
+	self.Shape = "Ball"
+	
+	self.Set = {cframe, size/2}
+	self.Support = Supports.Ellipsoid
+	self.Centroid = cframe.p
+	
+	self.AlignedRegion3 = Region3.new(worldBoundingBox(getCorners(unpack(self.Set))))
+
+	return self
+end
+
+function RotatedRegion3.FromPart(part)
+	return RotatedRegion3[Vertices.Classify(part)](part.CFrame, part.Size)
+end
+
+-- Public Constructors
+
+function RotatedRegion3:CastPoint(point)
+	local gjk = GJK.new(self.Set, {point}, self.Centroid, point, self.Support, Supports.PointCloud)
+	return gjk:IsColliding()
+end
+
+function RotatedRegion3:CastPart(part)
+	local r3 = RotatedRegion3.FromPart(part)
+	local gjk = GJK.new(self.Set, r3.Set, self.Centroid, r3.Centroid, self.Support, r3.Support)
+	return gjk:IsColliding()
+end
+
+function RotatedRegion3:FindPartsInRegion3(ignore, maxParts)
+	local found = {}
+	local parts = game.Workspace:FindPartsInRegion3(self.AlignedRegion3, ignore, maxParts)
+	for i = 1, #parts do
+		if (self:CastPart(parts[i])) then
+			table.insert(found, parts[i])
+		end
 	end
-
-	return originCF, targetPos, v1New, v2New, v3New
+	return found
 end
 
-local function fabrikAlgo(tolerance, originCF, targetPos, v1, v2, v3)
-	--get the magnitude of the leg parts
-	local v1Mag = v1.Magnitude
-	local v2Mag = v2.Magnitude
-	local v3Mag = v3.Magnitude
-	--Get total length of the arm
-	local maxLength = v1Mag + v2Mag + v3Mag
-	--Get the distance from hip Joint to the target position
-	local targetToJoint = targetPos - originCF.p
-	local targetLength = targetToJoint.Magnitude
+function RotatedRegion3:FindPartsInRegion3WithIgnoreList(ignore, maxParts)
+	ignore = ignore or {}
+	local found = {}
+	local parts = game.Workspace:FindPartsInRegion3WithIgnoreList(self.AlignedRegion3, ignore, maxParts)
+	for i = 1, #parts do
+		if (self:CastPart(parts[i])) then
+			table.insert(found, parts[i])
+		end
+	end
+	return found
+end
 
-	--perform 1 iteration of the fabrik chain
-	--1 backwards then 1 forwards and get the new vector representing the motor6d limbs
-	--iterate = forwards(backwards(originCF, targetPos, v1, v2,v3))
-	--local originCF,targetPos,v1New,v2New,v3New = constraintForwards(forwards(backwards(originCF, targetPos, v1, v2,v3)))
-	local originCF, targetPos, v1New, v2New, v3New = forwards(backwards(originCF, targetPos, v1, v2, v3))
-	--initialze measure feet to where it should be
-	local feetJoint = originCF.p + v1New + v2New + v3New
-	local feetToTarget = targetPos - feetJoint
+function RotatedRegion3:FindPartsInRegion3WithWhiteList(whiteList, maxParts)
+	whiteList = whiteList or {}
+	local found = {}
+	local parts = game.Workspace:FindPartsInRegion3WithWhiteList(self.AlignedRegion3, whiteList, maxParts)
+	for i = 1, #parts do
+		if (self:CastPart(parts[i])) then
+			table.insert(found, parts[i])
+		end
+	end
+	return found
+end
 
-	--Target point is too far away from the max length the leg can reach
-	if targetLength > maxLength then
-		v1New = targetToJoint.Unit * v1Mag
-		v2New = targetToJoint.Unit * v2Mag
-		v3New = targetToJoint.Unit * v3Mag
+function RotatedRegion3:Cast(ignore, maxParts)
+	ignore = type(ignore) == "table" and ignore or {ignore}
+	return self:FindPartsInRegion3WithIgnoreList(ignore, maxParts)
+end
 
-		return v1New, v2New, v3New
-	else
-		--target point is "reachable"
-		--if Distance is more than tolerance than iterate again
-		if feetToTarget.Magnitude > tolerance then
-			--originCF,targetPos,v1New,v2New,v3New = constraintForwards(forwards(backwards(originCF, targetPos, v1New,v2New,v3New)))
-			originCF, targetPos, v1New, v2New, v3New = forwards(backwards(originCF, targetPos, v1New, v2New, v3New))
-			feetJoint = originCF.p + v1New + v2New + v3New
-			feetToTarget = targetPos - feetJoint
-			return v1New, v2New, v3New
+--
+
+return RotatedRegion3]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+				<Item class="Folder" referent="RBX8b013b2272e44ac1a1caa87a4d24315a">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">RotatedRegion3Children</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+					<Item class="ModuleScript" referent="RBX41fbfa9e06574c2595bd7376fb07d48f">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">GJK</string>
+							<string name="ScriptGuid"></string>
+							<ProtectedString name="Source"><![CDATA[local MAX_TRIES = 20
+local ZERO3 = Vector3.new(0, 0, 0)
+
+-- Class
+
+local GJK = {}
+GJK.__index = GJK
+
+-- Private Functions
+
+local function tripleProduct(a, b, c)
+	return b * c:Dot(a) - a * c:Dot(b)
+end
+
+local function containsOrigin(self, simplex, direction)
+	local a = simplex[#simplex]
+	local ao = -a
+
+	if (#simplex == 4) then
+		local b, c, d = simplex[3], simplex[2], simplex[1]
+		local ab, ac, ad = b - a, c - a, d - a
+		local abc, acd, adb = ab:Cross(ac), ac:Cross(ad), ad:Cross(ab)
+		
+		abc = abc:Dot(ad) > 0 and -abc or abc
+		acd = acd:Dot(ab) > 0 and -acd or acd
+		adb = adb:Dot(ac) > 0 and -adb or adb
+		
+		if (abc:Dot(ao) > 0) then
+			table.remove(simplex, 1)
+			direction = abc
+		elseif (acd:Dot(ao) > 0) then
+			table.remove(simplex, 2)
+			direction = acd
+		elseif (adb:Dot(ao) > 0) then
+			table.remove(simplex, 3)
+			direction = adb
 		else
-			--This was the problem no return statement lol
-			--so it returned nil if the feet was within tolerance
-			return v1New, v2New, v3New
+			return true
 		end
-	end
-end
-
-return fabrikAlgo
-
---Old code for the FABRIK that is more robust
---The targetLength > maxLength was unnecessary and would fully extend the limb
---but save for later
-
---[[
-	--Target point is too far away from the max length the leg can reach then fully extend
-	--Buuut usually if you make all the vectors face forward then 
-	if targetLength > maxLength then
-		for i = 1, #limbVectorTable, 1 do
-			--limbVectorTable[i] = targetToJoint.Unit*limbLengthTable[i]
-			_,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+	elseif (#simplex == 3) then
+		local b, c = simplex[2], simplex[1]
+		local ab, ac = b - a, c - a
+		
+		local abc = ab:Cross(ac)
+		local abPerp = tripleProduct(ac, ab, ab).Unit
+		local acPerp = tripleProduct(ab, ac, ac).Unit
+		
+		if (abPerp:Dot(ao) > 0) then
+			table.remove(simplex, 1)
+			direction = abPerp
+		elseif (acPerp:Dot(ao) > 0) then
+			table.remove(simplex, 2)
+			direction = acPerp
+		else
+			local isV3 = ((a - a) == ZERO3)
+			if (not isV3) then
+				return true
+			else
+				direction = abc:Dot(ao) > 0 and abc or -abc
+			end
 		end
-
-		return limbVectorTable
 	else
-		--target point is "reachable"
-		--if Distance is more than tolerance then iterate to move the new vectors closer
-		--If not then don't execute the iteration to save FPS
-		if distanceTolerate >= tolerance then
-		 _,_, limbVectorTable,_ = Forwards(Backwards(originCF, targetPos, limbVectorTable,limbLengthTable))
+		local b = simplex[1]
+		local ab = b - a
+		local bcPerp = tripleProduct(ab, ao, ab).Unit
+		direction = bcPerp
+	end
+	
+	return false, direction
+end
+
+-- Public Constructors
+
+function GJK.new(SetA, SetB, CentroidA, CentroidB, SupportA, SupportB)
+	local self = setmetatable({}, GJK)
+	
+	self.SetA = SetA
+	self.SetB = SetB
+	self.CentroidA = CentroidA
+	self.CentroidB = CentroidB
+	self.SupportA = SupportA
+	self.SupportB = SupportB
+
+	return self
+end
+
+-- Public Methods
+
+function GJK:IsColliding()
+	local direction = (self.CentroidA - self.CentroidB).Unit
+	local simplex = {self.SupportA(self.SetA, direction) - self.SupportB(self.SetB, -direction)}
+	
+	direction = -direction
+	
+	for i = 1, MAX_TRIES do
+		table.insert(simplex, self.SupportA(self.SetA, direction) - self.SupportB(self.SetB, -direction))
+		
+		if (simplex[#simplex]:Dot(direction) <= 0) then
+			return false
+		else
+			local passed, newDirection = containsOrigin(self, simplex, direction)
+			
+			if (passed) then
+				return true
+			end
+			
+			direction = newDirection
 		end
-		 return limbVectorTable
 	end
-	]]
-
-	--Perform
-		--Get the distance from hip Joint to the target position
-		--local targetToJoint = targetPos - originCF.Position
-	--	local targetLength = targetToJoint.Magnitude
-	]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXf7b1a78376f3478aaf3a70702872d761">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">fabriktest</string>
-						<string name="ScriptGuid">{3f1e6957-e6fe-4778-8c53-f2519e23e3e7}</string>
-						<ProtectedString name="Source"><![CDATA[local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local fabrik = ReplicatedStorage.Source.IKAnimation:WaitForChild("Fabrik")
-local fabrikAlgo = require(fabrik)
-
---Module script for testing the conical constraint
-local function test()
-
+	
+	return false
 end
 
-return test
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXacde569b29204c6997023937a35fa428">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">readCFrame</string>
-						<string name="ScriptGuid">{e4feed98-6b35-43f2-8ba3-33e26d444ca1}</string>
-						<ProtectedString name="Source"><![CDATA[local function readCFrame(data) 
-	if typeof(data)=="CFrame" then
-		print("Position: ",data.p)
-		print("UpVector: ",data.UpVector)
-		print("RightVector: ",data.RightVector)
-		print("LookVector: ",data.LookVector)
+--
+
+return GJK]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX9adf0abac3a643d3ad1448ceccf0a071">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Supports</string>
+							<string name="ScriptGuid"></string>
+							<ProtectedString name="Source"><![CDATA[local ZERO = Vector3.new(0, 0, 0)
+local RIGHT = Vector3.new(1, 0, 0)
+
+--
+
+local function rayPlane(p, v, s, n)
+	local r = p - s;
+	local t = -r:Dot(n) / v:Dot(n)
+	return p + t * v, t
+end;
+
+--
+
+local Supports = {}
+
+function Supports.PointCloud(set, direction)
+	local max, maxDot = set[1], set[1]:Dot(direction)
+	for i = 2, #set do
+		local dot = set[i]:Dot(direction)
+		if (dot > maxDot) then
+			max = set[i]
+			maxDot = dot
+		end
 	end
-end]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="Script" referent="RBX0f735a8bef28461f8279edd41e2784f0">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<bool name="Disabled">false</bool>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">MechIKServer</string>
-						<string name="ScriptGuid">{35d09962-aade-46fd-bef8-a02b0566219f}</string>
-						<ProtectedString name="Source"><![CDATA[-- Code for testing purposes
--- Roblox Services
-local workspace = game:GetService("Workspace")
-local RunService = game:GetService("RunService")
-local storage = game:GetService("ReplicatedStorage")
-
--- Random Parts to debug position of where joints should be according to the algorithm
-local part1 = game.Workspace.test1
-local part2 = game.Workspace.test2
-local part3 = game.Workspace.test3
-local part4 = game.Workspace.test4
-local vecTest = game.Workspace.VecTest
-
--- IK Module
-local fabrik = storage.Source.IKAnimation:WaitForChild("Fabrik")
-local FabrikAlgo = require(fabrik)
-
--- Pointers
-local lowerBody = workspace.LowerBody
-
--- Motor6d's in left leg
-local lHipToLegMotor = lowerBody.Hip.LUpperLeg
-local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
-local lJKneeToLowMotor = lowerBody.LeftLeg.LKnee.LLowerLeg
-local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
-
--- C0 is the motor 6d position
--- C1 is the part its connected to center
--- store the original c0 position
-local hipToLegStore = lHipToLegMotor.C0
-local kneeToUpperLegStore = lUpToKneeMotor.C0
-local kneeToLowerLegStore = lJKneeToLowMotor.C0
--- local feetStore = lLowToFeetMotor.C0
-
--- Debugging difference between c0 and c1 for motor6d joint instance
--- c0 is center of hip to the selectable joint
--- print(lHipToLegMotor.C0.p)
--- c1 is center of the part c0 is attached to(upperleg) towards the c0 position(hip)
--- print(lHipToLegMotor.C1.p)
-
--- find length of the joints
-local function lenOneToTwo(partOne, partTwo)
-    -- Check if its a motor6d
-    if partOne:IsA("Motor6D") and partTwo:IsA("Motor6D") then
-        local vecOne = partOne.C1.p
-        local vecTwo = partTwo.C0.p
-        local combinedVector = vecTwo - vecOne
-        return combinedVector
-    end
-    return "Error: motor 6ds are not inserted in the function"
-end
--- Obtain the vectors of the IK limbs
-local vecOne = lenOneToTwo(lHipToLegMotor, lUpToKneeMotor)
-local vecTwo = lenOneToTwo(lUpToKneeMotor, lJKneeToLowMotor)
-local vecThree = lenOneToTwo(lJKneeToLowMotor, lLowToFeetMotor)
--- testing--it works better
-local v1New = vecOne
-local v2New = vecTwo
-local v3New = vecThree
--- Construct the new limb vector table
-local limbVectorTable = {v1New, v2New, v3New}
--- empty
-local limbLengthTable = {}
-for i = 1, #limbVectorTable, 1 do
-    table.insert(limbLengthTable, i, limbVectorTable[i].Magnitude)
+	return max
 end
 
---local upperLegToKneeStore = lUpToKneeMotor.C0
-
-RunService.Heartbeat:Connect(function()
-
-    -- Original position and orientation of the hip in the world space
-    -- Position of the hip changes so gotta put it in the heartbeat
-    local hipCFrame = lowerBody.Hip.CFrame
-    local upLegCFrame = lowerBody.LeftLeg.LUpperLeg.CFrame
-    local kneeCFrame = lowerBody.LeftLeg.LKnee.CFrame
-
-    --Gets the CFrame of the joint at world space
-    local hipJointCFrame = lowerBody.Hip.CFrame * hipToLegStore
-   
-    -- the goal position
-    local goalPosition = workspace.LTarget.Position
-
-    -- goal Pos to Hip joint
-    local newUpVector = hipJointCFrame.p - goalPosition
-
-    -- Original limb vector positons relative to their part0 CFrames
-    local vectorOneRelativeToHip = hipCFrame:VectorToWorldSpace(vecOne)
-    local vecTwoRel = upLegCFrame:VectorToWorldSpace(vecTwo)
-    --Position of the original position
-    part4.Position = hipJointCFrame.p+vectorOneRelativeToHip
-
-    local refCF = CFrame.new(Vector3.new(), vectorOneRelativeToHip)
-
-    -- Construct the upper leg constraint
-    -- Reference to hipjointcf
-    local yAxis = hipJointCFrame.UpVector
-    local centerAxis = -hipJointCFrame.RightVector
-
-    -- Reference to original vector position
-    -- local yAxis = refCF.UpVector
-    -- local centerAxis = refCF.LookVector
-    -- widthangle,heightangle
-    local angles = {80, 80}
-    local upperLegConstraint = {yAxis, centerAxis, angles}
-
-    local rotateCF = CFrame.fromAxisAngle(-hipCFrame.RightVector, math.rad(80))
-    refCF = CFrame.new(Vector3.new(), vecTwoRel) * rotateCF
-    yAxis = refCF.UpVector
-    centerAxis = refCF.LookVector
-    -- widthangle,heightangle
-    angles = {25, 80}
-    local kneeConstraint = {yAxis, centerAxis, angles}
-
-    -- Tabulate all the constraints
-    local limbConstraintTable = {upperLegConstraint, kneeConstraint}
-
-    limbVectorTable = FabrikAlgo(0.1, hipJointCFrame, goalPosition,
-                                 limbVectorTable, limbLengthTable)
-    v1New = limbVectorTable[1]
-    v2New = limbVectorTable[2]
-    v3New = limbVectorTable[3]
-
-    -- Debugging the fabrik system using test parts
-
-    part1.Position = hipJointCFrame.p + v1New
-    part2.Position = hipJointCFrame.p + v1New + v2New
-    part3.Position = hipJointCFrame.p + v1New + v2New + v3New
-
-    -- obtains a vector always at knee at original position
-    --Its the same as the one obove using vector to world space
-   local vectorToCFrame = CFrame.new(Vector3.new(),vecOne)
-   local rotationOffset = (hipCFrame-hipCFrame.p)
-   local lookRelativeToHip = rotationOffset*vectorToCFrame
-   local vectorOneRelativeToHip = lookRelativeToHip.LookVector*limbLengthTable[1]
-   vecTest.Position = hipJointCFrame.p + vectorOneRelativeToHip
-
-
-    -- Obtain angle between new hip-upperleg vector and its original position
-    local rotateUpperLegAngle = math.acos(vectorOneRelativeToHip.Unit:Dot(v1New.Unit))
-    local rotationAxisUpperLeg = vectorOneRelativeToHip:Cross(v1New) -- obtain the rotation axis
-
-    -- repeat for the knee joint
-    local vecTwoRel = upLegCFrame:VectorToWorldSpace(vecTwo)
-    -- something wrong when the angle goes more than 90 degrees
-    local rotateKneeAngle = math.acos(vecTwoRel.Unit:Dot(v2New.Unit))
-    local rotationAxisKnee = vecTwoRel:Cross(v2New) -- obtain the rotation axis
-
-    -- repeat for the lower Leg 
-    -- CFrame relativity broke fix:
-    -- kneeCFrame
-    -- lUpToKneeMotor.C0
-    local vecThreeRel = kneeCFrame:VectorToWorldSpace(vecThree)
-    local rotateLowerLegAngle = math.acos( vecThreeRel:Dot(v3New) / (vecThreeRel.Magnitude * v3New.Magnitude))
-    local rotationAxisLowerLeg = vecThreeRel:Cross(v3New) -- obtain the rotation axis
-
-    local empty = Vector3.new()
-
-    local upperLegRightVector = v1New:Cross(lowerBody.Hip.CFrame.LookVector)
-
-    --Change the upper leg position through the hip motor
-    local upperLegPos = hipJointCFrame.p
-    local undoPreviousLimbCF = hipCFrame:Inverse()*CFrame.new(upperLegPos)
-    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)*CFrame.fromMatrix(empty,hipCFrame.RightVector,hipCFrame.UpVector)
-    lHipToLegMotor.C0 = undoPreviousLimbCF*rotateLimbCF
-
-    --*CFrame.fromAxisAngle(rotationAxisUpperLeg,rotateUpperLegAngle)
-
-    --Change the knee through the upperleg motor
-    local kneePos = hipJointCFrame.p + v1New    
-    local undoPreviousLimbCF = upLegCFrame:Inverse()*CFrame.new(kneePos)
-    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisKnee,rotateKneeAngle)*CFrame.fromMatrix(empty,upLegCFrame.RightVector,upLegCFrame.UpVector)
-    lUpToKneeMotor.C0 = undoPreviousLimbCF*rotateLimbCF
-
-    --Change the lowerleg through the knee motor
-    local lowerLegPos = hipJointCFrame.p + v1New + v2New
-    local lowerLegRightVector = -Vector3.new(0, 1, 0):Cross(v3New)
-    local newLowLegCF = kneeCFrame:Inverse() *
-                            CFrame.fromMatrix(lowerLegPos, lowerLegRightVector,
-                                              -v3New)
-    local undoPreviousLimbCF = kneeCFrame:Inverse()*CFrame.new(lowerLegPos)
-    local rotateLimbCF =CFrame.fromAxisAngle(rotationAxisLowerLeg,rotateLowerLegAngle)*CFrame.fromMatrix(empty,kneeCFrame.RightVector,kneeCFrame.UpVector)
-                                          --*CFrame.new(empty,kneeCFrame.LookVector)
-     lJKneeToLowMotor.C0 = undoPreviousLimbCF*rotateLimbCF
-   -- lJKneeToLowMotor.C0 = newLowLegCF
-end)
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXd4d9ac5bddc641b3b24c5b32c2a261b5">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">randomstuff</string>
-						<string name="ScriptGuid">{99b8141f-4154-4c35-b525-cfc139b77925}</string>
-						<ProtectedString name="Source"><![CDATA[          
-          --Old constraint forwards code
-
-          -- The axis of constraint is relative to the initial joint placement
-            local yAxis = limbConstraintTable[i][1]
-            local centerAxis = limbConstraintTable[i][2]
-            local angles = limbConstraintTable[i][3]
-            pointTo = ConicalConstraint(pointTo, limbLengthTable[i], yAxis,
-                                        centerAxis, angles)
-
-
---Old Conical constraint, I imported into an object with the same functionality
-
---[[
-	Given a vector of where the limb should be this function constraints it within a spherical cone
-	Returns a new limb vector in the constrained position
-	Constraint Settings are (width, height)
-	--notes can get laggy with high activity 3%-10% find ways to optimize later
-]]
-local function ConicalConstraint(limbVector, limbVectorLength, yAxis,
-  centerAxis, constraintSettings)
--- ellipse width and height of the constraint
-local heightCenterAngle = math.rad(constraintSettings[2])
-local widthCenterAngle = math.rad(constraintSettings[1])
-
--- Convert Angles into height and width
--- Height and width are in terms of radius height from origin
-local height = limbVectorLength * math.sin(heightCenterAngle)
-local width = limbVectorLength * math.sin(widthCenterAngle)
-
--- Perform vector resolution on limbvector
--- Represents the center of the 2d plane that will be constructed
--- Also gets the projection scalar which needs to be clamped or else the conicalConstraint fails
-local projScalar = limbVector:Dot(centerAxis) * (1 / centerAxis.Magnitude)
-
-local isOppositeDirection = false
-if projScalar < 0 then
-isOppositeDirection = true
+function Supports.Cylinder(set, direction)
+	local cf, size2 = unpack(set)
+	direction = cf:VectorToObjectSpace(direction)
+	local radius = math.min(size2.y, size2.z)
+	local dotT, cPoint = direction:Dot(RIGHT), Vector3.new(size2.x, 0, 0)
+	local h, t, final
+	
+	if (dotT == 0) then
+		final = direction.Unit * radius
+	else
+		cPoint = dotT > 0 and cPoint or -cPoint
+		h, t = rayPlane(ZERO, direction, cPoint, RIGHT)
+		final = cPoint + (h - cPoint).Unit * radius
+	end
+	
+	return cf:PointToWorldSpace(final)
 end
 
-projScalar = math.abs(projScalar)
-
-local minScalar = limbVectorLength * math.cos(widthCenterAngle)
-projScalar = math.clamp(projScalar, minScalar, limbVectorLength)
-
--- Always make projection scalar positive so that the projCenter faces the center Axis
-local projCenter = projScalar * centerAxis.Unit
-
--- position the current limbvector within the 2d plane as another vector
-local posVector = limbVector - projCenter
-
--- translate into 2d plane
--- create the xAxis from the yAxis use the left hand rule
-local xAxis = (-yAxis:Cross(centerAxis)).Unit
-
--- Construct the oval
--- Get the X and Y Coordinates
-local yPoint = yAxis:Dot(posVector) / (yAxis.Magnitude)
-local xPoint = xAxis:Dot(posVector) / (xAxis.Magnitude)
-
--- Construct the oval constrain formula
-local ovalFormula = (xPoint ^ 2) / (width ^ 2) + (yPoint ^ 2) / (height ^ 2)
-
--- check if the limbvector point is outside the formula constraint
--- Also checks for directionality if its in the isOppositeDirection then constraint
-if ovalFormula >= 1 or isOppositeDirection then
--- Obtain the angle from the xaxis
-local angleToXAxis = math.atan(yPoint, xPoint)
-
--- Place it on the edge of the oval within the contraints placed
-local newXPoint = width * math.cos(angleToXAxis)
-local newYPoint = height * math.sin(angleToXAxis)
-
--- now reconstruct the limbVector
--- Now we convert it back to a 3d vector
-local newMagnitude = math.sqrt(newXPoint ^ 2 + newYPoint ^ 2)
-
--- Gets the new direction of the v2 limb
-local newPosVector = posVector.Unit * newMagnitude
-
-local newDir = projCenter + newPosVector
--- Constructs the new limbvector in a different direction but same length
-limbVector = newDir.Unit * limbVector.Magnitude
+function Supports.Ellipsoid(set, direction)
+	local cf, size2 = unpack(set)
+	return cf:PointToWorldSpace(size2 * (size2 * cf:VectorToObjectSpace(direction)).Unit)
 end
 
-return limbVector
-end]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXfae77444d3ec4273be47c3db99f5d624">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">format</string>
-						<string name="ScriptGuid">{c6a52003-27f9-4bae-8461-57eb8b61f7d9}</string>
-						<ProtectedString name="Source"><![CDATA[
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
+return Supports]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX37c5f35e25094793a7116cdb9212adb9">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Vertices</string>
+							<string name="ScriptGuid"></string>
+							<ProtectedString name="Source"><![CDATA[-- CONSTANTS
+
+local PI2 = math.pi*2
+local PHI = (1 + math.sqrt(5)) / 2
+
+local RIGHT 	= Vector3.new(1, 0, 0)
+local UP 		= Vector3.new(0, 1, 0)
+local BACK 		= Vector3.new(0, 0, 1)
+local LEFT 		= Vector3.new(-1, 0, 0)
+local DOWN 		= Vector3.new(0, -1, 0)
+local FORWARD 	= Vector3.new(0, 0, -1)
+
+local CORNERS = {
+	Vector3.new(1, 1, 1);
+	Vector3.new(-1, 1, 1);
+	Vector3.new(-1, 1, -1);
+	Vector3.new(1, 1, -1);
+	Vector3.new(1, -1, 1);
+	Vector3.new(-1, -1, 1);
+	Vector3.new(-1, -1, -1);
+	Vector3.new(1, -1, -1);
+}
+
+-- VERTICE INDEX ARRAYS
+
+local BLOCK = {1, 2, 3, 4, 5, 6, 7, 8}
+local WEDGE = {1, 2, 5, 6, 7, 8}
+local CORNERWEDGE = {4, 5, 6, 7, 8}
+
+-- VERTICE FUNCTIONS
+
+local function fromIndexArray(array)
+	local output = {}
+	for i = 1, #array do
+		output[i] = CORNERS[array[i]]
+	end
+	return output
+end
+
+local function cylinder(n)
+	local output = {}
+	local arc = PI2 / n
+	for i = 1, n do
+		local vi = CFrame.fromAxisAngle(RIGHT, i*arc) * UP
+		output[i] = RIGHT + vi
+		output[n + i] = LEFT + vi
+	end
+	return output
+end
+
+local function icoSphere(n)
+	local verts = {
+		Vector3.new(-1,  PHI, 0),
+		Vector3.new(1,  PHI, 0),
+		Vector3.new(-1, -PHI, 0),
+		Vector3.new(1, -PHI, 0),
+		
+		Vector3.new(0, -1,  PHI),
+		Vector3.new(0,  1,  PHI),
+		Vector3.new(0, -1, -PHI),
+		Vector3.new(0,  1, -PHI),
+		
+		Vector3.new(PHI, 0, -1),
+		Vector3.new(PHI, 0,  1),
+		Vector3.new(-PHI, 0, -1),
+		Vector3.new(-PHI, 0,  1)
+	}
+	
+	local indices = {
+		1, 12, 6,
+		1, 6, 2,
+		1, 2, 8,
+		1, 8, 11,
+		1, 11, 12,
+		
+		2, 6, 10,
+		6, 12, 5,
+		12, 11, 3,
+		11, 8, 7,
+		8, 2, 9,
+		
+		4, 10, 5,
+		4, 5, 3,
+		4, 3, 7,
+		4, 7, 9,
+		4, 9, 10,
+		
+		5, 10, 6,
+		3, 5, 12,
+		7, 3, 11,
+		9, 7, 8,
+		10, 9, 2
+	}
+	
+	local splits = {}
+	
+	local function split(i, j)
+		local key = i < j and (i .. "," .. j) or (j .. "," .. i)
+		
+		if (not splits[key]) then
+			verts[#verts+1] = (verts[i] + verts[j]) / 2
+			splits[key] = #verts
+		end
+		
+		return splits[key]
+	end
+	
+	for _ = 1, n do
+		for  i = #indices, 1, -3 do
+			local v1, v2, v3 = indices[i - 2], indices[i - 1], indices[i]
+			local a = split(v1, v2)
+			local b = split(v2, v3)
+			local c = split(v3, v1)
+			
+			indices[#indices+1] = v1
+			indices[#indices+1] = a
+			indices[#indices+1] = c
+			
+			indices[#indices+1] = v2
+			indices[#indices+1] = b
+			indices[#indices+1] = a
+			
+			indices[#indices+1] = v3
+			indices[#indices+1] = c
+			indices[#indices+1] = b
+			
+			indices[#indices+1] = a
+			indices[#indices+1] = b
+			indices[#indices+1] = c
+			
+			table.remove(indices, i)
+			table.remove(indices, i - 1)
+			table.remove(indices, i - 2)
+		end
+	end
+	
+	-- normalize
+	for i = 1, #verts do
+		verts[i] = verts[i].Unit
+	end
+	
+	return verts
+end
+
+-- Useful functions
+
+local function vertShape(cf, size2, array)
+	local output = {}
+	for i = 1, #array do
+		output[i] = cf:PointToWorldSpace(array[i] * size2)
+	end
+	return output
+end
+
+local function getCentroidFromSet(set)
+	local sum = set[1]
+	for i = 2, #set do
+		sum = sum + set[2]
+	end
+	return sum / #set
+end
+
+local function classify(part)
+	if (part.ClassName == "Part") then
+		if (part.Shape == Enum.PartType.Block) then
+			return "Block"
+		elseif (part.Shape == Enum.PartType.Cylinder) then
+			return "Cylinder"
+		elseif (part.Shape == Enum.PartType.Ball) then
+			return "Ball"
+		end;
+	elseif (part.ClassName == "WedgePart") then
+		return "Wedge"
+	elseif (part.ClassName == "CornerWedgePart") then
+		return "CornerWedge"
+	elseif (part:IsA("BasePart")) then -- mesh, CSG, truss, etc... just use block
+		return "Block"
+	end
+end
+
+-- 
+
+local BLOCK_ARRAY = fromIndexArray(BLOCK)
+local WEDGE_ARRAY = fromIndexArray(WEDGE)
+local CORNERWEDGE_ARRAY = fromIndexArray(CORNERWEDGE)
+local CYLINDER_ARRAY = cylinder(20)
+local SPHERE_ARRAY = icoSphere(2)
+
+return {
+	Block = function(cf, size2) return vertShape(cf, size2, BLOCK_ARRAY) end;
+	Wedge = function(cf, size2) return vertShape(cf, size2, WEDGE_ARRAY) end;
+	CornerWedge = function(cf, size2) return vertShape(cf, size2, CORNERWEDGE_ARRAY) end;
+	Cylinder = function(cf, size2) return vertShape(cf, size2, CYLINDER_ARRAY) end;
+	Ball = function(cf, size2) return vertShape(cf, size2, SPHERE_ARRAY) end;
+	
+	GetCentroid = getCentroidFromSet;
+	Classify = classify;
+}]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+						</Properties>
+					</Item>
 				</Item>
 			</Item>
 		</Item>
