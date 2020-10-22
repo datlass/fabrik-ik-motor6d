@@ -219,8 +219,6 @@ function LimbChain:UpdateMotors()
         --Vector sum for the for loop to get the series of position of the next joint based on the algorithm
         local vectorSumFromFirstJoint = Vector3.new()
 
-        local iterateUntil = #self.LimbVectorTable
-
         --[[
             if there is a spine chain skip the first motor
             First motor will usually control the hip (taken by another chain)
@@ -269,64 +267,27 @@ function LimbChain:UpdateMotors()
         end
 
         --Iterates and start rotating the limbs starting from the first joint
-        for i = 1+skip, iterateUntil, 1 do
+        for i = 1+skip, #self.LimbVectorTable, 1 do
 
-            --Obtains the current limb that is being worked on
-            local originalVectorLimb = self.LimbVectorTable[i]
-            local currentVectorLimb = self.IteratedLimbVectorTable[i]
+            local goalCF = self.LimbFabrikSolver.LimbCFrameTable[i]
 
-            --Obtains the CFrame of the part0 limb of the motor6d
-            local previousLimbPart = self.Motor6DTable[i].Part0
-            if previousLimbPart then
-                local previousLimbCF = previousLimbPart.CFrame
+            local rotationOnly = goalCF-goalCF.Position
 
-                -- Obtains the CFrame rotation calculation for CFrame.fromAxis
-                local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
-                local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
-                local safetyClamp = math.clamp(dotProductAngle, -1, 1)
-                local limbRotationAngle = math.acos(safetyClamp)
-                local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+            local currentRotation = self.Motor6DTable[i].C0-self.Motor6DTable[i].C0.Position
 
-                --Checks if the axis exists if cross product returns zero somehow
-                if limbRotationAxis~=Vector3.new(0,0,0) then
+            --if the bool is true then use lerp
+            if self.LerpMotors then
                 
-                    --Gets the world space of the joint from the iterated limb vectors
-                    if i ~= 1 then
-                    vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[i-1]
-                    end
+                local newRotationCF = currentRotation:lerp(rotationOnly,self.LerpAlpha)
 
-                    --Gets the position of the current limb joint
-                    local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
-
-                    --Now adding a debug mode----------------------------------------------------------------
-                    --Puts the created parts according to the motor position
-                    if self.DebugMode then
-                        workspace["LimbVector:"..i].Position = motorPosition
-                    end
-                    ----------------------------------------------------------------
-                    --Obtain the CFrame operations needed to rotate the limb to the goal
-                    local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
-                    local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
-                    
-                    local goalCF = undoPreviousLimbCF*rotateLimbCF
-
-                    local rotationOnly = goalCF-goalCF.Position
-
-                    local currentRotation = self.Motor6DTable[i].C0-self.Motor6DTable[i].C0.Position
-
-                    --if the bool is true then use lerp
-                    if self.LerpMotors then
-                        
-                        local newRotationCF = currentRotation:lerp(rotationOnly,self.LerpAlpha)
-
-                        --Changes the current motor6d through c0 and lerp
-                        self.Motor6DTable[i].C0 = CFrame.new(self.Motor6DTable[i].C0.Position)*newRotationCF
-                    else
-                        self.Motor6DTable[i].C0 = CFrame.new(self.Motor6DTable[i].C0.Position)*rotationOnly
-                    end
-
-                end
+                --Changes the current motor6d through c0 and lerp
+                self.Motor6DTable[i].C0 = CFrame.new(self.Motor6DTable[i].C0.Position)*newRotationCF
+            else
+                self.Motor6DTable[i].C0 = CFrame.new(self.Motor6DTable[i].C0.Position)*rotationOnly
             end
+
+                
+            
         end
 
         --Special for the foot motor system which controls the last motor

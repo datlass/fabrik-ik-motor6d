@@ -15,7 +15,18 @@ function FabrikSolver.new(LimbVectorTable, IteratedLimbVectorTable, LimbLengthTa
     obj.LimbConstraintTable = nil
 
     obj.Motor6DTable = Motor6DTable
+    if Motor6DTable then
+        obj.FirstJointC0 = Motor6DTable[1].C0
 
+        local LimbCFrameTable = {}
+
+        for i, Motor6D in pairs(Motor6DTable) do
+            LimbCFrameTable[i] = Motor6D.Part0.CFrame
+        end 
+
+        obj.LimbCFrameTable = LimbCFrameTable
+    end
+    
     -- Initialize number for summing
     local MaxLength = 0
     -- adds all the magnitudes of the limb vector
@@ -32,6 +43,10 @@ end
     Executes one iteration of the Fabrik algo or not depending on the tolerance level
 ]]
 function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
+
+    if self.Motor6DTable then
+        self:RotateLimb()
+    end
 
     -- initialize measure feet to where it should be in the world position
     local vectorSum = Vector3.new(0, 0, 0)
@@ -71,8 +86,7 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
 
 end
 
-function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
-                                       InputtedMaxBreakCount)
+function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance, InputtedMaxBreakCount)
 
     -- initialize measure feet to where it should be in the world position
     local vectorSum = Vector3.new(0, 0, 0)
@@ -231,5 +245,68 @@ function FabrikSolver:Forwards(originCF, targetPos)
     -- Change the objects self vector table
     self.IteratedLimbVectorTable = IteratedLimbVectorTable
 end
+
+--Does the CFrame rotation similar to update motors
+--I plan to use this CFrame rotation to then obtain the new axis of the motors
+
+function FabrikSolver:RotateLimb()
+
+    -- Gets the CFrame of the Initial joint at world space
+    if self.Motor6DTable[1].Part0 then
+        local initialJointCFrame = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
+        
+        --Vector sum for the for loop to get the series of position of the next joint based on the algorithm
+        local vectorSumFromFirstJoint = Vector3.new()
+
+        --Iterates and start rotating the limbs starting from the first joint
+        for i = 1, #self.LimbVectorTable, 1 do
+
+            --Obtains the current limb that is being worked on
+            local originalVectorLimb = self.LimbVectorTable[i]
+            local currentVectorLimb = self.IteratedLimbVectorTable[i]
+
+            --Obtains the CFrame of the part0 limb of the motor6d
+            local previousLimbPart = self.Motor6DTable[i].Part0
+            if previousLimbPart then
+                local previousLimbCF = previousLimbPart.CFrame
+
+                -- Obtains the CFrame rotation calculation for CFrame.fromAxis
+                local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+                local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
+                local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+                local limbRotationAngle = math.acos(safetyClamp)
+                local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+
+                --Checks if the axis exists if cross product returns zero somehow
+                if limbRotationAxis~=Vector3.new(0,0,0) then
+                
+                    --Gets the world space of the joint from the iterated limb vectors
+                    if i ~= 1 then
+                    vectorSumFromFirstJoint = vectorSumFromFirstJoint + self.IteratedLimbVectorTable[i-1]
+                    end
+
+                    --Gets the position of the current limb joint
+                    local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
+
+                    --Now adding a debug mode----------------------------------------------------------------
+                    --Puts the created parts according to the motor position
+                    if self.DebugMode then
+                        workspace["LimbVector:"..i].Position = motorPosition
+                    end
+                    ----------------------------------------------------------------
+                    --Obtain the CFrame operations needed to rotate the limb to the goal
+                    local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
+                    local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
+                    
+                    local goalCF = undoPreviousLimbCF*rotateLimbCF
+
+                    self.LimbCFrameTable[i] = goalCF
+
+                end
+            end
+        end
+    end
+end
+
 
 return FabrikSolver
