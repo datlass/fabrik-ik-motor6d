@@ -171,8 +171,7 @@ function FabrikSolver:Backwards(originCF, targetPos)
             local limbLength = limbLengthTable[i]
             -- Start the constraint according to the method
             -- print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
-                                pointTowards, newLimbVector, limbLength)
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength)
             -- print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
@@ -225,6 +224,53 @@ function FabrikSolver:Forwards(originCF, targetPos)
             -- Start the constraint according to the method
 
             newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength)
+
+        end
+        -- constructs the new vectable
+        limbVectorTable[i] = newLimbVector
+        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
+    end
+
+    -- Change the objects self vector table
+    self.LimbVectorTable = limbVectorTable
+end
+
+
+--goes fowards from origin cf joint to current end joint
+--start point to end point
+function FabrikSolver:ConstraintLimbs(originCF, targetPos)
+
+    local limbVectorTable = self.LimbVectorTable
+    local limbLengthTable = self.LimbLengthTable
+    local limbConstraintTable = self.LimbConstraintTable
+
+    local vectorSumFromOrigin = Vector3.new()
+    for i = 1, #limbVectorTable-1, 1 do
+        -- initialize empty vector for summing
+        local vectorSum = Vector3.new(0, 0, 0)
+
+        -- Sums up the vectors in order to get the target position on the chain
+        -- target position is the next joint from origin to target
+        for v = i + 1, #limbVectorTable, 1 do
+            vectorSum = vectorSum + limbVectorTable[v]
+        end
+
+        local currentJointPosition = vectorSum + originCF.Position
+        
+        local currentLimbVector = limbVectorTable[i+2]
+
+        local nextJointPosition = currentJointPosition + currentLimbVector
+
+        -- This time constraint the vector using the conical constraint function
+
+        -- Checks if there is a limb constraint for the current limb in the iteration
+        --Also if even the table exist in the first place to avoid indexing nil value
+        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+
+            local limbLength = limbLengthTable[i]
+            -- Start the constraint according to the method
+
+            currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength)
 
         end
         -- constructs the new vectable
