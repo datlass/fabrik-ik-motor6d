@@ -59,6 +59,7 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
         -- Do backwards on itself first then forwards
         self:Backwards(originCF, targetPosition)
         self:Forwards(originCF, targetPosition)
+        self:ConstrainLimbs(originCF)
 
         return self.LimbVectorTable
 
@@ -152,7 +153,9 @@ function FabrikSolver:Backwards(originCF, targetPos)
     for i = #limbVectorTable, 1, -1 do
         local vectorSum = Vector3.new(0, 0, 0)
 
-        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
+        for v = 1, i - 1, 1 do 
+            vectorSum = vectorSum + limbVectorTable[v] 
+        end
 
         local pointTowards = originCF.Position + vectorSum
         local pointFrom = targetPos + vectorSumFromOrigin
@@ -238,48 +241,68 @@ end
 
 --goes fowards from origin cf joint to current end joint
 --start point to end point
-function FabrikSolver:ConstraintLimbs(originCF, targetPos)
+function FabrikSolver:ConstrainLimbs(originCF)
 
     local limbVectorTable = self.LimbVectorTable
     local limbLengthTable = self.LimbLengthTable
     local limbConstraintTable = self.LimbConstraintTable
 
-    local vectorSumFromOrigin = Vector3.new()
-    for i = 1, #limbVectorTable-1, 1 do
+    for i = 1, #limbVectorTable, 1 do
         -- initialize empty vector for summing
         local vectorSum = Vector3.new(0, 0, 0)
 
         -- Sums up the vectors in order to get the target position on the chain
         -- target position is the next joint from origin to target
-        for v = i + 1, #limbVectorTable, 1 do
-            vectorSum = vectorSum + limbVectorTable[v]
+        local currentLimbVector
+        if i ~= 1 then
+            for v = 1, i-1, 1 do 
+                vectorSum = vectorSum + limbVectorTable[v] 
+            end
+            currentLimbVector = limbVectorTable[i]
+        else
+            currentLimbVector = limbVectorTable[1]
         end
 
         local currentJointPosition = vectorSum + originCF.Position
-        
-        local currentLimbVector = limbVectorTable[i+2]
 
         local nextJointPosition = currentJointPosition + currentLimbVector
 
-        -- This time constraint the vector using the conical constraint function
-
-        -- Checks if there is a limb constraint for the current limb in the iteration
-        --Also if even the table exist in the first place to avoid indexing nil value
-        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
-            local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-
-            currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength)
-
+        local LimbVectorCFrame
+        --assumes up axis
+        if i == 1 then
+            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition)
+        else
+            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,-currentLimbVector)*CFrame.Angles(0,0,math.rad(-90))
         end
-        -- constructs the new vectable
-        limbVectorTable[i] = newLimbVector
-        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
+
+        self:DebugLimbs(i,LimbVectorCFrame)
+
     end
 
-    -- Change the objects self vector table
-    self.LimbVectorTable = limbVectorTable
+end
+
+
+function FabrikSolver:DebugLimbs(index,limbCFrame)
+    --initizalize first
+    if not self.Initialized then
+        self.Initialized = true
+        local LimbPartTable = {}
+        for i, v in pairs(self.LimbVectorTable) do
+            local LimbPart = Instance.new("WedgePart")
+            LimbPart.BrickColor = BrickColor.random()
+            LimbPart.Name = "LimbPart"..i
+            LimbPart.Anchored = true
+            LimbPart.CanCollide = false
+            LimbPart.Size = Vector3.new(0.5,1,self.LimbLengthTable[i])
+            LimbPartTable[i] = LimbPart
+            LimbPart.Parent = workspace
+        end
+        self.LimbPartTable=LimbPartTable
+    else
+        
+        self.LimbPartTable[index].CFrame = limbCFrame*CFrame.new(0,0,-self.LimbLengthTable[index]/2)
+
+    end
 end
 
 return FabrikSolver

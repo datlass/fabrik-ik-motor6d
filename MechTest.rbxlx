@@ -6,7 +6,7 @@
 			<bool name="AllowThirdPartySales">false</bool>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<string name="CollisionGroups">Default^0^5\MechModel^1^2\MovementSys^2^1</string>
-			<Ref name="CurrentCamera">RBX8cdb28debbf64c34b2c8cf05b38b8a0b</Ref>
+			<Ref name="CurrentCamera">RBX3b44110f95334d84af89ec45e11aafdd</Ref>
 			<double name="DistributedGameTime">0</double>
 			<bool name="ExplicitAutoJoints">true</bool>
 			<float name="FallenPartsDestroyHeight">-500</float>
@@ -59,48 +59,6 @@
 			<BinaryString name="Tags"></BinaryString>
 			<bool name="TerrainWeldsFixed">true</bool>
 		</Properties>
-		<Item class="Camera" referent="RBX8cdb28debbf64c34b2c8cf05b38b8a0b">
-			<Properties>
-				<BinaryString name="AttributesSerialize"></BinaryString>
-				<CoordinateFrame name="CFrame">
-					<X>-48.4882851</X>
-					<Y>30.0771027</Y>
-					<Z>-26.7892208</Z>
-					<R00>-0.919613659</R00>
-					<R01>0.21815452</R01>
-					<R02>-0.3266792</R02>
-					<R10>-0</R10>
-					<R11>0.831617236</R11>
-					<R12>0.55534929</R12>
-					<R20>0.392823994</R20>
-					<R21>0.510706782</R21>
-					<R22>-0.764766574</R22>
-				</CoordinateFrame>
-				<Ref name="CameraSubject">null</Ref>
-				<token name="CameraType">0</token>
-				<float name="FieldOfView">70</float>
-				<token name="FieldOfViewMode">0</token>
-				<CoordinateFrame name="Focus">
-					<X>-47.8349266</X>
-					<Y>28.966404</Y>
-					<Z>-25.2596874</Z>
-					<R00>1</R00>
-					<R01>0</R01>
-					<R02>0</R02>
-					<R10>0</R10>
-					<R11>1</R11>
-					<R12>0</R12>
-					<R20>0</R20>
-					<R21>0</R21>
-					<R22>1</R22>
-				</CoordinateFrame>
-				<bool name="HeadLocked">true</bool>
-				<float name="HeadScale">1</float>
-				<string name="Name">Camera</string>
-				<int64 name="SourceAssetId">-1</int64>
-				<BinaryString name="Tags"></BinaryString>
-			</Properties>
-		</Item>
 		<Item class="Terrain" referent="RBX106b6c72d5084936a9403be0ee3b5029">
 			<Properties>
 				<bool name="Anchored">true</bool>
@@ -1028,7 +986,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.800000012</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1159,7 +1117,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.800000012</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1290,7 +1248,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.800000012</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1407,7 +1365,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.800000012</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -1497,7 +1455,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<float name="TopParamB">0.5</float>
 							<token name="TopSurface">0</token>
 							<token name="TopSurfaceInput">0</token>
-							<float name="Transparency">0</float>
+							<float name="Transparency">0.800000012</float>
 							<bool name="UsePartColor">false</bool>
 							<Vector3 name="Velocity">
 								<X>0</X>
@@ -3141,6 +3099,48 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						</Item>
 					</Item>
 				</Item>
+			</Item>
+			<Item class="Camera" referent="RBX34c2bcaf7a9249569bef1fa9b8f47f07">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<CoordinateFrame name="CFrame">
+						<X>-39.665451</X>
+						<Y>20.22295</Y>
+						<Z>-20.1169376</Z>
+						<R00>-0.999859929</R00>
+						<R01>0.00523495115</R01>
+						<R02>-0.0158996508</R02>
+						<R10>-0</R10>
+						<R11>0.949840605</R11>
+						<R12>0.312734455</R12>
+						<R20>0.0167392846</R20>
+						<R21>0.312690645</R21>
+						<R22>-0.949707508</R22>
+					</CoordinateFrame>
+					<Ref name="CameraSubject">null</Ref>
+					<token name="CameraType">0</token>
+					<float name="FieldOfView">70</float>
+					<token name="FieldOfViewMode">0</token>
+					<CoordinateFrame name="Focus">
+						<X>-39.6336517</X>
+						<Y>19.5974808</Y>
+						<Z>-18.2175217</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<bool name="HeadLocked">true</bool>
+					<float name="HeadScale">1</float>
+					<string name="Name">ThumbnailCamera</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
 			</Item>
 		</Item>
 		<Item class="Part" referent="RBX8ac4f2adca9f43f09d47ed74d52351a8">
@@ -9887,6 +9887,125 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				</Vector3>
 			</Properties>
 		</Item>
+		<Item class="Camera" referent="RBX3b44110f95334d84af89ec45e11aafdd">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<CoordinateFrame name="CFrame">
+					<X>-30.6442776</X>
+					<Y>26.3055</Y>
+					<Z>18.307312</Z>
+					<R00>0.915553272</R00>
+					<R01>-0.204434946</R01>
+					<R02>0.346364856</R02>
+					<R10>-0</R10>
+					<R11>0.86118263</R11>
+					<R12>0.508295834</R12>
+					<R20>-0.402196765</R20>
+					<R21>-0.465371907</R21>
+					<R22>0.788458526</R22>
+				</CoordinateFrame>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<float name="FieldOfView">70</float>
+				<token name="FieldOfViewMode">0</token>
+				<CoordinateFrame name="Focus">
+					<X>-31.3370075</X>
+					<Y>25.288908</Y>
+					<Z>16.7303944</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="HeadLocked">true</bool>
+				<float name="HeadScale">1</float>
+				<string name="Name">Camera</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBXe275aa87807f48a8ae96413e09eda85b">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<CoordinateFrame name="CFrame">
+					<X>-39.5</X>
+					<Y>20.0000038</Y>
+					<Z>-26.625</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="CastShadow">true</bool>
+				<int name="CollisionGroupId">0</int>
+				<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+				<PhysicalProperties name="CustomPhysicalProperties">
+					<CustomPhysics>false</CustomPhysics>
+				</PhysicalProperties>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<bool name="Massless">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Part</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<int name="RootPriority">0</int>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">1</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>4</X>
+					<Y>1</Y>
+					<Z>2.25</Z>
+				</Vector3>
+			</Properties>
+		</Item>
 	</Item>
 	<Item class="SoundService" referent="5">
 		<Properties>
@@ -10252,6 +10371,87 @@ end)
 			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
+		<Item class="ScreenGui" referent="RBXad1f7457f51c44d995d113b34ade584e">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<bool name="AutoLocalize">true</bool>
+				<int name="DisplayOrder">0</int>
+				<bool name="Enabled">true</bool>
+				<bool name="IgnoreGuiInset">false</bool>
+				<string name="Name">ScreenGui</string>
+				<bool name="ResetOnSpawn">true</bool>
+				<Ref name="RootLocalizationTable">null</Ref>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<token name="ZIndexBehavior">0</token>
+			</Properties>
+			<Item class="Frame" referent="RBX1c5fdc9c06f44b399c6cb6fccb996213">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Vector2 name="AnchorPoint">
+						<X>0.5</X>
+						<Y>0.5</Y>
+					</Vector2>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="AutoLocalize">true</bool>
+					<token name="AutomaticSize">0</token>
+					<Color3 name="BackgroundColor3">
+						<R>1</R>
+						<G>1</G>
+						<B>1</B>
+					</Color3>
+					<float name="BackgroundTransparency">0.800000012</float>
+					<Color3 name="BorderColor3">
+						<R>0.105882362</R>
+						<G>0.164705887</G>
+						<B>0.207843155</B>
+					</Color3>
+					<token name="BorderMode">0</token>
+					<int name="BorderSizePixel">1</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<int name="LayoutOrder">0</int>
+					<string name="Name">Frame</string>
+					<Ref name="NextSelectionDown">null</Ref>
+					<Ref name="NextSelectionLeft">null</Ref>
+					<Ref name="NextSelectionRight">null</Ref>
+					<Ref name="NextSelectionUp">null</Ref>
+					<UDim2 name="Position">
+						<XS>0.5</XS>
+						<XO>0</XO>
+						<YS>0.5</YS>
+						<YO>0</YO>
+					</UDim2>
+					<Ref name="RootLocalizationTable">null</Ref>
+					<float name="Rotation">0</float>
+					<bool name="Selectable">false</bool>
+					<Ref name="SelectionImageObject">null</Ref>
+					<UDim2 name="Size">
+						<XS>1</XS>
+						<XO>0</XO>
+						<YS>1</YS>
+						<YO>0</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<int64 name="SourceAssetId">-1</int64>
+					<token name="Style">0</token>
+					<BinaryString name="Tags"></BinaryString>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+				<Item class="UIAspectRatioConstraint" referent="RBX8ca2bbea1e4846b08172927a108631c8">
+					<Properties>
+						<float name="AspectRatio">1</float>
+						<token name="AspectType">0</token>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<token name="DominantAxis">0</token>
+						<string name="Name">UIAspectRatioConstraint</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
 	</Item>
 	<Item class="StarterGui" referent="RBX5c7caae5b50d415db8860a6fd758e927">
 		<Properties>
@@ -12588,6 +12788,7 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
         -- Do backwards on itself first then forwards
         self:Backwards(originCF, targetPosition)
         self:Forwards(originCF, targetPosition)
+        self:ConstrainLimbs(originCF)
 
         return self.LimbVectorTable
 
@@ -12681,7 +12882,9 @@ function FabrikSolver:Backwards(originCF, targetPos)
     for i = #limbVectorTable, 1, -1 do
         local vectorSum = Vector3.new(0, 0, 0)
 
-        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
+        for v = 1, i - 1, 1 do 
+            vectorSum = vectorSum + limbVectorTable[v] 
+        end
 
         local pointTowards = originCF.Position + vectorSum
         local pointFrom = targetPos + vectorSumFromOrigin
@@ -12766,48 +12969,69 @@ end
 
 
 --goes fowards from origin cf joint to current end joint
-function FabrikSolver:ConstraintLimbs(originCF, targetPos)
+--start point to end point
+function FabrikSolver:ConstrainLimbs(originCF)
 
     local limbVectorTable = self.LimbVectorTable
     local limbLengthTable = self.LimbLengthTable
     local limbConstraintTable = self.LimbConstraintTable
 
-    local vectorSumFromOrigin = Vector3.new()
-    for i = 1, #limbVectorTable-1, 1 do
+    for i = 1, #limbVectorTable, 1 do
         -- initialize empty vector for summing
         local vectorSum = Vector3.new(0, 0, 0)
 
         -- Sums up the vectors in order to get the target position on the chain
         -- target position is the next joint from origin to target
-        for v = i + 1, #limbVectorTable, 1 do
-            vectorSum = vectorSum + limbVectorTable[v]
+        local currentLimbVector
+        if i ~= 1 then
+            for v = 1, i-1, 1 do 
+                vectorSum = vectorSum + limbVectorTable[v] 
+            end
+            currentLimbVector = limbVectorTable[i]
+        else
+            currentLimbVector = limbVectorTable[1]
         end
 
         local currentJointPosition = vectorSum + originCF.Position
-        
-        local currentLimbVector = limbVectorTable[i+2]
 
         local nextJointPosition = currentJointPosition + currentLimbVector
 
-        -- This time constraint the vector using the conical constraint function
-
-        -- Checks if there is a limb constraint for the current limb in the iteration
-        --Also if even the table exist in the first place to avoid indexing nil value
-        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
-            local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-
-            currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength)
-
+        local LimbVectorCFrame
+        --assumes up axis
+        if i == 1 then
+            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition)
+        else
+            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,-currentLimbVector)*CFrame.Angles(0,0,math.rad(-90))
         end
-        -- constructs the new vectable
-        limbVectorTable[i] = newLimbVector
-        vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
+
+        self:DebugLimbs(i,LimbVectorCFrame)
+
     end
 
-    -- Change the objects self vector table
-    self.LimbVectorTable = limbVectorTable
+end
+
+
+function FabrikSolver:DebugLimbs(index,limbCFrame)
+    --initizalize first
+    if not self.Initialized then
+        self.Initialized = true
+        local LimbPartTable = {}
+        for i, v in pairs(self.LimbVectorTable) do
+            local LimbPart = Instance.new("WedgePart")
+            LimbPart.BrickColor = BrickColor.random()
+            LimbPart.Name = "LimbPart"..i
+            LimbPart.Anchored = true
+            LimbPart.CanCollide = false
+            LimbPart.Size = Vector3.new(0.5,1,self.LimbLengthTable[i])
+            LimbPartTable[i] = LimbPart
+            LimbPart.Parent = workspace
+        end
+        self.LimbPartTable=LimbPartTable
+    else
+        
+        self.LimbPartTable[index].CFrame = limbCFrame*CFrame.new(0,0,-self.LimbLengthTable[index]/2)
+
+    end
 end
 
 return FabrikSolver
@@ -14826,452 +15050,6 @@ end
 --
 
 return GJK]]></ProtectedString>
-					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-			</Item>
-		</Item>
-		<Item class="Model" referent="RBX2fcdad0947154299a9bcb6160cb2369e">
-			<Properties>
-				<BinaryString name="AttributesSerialize"></BinaryString>
-				<token name="LevelOfDetail">0</token>
-				<CoordinateFrame name="ModelInPrimary">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-					<R00>1</R00>
-					<R01>0</R01>
-					<R02>0</R02>
-					<R10>0</R10>
-					<R11>1</R11>
-					<R12>0</R12>
-					<R20>0</R20>
-					<R21>0</R21>
-					<R22>1</R22>
-				</CoordinateFrame>
-				<CoordinateFrame name="ModelMeshCFrame">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-					<R00>1</R00>
-					<R01>0</R01>
-					<R02>0</R02>
-					<R10>0</R10>
-					<R11>1</R11>
-					<R12>0</R12>
-					<R20>0</R20>
-					<R21>0</R21>
-					<R22>1</R22>
-				</CoordinateFrame>
-				<SharedString name="ModelMeshData">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
-				<Vector3 name="ModelMeshSize">
-					<X>0</X>
-					<Y>0</Y>
-					<Z>0</Z>
-				</Vector3>
-				<string name="Name">Armature</string>
-				<Ref name="PrimaryPart">null</Ref>
-				<int64 name="SourceAssetId">5802329341</int64>
-				<BinaryString name="Tags"></BinaryString>
-			</Properties>
-			<Item class="Part" referent="RBX7c0b01baa6e741089c16b62db28b60bb">
-				<Properties>
-					<bool name="Anchored">true</bool>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<float name="BackParamA">-0.5</float>
-					<float name="BackParamB">0.5</float>
-					<token name="BackSurface">0</token>
-					<token name="BackSurfaceInput">0</token>
-					<float name="BottomParamA">-0.5</float>
-					<float name="BottomParamB">0.5</float>
-					<token name="BottomSurface">0</token>
-					<token name="BottomSurfaceInput">0</token>
-					<CoordinateFrame name="CFrame">
-						<X>-0.25</X>
-						<Y>2.0999999</Y>
-						<Z>17</Z>
-						<R00>1</R00>
-						<R01>0</R01>
-						<R02>0</R02>
-						<R10>0</R10>
-						<R11>1</R11>
-						<R12>0</R12>
-						<R20>0</R20>
-						<R21>0</R21>
-						<R22>1</R22>
-					</CoordinateFrame>
-					<bool name="CanCollide">false</bool>
-					<bool name="CastShadow">false</bool>
-					<int name="CollisionGroupId">0</int>
-					<Color3uint8 name="Color3uint8">4294506744</Color3uint8>
-					<PhysicalProperties name="CustomPhysicalProperties">
-						<CustomPhysics>false</CustomPhysics>
-					</PhysicalProperties>
-					<float name="FrontParamA">-0.5</float>
-					<float name="FrontParamB">0.5</float>
-					<token name="FrontSurface">0</token>
-					<token name="FrontSurfaceInput">0</token>
-					<float name="LeftParamA">-0.5</float>
-					<float name="LeftParamB">0.5</float>
-					<token name="LeftSurface">0</token>
-					<token name="LeftSurfaceInput">0</token>
-					<bool name="Locked">false</bool>
-					<bool name="Massless">false</bool>
-					<token name="Material">272</token>
-					<string name="Name">icon</string>
-					<float name="Reflectance">0</float>
-					<float name="RightParamA">-0.5</float>
-					<float name="RightParamB">0.5</float>
-					<token name="RightSurface">0</token>
-					<token name="RightSurfaceInput">0</token>
-					<int name="RootPriority">0</int>
-					<Vector3 name="RotVelocity">
-						<X>0</X>
-						<Y>0</Y>
-						<Z>0</Z>
-					</Vector3>
-					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
-					<float name="TopParamA">-0.5</float>
-					<float name="TopParamB">0.5</float>
-					<token name="TopSurface">0</token>
-					<token name="TopSurfaceInput">0</token>
-					<float name="Transparency">0</float>
-					<Vector3 name="Velocity">
-						<X>0</X>
-						<Y>0</Y>
-						<Z>0</Z>
-					</Vector3>
-					<token name="formFactorRaw">3</token>
-					<token name="shape">1</token>
-					<Vector3 name="size">
-						<X>4.19999981</X>
-						<Y>4.19999981</Y>
-						<Z>0.200000003</Z>
-					</Vector3>
-				</Properties>
-				<Item class="PointLight" referent="RBX36a9705f32e440baadce369d35a48188">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<float name="Brightness">3</float>
-						<Color3 name="Color">
-							<R>1</R>
-							<G>1</G>
-							<B>1</B>
-						</Color3>
-						<bool name="Enabled">true</bool>
-						<string name="Name">PointLight</string>
-						<float name="Range">10</float>
-						<bool name="Shadows">false</bool>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-					</Properties>
-				</Item>
-				<Item class="Decal" referent="RBX3bba6a0a3e2c4774835bde7fcda2d5a4">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Color3 name="Color3">
-							<R>1</R>
-							<G>1</G>
-							<B>1</B>
-						</Color3>
-						<token name="Face">2</token>
-						<string name="Name">decal-back</string>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<Content name="Texture"><url>rbxassetid://5819398159</url></Content>
-						<float name="Transparency">0</float>
-					</Properties>
-				</Item>
-				<Item class="Decal" referent="RBX53e685664aac42f3802c28764262c54d">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Color3 name="Color3">
-							<R>1</R>
-							<G>1</G>
-							<B>1</B>
-						</Color3>
-						<token name="Face">5</token>
-						<string name="Name">decal-front</string>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<Content name="Texture"><url>rbxassetid://5819398159</url></Content>
-						<float name="Transparency">0</float>
-					</Properties>
-				</Item>
-			</Item>
-			<Item class="Camera" referent="RBXe32b92013e6b4ea3b982ced67e225b4c">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<CoordinateFrame name="CFrame">
-						<X>0</X>
-						<Y>0</Y>
-						<Z>4.19999933</Z>
-						<R00>1</R00>
-						<R01>0</R01>
-						<R02>-0</R02>
-						<R10>-0</R10>
-						<R11>0.99999994</R11>
-						<R12>-0</R12>
-						<R20>-0</R20>
-						<R21>0</R21>
-						<R22>0.99999994</R22>
-					</CoordinateFrame>
-					<Ref name="CameraSubject">null</Ref>
-					<token name="CameraType">0</token>
-					<float name="FieldOfView">54</float>
-					<token name="FieldOfViewMode">0</token>
-					<CoordinateFrame name="Focus">
-						<X>0</X>
-						<Y>0</Y>
-						<Z>0</Z>
-						<R00>1</R00>
-						<R01>0</R01>
-						<R02>0</R02>
-						<R10>0</R10>
-						<R11>1</R11>
-						<R12>0</R12>
-						<R20>0</R20>
-						<R21>0</R21>
-						<R22>1</R22>
-					</CoordinateFrame>
-					<bool name="HeadLocked">true</bool>
-					<float name="HeadScale">1</float>
-					<string name="Name">ThumbnailCamera</string>
-					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
-				</Properties>
-			</Item>
-			<Item class="ModuleScript" referent="RBX3354bab746c04afbabe1fc88d9de5262">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<Content name="LinkedSource"><null></null></Content>
-					<string name="Name">Armature</string>
-					<string name="ScriptGuid">{2B81DF58-F886-41BE-B8F3-D0802FD7752F}</string>
-					<ProtectedString name="Source"><![CDATA[--[[ 
-
----------------------------------
--- Armature Version 1.0
--- Author: Alex Rodin "nidorx" <https://github.com/nidorx> <contato@alexrodin.info>
----------------------------------
-
-Facilitates debug of bones and structures, useful during the development
-of procedural animations
-
----------------------------------
--- HOW TO USE
----------------------------------
-
-1 - Copy this to "StarterPlayer -> StarterCharacterScripts"
-2 - Import
-	```
-		local Armature = require(Character:WaitForChild('Armature'))
-	```
-3 - For each part you want to debug, you need to instantiate a bone and 
-update its position when your object changes
-
-	```
-		local myArmature = Armature.new() -- You can use a Color3 in the construtor if you want
-		
-		
-		-- a) update using Vector3 Position (root and tip [start and end])		
-		myArmature:Position(rootWorldPosition, tipWorldPosition)
-		
-		-- b) or update using a CFrame and length of bone
-		myArmature:CFrame(cframe, length)
-		
-		
-		-- You can also change the transparency
-		myArmature:Transparency(0.5)
-		
-		-- change thickness, proportional to its length
-		myArmature:Size(0.2)
-		
-		-- And finally, remove it
-		myArmature:Remove()
-	```
-	
----------------------------------
--- MIT License
----------------------------------
-
-Copyright (c) 2020 Alex Rodin <https://github.com/nidorx> <contato@alexrodin.info>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
----------------------------------
-]]
-
-
--- Services
-local Camera 		= workspace.CurrentCamera
-local RunService	= game:GetService("RunService")
-
-local BONES = {}
-
-local gui = Instance.new("ScreenGui")
-gui.Name = "Armature"	
---gui.Parent = game.Players.LocalPlayer.PlayerGui
-gui.Parent = game.StarterGui
-
-local COLOR_DEFAULT = Color3.fromRGB(85, 255, 255)
-
--- Draws a line between two 2D points on the screen
-function drawPath(line, worldPos1, worldPos2)
-	local screenPos1, onScreen1 = Camera:WorldToScreenPoint(worldPos1)
-	local screenPos2, onScreen2 = Camera:WorldToScreenPoint(worldPos2)
-	if onScreen1 == false and onScreen2 == false then
-		line.Visible = false
-		return
-	end
-	
-	local distance = (screenPos1 - screenPos2).Magnitude
-	line.Visible 		= true
-	line.Size 			= UDim2.new(0, distance, 0, 1)
-	line.Position 		= UDim2.new(0, (screenPos1.X + screenPos2.X)/2, 0, (screenPos1.Y + screenPos2.Y)/2)
-	line.Rotation 		= math.atan2(screenPos2.Y - screenPos1.Y, screenPos2.X - screenPos1.X) * (180/math.pi)
-end
-
--- Facilitates bone visualization
-local Armature = {}
-
-function Armature.new(color)
-	local self = setmetatable({}, {__index = Armature});
-	
-	self.lines = {}
-	
-	for i=1, 12 do
-		local line = Instance.new('Frame')
-		line.BorderSizePixel = 0
-		line.AnchorPoint = Vector2.new(0.5, 0.5)
-		line.Visible = true	
-		line.Parent = gui	
-		line.BackgroundColor3 = color == nil and COLOR_DEFAULT or color
-		table.insert(self.lines, line)
-	end
-	
-	self:Size(0.1)
-	self:Transparency(0.1)
-	
-	table.insert(BONES, self)
-	
-	return self;
-end;
-
--- render bone
-function Armature:Update()
-	if self.cframe == nil or self.length == nil then
-		return
-	end	
-	
-	local size = self.size
-	
-	local root 	= self.cframe.Position
-	local tip 	= (self.cframe * CFrame.new( 0,  0, -self.length)).Position
-	
-	local ypos1 = (self.cframe * CFrame.new( size,  size, -size)).Position
-	local ypos2 = (self.cframe * CFrame.new( size, -size, -size)).Position
-	local ypos3 = (self.cframe * CFrame.new(-size, -size, -size)).Position
-	local ypos4 = (self.cframe * CFrame.new(-size,  size, -size)).Position	
-	
-	-- root
-	drawPath(self.lines[1], root, ypos1)	
-	drawPath(self.lines[2], root, ypos2)	
-	drawPath(self.lines[3], root, ypos3)
-	drawPath(self.lines[4], root, ypos4)
-	
-	-- root border
-	drawPath(self.lines[5], ypos1, ypos2)
-	drawPath(self.lines[6], ypos2, ypos3)
-	drawPath(self.lines[7], ypos3, ypos4)	
-	drawPath(self.lines[8], ypos4, ypos1)
-	
-	-- body line
-	drawPath(self.lines[9], ypos1, tip)
-	drawPath(self.lines[10], ypos2, tip)
-	drawPath(self.lines[11], ypos3, tip)	
-	drawPath(self.lines[12], ypos4, tip)
-end;
-
--- Change joint positions (World Position)
-function Armature:Position(root, tip)
-	if root == nil or tip == nil then
-		return
-	end
-	
-	self:CFrame(CFrame.new(root, tip), (root - tip).Magnitude)
-end
-
--- Change joint positions (World Position)
-function Armature:CFrame(cframe, length)
-	self.cframe = cframe
-	self.length = length
-	if self.sizePercent ~= nil then
-		self:Size(self.sizePercent)	
-	end	
-end
-
--- change thickness, proportional to its length
-function Armature:Size(percent)	
-	self.sizePercent = math.max(percent, 0.01)
-	
-	if self.sizePercent ~= nil then
-		if self.cframe ~= nil and self.length ~= nil then
-			self.size = self.length * self.sizePercent
-		end	
-	end
-end
-
--- delete this bone
-function Armature:Remove()	
-	for i=1, #self.lines do
-		self.lines[i].Parent = nil
-	end
-	
-	local idx  = -1
-	for index = 1, #BONES do
-		if BONES[index] == self then
-			idx = index
-			break
-		end
-	end
-	
-	if idx > 0 then
-		table.remove(BONES, idx)
-	end
-end
-
--- change transparency
-function Armature:Transparency(transparency)	
-	transparency = math.min(math.max(transparency, 0), 1)
-	for index = 1, #self.lines do
-		self.lines[index].BackgroundTransparency = transparency
-	end
-end
-
-RunService.Stepped:Connect(function(_, worldDt)
-	for index = 1, #BONES do
-		BONES[index]:Update()
-	end
-end)
-
-return Armature
-]]></ProtectedString>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
