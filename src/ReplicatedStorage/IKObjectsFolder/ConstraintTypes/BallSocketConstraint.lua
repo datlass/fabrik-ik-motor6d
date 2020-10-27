@@ -29,11 +29,11 @@ end
 --[[
     Constraints the limbVector like a ball socket joint
 ]]
-function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength,PreviousLimbAxisCFrame)
     
         --Get the parts current CFrame
         --Big problem as its relative to the part attached to the motor
-        self:UpdateAxis()
+        self:UpdateAxis(PreviousLimbAxisCFrame)
 
         --Get the Axis
         local centerAxis = self.CenterAxis.Unit

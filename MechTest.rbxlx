@@ -12066,11 +12066,11 @@ end
 --[[
     Constraints the limbVector like a ball socket joint
 ]]
-function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength,PreviousLimbAxisCFrame)
     
         --Get the parts current CFrame
         --Big problem as its relative to the part attached to the motor
-        self:UpdateAxis()
+        self:UpdateAxis(PreviousLimbAxisCFrame)
 
         --Get the Axis
         local centerAxis = self.CenterAxis.Unit
@@ -12205,10 +12205,10 @@ end
     Constraints the limbVector like a hinge
     returns a new limbvector
 ]]
-function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength,PreviousLimbAxisCFrame)
 
     --Gets the part's current CFrame
-    self:UpdateAxis()
+    self:UpdateAxis(PreviousLimbAxisCFrame)
     
     --Create a plane that is located on the joint with a surface normal to the rightvector
     local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)
@@ -12375,6 +12375,7 @@ function FabrikConstraint.new(Part)
     --If there is a part, relative constraint axis is set accordingly
     if Part then
     obj.Part = Part
+    obj.PartCF = Part.CFrame
     obj.CenterAxis = Part.CFrame.LookVector
     obj.XAxis = Part.CFrame.RightVector
     obj.YAxis = Part.CFrame.UpVector
@@ -12382,15 +12383,6 @@ function FabrikConstraint.new(Part)
 
     return obj
 end
-
---[[
-    The method all constraints should inherit
-    empty as each constraint has it's own special constraint method
-]]
-function FabrikConstraint:ConstrainLimbVector()
-
-end
-
 
 --[[
     Method for the constraints to inherit if you want to the axis to change
@@ -12414,32 +12406,21 @@ end
     fairly activity intensive goes from 1-2% to 4-6% max
     Also problem as it requires the part motor to update 
 ]]
-function FabrikConstraint:UpdateAxis()
+function FabrikConstraint:UpdateAxis(PreviousLimbAxisCFrame)
 
-    self.CenterAxis = self.Part.CFrame.LookVector
-    self.XAxis = self.Part.CFrame.RightVector
-    self.YAxis = self.Part.CFrame.UpVector
+    if not PreviousLimbAxisCFrame then
+        self.CenterAxis = self.Part.CFrame.LookVector
+        self.XAxis = self.Part.CFrame.RightVector
+        self.YAxis = self.Part.CFrame.UpVector
+    else
 
+        local newAxisCF = PreviousLimbAxisCFrame:ToObjectSpace(self.PartCF)
+        self.CenterAxis = newAxisCF.LookVector
+        self.XAxis = newAxisCF.RightVector
+        self.YAxis = newAxisCF.UpVector
+
+    end
 end
-
-function FabrikConstraint:UpdateYAxis()
-
-    self.YAxis = self.Part.CFrame.UpVector
-
-end
-
-function FabrikConstraint:UpdateXAxis()
-
-    self.XAxis = self.Part.CFrame.RightVector
-
-end
-
-function FabrikConstraint:UpdateCenterAxis()
-
-    self.CenterAxis = self.Part.CFrame.LookVector
-
-end
-
 
 return FabrikConstraint
 ]]></ProtectedString>
@@ -12631,7 +12612,7 @@ function FabrikSolver:Backwards(originCF, targetPos)
             local limbLength = limbLengthTable[i]
             -- Start the constraint according to the method
             -- print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength)
+            --newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength)
             -- print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
@@ -12683,7 +12664,7 @@ function FabrikSolver:Forwards(originCF, targetPos)
             local limbLength = limbLengthTable[i]
             -- Start the constraint according to the method
 
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength)
+            --newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength)
 
         end
         -- constructs the new vectable
@@ -12733,7 +12714,19 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         self:DebugLimbs(i,LimbVectorCFrame)
 
-        self.LimbVectorTable[i] = currentLimbVector
+        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
+
+            local limbLength = limbLengthTable[i]
+            -- Start the constraint according to the method
+            if i == 1 then
+                currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength,originCF)
+            else
+                currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength,self.LimbCFrameTable[i-1])
+            end
+
+        end
+
+        --self.LimbVectorTable[i] = currentLimbVector
 
     end
 

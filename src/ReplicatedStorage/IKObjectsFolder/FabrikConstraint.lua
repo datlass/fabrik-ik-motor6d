@@ -11,6 +11,7 @@ function FabrikConstraint.new(Part)
     --If there is a part, relative constraint axis is set accordingly
     if Part then
     obj.Part = Part
+    obj.PartCF = Part.CFrame
     obj.CenterAxis = Part.CFrame.LookVector
     obj.XAxis = Part.CFrame.RightVector
     obj.YAxis = Part.CFrame.UpVector
@@ -18,15 +19,6 @@ function FabrikConstraint.new(Part)
 
     return obj
 end
-
---[[
-    The method all constraints should inherit
-    empty as each constraint has it's own special constraint method
-]]
-function FabrikConstraint:ConstrainLimbVector()
-
-end
-
 
 --[[
     Method for the constraints to inherit if you want to the axis to change
@@ -50,31 +42,20 @@ end
     fairly activity intensive goes from 1-2% to 4-6% max
     Also problem as it requires the part motor to update 
 ]]
-function FabrikConstraint:UpdateAxis()
+function FabrikConstraint:UpdateAxis(PreviousLimbAxisCFrame)
 
-    self.CenterAxis = self.Part.CFrame.LookVector
-    self.XAxis = self.Part.CFrame.RightVector
-    self.YAxis = self.Part.CFrame.UpVector
+    if not PreviousLimbAxisCFrame then
+        self.CenterAxis = self.Part.CFrame.LookVector
+        self.XAxis = self.Part.CFrame.RightVector
+        self.YAxis = self.Part.CFrame.UpVector
+    else
 
+        local newAxisCF = PreviousLimbAxisCFrame:ToObjectSpace(self.PartCF)
+        self.CenterAxis = newAxisCF.LookVector
+        self.XAxis = newAxisCF.RightVector
+        self.YAxis = newAxisCF.UpVector
+
+    end
 end
-
-function FabrikConstraint:UpdateYAxis()
-
-    self.YAxis = self.Part.CFrame.UpVector
-
-end
-
-function FabrikConstraint:UpdateXAxis()
-
-    self.XAxis = self.Part.CFrame.RightVector
-
-end
-
-function FabrikConstraint:UpdateCenterAxis()
-
-    self.CenterAxis = self.Part.CFrame.LookVector
-
-end
-
 
 return FabrikConstraint
