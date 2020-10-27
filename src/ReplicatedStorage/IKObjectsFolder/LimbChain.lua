@@ -58,6 +58,12 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     end
     obj.Motor6DC0Table = Motor6DC0Table
 
+    local MotorPart0CFrameStore = {}
+    for i,v in pairs(Motor6DTable) do
+        MotorPart0CFrameStore[i] = v.Part0.CFrame
+    end
+    obj.MotorPart0CFrameStore = MotorPart0CFrameStore
+    
     -----initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
     local IteratedLimbVectorTable = {}
@@ -278,7 +284,7 @@ function LimbChain:UpdateMotors()
             --Obtains the CFrame of the part0 limb of the motor6d
             local previousLimbPart = self.Motor6DTable[i].Part0
             if previousLimbPart then
-                local previousLimbCF = previousLimbPart.CFrame
+                local previousLimbCF = previousLimbPart.CFrame 
 
                 -- Obtains the CFrame rotation calculation for CFrame.fromAxis
                 local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
@@ -286,6 +292,18 @@ function LimbChain:UpdateMotors()
                 local safetyClamp = math.clamp(dotProductAngle, -1, 1)
                 local limbRotationAngle = math.acos(safetyClamp)
                 local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+                
+
+                --[[
+                local previousLimbCF = self.MotorPart0CFrameStore[i]
+                local currentVectorLimb = self.MotorPart0CFrameStore[i].LookVector
+
+                local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+                local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
+                local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+                local limbRotationAngle = math.acos(safetyClamp)
+                local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+                ]]
 
                 --Checks if the axis exists if cross product returns zero somehow
                 if limbRotationAxis~=Vector3.new(0,0,0) then
@@ -309,6 +327,9 @@ function LimbChain:UpdateMotors()
                     local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
                     
                     local goalCF = undoPreviousLimbCF*rotateLimbCF
+                    --local testCF = self.LimbFabrikSolver.LimbCFrameTable[i]-self.LimbFabrikSolver.LimbCFrameTable[i].Position
+                    --local goalCF = undoPreviousLimbCF*rotateLimbCF
+
 
                     local rotationOnly = goalCF-goalCF.Position
 

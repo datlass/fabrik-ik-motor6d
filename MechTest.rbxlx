@@ -9617,27 +9617,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-8.07334518</X>
-					<Y>28.3581638</Y>
-					<Z>6.82882023</Z>
-					<R00>0.151560947</R00>
-					<R01>-0.479997426</R01>
-					<R02>0.864078641</R02>
+					<X>-33.246727</X>
+					<Y>26.8882599</Y>
+					<Z>18.619854</Z>
+					<R00>0.96140641</R00>
+					<R01>-0.169767395</R01>
+					<R02>0.216510773</R02>
 					<R10>-0</R10>
-					<R11>0.874177217</R11>
-					<R12>0.485607207</R12>
-					<R20>-0.988447905</R20>
-					<R21>-0.0735990852</R21>
-					<R22>0.132491127</R22>
+					<R11>0.786932886</R11>
+					<R12>0.617038727</R12>
+					<R20>-0.275132477</R20>
+					<R21>-0.593225002</R21>
+					<R22>0.756562233</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-9.80150223</X>
-					<Y>27.3869495</Y>
-					<Z>6.56383801</Z>
+					<X>-33.6797485</X>
+					<Y>25.6541824</Y>
+					<Z>17.1067295</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -12835,6 +12835,12 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     end
     obj.Motor6DC0Table = Motor6DC0Table
 
+    local MotorPart0CFrameStore = {}
+    for i,v in pairs(Motor6DTable) do
+        MotorPart0CFrameStore[i] = v.Part0.CFrame
+    end
+    obj.MotorPart0CFrameStore = MotorPart0CFrameStore
+    
     -----initialize LimbVectorTable to store the limb vectors and stores it into the object self variable
     local LimbVectorTable = {}
     local IteratedLimbVectorTable = {}
@@ -13055,7 +13061,7 @@ function LimbChain:UpdateMotors()
             --Obtains the CFrame of the part0 limb of the motor6d
             local previousLimbPart = self.Motor6DTable[i].Part0
             if previousLimbPart then
-                local previousLimbCF = previousLimbPart.CFrame
+                local previousLimbCF = previousLimbPart.CFrame 
 
                 -- Obtains the CFrame rotation calculation for CFrame.fromAxis
                 local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
@@ -13063,6 +13069,18 @@ function LimbChain:UpdateMotors()
                 local safetyClamp = math.clamp(dotProductAngle, -1, 1)
                 local limbRotationAngle = math.acos(safetyClamp)
                 local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+                
+
+                --[[
+                local previousLimbCF = self.MotorPart0CFrameStore[i]
+                local currentVectorLimb = self.MotorPart0CFrameStore[i].LookVector
+
+                local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+                local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentVectorLimb.Unit)
+                local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+                local limbRotationAngle = math.acos(safetyClamp)
+                local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentVectorLimb) -- obtain the rotation axis
+                ]]
 
                 --Checks if the axis exists if cross product returns zero somehow
                 if limbRotationAxis~=Vector3.new(0,0,0) then
@@ -13086,6 +13104,9 @@ function LimbChain:UpdateMotors()
                     local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
                     
                     local goalCF = undoPreviousLimbCF*rotateLimbCF
+                    --local testCF = self.LimbFabrikSolver.LimbCFrameTable[i]-self.LimbFabrikSolver.LimbCFrameTable[i].Position
+                    --local goalCF = undoPreviousLimbCF*rotateLimbCF
+
 
                     local rotationOnly = goalCF-goalCF.Position
 
