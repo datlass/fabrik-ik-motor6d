@@ -34,6 +34,14 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
     --Gets the part's current CFrame
     self:UpdateAxis(PreviousLimbAxisCFrame,jointPosition)
     
+    --debug visualize the ball socket constraint rang
+    if self.Cone then
+        local yHeight = limbLength*math.sin(self.AngleOfElevation)+limbLength*math.sin(-self.AngleOfDepression)
+        local xHeight = 1
+        self.Cone.Size = Vector3.new(xHeight,limbLength,yHeight)
+        self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,self.CenterAxis,self.YAxis)*CFrame.new(0,-limbLength/2,0)
+    end
+    
     --Create a plane that is located on the joint with a surface normal to the rightvector
     local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)
 
@@ -70,7 +78,7 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
         --Very strict and doesn't fit the iteration
         --Get Cframe and rotate it to max possible angle
-        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,-self.AngleOfDepression-math.rad(10))
+        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,-self.AngleOfDepression)
         
         --Old glitchy method
         return refCF.LookVector.Unit*limbLength
@@ -83,7 +91,7 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
         --Very strict and doesn't fit the iteration method
         --Get Cframe and rotate it to max possible angle
-        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,self.AngleOfElevation+math.rad(10))
+        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,self.AngleOfElevation)
         
         return refCF.LookVector.Unit*limbLength 
 

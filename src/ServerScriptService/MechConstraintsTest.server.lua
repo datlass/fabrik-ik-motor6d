@@ -151,10 +151,10 @@ RunService.Heartbeat:Connect(function(step)
     local goalRightPosition = workspace.MechRTarget.Position
     local rayResult = workspace:Raycast(workspace.MechLTarget.Position,down,footParams)
     if rayResult then
-       leftLegChain:IterateOnce(rayResult.Position,0.1)
+       --leftLegChain:IterateOnce(rayResult.Position,0.1)
     end
     --leftLegChain:IterateOnce(goalPosition,0.1)
-    leftLegChain:UpdateMotors()
+    --leftLegChain:UpdateMotors()
 
     rightLegChain:IterateOnce(goalRightPosition,0.1)
     rightLegChain:UpdateMotors()

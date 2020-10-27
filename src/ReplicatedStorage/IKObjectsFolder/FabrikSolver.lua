@@ -278,12 +278,12 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         local currentJointPosition = vectorSum + originCF.Position
 
-        local nextJointPosition = currentJointPosition + currentLimbVector
-
         local midPointPosition = currentJointPosition + currentLimbVector/2
     
         local originalVectorLimb =self.OriginalLimbVectorTable[i]
+
         local previousLimbCF
+
         if i == 1 then
             local part0CF = originCF*self.FirstJointC0:Inverse()
             previousLimbCF = part0CF
@@ -313,6 +313,7 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         --self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
 
+        local currentLimbVector = -currentLimbVector
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 
             local limbLength = limbLengthTable[i]
@@ -325,7 +326,7 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         end
 
-        --self.LimbVectorTable[i] = currentLimbVector
+        self.LimbVectorTable[i] = -currentLimbVector
 
     end
 

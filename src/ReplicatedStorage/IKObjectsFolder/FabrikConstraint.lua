@@ -1,3 +1,7 @@
+--Roblox service
+--for debugging the constraints by importing my cone mesh
+local InsertService = game:GetService("InsertService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 -- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
@@ -78,6 +82,22 @@ function FabrikConstraint:DebugAxis(JointPosition)
         self.LimbAxis = LimbAxis
         LimbAxis.Parent = workspace
         self.DebugInitialized = true
+
+        --create the cone to debug the axis
+        local cone = ReplicatedStorage:FindFirstChild("EnhancedCone")
+
+        if not cone then
+            local assetId = 5883549047
+            cone = InsertService:LoadAsset(assetId)
+        end
+
+        self.Cone = cone:Clone()
+        self.Cone.Transparency = 0.5
+        self.Cone.Anchored = true
+        self.Cone.CanCollide = false
+        self.Cone.BrickColor = BrickColor.random()
+        self.Cone.Parent = workspace
+
     else
         
         self.LimbAxis.CFrame = CFrame.fromMatrix(JointPosition,self.XAxis,self.YAxis,self.CenterAxis)
