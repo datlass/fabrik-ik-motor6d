@@ -24,7 +24,7 @@ function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,
     obj.LimbConstraintTable = LimbConstraintTable
 
     obj.LimbCFrameTable = {}
-
+    obj.FirstJointC0 = nil
     obj.OriginalLimbVectorTable = shallowCopy(LimbVectorTable)
 
     -- Initialize number for summing
@@ -279,15 +279,9 @@ function FabrikSolver:ConstrainLimbs(originCF)
         local currentJointPosition = vectorSum + originCF.Position
 
         local nextJointPosition = currentJointPosition + currentLimbVector
+
         local midPointPosition = currentJointPosition + currentLimbVector/2
-        local LimbVectorCFrame
-        --assumes up axis is up
-        --doesn't work rotation is too random
-        if i == 1 then
-            --LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,originCF.RightVector)
-        else
-            --LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,-currentLimbVector)
-        end
+    
         local originalVectorLimb =self.OriginalLimbVectorTable[i]
         local previousLimbCF
         if i == 1 then
@@ -313,11 +307,11 @@ function FabrikSolver:ConstrainLimbs(originCF)
         
         local goalCF = undoPreviousLimbCF*rotateLimbCF
 
-        LimbVectorCFrame = goalCF
+        local LimbVectorCFrame = goalCF
 
         self.LimbCFrameTable[i] = LimbVectorCFrame
 
-        self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
+        --self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
 
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 

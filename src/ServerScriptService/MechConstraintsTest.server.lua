@@ -68,13 +68,13 @@ leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 local rightLegChain = LimbChain.new(motorRightTable,true)
 
 --Testing the constraint
-local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
+local testBallSocketConstraint = workspace.Constraints.UpperLegConstraint
 local upperLegBallSocketConstraint = BallSocketConstraint.new(testBallSocketConstraint,30,30)
 
-local kneePart = lowerBody.Constraints.KneeConstraint
+local kneePart = workspace.Constraints.KneeConstraint
 local lKneeBallSocket = BallSocketConstraint.new(kneePart,20,89)
 
-local lLegPart = lowerBody.Constraints.LowerLegConstraint
+local lLegPart = workspace.Constraints.LowerLegConstraint
 local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
 
 --[[
@@ -104,13 +104,13 @@ local leftLegRegion = {leftLegRegionPart1,leftLegRegionPart2}
 --Repeat for the right leg-----------
 
 --Same constraints but for right leg
-local rightBallSocketConstraintPart = lowerBody.Constraints.rUpperLegConstraint
+local rightBallSocketConstraintPart = workspace.Constraints.rUpperLegConstraint
 local rupperLegBallSocketConstraint = BallSocketConstraint.new(rightBallSocketConstraintPart,30,30)
 
-local rKneePart = lowerBody.Constraints.rKneeConstraint
+local rKneePart = workspace.Constraints.rKneeConstraint
 local rKneeBallSocket = BallSocketConstraint.new(rKneePart,20,90)
 
-local rLegPart = lowerBody.Constraints.rLowerLegConstraint
+local rLegPart = workspace.Constraints.rLowerLegConstraint
 local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
 
 --[[
