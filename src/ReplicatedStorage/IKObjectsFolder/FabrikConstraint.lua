@@ -55,13 +55,13 @@ function FabrikConstraint:UpdateAxis(PreviousLimbAxisCFrame,JointPosition)
     else --new system
         self.PartCF = self.Part.CFrame
         local newAxisCF = PreviousLimbAxisCFrame:ToObjectSpace(self.PartCF)
-        self.CenterAxis = -newAxisCF.LookVector
+        self.CenterAxis = newAxisCF.LookVector
         self.XAxis = newAxisCF.RightVector
         self.YAxis = newAxisCF.UpVector
         --50.08, 131.88, -11.63
     end
 
-    self:DebugAxis(JointPosition)
+    --self:DebugAxis(JointPosition)
 end
 
 --function to visualize direction of the axis

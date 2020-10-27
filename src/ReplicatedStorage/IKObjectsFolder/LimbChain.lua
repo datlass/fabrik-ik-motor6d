@@ -102,7 +102,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
 
     --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
     local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable,obj)
-    
+    LimbFabrikSolver.FirstJointC0 = Motor6DTable[1].C0
     obj.LimbFabrikSolver = LimbFabrikSolver
     
     --[[--------------------------------------------------------------------------------
@@ -323,8 +323,10 @@ function LimbChain:UpdateMotors()
                     end
                     ----------------------------------------------------------------
                     --Obtain the CFrame operations needed to rotate the limb to the goal
+                    local rotationOnlyPreviousLimb = previousLimbCF-previousLimbCF.Position
+                    local rotOnly = CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
                     local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
-                    local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
+                    local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*rotationOnlyPreviousLimb
                     
                     local goalCF = undoPreviousLimbCF*rotateLimbCF
                     --local testCF = self.LimbFabrikSolver.LimbCFrameTable[i]-self.LimbFabrikSolver.LimbCFrameTable[i].Position

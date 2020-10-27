@@ -9461,27 +9461,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-38.1759109</X>
-					<Y>28.7968788</Y>
-					<Z>-16.8477573</Z>
-					<R00>-0.922173738</R00>
-					<R01>0.216524914</R01>
-					<R02>-0.320487946</R02>
-					<R10>-0</R10>
-					<R11>0.828614116</R11>
-					<R12>0.559820116</R12>
-					<R20>0.386775881</R20>
-					<R21>0.516251385</R21>
-					<R22>-0.764126182</R22>
+					<X>-34.3797646</X>
+					<Y>20.4321632</Y>
+					<Z>10.3602238</Z>
+					<R00>0.983050108</R00>
+					<R01>-0.109556623</R01>
+					<R02>0.147003174</R02>
+					<R10>-7.4505806e-09</R10>
+					<R11>0.801817894</R11>
+					<R12>0.597568512</R12>
+					<R20>-0.183337361</R20>
+					<R21>-0.587439775</R21>
+					<R22>0.788227081</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-37.534935</X>
-					<Y>27.6772385</Y>
-					<Z>-15.3195047</Z>
+					<X>-34.6737709</X>
+					<Y>19.2370262</Y>
+					<Z>8.78376961</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -15251,19 +15251,20 @@ end
 function FabrikConstraint:UpdateAxis(PreviousLimbAxisCFrame,JointPosition)
 
     if not PreviousLimbAxisCFrame then
+        --old system planning to remove
         self.CenterAxis = self.Part.CFrame.LookVector
         self.XAxis = self.Part.CFrame.RightVector
         self.YAxis = self.Part.CFrame.UpVector
-    else
-
+    else --new system
+        self.PartCF = self.Part.CFrame
         local newAxisCF = PreviousLimbAxisCFrame:ToObjectSpace(self.PartCF)
-        self.CenterAxis = -newAxisCF.LookVector
+        self.CenterAxis = newAxisCF.LookVector
         self.XAxis = newAxisCF.RightVector
         self.YAxis = newAxisCF.UpVector
-
+        --50.08, 131.88, -11.63
     end
 
-    self:DebugAxis(JointPosition)
+    --self:DebugAxis(JointPosition)
 end
 
 --function to visualize direction of the axis
@@ -15305,6 +15306,14 @@ local Object = require(Package.BaseRedirect)
 
 local FabrikSolver = Object.new("FabrikSolver")
 
+local function shallowCopy(original)
+	local copy = {}
+	for key, value in pairs(original) do
+		copy[key] = value
+	end
+	return copy
+end
+
 function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,LimbChain)
     local obj = FabrikSolver:make()
 
@@ -15317,6 +15326,8 @@ function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,
     obj.LimbConstraintTable = LimbConstraintTable
 
     obj.LimbCFrameTable = {}
+
+    obj.OriginalLimbVectorTable = shallowCopy(LimbVectorTable)
 
     -- Initialize number for summing
     local MaxLength = 0
@@ -15368,6 +15379,10 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
 
     else
         -- Limb is within tolerance/already reached goal so don't do anything
+        -- Do backwards on itself first then forwards
+        self:Backwards(originCF, targetPosition)
+        self:Forwards(originCF, targetPosition)
+        self:ConstrainLimbs(originCF)
 
         return self.LimbVectorTable
     end
@@ -15566,18 +15581,45 @@ function FabrikSolver:ConstrainLimbs(originCF)
         local currentJointPosition = vectorSum + originCF.Position
 
         local nextJointPosition = currentJointPosition + currentLimbVector
-
+        local midPointPosition = currentJointPosition + currentLimbVector/2
         local LimbVectorCFrame
         --assumes up axis is up
+        --doesn't work rotation is too random
         if i == 1 then
-            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition)
+            --LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,originCF.RightVector)
         else
-            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,-currentLimbVector)*CFrame.Angles(0,0,math.rad(-90))
+            --LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,-currentLimbVector)
         end
+        local originalVectorLimb =self.OriginalLimbVectorTable[i]
+        local previousLimbCF
+        if i == 1 then
+            local part0CF = originCF*self.FirstJointC0:Inverse()
+            previousLimbCF = part0CF
+        else
+            local rotOnly = self.LimbCFrameTable[i-1]-self.LimbCFrameTable[i-1].Position
+            previousLimbCF = CFrame.new(midPointPosition)*rotOnly
+        end
+        local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
+
+        --angle finding and rotation axis
+        local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentLimbVector.Unit)
+        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+        local limbRotationAngle = math.acos(safetyClamp)
+        local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentLimbVector) -- obtain the rotation axis
+
+        --new testing for rotating the rectangle
+        --local goalCF = previousLimbCF*CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)
+        local rotOnly = previousLimbCF-previousLimbCF.p
+        local undoPreviousLimbCF = CFrame.new(currentJointPosition)
+        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*rotOnly
+        
+        local goalCF = undoPreviousLimbCF*rotateLimbCF
+
+        LimbVectorCFrame = goalCF
 
         self.LimbCFrameTable[i] = LimbVectorCFrame
 
-        self:DebugLimbs(i,LimbVectorCFrame)
+        self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
 
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 
@@ -15598,7 +15640,7 @@ function FabrikSolver:ConstrainLimbs(originCF)
 end
 
 
-function FabrikSolver:DebugLimbs(index,limbCFrame)
+function FabrikSolver:DebugLimbs(index,limbCFrame,midPointPosition)
     --initizalize first
     if not self.Initialized then
         self.Initialized = true
@@ -15615,8 +15657,9 @@ function FabrikSolver:DebugLimbs(index,limbCFrame)
         end
         self.LimbPartTable=LimbPartTable
     else
-        
-        self.LimbPartTable[index].CFrame = limbCFrame*CFrame.new(0,0,-self.LimbLengthTable[index]/2)
+        local positionCF = CFrame.new(midPointPosition)
+        local rotOnly = limbCFrame-limbCFrame.p
+        self.LimbPartTable[index].CFrame = positionCF*rotOnly*CFrame.new(0,0,-self.LimbLengthTable[index]/2)
 
     end
 end
@@ -15737,7 +15780,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
 
     --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
     local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable,obj)
-    
+    LimbFabrikSolver.FirstJointC0 = Motor6DTable[1].C0
     obj.LimbFabrikSolver = LimbFabrikSolver
     
     --[[--------------------------------------------------------------------------------
@@ -15958,8 +16001,10 @@ function LimbChain:UpdateMotors()
                     end
                     ----------------------------------------------------------------
                     --Obtain the CFrame operations needed to rotate the limb to the goal
+                    local rotationOnlyPreviousLimb = previousLimbCF-previousLimbCF.Position
+                    local rotOnly = CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
                     local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
-                    local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*CFrame.fromMatrix(Vector3.new(),previousLimbCF.RightVector,previousLimbCF.UpVector)
+                    local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*rotationOnlyPreviousLimb
                     
                     local goalCF = undoPreviousLimbCF*rotateLimbCF
                     --local testCF = self.LimbFabrikSolver.LimbCFrameTable[i]-self.LimbFabrikSolver.LimbCFrameTable[i].Position
