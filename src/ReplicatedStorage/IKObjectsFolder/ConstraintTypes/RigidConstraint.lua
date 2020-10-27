@@ -44,13 +44,13 @@ end
     or it points in the motor6ds original direction
     returns a new limbvector vector 3 at full length
 ]]
-function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength,PreviousLimbAxisCFrame)
     
     --Checks if there is a part to set the constraint axis to
     if self.Part ~=nil then
 
         --Get the constraining part current axis
-        self:UpdateAxis()
+        self:UpdateAxis(PreviousLimbAxisCFrame,jointPosition)
 
         --Make it point in the part's center axis
         return self.CenterAxis.Unit*limbLength

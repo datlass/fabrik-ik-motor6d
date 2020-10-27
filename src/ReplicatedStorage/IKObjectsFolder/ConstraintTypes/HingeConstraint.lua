@@ -32,7 +32,7 @@ end
 function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength,PreviousLimbAxisCFrame)
 
     --Gets the part's current CFrame
-    self:UpdateAxis(PreviousLimbAxisCFrame)
+    self:UpdateAxis(PreviousLimbAxisCFrame,jointPosition)
     
     --Create a plane that is located on the joint with a surface normal to the rightvector
     local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)

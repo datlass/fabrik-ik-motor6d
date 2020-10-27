@@ -67,6 +67,10 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
 
     else
         -- Limb is within tolerance/already reached goal so don't do anything
+        -- Do backwards on itself first then forwards
+        self:Backwards(originCF, targetPosition)
+        self:Forwards(originCF, targetPosition)
+        self:ConstrainLimbs(originCF)
 
         return self.LimbVectorTable
     end
@@ -269,10 +273,12 @@ function FabrikSolver:ConstrainLimbs(originCF)
         local LimbVectorCFrame
         --assumes up axis is up
         if i == 1 then
-            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition)
+            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,originCF.RightVector)
         else
-            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,-currentLimbVector)*CFrame.Angles(0,0,math.rad(-90))
+            LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,-currentLimbVector)
         end
+
+        local newRectangleCFrame = CFrame.new()
 
         self.LimbCFrameTable[i] = LimbVectorCFrame
 
