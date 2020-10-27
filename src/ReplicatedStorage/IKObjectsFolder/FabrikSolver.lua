@@ -15,6 +15,8 @@ function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,
 
     obj.LimbConstraintTable = LimbConstraintTable
 
+    obj.LimbCFrameTable = {}
+
     -- Initialize number for summing
     local MaxLength = 0
     -- adds all the magnitudes of the limb vector
@@ -253,14 +255,11 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         -- Sums up the vectors in order to get the target position on the chain
         -- target position is the next joint from origin to target
-        local currentLimbVector
+        local currentLimbVector = limbVectorTable[i]
         if i ~= 1 then
             for v = 1, i-1, 1 do 
                 vectorSum = vectorSum + limbVectorTable[v] 
             end
-            currentLimbVector = limbVectorTable[i]
-        else
-            currentLimbVector = limbVectorTable[1]
         end
 
         local currentJointPosition = vectorSum + originCF.Position
@@ -268,14 +267,18 @@ function FabrikSolver:ConstrainLimbs(originCF)
         local nextJointPosition = currentJointPosition + currentLimbVector
 
         local LimbVectorCFrame
-        --assumes up axis
+        --assumes up axis is up
         if i == 1 then
             LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition)
         else
             LimbVectorCFrame = CFrame.lookAt(currentJointPosition,nextJointPosition,-currentLimbVector)*CFrame.Angles(0,0,math.rad(-90))
         end
 
+        self.LimbCFrameTable[i] = LimbVectorCFrame
+
         self:DebugLimbs(i,LimbVectorCFrame)
+
+        self.LimbVectorTable[i] = currentLimbVector
 
     end
 
