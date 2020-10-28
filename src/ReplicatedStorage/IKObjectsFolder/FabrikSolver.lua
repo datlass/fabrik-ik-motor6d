@@ -310,32 +310,57 @@ function FabrikSolver:RotateLimbs(originCF)
 
         self.LimbCFrameTable[i+1] = LimbVectorCFrame
 
-        self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
-
+        self:DebugLimbRotationCFrame(i,LimbVectorCFrame,midPointPosition)
+        self:DebugLimbVector(i,currentJointPosition,endPointPosition)
     end
 
 end
 
-function FabrikSolver:DebugLimbs(index,limbCFrame,midPointPosition)
+function FabrikSolver:DebugLimbRotationCFrame(index,limbCFrame,midPointPosition)
     --initizalize first
-    if not self.Initialized then
-        self.Initialized = true
-        local LimbPartTable = {}
+    if not self.LimbRotationInitialized then
+        self.LimbRotationInitialized = true
+        local LimbPartCFrameTable = {}
         for i, v in pairs(self.LimbVectorTable) do
-            local LimbPart = Instance.new("WedgePart")
-            LimbPart.BrickColor = BrickColor.random()
-            LimbPart.Name = "LimbPart"..i
-            LimbPart.Anchored = true
-            LimbPart.CanCollide = false
-            LimbPart.Size = Vector3.new(0.5,2,self.LimbLengthTable[i])
-            LimbPartTable[i] = LimbPart
-            LimbPart.Parent = workspace
+            local LimbPartCFrame = Instance.new("WedgePart")
+            LimbPartCFrame.BrickColor = BrickColor.random()
+            LimbPartCFrame.Name = "LimbPartCFrame"..i
+            LimbPartCFrame.Anchored = true
+            LimbPartCFrame.CanCollide = false
+            LimbPartCFrame.Size = Vector3.new(0.5,2,self.LimbLengthTable[i])
+            LimbPartCFrameTable[i] = LimbPartCFrame
+            LimbPartCFrame.Parent = workspace
         end
-        self.LimbPartTable=LimbPartTable
+        self.LimbPartCFrameTable=LimbPartCFrameTable
     else
         local positionCF = CFrame.new(midPointPosition)
         local rotOnly = limbCFrame-limbCFrame.p
-        self.LimbPartTable[index].CFrame = positionCF*rotOnly*CFrame.new(0,0,-self.LimbLengthTable[index]/2)
+        self.LimbPartCFrameTable[index].CFrame = positionCF*rotOnly*CFrame.new(0,0,-self.LimbLengthTable[index]/2)
+
+    end
+end
+
+function FabrikSolver:DebugLimbVector(index,initialJointPosition,endJointPosition)
+    --initizalize first
+    if not self.LimbVectorInitialized then
+        self.LimbVectorInitialized = true
+        local VectorLimbPartTable = {}
+        for i, v in pairs(self.LimbVectorTable) do
+            local VectorLimbPart = Instance.new("WedgePart")
+            VectorLimbPart.BrickColor = BrickColor.random()
+            VectorLimbPart.Name = "VectorLimbPart"..i
+            VectorLimbPart.Anchored = true
+            VectorLimbPart.CanCollide = false
+            VectorLimbPart.Size = Vector3.new(0.5,1,self.LimbLengthTable[i])
+            VectorLimbPartTable[i] = VectorLimbPart
+            VectorLimbPart.Parent = workspace
+        end
+        self.VectorLimbPartTable=VectorLimbPartTable
+    else
+        local positionCF = CFrame.new(initialJointPosition)
+        local pointAt = CFrame.lookAt(initialJointPosition,endJointPosition)
+        local rotOnly = pointAt-pointAt.Position
+        self.VectorLimbPartTable[index].CFrame = positionCF*rotOnly*CFrame.new(0,0,-self.LimbLengthTable[index]/2)
 
     end
 end
