@@ -122,7 +122,9 @@ local rKneeHinge = HingeConstraint.new(rKneePart,30,30)
 local rLegHinge = HingeConstraint.new(rLegPart,80,80)
 
 --Construct the constraints table
-local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
+local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeBallSocket,rLegBallSocket}
+--local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
+
 local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object

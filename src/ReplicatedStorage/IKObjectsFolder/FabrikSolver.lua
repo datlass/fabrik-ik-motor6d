@@ -60,7 +60,7 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
     local feetToTarget = targetPosition - feetJoint
     local distanceToGoal = feetToTarget.Magnitude
 
-    --if distanceToGoal >= tolerance then
+    if distanceToGoal >= tolerance then
 
         -- Do backwards on itself first then forwards
         self:Backwards(originCF, targetPosition)
@@ -69,22 +69,13 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
 
         return self.LimbVectorTable
 
-    --else
-        -- Limb is within tolerance/already reached goal so don't do anything
+    else
         -- Do backwards on itself first then forwards
-        --self:Backwards(originCF, targetPosition)
-        --self:Forwards(originCF, targetPosition)
-        --self:ConstrainLimbs(originCF)
-
-        -- Do backwards on itself first then forwards
-        --self:Backwards(originCF, targetPosition)
-
-
-        --self:Forwards(originCF, targetPosition)
-        --self:ConstrainLimbs(originCF)
-
-        --return self.LimbVectorTable
-    --end
+        self:Backwards(originCF, targetPosition)
+        self:Forwards(originCF, targetPosition)
+        self:RotateLimbs(originCF)
+        return self.LimbVectorTable
+    end
 
 end
 
@@ -188,7 +179,8 @@ function FabrikSolver:Backwards(originCF, targetPos)
 
             local limbLength = limbLengthTable[i]
 
-            --newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength,self.LimbCFrameTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength,self.LimbCFrameTable[i])
+            --limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength,self.LimbCFrameTable[i])
 
         end
         -- constructs the new vectable
@@ -240,7 +232,8 @@ function FabrikSolver:Forwards(originCF, targetPos)
             local limbLength = limbLengthTable[i]
             -- Start the constraint according to the method
 
-            --newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength,self.LimbCFrameTable[i])
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength,self.LimbCFrameTable[i])
+            --limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength,self.LimbCFrameTable[i])
 
         end
         -- constructs the new vectable
@@ -255,7 +248,7 @@ end
 
 --goes fowards from origin cf joint to current end joint
 --start point to end point
---Constraining has to be done every 
+--Constraining has to be done every limb rotation
 function FabrikSolver:RotateLimbs(originCF)
 
     local limbVectorTable = self.LimbVectorTable
@@ -310,8 +303,8 @@ function FabrikSolver:RotateLimbs(originCF)
 
         self.LimbCFrameTable[i+1] = LimbVectorCFrame
 
-        self:DebugLimbRotationCFrame(i,LimbVectorCFrame,midPointPosition)
-        self:DebugLimbVector(i,currentJointPosition,endPointPosition)
+        --self:DebugLimbRotationCFrame(i,LimbVectorCFrame,midPointPosition)
+        --self:DebugLimbVector(i,currentJointPosition,endPointPosition)
     end
 
 end
