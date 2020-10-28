@@ -12,6 +12,13 @@ local function shallowCopy(original)
 	return copy
 end
 
+local function tableNegative(table)
+
+    for i,v in pairs(table) do
+        v = v*-1
+    end
+end
+
 function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,LimbChain)
     local obj = FabrikSolver:make()
 
@@ -53,37 +60,31 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
     local feetToTarget = targetPosition - feetJoint
     local distanceToGoal = feetToTarget.Magnitude
 
-    --[[ Measures origin joint to target position, not needed for now due to how constraints work
-    local originToGoalLength = (targetPosition-originCF.Position).Magnitude
-    if originToGoalLength<self.MaxLength then
-        print("in range")
-    else
-        print("out of range")
-    end
-    ]]
-
-    -- target point is "reachable"
-    -- if Distance is more than tolerance then iterate to move the new vectors closer
-    -- If not then don't execute the iteration to save FPS
-
-    if distanceToGoal >= tolerance then
+    --if distanceToGoal >= tolerance then
 
         -- Do backwards on itself first then forwards
         self:Backwards(originCF, targetPosition)
         self:Forwards(originCF, targetPosition)
-        self:ConstrainLimbs(originCF)
+        --self:ConstrainLimbs(originCF)
 
         return self.LimbVectorTable
 
-    else
+    --else
         -- Limb is within tolerance/already reached goal so don't do anything
         -- Do backwards on itself first then forwards
-        self:Backwards(originCF, targetPosition)
-        self:Forwards(originCF, targetPosition)
-        self:ConstrainLimbs(originCF)
+        --self:Backwards(originCF, targetPosition)
+        --self:Forwards(originCF, targetPosition)
+        --self:ConstrainLimbs(originCF)
 
-        return self.LimbVectorTable
-    end
+        -- Do backwards on itself first then forwards
+        --self:Backwards(originCF, targetPosition)
+
+
+        --self:Forwards(originCF, targetPosition)
+        --self:ConstrainLimbs(originCF)
+
+        --return self.LimbVectorTable
+    --end
 
 end
 
@@ -311,9 +312,8 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         self.LimbCFrameTable[i] = LimbVectorCFrame
 
-        --self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
+        self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
 
-        local currentLimbVector = -currentLimbVector
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 
             local limbLength = limbLengthTable[i]
@@ -326,7 +326,7 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         end
 
-        self.LimbVectorTable[i] = -currentLimbVector
+        self.LimbVectorTable[i] = currentLimbVector
 
     end
 

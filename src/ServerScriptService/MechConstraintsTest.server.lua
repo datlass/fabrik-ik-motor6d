@@ -82,8 +82,8 @@ local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local upperLegBallSocketConstraintAlternative = BallSocketConstraint.new(testBallSocketConstraint,40,40)
-local lKneeHinge = HingeConstraint.new(kneePart,90,90)
-local lLegHinge = HingeConstraint.new(lLegPart,90,90)
+local lKneeHinge = HingeConstraint.new(kneePart,80,80)
+local lLegHinge = HingeConstraint.new(lLegPart,80,80)
 
 
 --Set up two constraint tables to allow
@@ -118,8 +118,8 @@ local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(rightBallSocketConstraintPart,40,40)
-local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
-local rLegHinge = HingeConstraint.new(rLegPart,90,90)
+local rKneeHinge = HingeConstraint.new(rKneePart,30,30)
+local rLegHinge = HingeConstraint.new(rLegPart,80,80)
 
 --Construct the constraints table
 local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}

@@ -53,11 +53,11 @@ function FabrikConstraint:UpdateAxis(PreviousLimbAxisCFrame,JointPosition)
 
     if not PreviousLimbAxisCFrame then
         --old system planning to remove
-        self.CenterAxis = self.Part.CFrame.LookVector
-        self.XAxis = self.Part.CFrame.RightVector
-        self.YAxis = self.Part.CFrame.UpVector
+        ---self.CenterAxis = self.Part.CFrame.LookVector
+        ---self.XAxis = self.Part.CFrame.RightVector
+        ---self.YAxis = self.Part.CFrame.UpVector
     else --new system
-        self.PartCF = self.Part.CFrame
+        self.PartCF = self.Part.CFrame-self.Part.CFrame.p
         local test = PreviousLimbAxisCFrame-PreviousLimbAxisCFrame.p
         local newAxisCF = test*self.PartCF
         self.CenterAxis = newAxisCF.LookVector
@@ -100,7 +100,7 @@ function FabrikConstraint:DebugAxis(JointPosition)
 
     else
         
-        self.LimbAxis.CFrame = CFrame.fromMatrix(JointPosition,self.XAxis,self.YAxis,self.CenterAxis)
+        self.LimbAxis.CFrame = CFrame.fromMatrix(JointPosition,self.XAxis,self.YAxis)
 
     end
 

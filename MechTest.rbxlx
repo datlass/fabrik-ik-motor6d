@@ -986,7 +986,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.5</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1117,7 +1117,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.5</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1248,7 +1248,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.5</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1365,7 +1365,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.5</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -2716,27 +2716,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-18.5291653</X>
-					<Y>32.3633881</Y>
-					<Z>0.907410741</Z>
-					<R00>0.512482405</R00>
-					<R01>-0.709610879</R01>
-					<R02>0.483543485</R02>
-					<R10>1.4901163e-08</R10>
-					<R11>0.563112617</R11>
-					<R12>0.826380193</R12>
-					<R20>-0.858697832</R20>
-					<R21>-0.423505306</R21>
-					<R22>0.288585246</R22>
+					<X>-19.8830414</X>
+					<Y>16.8227882</Y>
+					<Z>-2.84256935</Z>
+					<R00>-0.115938112</R00>
+					<R01>-0.342343062</R01>
+					<R02>0.932394624</R02>
+					<R10>-0</R10>
+					<R11>0.938725054</R11>
+					<R12>0.344667315</R12>
+					<R20>-0.993256509</R20>
+					<R21>0.0399600789</R21>
+					<R22>-0.108833991</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-19.496254</X>
-					<Y>30.7106247</Y>
-					<Z>0.330239236</Z>
+					<X>-21.7478313</X>
+					<Y>16.1334534</Y>
+					<Z>-2.62490129</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2763,7 +2763,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			</Properties>
 			<Item class="WedgePart" referent="RBXbb365bcbee434605951939acb27dcfff">
 				<Properties>
-					<bool name="Anchored">false</bool>
+					<bool name="Anchored">true</bool>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<float name="BackParamA">-0.5</float>
 					<float name="BackParamB">0.5</float>
@@ -3006,14 +3006,14 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>12.1503344</Y>
 						<Z>-5.06920815</Z>
 						<R00>-1</R00>
-						<R01>8.74227766e-08</R01>
-						<R02>0</R02>
-						<R10>-8.0826382e-08</R10>
-						<R11>-0.924546063</R11>
-						<R12>-0.381070375</R12>
-						<R20>-3.33142296e-08</R20>
-						<R21>-0.381070375</R21>
-						<R22>0.924546063</R22>
+						<R01>-1.12596688e-08</R01>
+						<R02>8.66946479e-08</R02>
+						<R10>0</R10>
+						<R11>0.991671145</R11>
+						<R12>0.128795594</R12>
+						<R20>-8.74227766e-08</R20>
+						<R21>0.128795594</R21>
+						<R22>-0.991671145</R22>
 					</CoordinateFrame>
 					<bool name="CanCollide">false</bool>
 					<bool name="CastShadow">true</bool>
@@ -3082,14 +3082,14 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<Y>11.1503191</Y>
 						<Z>-4.81923485</Z>
 						<R00>1</R00>
-						<R01>3.32669003e-10</R01>
-						<R02>7.619402e-09</R02>
-						<R10>7.619402e-09</R10>
-						<R11>-0.087155804</R11>
-						<R12>-0.99619472</R12>
-						<R20>3.32669003e-10</R20>
-						<R21>0.99619472</R21>
-						<R22>-0.087155804</R22>
+						<R01>-7.10542736e-15</R01>
+						<R02>4.57782978e-11</R02>
+						<R10>-4.57782978e-11</R10>
+						<R11>-0.000523642695</R11>
+						<R12>0.999999881</R12>
+						<R20>7.10542736e-15</R20>
+						<R21>-0.999999881</R21>
+						<R22>-0.000523642695</R22>
 					</CoordinateFrame>
 					<bool name="CanCollide">false</bool>
 					<bool name="CastShadow">true</bool>
@@ -3157,15 +3157,15 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<X>-37.3192329</X>
 						<Y>18.4999981</Y>
 						<Z>-4.81923723</Z>
-						<R00>-0.0229675584</R00>
-						<R01>0.430355519</R01>
-						<R02>0.902367234</R02>
-						<R10>0.0868238583</R10>
-						<R11>0.90005362</R11>
-						<R12>-0.427042246</R12>
-						<R20>-0.995958924</R20>
-						<R21>0.0685388893</R21>
-						<R22>-0.0580371618</R22>
+						<R00>-0.0556548908</R00>
+						<R01>0.648869157</R01>
+						<R02>-0.758861899</R02>
+						<R10>-0.0492399</R10>
+						<R11>0.757331431</R11>
+						<R12>0.651171684</R12>
+						<R20>0.997235179</R20>
+						<R21>0.0736071765</R21>
+						<R22>-0.010198947</R22>
 					</CoordinateFrame>
 					<bool name="CanCollide">false</bool>
 					<bool name="CastShadow">true</bool>
@@ -3308,9 +3308,9 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<token name="BottomSurface">0</token>
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
-					<X>-9.25</X>
+					<X>-7.5</X>
 					<Y>2.5</Y>
-					<Z>2.875</Z>
+					<Z>2.375</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -7152,8 +7152,8 @@ local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local upperLegBallSocketConstraintAlternative = BallSocketConstraint.new(testBallSocketConstraint,40,40)
-local lKneeHinge = HingeConstraint.new(kneePart,90,90)
-local lLegHinge = HingeConstraint.new(lLegPart,90,90)
+local lKneeHinge = HingeConstraint.new(kneePart,80,80)
+local lLegHinge = HingeConstraint.new(lLegPart,80,80)
 
 
 --Set up two constraint tables to allow
@@ -7188,8 +7188,8 @@ local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(rightBallSocketConstraintPart,40,40)
-local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
-local rLegHinge = HingeConstraint.new(rLegPart,90,90)
+local rKneeHinge = HingeConstraint.new(rKneePart,80,80)
+local rLegHinge = HingeConstraint.new(rLegPart,80,80)
 
 --Construct the constraints table
 local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
@@ -8730,7 +8730,7 @@ function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbL
             local yHeight = 2*limbLength*math.sin(self.AngleOfHeight)
             local xHeight = 2*limbLength*math.sin(self.AngleOfWidth)
             self.Cone.Size = Vector3.new(xHeight,limbLength,yHeight)
-            self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,self.CenterAxis,self.YAxis)*CFrame.new(0,-limbLength/2,0)
+            self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,-self.CenterAxis,self.YAxis)*CFrame.new(0,-limbLength/2,0)
         end
 
         --Get the Axis
@@ -8875,7 +8875,7 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
         local yHeight = limbLength*math.sin(self.AngleOfElevation)+limbLength*math.sin(-self.AngleOfDepression)
         local xHeight = 1
         self.Cone.Size = Vector3.new(xHeight,limbLength,yHeight)
-        self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,-self.CenterAxis,self.YAxis)*CFrame.new(0,-limbLength/2,0)
+        self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,-self.CenterAxis)*CFrame.new(0,-limbLength/2,0)
     end
     
     --Create a plane that is located on the joint with a surface normal to the rightvector
@@ -9085,11 +9085,11 @@ function FabrikConstraint:UpdateAxis(PreviousLimbAxisCFrame,JointPosition)
 
     if not PreviousLimbAxisCFrame then
         --old system planning to remove
-        self.CenterAxis = self.Part.CFrame.LookVector
-        self.XAxis = self.Part.CFrame.RightVector
-        self.YAxis = self.Part.CFrame.UpVector
+        ---self.CenterAxis = self.Part.CFrame.LookVector
+        ---self.XAxis = self.Part.CFrame.RightVector
+        ---self.YAxis = self.Part.CFrame.UpVector
     else --new system
-        self.PartCF = self.Part.CFrame
+        self.PartCF = self.Part.CFrame-self.Part.CFrame.p
         local test = PreviousLimbAxisCFrame-PreviousLimbAxisCFrame.p
         local newAxisCF = test*self.PartCF
         self.CenterAxis = newAxisCF.LookVector
@@ -9132,7 +9132,7 @@ function FabrikConstraint:DebugAxis(JointPosition)
 
     else
         
-        self.LimbAxis.CFrame = CFrame.fromMatrix(JointPosition,self.XAxis,self.YAxis,self.CenterAxis)
+        self.LimbAxis.CFrame = CFrame.fromMatrix(JointPosition,self.XAxis,self.YAxis)
 
     end
 
@@ -9162,6 +9162,13 @@ local function shallowCopy(original)
 		copy[key] = value
 	end
 	return copy
+end
+
+local function tableNegative(table)
+
+    for i,v in pairs(table) do
+        v = v*-1
+    end
 end
 
 function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,LimbChain)
@@ -9205,20 +9212,7 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
     local feetToTarget = targetPosition - feetJoint
     local distanceToGoal = feetToTarget.Magnitude
 
-    --[[ Measures origin joint to target position, not needed for now due to how constraints work
-    local originToGoalLength = (targetPosition-originCF.Position).Magnitude
-    if originToGoalLength<self.MaxLength then
-        print("in range")
-    else
-        print("out of range")
-    end
-    ]]
-
-    -- target point is "reachable"
-    -- if Distance is more than tolerance then iterate to move the new vectors closer
-    -- If not then don't execute the iteration to save FPS
-
-    if distanceToGoal >= tolerance then
+    --if distanceToGoal >= tolerance then
 
         -- Do backwards on itself first then forwards
         self:Backwards(originCF, targetPosition)
@@ -9227,15 +9221,22 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
 
         return self.LimbVectorTable
 
-    else
+    --else
         -- Limb is within tolerance/already reached goal so don't do anything
         -- Do backwards on itself first then forwards
-        self:Backwards(originCF, targetPosition)
-        self:Forwards(originCF, targetPosition)
-        self:ConstrainLimbs(originCF)
+        --self:Backwards(originCF, targetPosition)
+        --self:Forwards(originCF, targetPosition)
+        --self:ConstrainLimbs(originCF)
 
-        return self.LimbVectorTable
-    end
+        -- Do backwards on itself first then forwards
+        --self:Backwards(originCF, targetPosition)
+
+
+        --self:Forwards(originCF, targetPosition)
+        --self:ConstrainLimbs(originCF)
+
+        --return self.LimbVectorTable
+    --end
 
 end
 
@@ -9463,9 +9464,8 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         self.LimbCFrameTable[i] = LimbVectorCFrame
 
-        --self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
+        self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
 
-        local currentLimbVector = -currentLimbVector
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 
             local limbLength = limbLengthTable[i]
@@ -9478,7 +9478,7 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         end
 
-        self.LimbVectorTable[i] = -currentLimbVector
+        self.LimbVectorTable[i] = currentLimbVector
 
     end
 

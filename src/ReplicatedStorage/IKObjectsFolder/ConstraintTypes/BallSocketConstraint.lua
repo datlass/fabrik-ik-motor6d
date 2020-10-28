@@ -40,7 +40,7 @@ function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbL
             local yHeight = 2*limbLength*math.sin(self.AngleOfHeight)
             local xHeight = 2*limbLength*math.sin(self.AngleOfWidth)
             self.Cone.Size = Vector3.new(xHeight,limbLength,yHeight)
-            self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,self.CenterAxis,self.YAxis)*CFrame.new(0,-limbLength/2,0)
+            self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,-self.CenterAxis,self.YAxis)*CFrame.new(0,-limbLength/2,0)
         end
 
         --Get the Axis
