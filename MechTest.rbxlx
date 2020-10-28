@@ -986,7 +986,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.699999988</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1117,7 +1117,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.699999988</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1248,7 +1248,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.699999988</float>
 						<bool name="UsePartColor">false</bool>
 						<Vector3 name="Velocity">
 							<X>0</X>
@@ -1365,7 +1365,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0</float>
+						<float name="Transparency">0.699999988</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -2716,27 +2716,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-36.7700157</X>
-					<Y>22.9319572</Y>
-					<Z>-23.9762096</Z>
-					<R00>-0.993803144</R00>
-					<R01>-0.0584183969</R01>
-					<R02>0.0945663303</R02>
-					<R10>-0</R10>
-					<R11>0.850758731</R11>
-					<R12>0.525556505</R12>
-					<R20>-0.111155309</R20>
-					<R21>0.522299707</R21>
-					<R22>-0.845486522</R22>
+					<X>-27.2550011</X>
+					<Y>24.4392471</Y>
+					<Z>-28.7144451</Z>
+					<R00>-0.948625207</R00>
+					<R01>-0.125059858</R01>
+					<R02>0.29063791</R02>
+					<R10>-7.45057971e-09</R10>
+					<R11>0.918571174</R11>
+					<R12>0.395255953</R12>
+					<R20>-0.316402197</R20>
+					<R21>0.374949753</R21>
+					<R22>-0.871379673</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-36.9591484</X>
-					<Y>21.8808441</Y>
-					<Z>-22.2852364</Z>
+					<X>-27.836277</X>
+					<Y>23.648735</Y>
+					<Z>-26.9716854</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -9217,7 +9217,7 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
         -- Do backwards on itself first then forwards
         self:Backwards(originCF, targetPosition)
         self:Forwards(originCF, targetPosition)
-        self:ConstrainLimbs(originCF)
+        self:RotateLimbs(originCF)
 
         return self.LimbVectorTable
 
@@ -9275,7 +9275,8 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
         
         --Issue constraints don't update unless motors are updated
         --Solution update the motors lol
-        self.LimbChain:UpdateMotors()
+        --no need though now
+        --self.LimbChain:UpdateMotors()
 
         --measure distance again
         -- initialize measure feet to where it should be in the world position
@@ -9295,9 +9296,6 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
         end
 
     end
-    --Iterate once in case
-    self:Backwards(originCF, targetPosition)
-    self:Forwards(originCF, targetPosition)
 
     -- Limb is within tolerance/already reached goal so don't do anything
     --print("bcount:", bcount,"Reached goal: ", distanceToGoal)
@@ -9341,10 +9339,9 @@ function FabrikSolver:Backwards(originCF, targetPos)
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 
             local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-            -- print(limbConstraintTable[i])
+
             --newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength,self.LimbCFrameTable[i])
-            -- print("Index: ",i,"Vector: ",newLimbVector)
+
         end
         -- constructs the new vectable
         -- Gotta make it negative though to counteract
@@ -9410,11 +9407,10 @@ end
 
 --goes fowards from origin cf joint to current end joint
 --start point to end point
-function FabrikSolver:ConstrainLimbs(originCF)
+--Constraining has to be done every 
+function FabrikSolver:RotateLimbs(originCF)
 
     local limbVectorTable = self.LimbVectorTable
-    local limbLengthTable = self.LimbLengthTable
-    local limbConstraintTable = self.LimbConstraintTable
 
     for i = 1, #limbVectorTable, 1 do
         -- initialize empty vector for summing
@@ -9433,6 +9429,8 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         local midPointPosition = currentJointPosition + currentLimbVector/2
     
+        local endPointPosition = currentJointPosition + currentLimbVector
+
         local originalVectorLimb =self.OriginalLimbVectorTable[i]
 
         local previousLimbCF
@@ -9443,21 +9441,20 @@ function FabrikSolver:ConstrainLimbs(originCF)
             self.LimbCFrameTable[i] = part0CF
         else
             local rotOnly = self.LimbCFrameTable[i]-self.LimbCFrameTable[i].Position
-            previousLimbCF = CFrame.new(midPointPosition)*rotOnly
+            --previousLimbCF = CFrame.new(midPointPosition)*rotOnly
+            previousLimbCF=rotOnly
         end
         local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
 
         --angle finding and rotation axis
         local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentLimbVector.Unit)
-        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+        local safetyClamp = math.clamp(dotProductAngle, -0.98, 0.98)
         local limbRotationAngle = math.acos(safetyClamp)
         local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentLimbVector) -- obtain the rotation axis
 
-        --new testing for rotating the rectangle
-        --local goalCF = previousLimbCF*CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)
-        local rotOnly = previousLimbCF-previousLimbCF.p
+        local rotationOnly = previousLimbCF-previousLimbCF.Position
         local undoPreviousLimbCF = CFrame.new(currentJointPosition)
-        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*rotOnly
+        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*rotationOnly
         
         local goalCF = undoPreviousLimbCF*rotateLimbCF
 
@@ -9467,27 +9464,9 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
 
-        --nvm it doesn't work
-        --[[
-        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
-            local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-            if i == 1 then
-                currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength,originCF)
-            else
-                currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength,self.LimbCFrameTable[i])
-            end
-
-        end
-        ]]
-
-        --self.LimbVectorTable[i] = currentLimbVector
-
     end
 
 end
-
 
 function FabrikSolver:DebugLimbs(index,limbCFrame,midPointPosition)
     --initizalize first
@@ -9500,7 +9479,7 @@ function FabrikSolver:DebugLimbs(index,limbCFrame,midPointPosition)
             LimbPart.Name = "LimbPart"..i
             LimbPart.Anchored = true
             LimbPart.CanCollide = false
-            LimbPart.Size = Vector3.new(0.5,1,self.LimbLengthTable[i])
+            LimbPart.Size = Vector3.new(0.5,2,self.LimbLengthTable[i])
             LimbPartTable[i] = LimbPart
             LimbPart.Parent = workspace
         end

@@ -65,7 +65,7 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
         -- Do backwards on itself first then forwards
         self:Backwards(originCF, targetPosition)
         self:Forwards(originCF, targetPosition)
-        self:ConstrainLimbs(originCF)
+        self:RotateLimbs(originCF)
 
         return self.LimbVectorTable
 
@@ -123,7 +123,8 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
         
         --Issue constraints don't update unless motors are updated
         --Solution update the motors lol
-        self.LimbChain:UpdateMotors()
+        --no need though now
+        --self.LimbChain:UpdateMotors()
 
         --measure distance again
         -- initialize measure feet to where it should be in the world position
@@ -143,9 +144,6 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
         end
 
     end
-    --Iterate once in case
-    self:Backwards(originCF, targetPosition)
-    self:Forwards(originCF, targetPosition)
 
     -- Limb is within tolerance/already reached goal so don't do anything
     --print("bcount:", bcount,"Reached goal: ", distanceToGoal)
@@ -189,10 +187,9 @@ function FabrikSolver:Backwards(originCF, targetPos)
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
 
             local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-            -- print(limbConstraintTable[i])
+
             --newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength,self.LimbCFrameTable[i])
-            -- print("Index: ",i,"Vector: ",newLimbVector)
+
         end
         -- constructs the new vectable
         -- Gotta make it negative though to counteract
@@ -258,7 +255,8 @@ end
 
 --goes fowards from origin cf joint to current end joint
 --start point to end point
-function FabrikSolver:ConstrainLimbs(originCF)
+--Constraining has to be done every 
+function FabrikSolver:RotateLimbs(originCF)
 
     local limbVectorTable = self.LimbVectorTable
 
@@ -279,6 +277,8 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         local midPointPosition = currentJointPosition + currentLimbVector/2
     
+        local endPointPosition = currentJointPosition + currentLimbVector
+
         local originalVectorLimb =self.OriginalLimbVectorTable[i]
 
         local previousLimbCF
@@ -289,21 +289,20 @@ function FabrikSolver:ConstrainLimbs(originCF)
             self.LimbCFrameTable[i] = part0CF
         else
             local rotOnly = self.LimbCFrameTable[i]-self.LimbCFrameTable[i].Position
-            previousLimbCF = CFrame.new(midPointPosition)*rotOnly
+            --previousLimbCF = CFrame.new(midPointPosition)*rotOnly
+            previousLimbCF=rotOnly
         end
         local limbVectorRelativeToOriginal = previousLimbCF:VectorToWorldSpace(originalVectorLimb)
 
         --angle finding and rotation axis
         local dotProductAngle = limbVectorRelativeToOriginal.Unit:Dot(currentLimbVector.Unit)
-        local safetyClamp = math.clamp(dotProductAngle, -1, 1)
+        local safetyClamp = math.clamp(dotProductAngle, -0.98, 0.98)
         local limbRotationAngle = math.acos(safetyClamp)
         local limbRotationAxis = limbVectorRelativeToOriginal:Cross(currentLimbVector) -- obtain the rotation axis
 
-        --new testing for rotating the rectangle
-        --local goalCF = previousLimbCF*CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)
-        local rotOnly = previousLimbCF-previousLimbCF.p
+        local rotationOnly = previousLimbCF-previousLimbCF.Position
         local undoPreviousLimbCF = CFrame.new(currentJointPosition)
-        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*rotOnly
+        local rotateLimbCF =CFrame.fromAxisAngle(limbRotationAxis,limbRotationAngle)*rotationOnly
         
         local goalCF = undoPreviousLimbCF*rotateLimbCF
 
@@ -313,27 +312,9 @@ function FabrikSolver:ConstrainLimbs(originCF)
 
         self:DebugLimbs(i,LimbVectorCFrame,midPointPosition)
 
-        --nvm it doesn't work
-        --[[
-        if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
-            local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-            if i == 1 then
-                currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength,originCF)
-            else
-                currentLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentJointPosition, currentLimbVector, limbLength,self.LimbCFrameTable[i])
-            end
-
-        end
-        ]]
-
-        --self.LimbVectorTable[i] = currentLimbVector
-
     end
 
 end
-
 
 function FabrikSolver:DebugLimbs(index,limbCFrame,midPointPosition)
     --initizalize first
@@ -346,7 +327,7 @@ function FabrikSolver:DebugLimbs(index,limbCFrame,midPointPosition)
             LimbPart.Name = "LimbPart"..i
             LimbPart.Anchored = true
             LimbPart.CanCollide = false
-            LimbPart.Size = Vector3.new(0.5,1,self.LimbLengthTable[i])
+            LimbPart.Size = Vector3.new(0.5,2,self.LimbLengthTable[i])
             LimbPartTable[i] = LimbPart
             LimbPart.Parent = workspace
         end
