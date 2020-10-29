@@ -32,8 +32,19 @@ end
 function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
 
     --Gets the part's current CFrame
-    self:UpdateAxis()
+    self:UpdateAxis(jointPosition)
+
+
+    --debug visualize the ball socket constraint rang
+    if self.Cone then
+        local yHeight = limbLength*math.sin(self.AngleOfElevation)+limbLength*math.sin(-self.AngleOfDepression)
+        local xHeight = 1
+        self.Cone.Size = Vector3.new(xHeight,limbLength,yHeight)
+        self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,-self.CenterAxis)*CFrame.new(0,-limbLength/2,0)
+    end
     
+
+
     --Create a plane that is located on the joint with a surface normal to the rightvector
     local planeOnJoint = MathPlane.new(self.XAxis,jointPosition)
 

@@ -33,7 +33,17 @@ function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbL
     
         --Get the parts current CFrame
         --Big problem as its relative to the part attached to the motor
-        self:UpdateAxis()
+        self:UpdateAxis(jointPosition)
+
+        --debug visualize the ball socket constraint rang
+        if self.Cone then
+            local yHeight = 2*limbLength*math.sin(self.AngleOfHeight)
+            local xHeight = 2*limbLength*math.sin(self.AngleOfWidth)
+            local length = limbLength * math.cos(self.AngleOfWidth)
+            self.Cone.Size = Vector3.new(xHeight,length,yHeight)
+            self.Cone.CFrame = CFrame.fromMatrix(jointPosition,self.XAxis,-self.CenterAxis,self.YAxis)*CFrame.new(0,-length/2,0)
+        end
+
 
         --Get the Axis
         local centerAxis = self.CenterAxis.Unit

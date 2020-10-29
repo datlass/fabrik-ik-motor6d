@@ -163,7 +163,7 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
         self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
-              
+        
     end
 
 end
@@ -300,9 +300,11 @@ function LimbChain:UpdateMotors()
 
                     --Now adding a debug mode----------------------------------------------------------------
                     --Puts the created parts according to the motor position
+                    --[[
                     if self.DebugMode then
                         workspace["LimbVector:"..i].Position = motorPosition
                     end
+                    ]]
                     ----------------------------------------------------------------
                     --Obtain the CFrame operations needed to rotate the limb to the goal
                     local undoPreviousLimbCF = previousLimbCF:Inverse()*CFrame.new(motorPosition)
@@ -345,7 +347,7 @@ function LimbChain:UpdateMotors()
             --Now adding a debug mode----------------------------------------------------------------
             --Puts the created parts according to the motor position
             if self.DebugMode then
-            workspace["LimbVector:"..footMotorIndex+1].Position = motorPosition
+            --workspace["LimbVector:"..footMotorIndex+1].Position = motorPosition
             end
 
             --Now does controls the motor
@@ -565,9 +567,31 @@ function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 end--end of function
 
 
-function LimbChain:DebugModeOn()
+function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
 
-    --Stores all the limb vectors in a table so I don't have to self call everytime
+    --turns constraints debug mode to true
+    if PrimaryDebug then
+        for i, v in pairs(self.PrimaryLimbConstraintTable) do
+            if not v.DebugMode then
+                v.DebugMode = true
+            end
+        end
+    end
+
+    if SecondaryDebug then
+        for i, v in pairs(self.SecondaryLimbConstraintTable) do
+            if not v.DebugMode then
+                v.DebugMode = true
+            end
+        end
+    end
+
+    --forces iterate once to keep iterating very laggy but updates the constraints
+    self.LimbFabrikSolver.DebugMode = true
+    self.LimbFabrikSolver.FreezeLimbs = FreezeLimbs
+
+    --[[ code below debugs the motor position, not necessary
+
     local limbVectors = self.IteratedLimbVectorTable
 
     local additionalMotor = 0
@@ -575,7 +599,6 @@ function LimbChain:DebugModeOn()
         additionalMotor += 1
     end
 
-    --Creates a part for each limb vector
     for i=1,#limbVectors+additionalMotor,1 do
     local part = Instance.new("Part")
     part.Anchored = true
@@ -584,6 +607,7 @@ function LimbChain:DebugModeOn()
     part.Parent = workspace
     end
     self.DebugMode = true
+    ]]
 end
 
 return LimbChain

@@ -1,3 +1,8 @@
+--Get services
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local InsertService = game:GetService("InsertService")
+
 -- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
@@ -15,6 +20,8 @@ function FabrikConstraint.new(Part)
     obj.XAxis = Part.CFrame.RightVector
     obj.YAxis = Part.CFrame.UpVector
     end
+
+    obj.DebugMode = false
 
     return obj
 end
@@ -50,31 +57,59 @@ end
     fairly activity intensive goes from 1-2% to 4-6% max
     Also problem as it requires the part motor to update 
 ]]
-function FabrikConstraint:UpdateAxis()
+function FabrikConstraint:UpdateAxis(JointPosition)
 
     self.CenterAxis = self.Part.CFrame.LookVector
     self.XAxis = self.Part.CFrame.RightVector
     self.YAxis = self.Part.CFrame.UpVector
 
-end
-
-function FabrikConstraint:UpdateYAxis()
-
-    self.YAxis = self.Part.CFrame.UpVector
+    if self.DebugMode then
+        self:DebugAxis(JointPosition)
+    end
 
 end
 
-function FabrikConstraint:UpdateXAxis()
+--function to visualize direction of the axis
+--Only creates the clone
+function FabrikConstraint:DebugAxis(JointPosition)
 
-    self.XAxis = self.Part.CFrame.RightVector
+    if not self.DebugInitialized then
+        self.DebugInitialized = true
+        
+        --[[
+        --for debugging the joint axis without the cone stuff
+        local LimbAxis = Instance.new("WedgePart")
+        LimbAxis.BrickColor = BrickColor.random()
+        LimbAxis.Name = "LimbAxis"
+        LimbAxis.Anchored = true
+        LimbAxis.CanCollide = false
+        LimbAxis.Size = Vector3.new(2,2,4)
+        self.LimbAxis = LimbAxis
+        LimbAxis.Parent = workspace:WaitForChild("RayFilterFolder")
+        ]]
+
+        --create the cone to debug the axis
+        local cone = ReplicatedStorage:FindFirstChild("EnhancedCone")
+
+        if not cone then
+            local assetId = 5883549047
+            cone = InsertService:LoadAsset(assetId):WaitForChild("EnhancedCone")
+        end
+
+        self.Cone = cone:Clone()
+        self.Cone.Transparency = 0.5
+        self.Cone.Anchored = true
+        self.Cone.CanCollide = false
+        self.Cone.BrickColor = BrickColor.random()
+        self.Cone.Parent = workspace:WaitForChild("RayFilterFolder")
+
+    else
+        
+        --for debugging the joint axis
+       -- self.LimbAxis.CFrame = CFrame.fromMatrix(JointPosition,self.XAxis,self.YAxis)
+
+    end
 
 end
-
-function FabrikConstraint:UpdateCenterAxis()
-
-    self.CenterAxis = self.Part.CFrame.LookVector
-
-end
-
 
 return FabrikConstraint

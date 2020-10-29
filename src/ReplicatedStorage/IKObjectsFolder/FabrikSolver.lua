@@ -15,6 +15,10 @@ function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,
 
     obj.LimbConstraintTable = LimbConstraintTable
 
+    obj.DebugMode = false
+
+    obj.FreezeLimbs = false
+
     -- Initialize number for summing
     local MaxLength = 0
     -- adds all the magnitudes of the limb vector
@@ -41,19 +45,6 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
     local feetToTarget = targetPosition - feetJoint
     local distanceToGoal = feetToTarget.Magnitude
 
-    --[[ Measures origin joint to target position, not needed for now due to how constraints work
-    local originToGoalLength = (targetPosition-originCF.Position).Magnitude
-    if originToGoalLength<self.MaxLength then
-        print("in range")
-    else
-        print("out of range")
-    end
-    ]]
-
-    -- target point is "reachable"
-    -- if Distance is more than tolerance then iterate to move the new vectors closer
-    -- If not then don't execute the iteration to save FPS
-
     if distanceToGoal >= tolerance then
 
         -- Do backwards on itself first then forwards
@@ -64,6 +55,13 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
 
     else
         -- Limb is within tolerance/already reached goal so don't do anything
+
+        if self.DebugMode then
+            
+            self:Backwards(originCF, targetPosition)
+            self:Forwards(originCF, targetPosition)    
+
+        end
 
         return self.LimbVectorTable
     end
@@ -171,19 +169,22 @@ function FabrikSolver:Backwards(originCF, targetPos)
             local limbLength = limbLengthTable[i]
             -- Start the constraint according to the method
             -- print(limbConstraintTable[i])
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(
-                                pointTowards, newLimbVector, limbLength)
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength)
             -- print("Index: ",i,"Vector: ",newLimbVector)
         end
         -- constructs the new vectable
         -- Gotta make it negative though to counteract
-        limbVectorTable[i] = -newLimbVector
+        if not self.FreezeLimbs then
+            limbVectorTable[i] = -newLimbVector
+        end
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
     end
 
     -- Change the objects self vector table
-    self.LimbVectorTable = limbVectorTable
 
+    if not self.FreezeLimbs then
+        self.LimbVectorTable = limbVectorTable
+    end
 end
 
 --[[
@@ -228,12 +229,17 @@ function FabrikSolver:Forwards(originCF, targetPos)
 
         end
         -- constructs the new vectable
-        limbVectorTable[i] = newLimbVector
+        if not self.FreezeLimbs then
+            limbVectorTable[i] = newLimbVector
+        end
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
     end
 
     -- Change the objects self vector table
-    self.LimbVectorTable = limbVectorTable
+    if not self.FreezeLimbs then
+        self.LimbVectorTable = limbVectorTable
+    end
+
 end
 
 return FabrikSolver

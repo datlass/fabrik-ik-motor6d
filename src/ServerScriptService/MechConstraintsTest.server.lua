@@ -18,7 +18,6 @@ local RotatedRegion3 = require(RotatedRegion3Pointer)
 local BallSocketConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.BallSocketConstraint
 local BallSocketConstraint = require(BallSocketConstraintPointer)
 
-
 --HingeConstraint
 local HingeConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
@@ -28,7 +27,6 @@ local RigidConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.Constrai
 local RigidConstraint = require(RigidConstraintPointer)
 
 ----------------------------------------------------------------
-
 
 -- Pointers
 local lowerBody = workspace.LowerBody
@@ -56,7 +54,8 @@ local leftLegChain = LimbChain.new(motorTable,true)
 
 --Foot placement system
 local footParams = RaycastParams.new()
-footParams.CollisionGroup = "MovementSys"
+local ignoreParts = workspace:WaitForChild("RayFilterFolder")
+footParams.FilterDescendantsInstances = {lowerBody,ignoreParts}
 
 leftLegChain.FootPlacementRaycastParams = footParams
 leftLegChain.LengthToFloor = 20
@@ -84,7 +83,6 @@ local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
 local upperLegBallSocketConstraintAlternative = BallSocketConstraint.new(testBallSocketConstraint,40,40)
 local lKneeHinge = HingeConstraint.new(kneePart,90,90)
 local lLegHinge = HingeConstraint.new(lLegPart,90,90)
-
 
 --Set up two constraint tables to allow
 local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
@@ -135,10 +133,9 @@ local rightLegRegionPart2 = lowerBody.ConstraintZones.RightLegPart2
 local rightLegRegion = {rightLegRegionPart1,rightLegRegionPart2}
 rightLegChain.PrimaryConstraintRegionFromParts = rightLegRegion
 
-
-
 --turn on debug mode if u want
---leftLegChain:DebugModeOn()
+leftLegChain:DebugModeOn(true,true,false)
+rightLegChain:DebugModeOn(true,true,false)
 
 local down = Vector3.new(0,-20,0)
 --[[
@@ -149,11 +146,10 @@ RunService.Heartbeat:Connect(function(step)
     --The Goal position
     local goalPosition = workspace.MechLTarget.Position
     local goalRightPosition = workspace.MechRTarget.Position
-    local rayResult = workspace:Raycast(workspace.MechLTarget.Position,down,footParams)
+    local rayResult = workspace:Raycast(goalPosition,down,footParams)
     if rayResult then
        leftLegChain:IterateOnce(rayResult.Position,0.1)
     end
-    --leftLegChain:IterateOnce(goalPosition,0.1)
     leftLegChain:UpdateMotors()
 
     rightLegChain:IterateOnce(goalRightPosition,0.1)
@@ -161,28 +157,7 @@ RunService.Heartbeat:Connect(function(step)
 
 end)
 
---Below is testing for Iterate until goal, still pretty glitchy idk why
---Constraints not updating
-
---[[
-    
---Moves position back and forth
-local back = Vector3.new(0,0,15)
-local goalPosition = workspace.LTarget.Position
-
-for i=1,1000,1 do
-    
-    workspace.LTarget.Position = workspace.LTarget.Position+back
-    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,20)
-    leftLegChain:UpdateMotors()
-    wait(1)
-    workspace.LTarget.Position = workspace.LTarget.Position-back
-    leftLegChain:IterateUntilGoal(workspace.LTarget.Position,0.1,20)
-    leftLegChain:UpdateMotors()
-    wait(1)
-end
-]]
-
+--Below is testing for Iterate until goal, works I guess
 
 --[[
     
