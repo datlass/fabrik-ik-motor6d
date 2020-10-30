@@ -72,9 +72,9 @@ Enjoy!
 
 --
 
-local GJK = require(script.Parent.RotatedRegion3Children:WaitForChild("GJK"))
-local Supports = require(script.Parent.RotatedRegion3Children:WaitForChild("Supports"))
-local Vertices = require(script.Parent.RotatedRegion3Children:WaitForChild("Vertices"))
+local GJK = require(script:WaitForChild("GJK"))
+local Supports = require(script:WaitForChild("Supports"))
+local Vertices = require(script:WaitForChild("Vertices"))
 
 -- Class
 

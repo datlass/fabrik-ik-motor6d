@@ -2,16 +2,16 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Import the Fabrik Solver Object
-local FabrikSolverPointer = script.Parent:WaitForChild("FabrikSolver")
+local FabrikSolverPointer = script:WaitForChild("FabrikSolver")
 local FabrikSolver = require(FabrikSolverPointer)
 
 -- Import Rotated Region 3
-local RotatedRegion3Pointer = script.Parent:WaitForChild("RotatedRegion3")
+local RotatedRegion3Pointer = script:WaitForChild("RotatedRegion3")
 local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
-local Object = require(Package.BaseRedirect)
+local Package = script:WaitForChild("BaseRedirect")
+local Object = require(Package)
 local LimbChain = Object.new("LimbChain")
 
 --[[

@@ -1,5 +1,5 @@
 -- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
+local Package = script:FindFirstAncestor("LimbChain")
 local Object = require(Package.BaseRedirect)
 
 local MathPlane = Object.new("MathPlane")

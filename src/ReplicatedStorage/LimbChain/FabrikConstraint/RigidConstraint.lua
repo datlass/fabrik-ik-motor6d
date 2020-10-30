@@ -1,11 +1,11 @@
 
 
 -- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
+local Package = script:FindFirstAncestor("LimbChain")
 local Object = require(Package.BaseRedirect)
 
 --Require the FabrikConstraint for Inheritance
-local FabrikConstraintPointer = script.Parent.Parent:WaitForChild("FabrikConstraint")
+local FabrikConstraintPointer = script:FindFirstAncestor("FabrikConstraint")
 local FabrikConstraint = require(FabrikConstraintPointer)
 
 --Initialize the Self Class

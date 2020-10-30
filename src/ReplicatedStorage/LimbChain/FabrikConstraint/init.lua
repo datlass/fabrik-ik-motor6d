@@ -4,7 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local InsertService = game:GetService("InsertService")
 
 -- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
+local Package = script:FindFirstAncestor("LimbChain")
 local Object = require(Package.BaseRedirect)
 
 local FabrikConstraint = Object.new("FabrikConstraint")

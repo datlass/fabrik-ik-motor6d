@@ -1,5 +1,5 @@
 -- Initialize Object Class
-local Package = script:FindFirstAncestorOfClass("Folder")
+local Package = script.Parent
 local Object = require(Package.BaseRedirect)
 
 local FabrikSolver = Object.new("FabrikSolver")

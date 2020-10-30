@@ -5,25 +5,21 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 --Modules required
-local IKControllerPointer = ReplicatedStorage.Source.IKObjectsFolder.LimbChain
+local IKControllerPointer = ReplicatedStorage.Source.LimbChain
 local LimbChain = require(IKControllerPointer)
-
---RotatedRegion3 Module
-local RotatedRegion3Pointer = ReplicatedStorage.Source.IKObjectsFolder.RotatedRegion3
-local RotatedRegion3 = require(RotatedRegion3Pointer)
 
 -------------------Import all the Constraints Types-----------------
 
 --BallSocketConstraint
-local BallSocketConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.BallSocketConstraint
+local BallSocketConstraintPointer = ReplicatedStorage.Source.LimbChain.FabrikConstraint.BallSocketConstraint
 local BallSocketConstraint = require(BallSocketConstraintPointer)
 
 --HingeConstraint
-local HingeConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.HingeConstraint
+local HingeConstraintPointer = ReplicatedStorage.Source.LimbChain.FabrikConstraint.HingeConstraint
 local HingeConstraint = require(HingeConstraintPointer)
 
 --Rigid Constraint
-local RigidConstraintPointer = ReplicatedStorage.Source.IKObjectsFolder.ConstraintTypes.RigidConstraint
+local RigidConstraintPointer = ReplicatedStorage.Source.LimbChain.FabrikConstraint.RigidConstraint
 local RigidConstraint = require(RigidConstraintPointer)
 
 ----------------------------------------------------------------
@@ -134,8 +130,8 @@ local rightLegRegion = {rightLegRegionPart1,rightLegRegionPart2}
 rightLegChain.PrimaryConstraintRegionFromParts = rightLegRegion
 
 --turn on debug mode if u want
-leftLegChain:DebugModeOn(true,true,false)
-rightLegChain:DebugModeOn(true,true,false)
+--leftLegChain:DebugModeOn(true,true,false)
+--rightLegChain:DebugModeOn(true,true,false)
 
 local down = Vector3.new(0,-20,0)
 --[[
