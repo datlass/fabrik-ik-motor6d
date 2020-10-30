@@ -96,7 +96,7 @@ function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbL
         -- Also checks for directionality if its in the isOppositeDirection then constraint
         if ovalFormula >= 1 or isOppositeDirection then
             -- Obtain the angle from the xaxis
-            local angleToXAxis = math.atan(yPoint, xPoint)
+            local angleToXAxis = math.atan2(yPoint, xPoint)
     
             -- Place it on the edge of the oval within the contraints placed
             local newXPoint = width * math.cos(angleToXAxis)

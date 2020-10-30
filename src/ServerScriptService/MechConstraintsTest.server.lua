@@ -131,7 +131,7 @@ rightLegChain.PrimaryConstraintRegionFromParts = rightLegRegion
 
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn(true,true,false)
---rightLegChain:DebugModeOn(true,true,false)
+rightLegChain:DebugModeOn(false,true,false)
 
 local down = Vector3.new(0,-20,0)
 --[[

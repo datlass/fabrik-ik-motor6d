@@ -1,6 +1,3 @@
--- Get Roblox Services
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
 -- Import the Fabrik Solver Object
 local FabrikSolverPointer = script:WaitForChild("FabrikSolver")
 local FabrikSolver = require(FabrikSolverPointer)
@@ -95,7 +92,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     obj.LimbLengthTable = LimbLengthTable
 
     --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
-    local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable,obj)
+   local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,obj)
     
     obj.LimbFabrikSolver = LimbFabrikSolver
     
@@ -154,7 +151,7 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
         end
     end
     
-    local targetPosition = targetPosition+offsetVector
+    local newTargetPosition = targetPosition+offsetVector
 
     self:CheckAndChangeConstraintRegions(targetPosition)
 
@@ -162,7 +159,7 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
         
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
-        self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
+        self.LimbFabrikSolver:IterateOnce(originJointCF,newTargetPosition, tolerance)
         
     end
 
@@ -190,18 +187,18 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
     end
 
     --change offset the target position to the new one
-    local targetPosition = targetPosition+offsetVector
+    local newTargetPosition = targetPosition+offsetVector
 
     --Does the constraint region check and change constraints
     --If not then default to use the primary constraints
-    self:CheckAndChangeConstraintRegions(targetPosition)
+    self:CheckAndChangeConstraintRegions(newTargetPosition)
 
     if self.Motor6DTable[1].Part0 then
         -- Gets the CFrame of the first joint at world space
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
         --Does the fabrik iteration until goal
-        self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
+        self.LimbFabrikSolver:IterateUntilGoal(originJointCF,newTargetPosition, tolerance,InputtedMaxBreakCount)
     end                             
 
 end
@@ -344,16 +341,10 @@ function LimbChain:UpdateMotors()
             --Gets the position of the current limb joint
             local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
 
-            --Now adding a debug mode----------------------------------------------------------------
-            --Puts the created parts according to the motor position
-            if self.DebugMode then
-            --workspace["LimbVector:"..footMotorIndex+1].Position = motorPosition
-            end
-
             --Now does controls the motor
             --ony if the attachments are set
             if self.FootBottomAttachment and self.FootBottomRightAttachment then
-            self:UpdateFootMotor(motorPosition)
+                self:UpdateFootMotor(motorPosition)
             end
         
         end
@@ -361,8 +352,6 @@ function LimbChain:UpdateMotors()
 end
 
 function LimbChain:UpdateFootMotor(footMotorPosition)
-
-    local footMotorPosition = footMotorPosition
 
     --get the foot motor which is the last motor of the limb
     local footMotor = self.Motor6DTable[#self.Motor6DTable]
@@ -404,13 +393,13 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
                 local hipRightVector = self.Motor6DTable[1].Part0.CFrame.RightVector
 
                 --average it with how the hip is facing to keep the foot facing forwards
-                local footRightVector = (0.8*footRightVector+0.2*hipRightVector)/2
+                local newFootRightVector = (0.8*footRightVector+0.2*hipRightVector)/2
                 
                 local undoPreviousLimbCF = previousLimbCF:Inverse()
 
                 --Foot Motor position is the c0 joint in world terms
                 local placeAtFootMotor = CFrame.new(footMotorPosition)
-                local rotateToFloor = CFrame.fromMatrix(Vector3.new(),footRightVector,footNormal)
+                local rotateToFloor = CFrame.fromMatrix(Vector3.new(),newFootRightVector,footNormal)
 
                 --The goal rotation and Position of the foot C0 motor
                 local goalCF = undoPreviousLimbCF*placeAtFootMotor*rotateToFloor
@@ -468,7 +457,7 @@ end
 function LimbChain:PrintLimbVectors()
 
     for i=1,#self.LimbVectorTable,1 do
-        --print("Limbvector table i:",i," Vector:",self.LimbVectorTable[i])
+        print("Limbvector table i:",i," Vector:",self.LimbVectorTable[i])
     end
     for i=1,#self.IteratedLimbVectorTable,1 do
         print("Iterated self table i:",i," Vector:",self.IteratedLimbVectorTable[i])
@@ -571,7 +560,7 @@ function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
 
     --turns constraints debug mode to true
     if PrimaryDebug then
-        for i, v in pairs(self.PrimaryLimbConstraintTable) do
+        for _, v in pairs(self.PrimaryLimbConstraintTable) do
             if not v.DebugMode then
                 v.DebugMode = true
             end
@@ -579,7 +568,7 @@ function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
     end
 
     if SecondaryDebug then
-        for i, v in pairs(self.SecondaryLimbConstraintTable) do
+        for _, v in pairs(self.SecondaryLimbConstraintTable) do
             if not v.DebugMode then
                 v.DebugMode = true
             end

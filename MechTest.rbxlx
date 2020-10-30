@@ -383,27 +383,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-40.7335358</X>
-					<Y>25.2146587</Y>
-					<Z>-29.7622547</Z>
-					<R00>-0.999426186</R00>
-					<R01>0.0132178264</R01>
-					<R02>-0.0311851576</R02>
-					<R10>-9.31322464e-10</R10>
-					<R11>0.920711637</R11>
-					<R12>0.39024362</R12>
-					<R20>0.0338707082</R20>
-					<R21>0.390019685</R21>
-					<R22>-0.92018342</R22>
+					<X>-45.2283249</X>
+					<Y>25.3767395</Y>
+					<Z>-29.5324287</Z>
+					<R00>-0.999426246</R00>
+					<R01>0.0159624852</R01>
+					<R02>-0.029872898</R02>
+					<R10>-0</R10>
+					<R11>0.881981611</R11>
+					<R12>0.471283972</R12>
+					<R20>0.0338702053</R20>
+					<R21>0.471013576</R21>
+					<R22>-0.881475568</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-40.6711655</X>
+					<X>-45.1685791</X>
 					<Y>24.4341717</Y>
-					<Z>-27.9218884</Z>
+					<Z>-27.7694778</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -4289,7 +4289,7 @@ rightLegChain.PrimaryConstraintRegionFromParts = rightLegRegion
 
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn(true,true,false)
---rightLegChain:DebugModeOn(true,true,false)
+rightLegChain:DebugModeOn(false,true,false)
 
 local down = Vector3.new(0,-20,0)
 --[[
@@ -5178,16 +5178,13 @@ return require(baseModule)
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
-			<Item class="ModuleScript" referent="RBX61f050e466fd4f2fa53800db77314a1c">
+			<Item class="ModuleScript" referent="RBX0c15c6da8f04400792886bd43e049184">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">LimbChain</string>
-					<string name="ScriptGuid">{8f583c10-631a-4733-bcdd-f4b734e1bdac}</string>
-					<ProtectedString name="Source"><![CDATA[-- Get Roblox Services
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
--- Import the Fabrik Solver Object
+					<string name="ScriptGuid">{9b4d756d-bc94-432b-961d-335b62f83b6c}</string>
+					<ProtectedString name="Source"><![CDATA[-- Import the Fabrik Solver Object
 local FabrikSolverPointer = script:WaitForChild("FabrikSolver")
 local FabrikSolver = require(FabrikSolverPointer)
 
@@ -5281,7 +5278,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     obj.LimbLengthTable = LimbLengthTable
 
     --Once the limb vectors are initialized store them in a FabrikSolver object which does the Fabrik iteration
-    local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,LimbConstraintTable,obj)
+   local LimbFabrikSolver = FabrikSolver.new(IteratedLimbVectorTable,LimbLengthTable,obj)
     
     obj.LimbFabrikSolver = LimbFabrikSolver
     
@@ -5340,7 +5337,7 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
         end
     end
     
-    local targetPosition = targetPosition+offsetVector
+    local newTargetPosition = targetPosition+offsetVector
 
     self:CheckAndChangeConstraintRegions(targetPosition)
 
@@ -5348,7 +5345,7 @@ function LimbChain:IterateOnce(targetPosition,tolerance)
         
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
-        self.LimbFabrikSolver:IterateOnce(originJointCF,targetPosition, tolerance)
+        self.LimbFabrikSolver:IterateOnce(originJointCF,newTargetPosition, tolerance)
         
     end
 
@@ -5376,18 +5373,18 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
     end
 
     --change offset the target position to the new one
-    local targetPosition = targetPosition+offsetVector
+    local newTargetPosition = targetPosition+offsetVector
 
     --Does the constraint region check and change constraints
     --If not then default to use the primary constraints
-    self:CheckAndChangeConstraintRegions(targetPosition)
+    self:CheckAndChangeConstraintRegions(newTargetPosition)
 
     if self.Motor6DTable[1].Part0 then
         -- Gets the CFrame of the first joint at world space
         local originJointCF = self.Motor6DTable[1].Part0.CFrame * self.FirstJointC0
 
         --Does the fabrik iteration until goal
-        self.LimbFabrikSolver:IterateUntilGoal(originJointCF,targetPosition, tolerance,InputtedMaxBreakCount)
+        self.LimbFabrikSolver:IterateUntilGoal(originJointCF,newTargetPosition, tolerance,InputtedMaxBreakCount)
     end                             
 
 end
@@ -5530,16 +5527,10 @@ function LimbChain:UpdateMotors()
             --Gets the position of the current limb joint
             local motorPosition = initialJointCFrame.Position + vectorSumFromFirstJoint
 
-            --Now adding a debug mode----------------------------------------------------------------
-            --Puts the created parts according to the motor position
-            if self.DebugMode then
-            --workspace["LimbVector:"..footMotorIndex+1].Position = motorPosition
-            end
-
             --Now does controls the motor
             --ony if the attachments are set
             if self.FootBottomAttachment and self.FootBottomRightAttachment then
-            self:UpdateFootMotor(motorPosition)
+                self:UpdateFootMotor(motorPosition)
             end
         
         end
@@ -5547,8 +5538,6 @@ function LimbChain:UpdateMotors()
 end
 
 function LimbChain:UpdateFootMotor(footMotorPosition)
-
-    local footMotorPosition = footMotorPosition
 
     --get the foot motor which is the last motor of the limb
     local footMotor = self.Motor6DTable[#self.Motor6DTable]
@@ -5590,13 +5579,13 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
                 local hipRightVector = self.Motor6DTable[1].Part0.CFrame.RightVector
 
                 --average it with how the hip is facing to keep the foot facing forwards
-                local footRightVector = (0.8*footRightVector+0.2*hipRightVector)/2
+                local newFootRightVector = (0.8*footRightVector+0.2*hipRightVector)/2
                 
                 local undoPreviousLimbCF = previousLimbCF:Inverse()
 
                 --Foot Motor position is the c0 joint in world terms
                 local placeAtFootMotor = CFrame.new(footMotorPosition)
-                local rotateToFloor = CFrame.fromMatrix(Vector3.new(),footRightVector,footNormal)
+                local rotateToFloor = CFrame.fromMatrix(Vector3.new(),newFootRightVector,footNormal)
 
                 --The goal rotation and Position of the foot C0 motor
                 local goalCF = undoPreviousLimbCF*placeAtFootMotor*rotateToFloor
@@ -5654,7 +5643,7 @@ end
 function LimbChain:PrintLimbVectors()
 
     for i=1,#self.LimbVectorTable,1 do
-        --print("Limbvector table i:",i," Vector:",self.LimbVectorTable[i])
+        print("Limbvector table i:",i," Vector:",self.LimbVectorTable[i])
     end
     for i=1,#self.IteratedLimbVectorTable,1 do
         print("Iterated self table i:",i," Vector:",self.IteratedLimbVectorTable[i])
@@ -5757,7 +5746,7 @@ function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
 
     --turns constraints debug mode to true
     if PrimaryDebug then
-        for i, v in pairs(self.PrimaryLimbConstraintTable) do
+        for _, v in pairs(self.PrimaryLimbConstraintTable) do
             if not v.DebugMode then
                 v.DebugMode = true
             end
@@ -5765,7 +5754,7 @@ function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
     end
 
     if SecondaryDebug then
-        for i, v in pairs(self.SecondaryLimbConstraintTable) do
+        for _, v in pairs(self.SecondaryLimbConstraintTable) do
             if not v.DebugMode then
                 v.DebugMode = true
             end
@@ -5801,12 +5790,12 @@ return LimbChain
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
-				<Item class="ModuleScript" referent="RBXb073f97d784c4e94b18e53a0ff8bb715">
+				<Item class="ModuleScript" referent="RBXc276023c126c4a23965031bfe23da531">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">Base</string>
-						<string name="ScriptGuid">{1cef9e05-568e-4b80-9014-0f88541b29db}</string>
+						<string name="ScriptGuid">{acacb5d4-940b-46d5-a2da-ddadec0fd41a}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
 	Advanced OOP Implementation v1.0, August 24th 2020
 	Designed and written by Kironte (49703460)
@@ -6350,12 +6339,12 @@ return Base]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXcd4053c7848c43eaa9314baee97916de">
+				<Item class="ModuleScript" referent="RBX28b0227ff8d14440a29947c40af01966">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">BaseRedirect</string>
-						<string name="ScriptGuid">{33ee2d98-bea0-4dc2-a42d-4660643f74d6}</string>
+						<string name="ScriptGuid">{79bf78f4-c0ee-46ba-9d24-6ba2fa73e03d}</string>
 						<ProtectedString name="Source"><![CDATA[local Package = script.Parent
 
 local baseModule = Package.Base
@@ -6367,12 +6356,12 @@ return require(baseModule)
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXcc0a0c2049a14da08ffdf0de2e646f6b">
+				<Item class="ModuleScript" referent="RBXd3f2d801f81646ad91f9cddb78c9c120">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">FabrikConstraint</string>
-						<string name="ScriptGuid">{4b9134cb-a2ce-42f1-b9a8-b62098b0ea4f}</string>
+						<string name="ScriptGuid">{36a05e99-98b0-468a-9fbd-a00ae8131cd4}</string>
 						<ProtectedString name="Source"><![CDATA[--Get services
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -6492,12 +6481,12 @@ return FabrikConstraint
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
-					<Item class="ModuleScript" referent="RBX8e1612e9d2884de18a4688696efa0365">
+					<Item class="ModuleScript" referent="RBX756780811dd843ebae86adf3a11f1894">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">BallSocketConstraint</string>
-							<string name="ScriptGuid">{b143ec6c-c309-4ffa-975f-964c32c69d65}</string>
+							<string name="ScriptGuid">{c3ce1562-6207-490f-8a35-98535ff046a9}</string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -6596,7 +6585,7 @@ function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbL
         -- Also checks for directionality if its in the isOppositeDirection then constraint
         if ovalFormula >= 1 or isOppositeDirection then
             -- Obtain the angle from the xaxis
-            local angleToXAxis = math.atan(yPoint, xPoint)
+            local angleToXAxis = math.atan2(yPoint, xPoint)
     
             -- Place it on the edge of the oval within the contraints placed
             local newXPoint = width * math.cos(angleToXAxis)
@@ -6624,12 +6613,12 @@ return BallSocketConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBXe73cb587ce7743a481f07dea5837248d">
+					<Item class="ModuleScript" referent="RBX1a3bfe80feb04ea4a08d74825ee61b75">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">HingeConstraint</string>
-							<string name="ScriptGuid">{af52d7f3-aa6e-4b19-868f-2a0dbbc36fea}</string>
+							<string name="ScriptGuid">{1ecc4f0f-f9a5-4a46-8231-3d4e6426d002}</string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -6745,12 +6734,12 @@ return HingeConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX1e6cd482fb434fce9f447bc37f869641">
+					<Item class="ModuleScript" referent="RBXebc2f69b24654d4b8a592c6f6f6ac13f">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">RigidConstraint</string>
-							<string name="ScriptGuid">{756e5cb1-b3ca-4d3f-a4ac-ddc067557998}</string>
+							<string name="ScriptGuid">{e458b941-3fde-44db-b9de-f9fde6058649}</string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -6823,31 +6812,29 @@ return RigidConstraint]]></ProtectedString>
 						</Properties>
 					</Item>
 				</Item>
-				<Item class="ModuleScript" referent="RBXe78b3bc5f80a4bed8b3f0ac3794a7311">
+				<Item class="ModuleScript" referent="RBX1cf1d70ffc9e4b33a180bbabab8ed47e">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">FabrikSolver</string>
-						<string name="ScriptGuid">{26e67c7c-4a72-4f2c-b13d-94a5748b7d45}</string>
+						<string name="ScriptGuid">{dd014a22-a618-4514-981f-2f0c49fcbfa9}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script.Parent
 local Object = require(Package.BaseRedirect)
 
 local FabrikSolver = Object.new("FabrikSolver")
 
-function FabrikSolver.new(LimbVectorTable, LimbLengthTable, LimbConstraintTable,LimbChain)
+--[[
+    Initializes the Fabrik Solver Variable which will iterate a vector table from the initial joint to the end joint
+]]
+function FabrikSolver.new(LimbVectorTable, LimbLengthTable,LimbChain)
     local obj = FabrikSolver:make()
 
     obj.LimbChain = LimbChain
-    -- Initialize the object class
     obj.LimbVectorTable = LimbVectorTable
-
     obj.LimbLengthTable = LimbLengthTable
-
-    obj.LimbConstraintTable = LimbConstraintTable
-
+    obj.LimbConstraintTable = nil
     obj.DebugMode = false
-
     obj.FreezeLimbs = false
 
     -- Initialize number for summing
@@ -6877,30 +6864,27 @@ function FabrikSolver:IterateOnce(originCF, targetPosition, tolerance)
     local distanceToGoal = feetToTarget.Magnitude
 
     if distanceToGoal >= tolerance then
-
-        -- Do backwards on itself first then forwards
         self:Backwards(originCF, targetPosition)
         self:Forwards(originCF, targetPosition)
 
         return self.LimbVectorTable
 
     else
-        -- Limb is within tolerance/already reached goal so don't do anything
-
         if self.DebugMode then
-            
             self:Backwards(originCF, targetPosition)
             self:Forwards(originCF, targetPosition)    
-
         end
-
         return self.LimbVectorTable
     end
 
 end
 
-function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
-                                       InputtedMaxBreakCount)
+--[[
+
+    Performs iteration until goal is reached, maximum break count can be set default is 10 iterations
+
+]]
+function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance, InputtedMaxBreakCount)
 
     -- initialize measure feet to where it should be in the world position
     local vectorSum = Vector3.new(0, 0, 0)
@@ -6911,19 +6895,13 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
     local feetToTarget = targetPosition - feetJoint
     local distanceToGoal = feetToTarget.Magnitude
 
-    -- target point is "reachable"
-    -- if Distance is more than tolerance then iterate to move the new vectors closer
-    -- If not then don't execute the iteration to save FPS
-    -- Now includes a maximum iteration count
     local maxBreakCount
     if InputtedMaxBreakCount and type(InputtedMaxBreakCount) == "number" then
         maxBreakCount = InputtedMaxBreakCount
     else
-        -- default is maximum 10 iterations
         maxBreakCount = 10
     end
 
-    --print("maxbreak count: ",maxBreakCount)
     local bcount = 0
 
     while distanceToGoal >= tolerance do
@@ -6938,13 +6916,13 @@ function FabrikSolver:IterateUntilGoal(originCF, targetPosition, tolerance,
 
         --measure distance again
         -- initialize measure feet to where it should be in the world position
-        local vectorSum = Vector3.new(0, 0, 0)
+        local newVectorSum = Vector3.new(0, 0, 0)
         for i = 1, #self.LimbVectorTable, 1 do
-          vectorSum = vectorSum + self.LimbVectorTable[i]
+            newVectorSum = newVectorSum + self.LimbVectorTable[i]
         end
-        local feetJoint = originCF.Position + vectorSum
-        local feetToTarget = targetPosition - feetJoint
-        distanceToGoal = feetToTarget.Magnitude
+        local footJoint = originCF.Position + newVectorSum
+        local footToTarget = targetPosition - footJoint
+        distanceToGoal = footToTarget.Magnitude
         
         --Counts the amount of iterations, if impossible to solve stops after max default at 10 iterations
         bcount += 1
@@ -6981,7 +6959,9 @@ function FabrikSolver:Backwards(originCF, targetPos)
     for i = #limbVectorTable, 1, -1 do
         local vectorSum = Vector3.new(0, 0, 0)
 
-        for v = 1, i - 1, 1 do vectorSum = vectorSum + limbVectorTable[v] end
+        for v = 1, i - 1, 1 do 
+            vectorSum = vectorSum + limbVectorTable[v] 
+        end
 
         local pointTowards = originCF.Position + vectorSum
         local pointFrom = targetPos + vectorSumFromOrigin
@@ -6996,15 +6976,11 @@ function FabrikSolver:Backwards(originCF, targetPos)
 
         -- Checks if there is a limb constraint for the current limb in the iteration
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
-
             local limbLength = limbLengthTable[i]
-            -- Start the constraint according to the method
-            -- print(limbConstraintTable[i])
             newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength)
-            -- print("Index: ",i,"Vector: ",newLimbVector)
         end
-        -- constructs the new vectable
-        -- Gotta make it negative though to counteract
+
+        -- Gotta make it negative though to counteract the initial negative
         if not self.FreezeLimbs then
             limbVectorTable[i] = -newLimbVector
         end
@@ -7012,7 +6988,6 @@ function FabrikSolver:Backwards(originCF, targetPos)
     end
 
     -- Change the objects self vector table
-
     if not self.FreezeLimbs then
         self.LimbVectorTable = limbVectorTable
     end
@@ -7032,11 +7007,9 @@ function FabrikSolver:Forwards(originCF, targetPos)
 
     local vectorSumFromOrigin = Vector3.new()
     for i = 1, #limbVectorTable, 1 do
-        -- initialize empty vector for summing
+        
         local vectorSum = Vector3.new(0, 0, 0)
 
-        -- Sums up the vectors in order to get the target position on the chain
-        -- target position is the next joint from origin to target
         for v = i + 1, #limbVectorTable, 1 do
             vectorSum = vectorSum + limbVectorTable[v]
         end
@@ -7046,7 +7019,7 @@ function FabrikSolver:Forwards(originCF, targetPos)
         -- Gets the new direction of the new vector along the chain
         -- direction of the new vector is from origin to target
         local pointTo = nextJointPosition - jointPosition
-        -- This time constraint the vector using the conical constraint function
+
         local newLimbVector = pointTo.Unit * limbLengthTable[i]
 
         -- Checks if there is a limb constraint for the current limb in the iteration
@@ -7079,12 +7052,12 @@ return FabrikSolver
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX3ca4766d2c3149198aae386e20ac1bd4">
+				<Item class="ModuleScript" referent="RBX3b3327cebeee4eb0a347a644fb64b5ef">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">MathPlane</string>
-						<string name="ScriptGuid">{9325002d-291c-4cb4-904e-be51350d265b}</string>
+						<string name="ScriptGuid">{b54b1e53-2350-493d-895e-af76624f7d13}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestor("LimbChain")
 local Object = require(Package.BaseRedirect)
@@ -7149,12 +7122,12 @@ return MathPlane]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX6e7d7084d9504b14a6296b12733a56e6">
+				<Item class="ModuleScript" referent="RBXb015b34a91d74257bd5d6d971ba6de80">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">ObjectTemplate</string>
-						<string name="ScriptGuid">{5b75b243-2783-4b7a-aa1a-c55af47bb3e7}</string>
+						<string name="ScriptGuid">{0508714f-4f00-43b1-ae61-22d333f878e2}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
@@ -7174,12 +7147,12 @@ return NAME]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXe6614bb255e84918bd72b1b4bc5dbb4e">
+				<Item class="ModuleScript" referent="RBX454d9d323e654308858e2b5746e09116">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">RotatedRegion3</string>
-						<string name="ScriptGuid">{a8ade01f-b190-462c-ba7e-ef054f6ea0bb}</string>
+						<string name="ScriptGuid">{c8f58c8e-518f-47df-a405-5d7899f89d74}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
 
 This is a Rotated Region3 Class that behaves much the same as the standard Region3 class expect that it allows
@@ -7433,12 +7406,12 @@ return RotatedRegion3]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
-					<Item class="ModuleScript" referent="RBX89d9a85a3afd4bc69f40bc676a61b902">
+					<Item class="ModuleScript" referent="RBX36cbb530509042659ff226260bbed0ad">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">GJK</string>
-							<string name="ScriptGuid">{448ae6a9-7355-4ae6-8b5a-a51e15afe8d9}</string>
+							<string name="ScriptGuid">{c0920c4f-cd14-40b2-b92d-d0fa135d625e}</string>
 							<ProtectedString name="Source"><![CDATA[local MAX_TRIES = 20
 local ZERO3 = Vector3.new(0, 0, 0)
 
@@ -7559,12 +7532,12 @@ return GJK]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX7f877cde7fa14d7790794bb177906e56">
+					<Item class="ModuleScript" referent="RBX8c904fbac9a34508a3ef7c1cb1def167">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">Supports</string>
-							<string name="ScriptGuid">{198f1e8a-2bdf-4f23-87c2-2dcdc17e6db9}</string>
+							<string name="ScriptGuid">{c3f2789c-db52-41c4-9fc6-f50b9bb70cb0}</string>
 							<ProtectedString name="Source"><![CDATA[local ZERO = Vector3.new(0, 0, 0)
 local RIGHT = Vector3.new(1, 0, 0)
 
@@ -7620,12 +7593,12 @@ return Supports]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX0cdba5bf693c48fea9beacf23a0a4813">
+					<Item class="ModuleScript" referent="RBX0a67cd174a054295b2031d6abca06e22">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">Vertices</string>
-							<string name="ScriptGuid">{830975b1-d04a-4520-9684-d6f85eda177e}</string>
+							<string name="ScriptGuid">{81a81eac-57f1-45a0-8e78-24d3159a04d8}</string>
 							<ProtectedString name="Source"><![CDATA[-- CONSTANTS
 
 local PI2 = math.pi*2
