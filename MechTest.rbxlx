@@ -383,27 +383,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-45.2283249</X>
-					<Y>25.3767395</Y>
-					<Z>-29.5324287</Z>
-					<R00>-0.999426246</R00>
-					<R01>0.0159624852</R01>
-					<R02>-0.029872898</R02>
+					<X>-32.6654968</X>
+					<Y>26.1288815</Y>
+					<Z>-30.6108818</Z>
+					<R00>-0.979649425</R00>
+					<R01>-0.0717401952</R01>
+					<R02>0.187458098</R02>
 					<R10>-0</R10>
-					<R11>0.881981611</R11>
-					<R12>0.471283972</R12>
-					<R20>0.0338702053</R20>
-					<R21>0.471013576</R21>
-					<R22>-0.881475568</R22>
+					<R11>0.933943808</R11>
+					<R12>0.357420087</R12>
+					<R20>-0.200716734</R20>
+					<R21>0.350146383</R21>
+					<R22>-0.914937317</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-45.1685791</X>
-					<Y>24.4341717</Y>
-					<Z>-27.7694778</Z>
+					<X>-33.0404129</X>
+					<Y>25.4140415</Y>
+					<Z>-28.7810078</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -1810,7 +1810,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<float name="TopParamB">0.5</float>
 						<token name="TopSurface">0</token>
 						<token name="TopSurfaceInput">0</token>
-						<float name="Transparency">0.800000012</float>
+						<float name="Transparency">0</float>
 						<Vector3 name="Velocity">
 							<X>0</X>
 							<Y>0</Y>
@@ -4235,8 +4235,8 @@ local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local upperLegBallSocketConstraintAlternative = BallSocketConstraint.new(testBallSocketConstraint,40,40)
-local lKneeHinge = HingeConstraint.new(kneePart,90,90)
-local lLegHinge = HingeConstraint.new(lLegPart,90,90)
+local lKneeHinge = HingeConstraint.new(kneePart,80,80)
+local lLegHinge = HingeConstraint.new(lLegPart,100,100)
 
 --Set up two constraint tables to allow
 local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
@@ -4270,8 +4270,8 @@ local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(rightBallSocketConstraintPart,40,40)
-local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
-local rLegHinge = HingeConstraint.new(rLegPart,90,90)
+local rKneeHinge = HingeConstraint.new(rKneePart,80,80)
+local rLegHinge = HingeConstraint.new(rLegPart,100,100)
 
 --Construct the constraints table
 local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
@@ -4289,7 +4289,7 @@ rightLegChain.PrimaryConstraintRegionFromParts = rightLegRegion
 
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn(true,true,false)
-rightLegChain:DebugModeOn(false,true,false)
+--rightLegChain:DebugModeOn(false,true,false)
 
 local down = Vector3.new(0,-20,0)
 --[[
@@ -4683,12 +4683,12 @@ print(leftLegChain.Part)]]></ProtectedString>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
 			</Item>
-			<Item class="ModuleScript" referent="RBX79aed3a18269428e9915f44e8ae59be5">
+			<Item class="ModuleScript" referent="RBXe3386fc10d074d55b5deaf00e06cac2f">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">BaseRedirect</string>
-					<string name="ScriptGuid">{cb8fd2ed-4b46-49ed-9f57-b038cb36c7ff}</string>
+					<string name="ScriptGuid">{a3521f12-fa93-48ce-975f-3c84fd2e58c4}</string>
 					<ProtectedString name="Source"><![CDATA[local Package = script:FindFirstAncestor("LimbChain")
 
 local baseModule = Package.Base
@@ -5178,12 +5178,12 @@ return require(baseModule)
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
-			<Item class="ModuleScript" referent="RBX0c15c6da8f04400792886bd43e049184">
+			<Item class="ModuleScript" referent="RBX795a121fcda841ffac4bbfa051898463">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">LimbChain</string>
-					<string name="ScriptGuid">{9b4d756d-bc94-432b-961d-335b62f83b6c}</string>
+					<string name="ScriptGuid">{9a2c75fd-0b51-4db3-ab6b-eef7f9d8982e}</string>
 					<ProtectedString name="Source"><![CDATA[-- Import the Fabrik Solver Object
 local FabrikSolverPointer = script:WaitForChild("FabrikSolver")
 local FabrikSolver = require(FabrikSolverPointer)
@@ -5790,12 +5790,12 @@ return LimbChain
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
-				<Item class="ModuleScript" referent="RBXc276023c126c4a23965031bfe23da531">
+				<Item class="ModuleScript" referent="RBX990f99a39f1f43dc930a2793233315c5">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">Base</string>
-						<string name="ScriptGuid">{acacb5d4-940b-46d5-a2da-ddadec0fd41a}</string>
+						<string name="ScriptGuid">{a7651a26-f63c-48a9-9e2e-cd0ef968f973}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
 	Advanced OOP Implementation v1.0, August 24th 2020
 	Designed and written by Kironte (49703460)
@@ -6339,12 +6339,12 @@ return Base]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX28b0227ff8d14440a29947c40af01966">
+				<Item class="ModuleScript" referent="RBX0ba1e346686e4c9598a19848b8f61bfc">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">BaseRedirect</string>
-						<string name="ScriptGuid">{79bf78f4-c0ee-46ba-9d24-6ba2fa73e03d}</string>
+						<string name="ScriptGuid">{d58b88d6-afc0-484c-b44f-0dbc6883578c}</string>
 						<ProtectedString name="Source"><![CDATA[local Package = script.Parent
 
 local baseModule = Package.Base
@@ -6356,12 +6356,12 @@ return require(baseModule)
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXd3f2d801f81646ad91f9cddb78c9c120">
+				<Item class="ModuleScript" referent="RBX805623753a594fbdbbd4adac315a8b53">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">FabrikConstraint</string>
-						<string name="ScriptGuid">{36a05e99-98b0-468a-9fbd-a00ae8131cd4}</string>
+						<string name="ScriptGuid">{0124c9ca-e738-4efd-85d2-ba842860af76}</string>
 						<ProtectedString name="Source"><![CDATA[--Get services
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -6481,12 +6481,12 @@ return FabrikConstraint
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
-					<Item class="ModuleScript" referent="RBX756780811dd843ebae86adf3a11f1894">
+					<Item class="ModuleScript" referent="RBX8bd5d1502c024235b6e23d9b7b197711">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">BallSocketConstraint</string>
-							<string name="ScriptGuid">{c3ce1562-6207-490f-8a35-98535ff046a9}</string>
+							<string name="ScriptGuid">{701321e9-c0d7-4105-8f72-ad5a2d03f48c}</string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -6613,12 +6613,12 @@ return BallSocketConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX1a3bfe80feb04ea4a08d74825ee61b75">
+					<Item class="ModuleScript" referent="RBX05e03ff676f54e96a648d04e2b71de7f">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">HingeConstraint</string>
-							<string name="ScriptGuid">{1ecc4f0f-f9a5-4a46-8231-3d4e6426d002}</string>
+							<string name="ScriptGuid">{b7270084-2342-443c-808c-880339fcaa23}</string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -6702,7 +6702,7 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
         --Very strict and doesn't fit the iteration
         --Get Cframe and rotate it to max possible angle
-        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,-self.AngleOfDepression-math.rad(10))
+        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,-self.AngleOfDepression)
         
         --Old glitchy method
         return refCF.LookVector.Unit*limbLength
@@ -6715,7 +6715,7 @@ function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
 
         --Very strict and doesn't fit the iteration method
         --Get Cframe and rotate it to max possible angle
-        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,self.AngleOfElevation+math.rad(10))
+        local refCF = self.Part.CFrame*CFrame.fromAxisAngle(rotationAxis,self.AngleOfElevation)
         
         return refCF.LookVector.Unit*limbLength 
 
@@ -6734,12 +6734,12 @@ return HingeConstraint]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBXebc2f69b24654d4b8a592c6f6f6ac13f">
+					<Item class="ModuleScript" referent="RBXbb6ddec1b3804d499319d70f6600adc5">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">RigidConstraint</string>
-							<string name="ScriptGuid">{e458b941-3fde-44db-b9de-f9fde6058649}</string>
+							<string name="ScriptGuid">{c7a51913-87cc-432e-ac10-83492c982a86}</string>
 							<ProtectedString name="Source"><![CDATA[
 
 -- Initialize Object Class
@@ -6812,12 +6812,12 @@ return RigidConstraint]]></ProtectedString>
 						</Properties>
 					</Item>
 				</Item>
-				<Item class="ModuleScript" referent="RBX1cf1d70ffc9e4b33a180bbabab8ed47e">
+				<Item class="ModuleScript" referent="RBXd372fed02106433f822fdec7f88c6ad2">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">FabrikSolver</string>
-						<string name="ScriptGuid">{dd014a22-a618-4514-981f-2f0c49fcbfa9}</string>
+						<string name="ScriptGuid">{adcb4ab5-985c-4c2a-b281-f1798d628e5f}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script.Parent
 local Object = require(Package.BaseRedirect)
@@ -7036,6 +7036,9 @@ function FabrikSolver:Forwards(originCF, targetPos)
         if not self.FreezeLimbs then
             limbVectorTable[i] = newLimbVector
         end
+        if self.DebugMode then
+            self:DebugLimbVector(i,jointPosition,jointPosition+newLimbVector)
+        end
         vectorSumFromOrigin = vectorSumFromOrigin + limbVectorTable[i]
     end
 
@@ -7046,18 +7049,43 @@ function FabrikSolver:Forwards(originCF, targetPos)
 
 end
 
+function FabrikSolver:DebugLimbVector(index,initialJointPosition,endJointPosition)
+    --initizalize first
+    if not self.LimbVectorInitialized then
+        self.LimbVectorInitialized = true
+        local VectorLimbPartTable = {}
+        for i, v in pairs(self.LimbVectorTable) do
+            local VectorLimbPart = Instance.new("WedgePart")
+            VectorLimbPart.BrickColor = BrickColor.random()
+            VectorLimbPart.Name = "VectorLimbPart"..i
+            VectorLimbPart.Anchored = true
+            VectorLimbPart.CanCollide = false
+            VectorLimbPart.Size = Vector3.new(0.5,1,self.LimbLengthTable[i])
+            VectorLimbPartTable[i] = VectorLimbPart
+            VectorLimbPart.Parent = workspace
+        end
+        self.VectorLimbPartTable=VectorLimbPartTable
+    else
+        local positionCF = CFrame.new(initialJointPosition)
+        local pointAt = CFrame.lookAt(initialJointPosition,endJointPosition)
+        local rotOnly = pointAt-pointAt.Position
+        self.VectorLimbPartTable[index].CFrame = positionCF*rotOnly*CFrame.new(0,0,-self.LimbLengthTable[index]/2)
+
+    end
+end
+
 return FabrikSolver
 ]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX3b3327cebeee4eb0a347a644fb64b5ef">
+				<Item class="ModuleScript" referent="RBX07f229ee0b8c49c2843cea64ac159855">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">MathPlane</string>
-						<string name="ScriptGuid">{b54b1e53-2350-493d-895e-af76624f7d13}</string>
+						<string name="ScriptGuid">{0ae58068-dd93-4568-bbb0-3a867fd0ee40}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestor("LimbChain")
 local Object = require(Package.BaseRedirect)
@@ -7122,12 +7150,12 @@ return MathPlane]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBXb015b34a91d74257bd5d6d971ba6de80">
+				<Item class="ModuleScript" referent="RBX25e40e4cc2f4489a80c4ce6cbe26dc18">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">ObjectTemplate</string>
-						<string name="ScriptGuid">{0508714f-4f00-43b1-ae61-22d333f878e2}</string>
+						<string name="ScriptGuid">{70d8df04-61d4-41c4-ad3e-e1fe283b62f8}</string>
 						<ProtectedString name="Source"><![CDATA[-- Initialize Object Class
 local Package = script:FindFirstAncestorOfClass("Folder")
 local Object = require(Package.BaseRedirect)
@@ -7147,12 +7175,12 @@ return NAME]]></ProtectedString>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX454d9d323e654308858e2b5746e09116">
+				<Item class="ModuleScript" referent="RBX1fcd6d38c4b14a5895f93ff60d964b44">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">RotatedRegion3</string>
-						<string name="ScriptGuid">{c8f58c8e-518f-47df-a405-5d7899f89d74}</string>
+						<string name="ScriptGuid">{97c8b93f-839a-46b8-8197-9321d916215c}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
 
 This is a Rotated Region3 Class that behaves much the same as the standard Region3 class expect that it allows
@@ -7406,12 +7434,12 @@ return RotatedRegion3]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 					</Properties>
-					<Item class="ModuleScript" referent="RBX36cbb530509042659ff226260bbed0ad">
+					<Item class="ModuleScript" referent="RBXc6c84c1083914fc29c6df710f4206592">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">GJK</string>
-							<string name="ScriptGuid">{c0920c4f-cd14-40b2-b92d-d0fa135d625e}</string>
+							<string name="ScriptGuid">{ba29915f-99f9-43d5-bae4-8dce5339c5a4}</string>
 							<ProtectedString name="Source"><![CDATA[local MAX_TRIES = 20
 local ZERO3 = Vector3.new(0, 0, 0)
 
@@ -7532,12 +7560,12 @@ return GJK]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX8c904fbac9a34508a3ef7c1cb1def167">
+					<Item class="ModuleScript" referent="RBXd52b8b133742449b9b5890cef9e5daf9">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">Supports</string>
-							<string name="ScriptGuid">{c3f2789c-db52-41c4-9fc6-f50b9bb70cb0}</string>
+							<string name="ScriptGuid">{b5a481d5-f4ed-425c-be05-ccedb2f903f6}</string>
 							<ProtectedString name="Source"><![CDATA[local ZERO = Vector3.new(0, 0, 0)
 local RIGHT = Vector3.new(1, 0, 0)
 
@@ -7593,12 +7621,12 @@ return Supports]]></ProtectedString>
 							<BinaryString name="Tags"></BinaryString>
 						</Properties>
 					</Item>
-					<Item class="ModuleScript" referent="RBX0a67cd174a054295b2031d6abca06e22">
+					<Item class="ModuleScript" referent="RBXf82669f6bf6747f4bb96923be21df2d1">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">Vertices</string>
-							<string name="ScriptGuid">{81a81eac-57f1-45a0-8e78-24d3159a04d8}</string>
+							<string name="ScriptGuid">{0c81a05b-01ad-4df4-8c77-f397d5b35987}</string>
 							<ProtectedString name="Source"><![CDATA[-- CONSTANTS
 
 local PI2 = math.pi*2

@@ -77,8 +77,8 @@ local lLegBallSocket = BallSocketConstraint.new(lLegPart,20,89)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local upperLegBallSocketConstraintAlternative = BallSocketConstraint.new(testBallSocketConstraint,40,40)
-local lKneeHinge = HingeConstraint.new(kneePart,90,90)
-local lLegHinge = HingeConstraint.new(lLegPart,90,90)
+local lKneeHinge = HingeConstraint.new(kneePart,80,80)
+local lLegHinge = HingeConstraint.new(lLegPart,100,100)
 
 --Set up two constraint tables to allow
 local leftLegConstraintsPrimary = {upperLegBallSocketConstraint,lKneeHinge,lLegHinge}
@@ -112,8 +112,8 @@ local rLegBallSocket = BallSocketConstraint.new(rLegPart,20,80)
     More restrictive and glitchy close to original joint but better fitting and looks nicer visually
 ]]
 local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(rightBallSocketConstraintPart,40,40)
-local rKneeHinge = HingeConstraint.new(rKneePart,90,90)
-local rLegHinge = HingeConstraint.new(rLegPart,90,90)
+local rKneeHinge = HingeConstraint.new(rKneePart,80,80)
+local rLegHinge = HingeConstraint.new(rLegPart,100,100)
 
 --Construct the constraints table
 local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
@@ -131,7 +131,7 @@ rightLegChain.PrimaryConstraintRegionFromParts = rightLegRegion
 
 --turn on debug mode if u want
 --leftLegChain:DebugModeOn(true,true,false)
-rightLegChain:DebugModeOn(false,true,false)
+--rightLegChain:DebugModeOn(false,true,false)
 
 local down = Vector3.new(0,-20,0)
 --[[
