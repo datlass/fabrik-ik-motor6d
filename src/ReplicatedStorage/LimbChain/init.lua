@@ -6,20 +6,24 @@ API:
 
 Constructors:
 	LimbChain.new(Table Motor6DTable, Bool includeFoot, Bool spineMotor)
-		> Creates a region from a cframe which acts as the center of the region and size which extends to 
-        > the corners like a block part.
+        > Creates the inverse kinematics handler for a set of Motor6D's inserted in the table
+        >Motor6ds are conected sequentially in increasing order from the origin towards the endpoint 
+        >Motor1, Motor2, Motor3
+        >UpperLeg, LowerLeg, Foot for R15, makesure these motors are like a tree branch
         
 Methods:
 	LimbChain:IterateOnce(Vector3 targetPosition, Number tolerance)
         > Performs one forwards or backwards iteration of the fabrik iteration on the IteratedLimbVectorTable
         > Tolerance indicates the distance when the iterations stop if the goal is already reached
     LimbChain:IterateUntilGoal(Vector3 targetPosition, Number tolerance, Number breakcount)
-        > Performs forwards or backwards iteration of the fabrik iteration on the IterateodLimbVectorTable
+        > Performs forwards or backwards iteration of the fabrik iteration on the IteratedLimbVectorTable
         > Until goal is reached (including tolerance) or maximum iterations in breakcount is reached
 	LimbChain:UpdateMotors()
-        > Rotates the Motor6D's until the they match the directions of the new limbchain vectors
-	LimbChain:IterateOnce(Vector3 targetPosition, Number tolerance)
-        > Performs one forwards or backwards iteration of the fabrik iteration on the IteratedLimbVectorTable
+        > Rotates the Motor6D's until the they match the directions of the curent IteratedLimbVectorTable vectors
+	LimbChain:DebugModeOn(Bool freezeLimbs, Bool primaryDebug,Bool secondaryDebug)
+        > Turns on the debug mode for the FabrikSolver, primary and secondary constraints depending on the bool.
+        > the freeze limbs will tell the fabriksolver to not perform iteration and instead update the constraints debug
+        > Essentially freezing them in place so you can change the orientation of the constraints
 
 Properties:
 	LimbChain.LerpMotors
@@ -36,6 +40,7 @@ Properties:
         > The raycast params object for the foot to detect the floor
     LimbChain.DebugMode
         > Bool to turn on debug mode which visualizes the limb vectors and the constraints
+        > Currently does nothing as this object has debugging properties turned off
     LimbChain.FootBottomAttachment
         > Attachment required for the foot placement system
     LimbChain.PrimaryLimbConstraintTable
@@ -74,16 +79,15 @@ local LimbChain = Object.new("LimbChain")
 function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     local obj = LimbChain:make()
 
+    obj.LimbConstraintTable = nil
+
     obj.LerpMotors = true
     obj.LerpAlpha = 1/4
 
-    --Foot stuff
     obj.IncludeFoot = IncludeFoot
     obj.FootBottomAttachment = nil
     obj.FootBottomRightAttachment = nil
     obj.FootPlacementRaycastParams = nil
-    
-    obj.LimbConstraintTable = nil
 
     --adds a bool setting for debug mode
     obj.DebugMode = false
@@ -158,6 +162,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --finaly return a metatable object thing to construct it
     return obj
 end
+
 --[[
     Function that limb chain has to calculate vector limbs
     Input 2 Motor6d joints
@@ -241,7 +246,6 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
         end
     end
 
-    --change offset the target position to the new one
     local newTargetPosition = targetPosition+offsetVector
 
     --Does the constraint region check and change constraints

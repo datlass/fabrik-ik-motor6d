@@ -29,7 +29,12 @@ end
     Constraints the limbVector like a hinge
     returns a new limbvector
 ]]
-function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function HingeConstraint:ConstrainLimbVector(currentVectorInformation)
+
+
+    local jointPosition = currentVectorInformation.JointPosition
+    local limbVector = currentVectorInformation.LimbVector
+    local limbLength = currentVectorInformation.LimbLength
 
     --Gets the part's current CFrame
     self:UpdateAxis(jointPosition)

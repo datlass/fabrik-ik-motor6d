@@ -15,7 +15,7 @@ local RigidConstraint = Object.newExtends("RigidConstraint",FabrikConstraint)
     Create the constraint
     Parameters:
 ]]
-function RigidConstraint.new(PartOrLimbChain,LimbNumber)
+function RigidConstraint.new(PartOrLimbChain)
     local obj
 
     --[[
@@ -31,7 +31,6 @@ function RigidConstraint.new(PartOrLimbChain,LimbNumber)
     obj = RigidConstraint:super()
    
     obj.LimbChain = PartOrLimbChain
-    obj.LimbNumber = LimbNumber
 
     end
     
@@ -44,8 +43,13 @@ end
     or it points in the motor6ds original direction
     returns a new limbvector vector 3 at full length
 ]]
-function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function RigidConstraint:ConstrainLimbVector(currentVectorInformation)
     
+    local jointPosition = currentVectorInformation.JointPosition
+    local limbVector = currentVectorInformation.LimbVector
+    local limbLength = currentVectorInformation.LimbLength
+    local index = currentVectorInformation.Index
+
     --Checks if there is a part to set the constraint axis to
     if self.Part ~=nil then
 
@@ -56,9 +60,10 @@ function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
         return self.CenterAxis.Unit*limbLength
 
     else
-        
+        --offset to prevent nan or 0,0,0
+        local minorOffset = Vector3.new(0.01,0.01,0.01)
         --Else get the original limbvector
-        return self.LimbChain:GetOriginalLimbDirection(self.LimbNumber).Unit*limbLength
+        return (self.LimbChain:GetOriginalLimbDirection(index).Unit+minorOffset)*limbLength
 
     end
 end

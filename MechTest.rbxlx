@@ -383,27 +383,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-41.5309029</X>
-					<Y>28.3731213</Y>
-					<Z>-35.3637505</Z>
-					<R00>-0.997002721</R00>
-					<R01>0.0290247239</R01>
-					<R02>-0.0717161745</R02>
+					<X>-38.359211</X>
+					<Y>24.4244804</Y>
+					<Z>-23.8799</Z>
+					<R00>-0.981078267</R00>
+					<R01>-0.0642512441</R01>
+					<R02>0.182640031</R02>
 					<R10>-0</R10>
-					<R11>0.926961482</R11>
-					<R12>0.375156641</R12>
-					<R20>0.0773669481</R20>
-					<R21>0.374032199</R21>
-					<R22>-0.924183011</R22>
+					<R11>0.943330169</R11>
+					<R12>0.331855685</R12>
+					<R20>-0.193612009</R20>
+					<R21>0.325576395</R21>
+					<R22>-0.925480604</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-41.3874702</X>
-					<Y>27.6228065</Y>
-					<Z>-33.5153809</Z>
+					<X>-38.7244911</X>
+					<Y>23.7607689</Y>
+					<Z>-22.0289383</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -4273,8 +4273,10 @@ local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(ri
 local rKneeHinge = HingeConstraint.new(rKneePart,80,80)
 local rLegHinge = HingeConstraint.new(rLegPart,100,100)
 
+local rigid = RigidConstraint.new(rightLegChain)
+
 --Construct the constraints table
-local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
+local rightLegConstraintsPrimary = {rigid,rKneeHinge,rLegHinge}
 local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object
@@ -5184,7 +5186,67 @@ return require(baseModule)
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">LimbChain</string>
 					<string name="ScriptGuid">{9a2c75fd-0b51-4db3-ab6b-eef7f9d8982e}</string>
-					<ProtectedString name="Source"><![CDATA[-- Import the Fabrik Solver Object
+					<ProtectedString name="Source"><![CDATA[--[[
+
+This is the LimbChain class which manages the Motor6Ds within a rig using the FabrikSolver class to do inverse kinematics with.
+
+API:
+
+Constructors:
+	LimbChain.new(Table Motor6DTable, Bool includeFoot, Bool spineMotor)
+        > Creates the inverse kinematics handler for a set of Motor6D's inserted in the table
+        >Motor6ds are conected sequentially in increasing order from the origin towards the endpoint 
+        >Motor1, Motor2, Motor3
+        >UpperLeg, LowerLeg, Foot for R15, makesure these motors are like a tree branch
+        
+Methods:
+	LimbChain:IterateOnce(Vector3 targetPosition, Number tolerance)
+        > Performs one forwards or backwards iteration of the fabrik iteration on the IteratedLimbVectorTable
+        > Tolerance indicates the distance when the iterations stop if the goal is already reached
+    LimbChain:IterateUntilGoal(Vector3 targetPosition, Number tolerance, Number breakcount)
+        > Performs forwards or backwards iteration of the fabrik iteration on the IteratedLimbVectorTable
+        > Until goal is reached (including tolerance) or maximum iterations in breakcount is reached
+	LimbChain:UpdateMotors()
+        > Rotates the Motor6D's until the they match the directions of the curent IteratedLimbVectorTable vectors
+	LimbChain:DebugModeOn(Bool freezeLimbs, Bool primaryDebug,Bool secondaryDebug)
+        > Turns on the debug mode for the FabrikSolver, primary and secondary constraints depending on the bool.
+        > the freeze limbs will tell the fabriksolver to not perform iteration and instead update the constraints debug
+        > Essentially freezing them in place so you can change the orientation of the constraints
+
+Properties:
+	LimbChain.LerpMotors
+        > Bool that enables or disables the lerp methods for the IK
+    LimbChain.LerpAlpha
+        > Number that represents the alpha in CFrame:Lerp() from the motors current C0 towards the IK target goal CFrame
+    LimbChain.IncludeFoot
+        > Bool that enables or disables the foot placement method which rotated the foot independently
+    LimbChain.FootBottomAttachment
+        > Attachment required for the foot placement system
+    LimbChain.FootBottomRightAttachment
+        > Attachment required for the foot placement system place to the right of the initial footbottom
+    LimbChain.FootPlacementRaycastParams
+        > The raycast params object for the foot to detect the floor
+    LimbChain.DebugMode
+        > Bool to turn on debug mode which visualizes the limb vectors and the constraints
+        > Currently does nothing as this object has debugging properties turned off
+    LimbChain.FootBottomAttachment
+        > Attachment required for the foot placement system
+    LimbChain.PrimaryLimbConstraintTable
+        > Table of FabrikConstraint objects which do the constraining for each limb
+    LimbChain.SecondaryLimbConstraintTable
+        > Table of FabrikConstraint objects which do the constraining for each limb if the target position is
+        > out of the primary constraint region
+    LimbChain.PrimaryConstraintRegionFromParts
+        > Table of BaseParts that the primary constraint region will activate in accordance to the TargetPosition
+
+Enjoy!
+- dthecoolest
+
+Thanks EgoMoose for the FABRIK explanation and the explanation on how to do constraints.
+
+--]]
+
+-- Import the Fabrik Solver Object
 local FabrikSolverPointer = script:WaitForChild("FabrikSolver")
 local FabrikSolver = require(FabrikSolverPointer)
 
@@ -5205,16 +5267,15 @@ local LimbChain = Object.new("LimbChain")
 function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     local obj = LimbChain:make()
 
+    obj.LimbConstraintTable = nil
+
     obj.LerpMotors = true
     obj.LerpAlpha = 1/4
 
-    --Foot stuff
     obj.IncludeFoot = IncludeFoot
     obj.FootBottomAttachment = nil
     obj.FootBottomRightAttachment = nil
     obj.FootPlacementRaycastParams = nil
-    
-    obj.LimbConstraintTable = nil
 
     --adds a bool setting for debug mode
     obj.DebugMode = false
@@ -5289,6 +5350,7 @@ function LimbChain.new(Motor6DTable,IncludeFoot,SpineMotor)
     --finaly return a metatable object thing to construct it
     return obj
 end
+
 --[[
     Function that limb chain has to calculate vector limbs
     Input 2 Motor6d joints
@@ -5372,7 +5434,6 @@ function LimbChain:IterateUntilGoal(targetPosition,tolerance,InputtedMaxBreakCou
         end
     end
 
-    --change offset the target position to the new one
     local newTargetPosition = targetPosition+offsetVector
 
     --Does the constraint region check and change constraints
@@ -5655,6 +5716,7 @@ function LimbChain:PrintLimbVectors()
 end
 
 --Gets the original vector limb direction relative to the part
+--Required for the rigid constraint
 function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
 
     local i = limbVectorNumber
@@ -5675,6 +5737,7 @@ function LimbChain:GetOriginalLimbDirection(limbVectorNumber)
 end
 
 --Testing for feet
+--unused now
 function LimbChain:GetOriginalFeetLimb()
 
     --Obtains the current limb that is being worked on
@@ -6520,9 +6583,14 @@ end
 
 --[[
     Constraints the limbVector like a ball socket joint
+
 ]]
-function BallSocketConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function BallSocketConstraint:ConstrainLimbVector(currentVectorInformation)
     
+    local jointPosition = currentVectorInformation.JointPosition
+    local limbVector = currentVectorInformation.LimbVector
+    local limbLength = currentVectorInformation.LimbLength
+
         --Get the parts current CFrame
         --Big problem as its relative to the part attached to the motor
         self:UpdateAxis(jointPosition)
@@ -6653,7 +6721,12 @@ end
     Constraints the limbVector like a hinge
     returns a new limbvector
 ]]
-function HingeConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function HingeConstraint:ConstrainLimbVector(currentVectorInformation)
+
+
+    local jointPosition = currentVectorInformation.JointPosition
+    local limbVector = currentVectorInformation.LimbVector
+    local limbLength = currentVectorInformation.LimbLength
 
     --Gets the part's current CFrame
     self:UpdateAxis(jointPosition)
@@ -6760,7 +6833,7 @@ local RigidConstraint = Object.newExtends("RigidConstraint",FabrikConstraint)
     Create the constraint
     Parameters:
 ]]
-function RigidConstraint.new(PartOrLimbChain,LimbNumber)
+function RigidConstraint.new(PartOrLimbChain)
     local obj
 
     --[[
@@ -6776,7 +6849,6 @@ function RigidConstraint.new(PartOrLimbChain,LimbNumber)
     obj = RigidConstraint:super()
    
     obj.LimbChain = PartOrLimbChain
-    obj.LimbNumber = LimbNumber
 
     end
     
@@ -6789,8 +6861,13 @@ end
     or it points in the motor6ds original direction
     returns a new limbvector vector 3 at full length
 ]]
-function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength)
+function RigidConstraint:ConstrainLimbVector(currentVectorInformation)
     
+    local jointPosition = currentVectorInformation.JointPosition
+    local limbVector = currentVectorInformation.LimbVector
+    local limbLength = currentVectorInformation.LimbLength
+    local index = currentVectorInformation.Index
+
     --Checks if there is a part to set the constraint axis to
     if self.Part ~=nil then
 
@@ -6801,9 +6878,10 @@ function RigidConstraint:ConstrainLimbVector(jointPosition,limbVector,limbLength
         return self.CenterAxis.Unit*limbLength
 
     else
-        
+        --offset to prevent nan or 0,0,0
+        local minorOffset = Vector3.new(0.01,0.01,0.01)
         --Else get the original limbvector
-        return self.LimbChain:GetOriginalLimbDirection(self.LimbNumber).Unit*limbLength
+        return (self.LimbChain:GetOriginalLimbDirection(index).Unit+minorOffset)*limbLength
 
     end
 end
@@ -6980,7 +7058,13 @@ function FabrikSolver:Backwards(originCF, targetPos)
         -- Checks if there is a limb constraint for the current limb in the iteration
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
             local limbLength = limbLengthTable[i]
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength)
+            local currentVectorInformation = {
+                ["JointPosition"] = pointTowards;
+                ["LimbVector"] = newLimbVector;
+                ["LimbLength"] = limbLength;
+                ["Index"] = i
+            }
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentVectorInformation)
         end
 
         -- Gotta make it negative though to counteract the initial negative
@@ -7031,8 +7115,13 @@ function FabrikSolver:Forwards(originCF, targetPos)
 
             local limbLength = limbLengthTable[i]
             -- Start the constraint according to the method
-
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength)
+            local currentVectorInformation = {
+                ["JointPosition"] = jointPosition;
+                ["LimbVector"] = newLimbVector;
+                ["LimbLength"] = limbLength;
+                ["Index"] = i
+            }
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentVectorInformation)
 
         end
         -- constructs the new vectable

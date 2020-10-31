@@ -157,7 +157,13 @@ function FabrikSolver:Backwards(originCF, targetPos)
         -- Checks if there is a limb constraint for the current limb in the iteration
         if limbConstraintTable and limbConstraintTable[i] and limbConstraintTable[i] ~= nil then
             local limbLength = limbLengthTable[i]
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(pointTowards, newLimbVector, limbLength)
+            local currentVectorInformation = {
+                ["JointPosition"] = pointTowards;
+                ["LimbVector"] = newLimbVector;
+                ["LimbLength"] = limbLength;
+                ["Index"] = i
+            }
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentVectorInformation)
         end
 
         -- Gotta make it negative though to counteract the initial negative
@@ -208,8 +214,13 @@ function FabrikSolver:Forwards(originCF, targetPos)
 
             local limbLength = limbLengthTable[i]
             -- Start the constraint according to the method
-
-            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(jointPosition, newLimbVector, limbLength)
+            local currentVectorInformation = {
+                ["JointPosition"] = jointPosition;
+                ["LimbVector"] = newLimbVector;
+                ["LimbLength"] = limbLength;
+                ["Index"] = i
+            }
+            newLimbVector = limbConstraintTable[i]:ConstrainLimbVector(currentVectorInformation)
 
         end
         -- constructs the new vectable
