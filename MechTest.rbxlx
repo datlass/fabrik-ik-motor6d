@@ -383,27 +383,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-32.6654968</X>
-					<Y>26.1288815</Y>
-					<Z>-30.6108818</Z>
-					<R00>-0.979649425</R00>
-					<R01>-0.0717401952</R01>
-					<R02>0.187458098</R02>
+					<X>-41.5309029</X>
+					<Y>28.3731213</Y>
+					<Z>-35.3637505</Z>
+					<R00>-0.997002721</R00>
+					<R01>0.0290247239</R01>
+					<R02>-0.0717161745</R02>
 					<R10>-0</R10>
-					<R11>0.933943808</R11>
-					<R12>0.357420087</R12>
-					<R20>-0.200716734</R20>
-					<R21>0.350146383</R21>
-					<R22>-0.914937317</R22>
+					<R11>0.926961482</R11>
+					<R12>0.375156641</R12>
+					<R20>0.0773669481</R20>
+					<R21>0.374032199</R21>
+					<R22>-0.924183011</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-33.0404129</X>
-					<Y>25.4140415</Y>
-					<Z>-28.7810078</Z>
+					<X>-41.3874702</X>
+					<Y>27.6228065</Y>
+					<Z>-33.5153809</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -5410,46 +5410,7 @@ function LimbChain:UpdateMotors()
             But what we really want to control is the one connected to the RootPart
             motor w/ part 0 = HumanoidRootPart / RootPart,part 1 = LowerTorso
             ]]
-        local skip = 0
-        if self.SpineMotor then
-            skip = 1
-            --Then does the rotation for the spine chain
-            local firstMotorWorldPosition = initialJointCFrame.Position
-            local secondMotorWorldPosition = initialJointCFrame.Position+self.IteratedLimbVectorTable[1]
-            local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
-
-            --Obtains the CFrame of the part0 limb of the motor6d
-            local previousLimbPart = self.SpineMotor.Part0
-            local previousLimbCF = previousLimbPart.CFrame 
-
-            local SpineMotorWorldPosition = previousLimbCF*self.SpineMotorC0.Position
-
-            local newRight = previousLimbCF.LookVector:Cross(newUpVector)
-
-            local undoPreviousLimbCF = previousLimbCF:Inverse()
-            local rotateSpine = CFrame.fromMatrix(SpineMotorWorldPosition,newRight,newUpVector)
-
-            --Obtain the goal world space CFrame
-            local goalCF = undoPreviousLimbCF*rotateSpine
-
-            local rotationOnly = goalCF-goalCF.Position
-
-            --Current rotation of motors
-            local currentRotation = self.SpineMotor.C0-self.SpineMotor.C0.Position
-
-            --if the bool is true then use lerp
-            if self.LerpMotors then
-                
-                local newRotationCF = currentRotation:lerp(rotationOnly,self.LerpAlpha)
-
-                --Changes the current motor6d through c0 and lerp
-                self.SpineMotor.C0 = CFrame.new(self.SpineMotor.C0.Position)*newRotationCF
-            else
-                self.SpineMotor.C0 = CFrame.new(self.SpineMotor.C0.Position)*rotationOnly
-            end
-
-
-        end
+        local skip = self:UpdateSpineMotor(initialJointCFrame) or 0
 
         --Iterates and start rotating the limbs starting from the first joint
         for i = 1+skip, iterateUntil, 1 do
@@ -5635,6 +5596,48 @@ function LimbChain:UpdateFootMotor(footMotorPosition)
             end
 
         end
+    end
+end
+
+function LimbChain:UpdateSpineMotor(initialJointCFrame)
+
+    if self.SpineMotor then
+        local skip = 1
+        --Then does the rotation for the spine chain
+        local firstMotorWorldPosition = initialJointCFrame.Position
+        local secondMotorWorldPosition = initialJointCFrame.Position+self.IteratedLimbVectorTable[1]
+        local newUpVector = secondMotorWorldPosition - firstMotorWorldPosition
+
+        --Obtains the CFrame of the part0 limb of the motor6d
+        local previousLimbPart = self.SpineMotor.Part0
+        local previousLimbCF = previousLimbPart.CFrame 
+
+        local SpineMotorWorldPosition = previousLimbCF*self.SpineMotorC0.Position
+
+        local newRight = previousLimbCF.LookVector:Cross(newUpVector)
+
+        local undoPreviousLimbCF = previousLimbCF:Inverse()
+        local rotateSpine = CFrame.fromMatrix(SpineMotorWorldPosition,newRight,newUpVector)
+
+        --Obtain the goal world space CFrame
+        local goalCF = undoPreviousLimbCF*rotateSpine
+
+        local rotationOnly = goalCF-goalCF.Position
+
+        --Current rotation of motors
+        local currentRotation = self.SpineMotor.C0-self.SpineMotor.C0.Position
+
+        --if the bool is true then use lerp
+        if self.LerpMotors then
+            
+            local newRotationCF = currentRotation:lerp(rotationOnly,self.LerpAlpha)
+
+            --Changes the current motor6d through c0 and lerp
+            self.SpineMotor.C0 = CFrame.new(self.SpineMotor.C0.Position)*newRotationCF
+        else
+            self.SpineMotor.C0 = CFrame.new(self.SpineMotor.C0.Position)*rotationOnly
+        end
+        return skip
     end
 end
 
