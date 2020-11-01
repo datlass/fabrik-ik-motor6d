@@ -1,4 +1,35 @@
+--[[
 
+This is the FabrikConstraint object which you insert into the table to do the math
+
+API:
+
+Constructors:
+	BallSocketConstraint.new(BasePart part, Number AngleOfWidth, Number AngleOfHeight)
+        > Creates the inverse kinematics constraint based on the parts axis
+        > also the numbers are in degrees
+        
+Methods:
+
+	BallSocketConstraint:ConstrainLimbVector(currentVectorInformation)
+        > Gets a limb vector and return a new constrainted limb vector
+        > Primarily used by the fabrik solver to constrain
+
+Properties:
+    >Not meant to be manipulated
+	BallSocketConstraint.AngleOfWidth
+        > Number in radians
+        > angleOfElevation is between the parts look vector and the parts Rightvector vector
+        > 
+
+    BallSocketConstraint.AngleOfHeight
+        > Number in radians
+        > angleOfDepression is between the parts look vector the parts up vector
+
+Enjoy!
+- dthecoolest
+
+--]]
 
 -- Initialize Object Class
 local Package = script:FindFirstAncestor("LimbChain")

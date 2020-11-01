@@ -383,27 +383,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-38.359211</X>
-					<Y>24.4244804</Y>
-					<Z>-23.8799</Z>
-					<R00>-0.981078267</R00>
-					<R01>-0.0642512441</R01>
-					<R02>0.182640031</R02>
+					<X>-39.7498589</X>
+					<Y>17.7117653</Y>
+					<Z>-22.2734184</Z>
+					<R00>-0.995548606</R00>
+					<R01>-0.0243555922</R01>
+					<R02>0.0910492241</R02>
 					<R10>-0</R10>
-					<R11>0.943330169</R11>
-					<R12>0.331855685</R12>
-					<R20>-0.193612009</R20>
-					<R21>0.325576395</R21>
-					<R22>-0.925480604</R22>
+					<R11>0.966034591</R11>
+					<R12>0.258413404</R12>
+					<R20>-0.0942505002</R20>
+					<R21>0.257263094</R21>
+					<R22>-0.961734176</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-38.7244911</X>
-					<Y>23.7607689</Y>
-					<Z>-22.0289383</Z>
+					<X>-39.9319572</X>
+					<Y>17.1949387</Y>
+					<Z>-20.3499508</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3449,7 +3449,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
 				</Properties>
-				<Item class="KeyframeSequence" referent="RBXc148148aaf9a46679a9139b9a753d5f1">
+				<Item class="KeyframeSequence" referent="RBX4e13c286483b49f3bcf594d0a0780ca4">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<float name="AuthoredHipHeight">2</float>
@@ -3457,9 +3457,9 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 						<string name="Name">Automatic Save</string>
 						<token name="Priority">1000</token>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags">MTU5OTgxNTExMQ==</BinaryString>
+						<BinaryString name="Tags">MTYwNDIwMTk4Mg==</BinaryString>
 					</Properties>
-					<Item class="Keyframe" referent="RBX0cc178d5777c4c6e971fb4f0260d884f">
+					<Item class="Keyframe" referent="RBXe93b6c1e7a4e4e56a00c08eb18baa25e">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<string name="Name">Keyframe</string>
@@ -3467,7 +3467,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 							<BinaryString name="Tags"></BinaryString>
 							<float name="Time">0</float>
 						</Properties>
-						<Item class="Pose" referent="RBX0e9d8610f9f0474e921cf7e2b291898e">
+						<Item class="Pose" referent="RBX5f732c5051984dfeaf2fb93317247889">
 							<Properties>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<CoordinateFrame name="CFrame">
@@ -3491,7 +3491,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 								<BinaryString name="Tags"></BinaryString>
 								<float name="Weight">0</float>
 							</Properties>
-							<Item class="Pose" referent="RBX7b4997cded0a4b9e9530477940e7cb25">
+							<Item class="Pose" referent="RBX9b8f500076bb48dd809e3a624d203c65">
 								<Properties>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<CoordinateFrame name="CFrame">
@@ -3515,7 +3515,7 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 									<BinaryString name="Tags"></BinaryString>
 									<float name="Weight">1</float>
 								</Properties>
-								<Item class="Pose" referent="RBX23c93c80452f4f049eef2d4fcf4a0c33">
+								<Item class="Pose" referent="RBX79255bc839dc4443b452f85b11ff8b4c">
 									<Properties>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<CoordinateFrame name="CFrame">
@@ -4273,10 +4273,8 @@ local rightUpperLegBallSocketConstraintAlternative = BallSocketConstraint.new(ri
 local rKneeHinge = HingeConstraint.new(rKneePart,80,80)
 local rLegHinge = HingeConstraint.new(rLegPart,100,100)
 
-local rigid = RigidConstraint.new(rightLegChain)
-
 --Construct the constraints table
-local rightLegConstraintsPrimary = {rigid,rKneeHinge,rLegHinge}
+local rightLegConstraintsPrimary = {rightUpperLegBallSocketConstraintAlternative,rKneeHinge,rLegHinge}
 local rightLegConstraintsSecondary = {rupperLegBallSocketConstraint,rKneeBallSocket,rLegBallSocket}
 
 --Set the constraints of the object
@@ -6428,8 +6426,12 @@ return require(baseModule)
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">FabrikConstraint</string>
 						<string name="ScriptGuid">{0124c9ca-e738-4efd-85d2-ba842860af76}</string>
-						<ProtectedString name="Source"><![CDATA[--Get services
+						<ProtectedString name="Source"><![CDATA[--[[
+    Base class for the constraint type objects which assigns the constraints axis to a BasePart
+    Also responsible for creating the cone to visualize the constraints
+]]
 
+--Get services
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local InsertService = game:GetService("InsertService")
 
@@ -6553,7 +6555,38 @@ return FabrikConstraint
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">BallSocketConstraint</string>
 							<string name="ScriptGuid">{701321e9-c0d7-4105-8f72-ad5a2d03f48c}</string>
-							<ProtectedString name="Source"><![CDATA[
+							<ProtectedString name="Source"><![CDATA[--[[
+
+This is the FabrikConstraint object which you insert into the table to do the math
+
+API:
+
+Constructors:
+	BallSocketConstraint.new(BasePart part, Number AngleOfWidth, Number AngleOfHeight)
+        > Creates the inverse kinematics constraint based on the parts axis
+        > also the numbers are in degrees
+        
+Methods:
+
+	BallSocketConstraint:ConstrainLimbVector(currentVectorInformation)
+        > Gets a limb vector and return a new constrainted limb vector
+        > Primarily used by the fabrik solver to constrain
+
+Properties:
+    >Not meant to be manipulated
+	BallSocketConstraint.AngleOfWidth
+        > Number in radians
+        > angleOfElevation is between the parts look vector and the parts Rightvector vector
+        > 
+
+    BallSocketConstraint.AngleOfHeight
+        > Number in radians
+        > angleOfDepression is between the parts look vector the parts up vector
+
+Enjoy!
+- dthecoolest
+
+--]]
 
 -- Initialize Object Class
 local Package = script:FindFirstAncestor("LimbChain")
@@ -6690,7 +6723,40 @@ return BallSocketConstraint]]></ProtectedString>
 							<Content name="LinkedSource"><null></null></Content>
 							<string name="Name">HingeConstraint</string>
 							<string name="ScriptGuid">{b7270084-2342-443c-808c-880339fcaa23}</string>
-							<ProtectedString name="Source"><![CDATA[
+							<ProtectedString name="Source"><![CDATA[--[[
+
+This is the FabrikConstraint object which you insert into the table to do the math
+
+API:
+
+Constructors:
+	HingeConstraint.new(BasePart part, Number angleOfElevation, Number angleOfDepression)
+        > Creates the inverse kinematics constraint based on the parts axis
+        > angleOfElevation is between the parts look vector and the parts up vector
+        > angleOfDepression is between the parts look vector th parts negative up vector
+        > also constrainted by a plane defined within the joint position and right vector
+        >Values of angleOfElevation and angleOfDepression are in degrees initially
+        
+Methods:
+
+	HingeConstraint:ConstrainLimbVector(currentVectorInformation)
+        > Gets a limb vector and return a new constrainted limb vector
+        > Primarily used by the fabrik solver to constrain
+
+Properties:
+    >Not meant to be manipulated
+	HingeConstraint.AngleOfElevation
+        > Number in radians
+        > angleOfElevation is between the parts look vector and the parts up vector
+
+    HingeConstraint.AngleOfDepression
+        > Number in radians
+        > angleOfDepression is between the parts look vector th parts negative up vector
+
+Enjoy!
+- dthecoolest
+
+--]]
 
 -- Initialize Object Class
 local Package = script:FindFirstAncestor("LimbChain")

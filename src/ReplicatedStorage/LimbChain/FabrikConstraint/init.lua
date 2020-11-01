@@ -1,5 +1,9 @@
---Get services
+--[[
+    Base class for the constraint type objects which assigns the constraints axis to a BasePart
+    Also responsible for creating the cone to visualize the constraints
+]]
 
+--Get services
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local InsertService = game:GetService("InsertService")
 
