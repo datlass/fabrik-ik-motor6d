@@ -26,27 +26,16 @@ local RigidConstraint = require(RigidConstraintPointer)
 
 -- Pointers
 local lowerBody = workspace.LowerBody
+--Name of the Motor6D's in order from hip to foot
+local leftLegMotors = {"LUpperLeg","LKnee","LLowerLeg","LFeet"}
+local rightLegMotors = {"RUpperLeg","RKnee","RLowerLeg","RFeet"}
 
--- Obtain Motor6d's in left leg
-local lHipToLegMotor = lowerBody.Hip.LUpperLeg
-local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
-local lJKneeToLowMotor = lowerBody.LeftLeg.LKnee.LLowerLeg
-local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
-
--- Obtain Motor6d's in Right leg
-local rHipToLegMotor = lowerBody.Hip.RUpperLeg
-local rUpToKneeMotor = lowerBody.RightLeg.RUpperLeg.RKnee
-local rJKneeToLowMotor = lowerBody.RightLeg.RKnee.RLowerLeg
-local rLowToFeetMotor = lowerBody.RightLeg.RLowerLeg.RFeet
-
---Store the motor6d in table
-local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
-
---Store the motor6d in table
-local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
+--Finds the instances for the Limb Chain to be initialized
+--converts the names within the tables to motor6d instances within the model
+LimbChain.convertNamesToMotor6DInstancesInModel(lowerBody,leftLegMotors,rightLegMotors)
 
 --Initialize the left leg chain
-local leftLegChain = LimbChain.new(motorTable,true)
+local leftLegChain = LimbChain.new(leftLegMotors,true)
 
 --Foot placement system
 local footParams = RaycastParams.new()
@@ -60,7 +49,7 @@ leftLegChain.LengthToFloor = 20
 leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
 leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain
-local rightLegChain = LimbChain.new(motorRightTable,true)
+local rightLegChain = LimbChain.new(rightLegMotors,true)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint

@@ -383,27 +383,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-39.7498589</X>
-					<Y>17.7117653</Y>
-					<Z>-22.2734184</Z>
-					<R00>-0.995548606</R00>
-					<R01>-0.0243555922</R01>
-					<R02>0.0910492241</R02>
+					<X>-52.1345749</X>
+					<Y>30.8099022</Y>
+					<Z>-35.5946045</Z>
+					<R00>-0.919905245</R00>
+					<R01>0.160624146</R01>
+					<R02>-0.357735008</R02>
 					<R10>-0</R10>
-					<R11>0.966034591</R11>
-					<R12>0.258413404</R12>
-					<R20>-0.0942505002</R20>
-					<R21>0.257263094</R21>
-					<R22>-0.961734176</R22>
+					<R11>0.912261605</R11>
+					<R12>0.409608275</R12>
+					<R20>0.392140865</R20>
+					<R21>0.376800805</R21>
+					<R22>-0.839194119</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-39.9319572</X>
-					<Y>17.1949387</Y>
-					<Z>-20.3499508</Z>
+					<X>-51.4191055</X>
+					<Y>29.9906864</Y>
+					<Z>-33.9162178</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -3630,6 +3630,18 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
+	<Item class="PlayerEmulatorService" referent="RBX7d16f537c07c494cafbf6035058a8f1f">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="EmulatedCountryCode"></string>
+			<string name="EmulatedGameLocale"></string>
+			<string name="Name">PlayerEmulatorService</string>
+			<bool name="PlayerEmulationEnabled">false</bool>
+			<string name="SerializedEmulatedPolicyInfo"></string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+	</Item>
 	<Item class="PermissionsService" referent="RBX692da24e6d4545dcab96baf9cfac3805">
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
@@ -4184,27 +4196,15 @@ local RigidConstraint = require(RigidConstraintPointer)
 
 -- Pointers
 local lowerBody = workspace.LowerBody
+--Name of the Motor6D's in order from hip to foot
+local leftLegMotors = {"LUpperLeg","LKnee","LLowerLeg","LFeet"}
+local rightLegMotors = {"RUpperLeg","RKnee","RLowerLeg","RFeet"}
 
--- Obtain Motor6d's in left leg
-local lHipToLegMotor = lowerBody.Hip.LUpperLeg
-local lUpToKneeMotor = lowerBody.LeftLeg.LUpperLeg.LKnee
-local lJKneeToLowMotor = lowerBody.LeftLeg.LKnee.LLowerLeg
-local lLowToFeetMotor = lowerBody.LeftLeg.LLowerLeg.LFeet
-
--- Obtain Motor6d's in Right leg
-local rHipToLegMotor = lowerBody.Hip.RUpperLeg
-local rUpToKneeMotor = lowerBody.RightLeg.RUpperLeg.RKnee
-local rJKneeToLowMotor = lowerBody.RightLeg.RKnee.RLowerLeg
-local rLowToFeetMotor = lowerBody.RightLeg.RLowerLeg.RFeet
-
---Store the motor6d in table
-local motorTable = {lHipToLegMotor,lUpToKneeMotor,lJKneeToLowMotor,lLowToFeetMotor}
-
---Store the motor6d in table
-local motorRightTable = {rHipToLegMotor,rUpToKneeMotor,rJKneeToLowMotor,rLowToFeetMotor}
+--Finds the instances for the Limb Chain to be initialized
+LimbChain.convertNamesToMotor6DInstancesInModel(lowerBody,leftLegMotors,rightLegMotors)
 
 --Initialize the left leg chain
-local leftLegChain = LimbChain.new(motorTable,true)
+local leftLegChain = LimbChain.new(leftLegMotors,true)
 
 --Foot placement system
 local footParams = RaycastParams.new()
@@ -4218,7 +4218,7 @@ leftLegChain.LengthToFloor = 20
 leftLegChain.FootBottomAttachment = lowerBody.LeftLeg.LFeet.FootBottom
 leftLegChain.FootBottomRightAttachment = lowerBody.LeftLeg.LFeet.FootBottomRight
 --Initialize the right leg chain
-local rightLegChain = LimbChain.new(motorRightTable,true)
+local rightLegChain = LimbChain.new(rightLegMotors,true)
 
 --Testing the constraint
 local testBallSocketConstraint = lowerBody.Constraints.UpperLegConstraint
@@ -5805,6 +5805,35 @@ function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 
 end--end of function
 
+local function findIndexInTables(name,nameTables)
+
+    local index --Index of where the name is locatd in the table
+    local nameTableIndex --which table is it
+    for i,nameTable in pairs(nameTables) do
+        
+        local findings = table.find(nameTable,name)
+        if findings then
+            index = findings
+            nameTableIndex = i
+        end
+    end
+
+    return index,nameTableIndex
+    
+end
+
+function LimbChain.convertNamesToMotor6DInstancesInModel(model,...) 
+    local nameTables = {...} 
+    local modelDescendants = model:GetDescendants()
+    for i,v in pairs(modelDescendants) do
+        if v:IsA("Motor6D") then 
+            local index, nameTableIndex = findIndexInTables(v.Name,nameTables)
+            if index then
+                nameTables[nameTableIndex][index] = v
+            end
+        end
+    end
+end
 
 function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
 

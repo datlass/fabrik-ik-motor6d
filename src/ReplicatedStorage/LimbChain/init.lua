@@ -619,6 +619,35 @@ function LimbChain:CheckAndChangeConstraintRegions(targetPosition)
 
 end--end of function
 
+local function findIndexInTables(name,nameTables)
+
+    local index --Index of where the name is locatd in the table
+    local nameTableIndex --which table is it
+    for i,nameTable in pairs(nameTables) do
+        
+        local findings = table.find(nameTable,name)
+        if findings then
+            index = findings
+            nameTableIndex = i
+        end
+    end
+
+    return index,nameTableIndex
+    
+end
+
+function LimbChain.convertNamesToMotor6DInstancesInModel(model,...) 
+    local nameTables = {...} 
+    local modelDescendants = model:GetDescendants()
+    for i,v in pairs(modelDescendants) do
+        if v:IsA("Motor6D") then 
+            local index, nameTableIndex = findIndexInTables(v.Name,nameTables)
+            if index then
+                nameTables[nameTableIndex][index] = v
+            end
+        end
+    end
+end
 
 function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
 
