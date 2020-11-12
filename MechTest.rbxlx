@@ -383,27 +383,27 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-52.1345749</X>
-					<Y>30.8099022</Y>
-					<Z>-35.5946045</Z>
-					<R00>-0.919905245</R00>
-					<R01>0.160624146</R01>
-					<R02>-0.357735008</R02>
+					<X>-43.1220589</X>
+					<Y>24.7913113</Y>
+					<Z>-24.7908764</Z>
+					<R00>-0.9889431</R00>
+					<R01>0.0665772706</R01>
+					<R02>-0.132511184</R02>
 					<R10>-0</R10>
-					<R11>0.912261605</R11>
-					<R12>0.409608275</R12>
-					<R20>0.392140865</R20>
-					<R21>0.376800805</R21>
-					<R22>-0.839194119</R22>
+					<R11>0.893557906</R11>
+					<R12>0.448948056</R12>
+					<R20>0.148296162</R20>
+					<R21>0.443984091</R21>
+					<R22>-0.883677781</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-51.4191055</X>
-					<Y>29.9906864</Y>
-					<Z>-33.9162178</Z>
+					<X>-42.8570366</X>
+					<Y>23.8934155</Y>
+					<Z>-23.0235214</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -4201,6 +4201,7 @@ local leftLegMotors = {"LUpperLeg","LKnee","LLowerLeg","LFeet"}
 local rightLegMotors = {"RUpperLeg","RKnee","RLowerLeg","RFeet"}
 
 --Finds the instances for the Limb Chain to be initialized
+--converts the names within the tables to motor6d instances within the model
 LimbChain.convertNamesToMotor6DInstancesInModel(lowerBody,leftLegMotors,rightLegMotors)
 
 --Initialize the left leg chain
@@ -4295,6 +4296,8 @@ local down = Vector3.new(0,-20,0)
 --[[
     Then use the LimbChain object to control the motor every heartbeat
     ]]
+rightLegChain:InitDragDebug()
+
 RunService.Heartbeat:Connect(function(step)
         
     --The Goal position
@@ -4306,8 +4309,9 @@ RunService.Heartbeat:Connect(function(step)
     end
     leftLegChain:UpdateMotors()
 
-    rightLegChain:IterateOnce(goalRightPosition,0.1)
-    rightLegChain:UpdateMotors()
+    --InitDragDebug does the samething
+    --rightLegChain:IterateOnce(goalRightPosition,0.1)
+    --rightLegChain:UpdateMotors()
 
 end)
 
@@ -5243,6 +5247,7 @@ Enjoy!
 Thanks EgoMoose for the FABRIK explanation and the explanation on how to do constraints.
 
 --]]
+local RunService = game:GetService("RunService")
 
 -- Import the Fabrik Solver Object
 local FabrikSolverPointer = script:WaitForChild("FabrikSolver")
@@ -5836,7 +5841,6 @@ function LimbChain.convertNamesToMotor6DInstancesInModel(model,...)
 end
 
 function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
-
     --turns constraints debug mode to true
     if PrimaryDebug then
         for _, v in pairs(self.PrimaryLimbConstraintTable) do
@@ -5857,25 +5861,26 @@ function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
     --forces iterate once to keep iterating very laggy but updates the constraints
     self.LimbFabrikSolver.DebugMode = true
     self.LimbFabrikSolver.FreezeLimbs = FreezeLimbs
+end
 
-    --[[ code below debugs the motor position, not necessary
+function LimbChain:InitDragDebug()
 
-    local limbVectors = self.IteratedLimbVectorTable
-
-    local additionalMotor = 0
-    if self.IncludeFoot then
-        additionalMotor += 1
-    end
-
-    for i=1,#limbVectors+additionalMotor,1 do
+    local lastMotor = self.Motor6DTable[#self.Motor6DTable]
+    local endOfChainPosition = lastMotor.Part1.Position
     local part = Instance.new("Part")
-    part.Anchored = true
-    part.Name = "LimbVector:"..i
+    part.Position = endOfChainPosition
+    part.Size = Vector3.new(1,1,1)
     part.BrickColor = BrickColor.random()
+    part.Name = "DragMeAround_"..lastMotor.Name
+    part.CanCollide = false
+    part.Anchored = true
     part.Parent = workspace
-    end
-    self.DebugMode = true
-    ]]
+
+    RunService.Heartbeat:Connect(function()
+    self:IterateOnce(part.Position,0.1)
+    self:UpdateMotors()
+    end)
+
 end
 
 return LimbChain

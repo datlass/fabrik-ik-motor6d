@@ -126,6 +126,8 @@ local down = Vector3.new(0,-20,0)
 --[[
     Then use the LimbChain object to control the motor every heartbeat
     ]]
+rightLegChain:InitDragDebug()
+
 RunService.Heartbeat:Connect(function(step)
         
     --The Goal position
@@ -137,8 +139,9 @@ RunService.Heartbeat:Connect(function(step)
     end
     leftLegChain:UpdateMotors()
 
-    rightLegChain:IterateOnce(goalRightPosition,0.1)
-    rightLegChain:UpdateMotors()
+    --InitDragDebug does the samething
+    --rightLegChain:IterateOnce(goalRightPosition,0.1)
+    --rightLegChain:UpdateMotors()
 
 end)
 

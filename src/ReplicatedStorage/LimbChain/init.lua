@@ -57,6 +57,7 @@ Enjoy!
 Thanks EgoMoose for the FABRIK explanation and the explanation on how to do constraints.
 
 --]]
+local RunService = game:GetService("RunService")
 
 -- Import the Fabrik Solver Object
 local FabrikSolverPointer = script:WaitForChild("FabrikSolver")
@@ -650,7 +651,6 @@ function LimbChain.convertNamesToMotor6DInstancesInModel(model,...)
 end
 
 function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
-
     --turns constraints debug mode to true
     if PrimaryDebug then
         for _, v in pairs(self.PrimaryLimbConstraintTable) do
@@ -671,25 +671,26 @@ function LimbChain:DebugModeOn(FreezeLimbs, PrimaryDebug, SecondaryDebug)
     --forces iterate once to keep iterating very laggy but updates the constraints
     self.LimbFabrikSolver.DebugMode = true
     self.LimbFabrikSolver.FreezeLimbs = FreezeLimbs
+end
 
-    --[[ code below debugs the motor position, not necessary
+function LimbChain:InitDragDebug()
 
-    local limbVectors = self.IteratedLimbVectorTable
-
-    local additionalMotor = 0
-    if self.IncludeFoot then
-        additionalMotor += 1
-    end
-
-    for i=1,#limbVectors+additionalMotor,1 do
+    local lastMotor = self.Motor6DTable[#self.Motor6DTable]
+    local endOfChainPosition = lastMotor.Part1.Position
     local part = Instance.new("Part")
-    part.Anchored = true
-    part.Name = "LimbVector:"..i
+    part.Position = endOfChainPosition
+    part.Size = Vector3.new(1,1,1)
     part.BrickColor = BrickColor.random()
+    part.Name = "DragMeAround_"..lastMotor.Name
+    part.CanCollide = false
+    part.Anchored = true
     part.Parent = workspace
-    end
-    self.DebugMode = true
-    ]]
+
+    RunService.Heartbeat:Connect(function()
+    self:IterateOnce(part.Position,0.1)
+    self:UpdateMotors()
+    end)
+
 end
 
 return LimbChain
